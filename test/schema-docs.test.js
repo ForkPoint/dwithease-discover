@@ -24,6 +24,36 @@ function declaredValue(rules, selector, property) {
     ), '');
 }
 
+function declaredValueForSelector(rules, selector, property) {
+    return rules.reduce((value, rule) => {
+        const selectors = rule.selectorText?.split(',').map((item) => item.trim()) ?? [];
+        const declared = rule.style?.getPropertyValue(property);
+        return selectors.includes(selector) && declared ? declared : value;
+    }, '');
+}
+
+function resolveColor(rules, value) {
+    const property = value.match(/^var\((--[^)]+)\)$/)?.[1];
+    return property ? declaredValue(rules, ':root', property) : value;
+}
+
+function relativeLuminance(hex) {
+    const normalized = hex.length === 4
+        ? hex.slice(1).split('').map((digit) => digit.repeat(2))
+        : hex.slice(1).match(/.{2}/g);
+    const [red, green, blue] = normalized.map((channel) => {
+        const value = Number.parseInt(channel, 16) / 255;
+        return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
+    });
+    return 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+}
+
+function contrastRatio(first, second) {
+    const luminances = [relativeLuminance(first), relativeLuminance(second)]
+        .sort((left, right) => right - left);
+    return (luminances[0] + 0.05) / (luminances[1] + 0.05);
+}
+
 test('writes an OpenAPI 3.1 contract for both Discover feeds', async (context) => {
     const directory = await mkdtemp(join(tmpdir(), 'discover-openapi-'));
     context.after(() => rm(directory, { recursive: true, force: true }));
@@ -142,4 +172,21 @@ test('keeps the public Discover website in the light DWithEase theme', async () 
         rules.some((rule) => rule.media?.mediaText.includes('prefers-color-scheme')),
         false,
     );
+});
+
+test('keeps action text at WCAG AA contrast', async () => {
+    const css = await readFile('assets/discover.css', 'utf8');
+    const rules = parseCssRules(css);
+    const text = declaredValueForSelector(rules, '.button', 'color');
+    const backgrounds = [
+        declaredValueForSelector(rules, '.button', 'background'),
+        declaredValueForSelector(rules, '.button:hover', 'background'),
+    ].map((value) => resolveColor(rules, value));
+
+    for (const background of backgrounds) {
+        assert.ok(
+            contrastRatio(text, background) >= 4.5,
+            `${text} on ${background} must have at least 4.5:1 contrast`,
+        );
+    }
 });
