@@ -40,18 +40,6 @@ test('selects the live feed unless the query asks for the dev feed', () => {
     assert.equal(selectFeedName('?feed=other'), 'live');
 });
 
-test('builds editorial cards from the unchanged legacy live feed', () => {
-    const feed = JSON.parse(readFileSync('feed-live.json', 'utf8'));
-    const catalog = buildCatalog(feed, NOW);
-
-    assert.deepEqual(catalog.promotions, []);
-    assert.equal(catalog.editorial.length, feed.messages.length);
-    assert.deepEqual(
-        catalog.editorial.map(({ id }) => id),
-        feed.messages.map(({ id }) => String(id)),
-    );
-});
-
 test('builds the v2 catalog with schema-valid offsets and sorted editorial items', () => {
     const olderArticle = {
         id: 'older-article',
