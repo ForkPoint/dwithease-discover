@@ -1,0 +1,271 @@
+{
+  "messages": [
+    {
+      "id": "dev-commerce-tool-2026",
+      "kind": "product",
+      "productId": "dev-commerce-tool",
+      "name": "Commerce Toolkit",
+      "benefit": "Test a clear product benefit for an e-commerce workflow.",
+      "category": "e-commerce",
+      "imageId": "puzzle",
+      "url": "https://dwithease.com/",
+      "ctaLabel": "View product",
+      "startsAt": "2026-09-01T00:00:00Z",
+      "endsAt": "2030-01-01T00:00:00Z",
+      "placements": [
+        "discover",
+        "task-end",
+        "popup"
+      ]
+    },
+    {
+      "id": "dev-web-tool-2026",
+      "kind": "product",
+      "productId": "dev-web-tool",
+      "name": "Release Pilot",
+      "benefit": "Test a useful product card for a web development workflow.",
+      "category": "web-development",
+      "imageId": "seo",
+      "url": "https://dwithease.com/",
+      "ctaLabel": "View product",
+      "startsAt": "2026-09-01T00:00:00Z",
+      "endsAt": "2030-01-01T00:00:00Z",
+      "placements": [
+        "discover",
+        "task-end",
+        "popup"
+      ]
+    },
+    {
+      "id": 22,
+      "title": "We are looking for SFCC developers to join us!",
+      "body": "Join our amazing team of SFCC professionals with world-class automated processes and technology stack. We are eager to meet talented individuals who want to learn and improve.",
+      "icon": "find-person",
+      "date": 1618790400000,
+      "modified": 1618834860000,
+      "topic": "recruitment",
+      "link": "https://forkpoint.me/SFCC_DEVS",
+      "actionButton": "Apply now!",
+      "dismissButton": "No thanks",
+      "location": [
+        "Europe"
+      ]
+    },
+    {
+      "id": 24,
+      "title": "Commerce Cloud is going Headless with Vue Storefront! Join the VSF Summit!",
+      "body": "Ready to learn how to build headless commerce using a bodiless frontend? We have a ready-made solution for you! ForkPoint is giving a talk about the newly created connector between Salesforce Commerce Cloud B2C and Vue Storefront. Don't miss out.",
+      "icon": "vuestorefront",
+      "date": 1618790400000,
+      "modified": 1618839420000,
+      "topic": "news",
+      "link": "https://forkpoint.me/vsfsummit2021",
+      "actionButton": "Reserve your seat",
+      "dismissButton": "Maybe later",
+      "location": null
+    },
+    {
+      "id": 23,
+      "title": "Learn about the state of Salesforce Online Retail in 2020",
+      "body": "The people at Salesforce have created a pretty comprehensive set of diagrams that show how online retail has been performing in the past year. Browse by countries and verticals, viewing the emerging trends in online e-commerce.",
+      "icon": "stats",
+      "date": 1611878400000,
+      "modified": 1611917340000,
+      "topic": "news",
+      "link": "https://forkpoint.me/shopindex",
+      "actionButton": "See shopping index!",
+      "dismissButton": "Not interested",
+      "location": null
+    },
+    {
+      "id": 18,
+      "title": "Be more secure with OnePass",
+      "body": "We have created OnePass to help you stay secure and encrypt all your accounts with a single pass phrase. Go to the OnePass menu in settings to enable.",
+      "icon": "web-security",
+      "date": 1605657600000,
+      "modified": 1605727800000,
+      "topic": "features",
+      "link": "/html/options.html#!/onepass",
+      "actionButton": "I want to be secure!",
+      "dismissButton": "Maybe later",
+      "location": null
+    },
+    {
+      "id": 21,
+      "title": "Извънредни новини!!!",
+      "body": "Тръмп нареди повторно преброяване и Слави спечели. Билети за куку бенд live @ Madison Square Garden are now on sale!!!\n\n\n\n\n\n",
+      "icon": "news",
+      "date": 1604966400000,
+      "topic": "news",
+      "link": "https://en.wikipedia.org/wiki/Internet_troll",
+      "actionButton": "Ай мамоу!",
+      "dismissButton": "Кви са тез глупости?",
+      "location": [
+        "Bulgaria"
+      ]
+    },
+    {
+      "id": 20,
+      "title": "Quickly locate content slots and assets on pages",
+      "body": "Quickly inspect any Content Assets and Slots on your Storefront by using the  Storefront Highlighter. Try it out by going to your Storefront and right-click on the page to reveal the DWithEase context menu, then click on the \"Highlight Content\" option.",
+      "icon": "lightbulb",
+      "date": 1603670400000,
+      "topic": "features",
+      "link": "https://forkpoint.me/AuaHK",
+      "actionButton": "Show me!",
+      "dismissButton": "Not now",
+      "location": [
+        "Europe"
+      ]
+    },
+    {
+      "id": 19,
+      "title": "Good news everyone!",
+      "body": "Tomorrow is FRIDAY!",
+      "icon": "calendar-friday",
+      "date": 1603324800000,
+      "modified": 1603391820000,
+      "topic": "news",
+      "link": "https://www.is-it-friday.org/",
+      "actionButton": "Yey!",
+      "dismissButton": "Ugh!",
+      "location": [
+        "Bulgaria"
+      ]
+    },
+    {
+      "id": 17,
+      "title": "Sharing is caring",
+      "body": "We have invested a lot of time, thought and energy, creating this fantastic tool that is DWithEase. Please take a moment and share it with a colleague to spread the happiness of working efficiently with Commerce Cloud.\\nThank you!",
+      "icon": "network",
+      "date": 1602115200000,
+      "modified": 1602262440000,
+      "topic": "marketing",
+      "link": "https://twitter.com/intent/tweet?text=Using%20Salesforce%20Commerce%20Cloud%20B2C%20(Demandware)%3F%20Check%20out%20this%20outstanding%20extension%20that%20will%20help%20your%20daily%20work%3A%20https%3A%2F%2Fdwithease.com%2F",
+      "actionButton": "I want to share!",
+      "dismissButton": "Not now",
+      "location": null
+    },
+    {
+      "id": "16",
+      "topic": "news",
+      "title": "Коле",
+      "body": "Получи ли?",
+      "icon": "puzzle",
+      "link": "https://www.facebook.com/dskbank/posts/3177289435698593?__cft__[0]=AZVXfnQYo7JtpPeAuE08cG-4NebxlTVsOaWf81pqrBPlM8jSF8IDmn44VvnLRzv53iRroljPHqns3fuziGhfpD49zB10iTxYuZt6WpIHiKpN-5dIKZ6E83_YHNkqJKtFJptwI3wGm-8q4iNs00R2Z40vx-WgeTG5xfGXP1I6bfb6LA&__tn__=%2CO%2CP-R",
+      "date": 1596083603988,
+      "buttonText": "Ко речи?"
+    },
+    {
+      "id": "15",
+      "topic": "marketing",
+      "title": "Intellij SFCC",
+      "body": "The most powerful plugin for Salesforce B2C Commerce development with JetBrains IDEs!",
+      "icon": "sfcc",
+      "link": "https://forkpoint.me/intellijsfcc",
+      "date": 1594037190107,
+      "modified": 1594099465947,
+      "buttonText": "More Details"
+    },
+    {
+      "id": "14",
+      "topic": "tips",
+      "title": "Seize the day!",
+      "body": "The future is unforeseen and one should not leave to chance future happenings, but rather one should do all one can today to make one's own future better.",
+      "icon": "enso",
+      "link": "https://en.wikipedia.org/wiki/Carpe_diem",
+      "date": 1594013106888,
+      "buttonText": "Thanks!"
+    },
+    {
+      "id": "13",
+      "topic": "tips",
+      "title": "Life is good!",
+      "body": "Happy Friday!",
+      "icon": "enso",
+      "link": "https://www.youtube.com/watch?v=S-0TYeg9Rzc",
+      "date": 1593751107868,
+      "buttonText": "Thanks! <3"
+    },
+    {
+      "id": "12",
+      "topic": "tips",
+      "title": "Embrace Change!",
+      "body": "We won't be distracted by comparison if we are captivated with purpose.",
+      "icon": "enso",
+      "link": "https://forkpoint.com/",
+      "date": 1592891255856,
+      "buttonText": "I got it!"
+    },
+    {
+      "id": "11",
+      "topic": "tips",
+      "title": "You must have an opinion!",
+      "body": "The world will ask you who you are, and if you do not know, the world will tell you.",
+      "icon": "enso",
+      "link": "https://forkpoint.com/",
+      "date": 1592827919725,
+      "buttonText": "Who am I?"
+    },
+    {
+      "id": "10",
+      "topic": "tips",
+      "title": "Happy Monday!",
+      "body": "Be miserable. Or motivate yourself. Whatever has to be done, it's always your choice.",
+      "icon": "tips",
+      "link": "https://www.youtube.com/watch?v=ZXsQAXx_ao0",
+      "date": 1592805639906,
+      "buttonText": "Let's do it!"
+    },
+    {
+      "id": "9",
+      "topic": "tips",
+      "title": "Hello, ForkPoint!",
+      "body": "Every morning when you wake up, you have energy and a fresh mind. Combine these and start your day with a great way.",
+      "icon": "tips",
+      "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "date": 1592372991829,
+      "buttonText": "Thanks!"
+    },
+    {
+      "id": "8",
+      "topic": "news",
+      "title": "Please don't forget to fill in your timesheet today!",
+      "body": "Reporting is a vital part of out work lives. Be sure to fill in your timesheet every day, for a happy work experience. Thank you!",
+      "icon": "news",
+      "link": "https://dwithease.com",
+      "date": 1589354814789,
+      "buttonText": "Thanks!"
+    },
+    {
+      "id": "7",
+      "topic": "news",
+      "title": "Hello Mambo! This is feed number 7!",
+      "body": "Hello Mambo! This is feed number 7 body!",
+      "icon": "news",
+      "link": "https://microsoftedge.microsoft.com/addons/detail/peefidlcfhcdelglpfhfbmniafbocgag/",
+      "date": 1589266666597,
+      "buttonText": "Install"
+    },
+    {
+      "id": "6",
+      "topic": "news",
+      "title": "DWithEase on Microsoft Edge!",
+      "body": "The extension is now available on the Microsoft Edge Addons page! Get it now for free!",
+      "icon": "news",
+      "link": "https://microsoftedge.microsoft.com/addons/detail/peefidlcfhcdelglpfhfbmniafbocgag/",
+      "date": 1585483854820,
+      "buttonText": "Install"
+    },
+    {
+      "id": "5",
+      "topic": "news",
+      "title": "DWithEase on Firefox!",
+      "body": "Finally! The long awaited and highly requested Firefox version of DWithEase is out! Grab it while it's hot! Start using it now!",
+      "icon": "news",
+      "link": "https://addons.mozilla.org/en-US/firefox/addon/dwithease/",
+      "date": 1574335270277,
+      "buttonText": "Install"
+    }
+  ]
+}
