@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
@@ -62,14 +63,16 @@ test('writes an OpenAPI 3.1 contract for both Discover feeds', async (context) =
     );
 });
 
-test('publishes both documented endpoints as v2 feeds', async () => {
-    const live = JSON.parse(await readFile('feed-live.json', 'utf8'));
+test('keeps the legacy live feed unchanged during v2 development', async () => {
+    const live = await readFile('feed-live.json', 'utf8');
     const development = JSON.parse(await readFile('feed-dev.json', 'utf8'));
 
-    assert.equal(validateFeed(live).success, true);
     assert.equal(validateFeed(development).success, true);
-    assert.deepEqual(live.items, []);
     assert.ok(development.items.length > 0);
+    assert.equal(
+        createHash('sha256').update(live).digest('hex'),
+        '4e5d6ae0f0e6092f0b53e7a352b2c91156586fab4d1e3e5ccd99a25b1ac721d6',
+    );
 });
 
 test('configures the pinned Scalar viewer for the generated contract', async () => {

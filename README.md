@@ -35,10 +35,10 @@ Both public endpoints use the v2 JSON format:
 
 Each item has a stable slug ID, a type, an HTTPS URL, source details, a publication date, tags, and a CTA. Editorial items use `article` or `news`. Promotions also include a dated campaign and one or more placements.
 
-The development feed contains the curation corpus. The live feed remains empty until that corpus is approved. Validate both files before publication:
+The development feed contains the curation corpus. The live feed keeps its legacy format until that corpus is approved. Validate the development feed before publication:
 
 ```sh
-npm run validate:feed -- feed-live.json feed-dev.json
+npm run validate:feed -- feed-dev.json
 ```
 
 ## UX authoring guidance

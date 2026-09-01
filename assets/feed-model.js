@@ -87,11 +87,43 @@ function validV2Promotion(item) {
     return campaign.placements.every((placement) => PRODUCT_PLACEMENTS.has(placement));
 }
 
+function legacyEditorialItem(item) {
+    if (!item || typeof item.title !== 'string' || typeof item.body !== 'string') return null;
+    if (!item.title.trim() || !item.body.trim()) return null;
+    const publishedAt = new Date(item.date);
+    if (!Number.isFinite(publishedAt.getTime())) return null;
+
+    return {
+        id: String(item.id),
+        type: 'news',
+        title: item.title,
+        summary: item.body,
+        url: item.link,
+        source: {
+            name: 'DWithEase',
+            url: 'https://dwithease.com/',
+        },
+        publishedAt: publishedAt.toISOString(),
+        tags: [safeId(item.topic) ? item.topic : 'news'],
+        cta: {
+            label: item.actionButton || item.buttonText || 'Learn more',
+        },
+    };
+}
+
 export function selectFeedName(search = '') {
     return new URLSearchParams(search).get('feed') === 'dev' ? 'dev' : 'live';
 }
 
 export function buildCatalog(raw, now = Date.now()) {
+    if (Array.isArray(raw?.messages)) {
+        const editorial = raw.messages
+            .map((item) => legacyEditorialItem(item))
+            .filter((item) => item !== null)
+            .sort((left, right) => Date.parse(right.publishedAt) - Date.parse(left.publishedAt));
+        return { promotions: [], editorial };
+    }
+
     const items = raw?.version === 2
         && typeof raw.locale === 'string'
         && LOCALE_PATTERN.test(raw.locale)

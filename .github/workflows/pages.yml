@@ -44,7 +44,7 @@ jobs:
         run: npm test
 
       - name: Validate public feeds
-        run: npm run validate:feed -- feed-live.json feed-dev.json
+        run: npm run validate:feed -- feed-dev.json
 
       - name: Prepare static site
         run: |

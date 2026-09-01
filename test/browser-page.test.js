@@ -170,6 +170,18 @@ async function openDiscoverPage(context) {
     return page;
 }
 
+test('renders the unchanged legacy live feed', async (context) => {
+    const browserContext = await browser.newContext();
+    context.after(() => browserContext.close());
+    const page = await browserContext.newPage();
+
+    await page.goto(siteUrl, { waitUntil: 'networkidle' });
+    await page.locator('[data-item-id="24"]').waitFor();
+
+    assert.equal(await page.locator('.feed-card').count(), 11);
+    assert.equal(await page.locator('[data-testid="discover-empty"]').count(), 0);
+});
+
 test('computes the light theme under a dark system preference', async (context) => {
     const page = await openDiscoverPage(context);
     const computed = await page.evaluate(() => ({
