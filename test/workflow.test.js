@@ -21,6 +21,10 @@ test('validates pull requests and deploys only main pushes', async () => {
     assert.deepEqual(workflow.on.pull_request.branches, ['main']);
     assert.ok(Object.hasOwn(workflow.on, 'workflow_dispatch'));
     assert.deepEqual(workflow.permissions, { contents: 'read' });
+    assert.deepEqual(workflow.concurrency, {
+        group: 'discover-${{ github.event_name }}-${{ github.ref }}',
+        'cancel-in-progress': true,
+    });
 
     assert.deepEqual(actions(workflow.jobs.validate), [
         'actions/checkout@v6',
