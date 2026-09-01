@@ -157,7 +157,7 @@ test('counts Unicode code points for browser text limits', () => {
     );
 });
 
-test('requires lowercase HTTPS prefixes across feed validators', () => {
+test('requires whitespace-free lowercase HTTPS URLs across feed validators', () => {
     const article = {
         id: 'lowercase-https',
         type: 'article',
@@ -191,13 +191,16 @@ test('requires lowercase HTTPS prefixes across feed validators', () => {
         ['lowercase-https'],
     );
 
-    const uppercaseItems = [
+    const invalidItems = [
         { ...article, url: 'HTTPS://example.com/article' },
         { ...article, source: { ...article.source, url: 'HTTPS://example.com/' } },
         { ...article, image: { ...article.image, src: 'HTTPS://example.com/image.png' } },
+        { ...article, url: 'https://example.com/article\t' },
+        { ...article, source: { ...article.source, url: 'https://example.com/\n' } },
+        { ...article, image: { ...article.image, src: 'https://example.com/image.png ' } },
     ];
 
-    for (const item of uppercaseItems) {
+    for (const item of invalidItems) {
         const feed = { ...validFeed, items: [item] };
         assert.equal(validateFeed(feed).success, false);
         assert.deepEqual(buildCatalog(feed, NOW).editorial, []);

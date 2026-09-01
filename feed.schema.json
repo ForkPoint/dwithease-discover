@@ -41,7 +41,7 @@
                 "pattern": "\\S"
               },
               "url": {
-                "pattern": "^https://",
+                "pattern": "^https://\\S+$",
                 "type": "string",
                 "format": "uri"
               },
@@ -55,7 +55,7 @@
                     "pattern": "\\S"
                   },
                   "url": {
-                    "pattern": "^https://",
+                    "pattern": "^https://\\S+$",
                     "type": "string",
                     "format": "uri"
                   }
@@ -89,7 +89,7 @@
                   "src": {
                     "anyOf": [
                       {
-                        "pattern": "^https://",
+                        "pattern": "^https://\\S+$",
                         "type": "string",
                         "format": "uri"
                       },
@@ -168,7 +168,7 @@
                 "pattern": "\\S"
               },
               "url": {
-                "pattern": "^https://",
+                "pattern": "^https://\\S+$",
                 "type": "string",
                 "format": "uri"
               },
@@ -182,7 +182,7 @@
                     "pattern": "\\S"
                   },
                   "url": {
-                    "pattern": "^https://",
+                    "pattern": "^https://\\S+$",
                     "type": "string",
                     "format": "uri"
                   }
@@ -216,7 +216,7 @@
                   "src": {
                     "anyOf": [
                       {
-                        "pattern": "^https://",
+                        "pattern": "^https://\\S+$",
                         "type": "string",
                         "format": "uri"
                       },

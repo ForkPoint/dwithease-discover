@@ -260,6 +260,8 @@ h1 {
 
 .card-meta {
     display: flex;
+    min-width: 0;
+    max-width: 100%;
     align-items: center;
     flex-wrap: wrap;
     gap: 6px 10px;
@@ -282,6 +284,8 @@ h1 {
 
 .tag-list {
     display: flex;
+    min-width: 0;
+    max-width: 100%;
     flex-wrap: wrap;
     gap: 7px;
     margin-top: 16px;
@@ -301,13 +305,13 @@ h1 {
 .card-body {
     display: flex;
     min-width: 0;
+    max-width: 100%;
     flex: 1;
     flex-direction: column;
 }
 
 .card-title {
     margin: 0;
-    overflow-wrap: anywhere;
     font-size: 1.0625rem;
     font-weight: 700;
     line-height: 1.5;
@@ -323,9 +327,27 @@ h1 {
 
 .card-actions {
     display: flex;
+    min-width: 0;
+    max-width: 100%;
     justify-content: flex-end;
     margin-top: auto;
     padding-top: 16px;
+}
+
+.card-source,
+.card-date,
+.card-title,
+.card-copy,
+.tag,
+.card-actions .button,
+.card-actions .text-link {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+
+.card-actions .text-link {
+    display: inline-block;
 }
 
 .text-link {

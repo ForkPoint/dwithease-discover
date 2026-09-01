@@ -79,8 +79,8 @@ test('writes an OpenAPI 3.1 contract for both Discover feeds', async (context) =
     );
     assert.equal(document.components.schemas.DiscoverFeed.properties.version.const, 2);
     const article = document.components.schemas.DiscoverFeed.properties.items.items.oneOf[0];
-    assert.equal(article.properties.url.pattern, '^https://');
-    assert.equal(article.properties.source.properties.url.pattern, '^https://');
+    assert.equal(article.properties.url.pattern, '^https://\\S+$');
+    assert.equal(article.properties.source.properties.url.pattern, '^https://\\S+$');
     assert.equal(article.properties.title.maxLength, 120);
     assert.equal(article.properties.summary.maxLength, 280);
     assert.equal(article.properties.source.properties.name.maxLength, 80);
@@ -92,7 +92,7 @@ test('writes an OpenAPI 3.1 contract for both Discover feeds', async (context) =
     assert.equal(article.properties.cta.properties.label.pattern, '\\S');
     assert.deepEqual(
         article.properties.image.properties.src.anyOf.map(({ pattern }) => pattern),
-        ['^https://', '^assets\\/'],
+        ['^https://\\S+$', '^assets\\/'],
     );
 });
 
@@ -188,5 +188,30 @@ test('keeps action text at WCAG AA contrast', async () => {
             contrastRatio(text, background) >= 4.5,
             `${text} on ${background} must have at least 4.5:1 contrast`,
         );
+    }
+});
+
+test('wraps every feed text field within its card', async () => {
+    const css = await readFile('assets/discover.css', 'utf8');
+    const rules = parseCssRules(css);
+    const textSelectors = [
+        '.card-source',
+        '.card-date',
+        '.card-title',
+        '.card-copy',
+        '.tag',
+        '.card-actions .button',
+        '.card-actions .text-link',
+    ];
+    const containerSelectors = ['.card-body', '.card-meta', '.tag-list', '.card-actions'];
+
+    for (const selector of textSelectors) {
+        assert.equal(declaredValueForSelector(rules, selector, 'min-width'), '0');
+        assert.equal(declaredValueForSelector(rules, selector, 'max-width'), '100%');
+        assert.equal(declaredValueForSelector(rules, selector, 'overflow-wrap'), 'anywhere');
+    }
+    for (const selector of containerSelectors) {
+        assert.equal(declaredValueForSelector(rules, selector, 'min-width'), '0');
+        assert.equal(declaredValueForSelector(rules, selector, 'max-width'), '100%');
     }
 });

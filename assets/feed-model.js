@@ -18,8 +18,8 @@ function dateTime(value) {
         && Number.isFinite(Date.parse(value));
 }
 
-function httpsUrl(value) {
-    if (typeof value !== 'string' || !value.startsWith('https://')) return false;
+export function isHttpsUrl(value) {
+    if (typeof value !== 'string' || !/^https:\/\/\S+$/.test(value)) return false;
     try {
         return new URL(value).protocol === 'https:';
     } catch {
@@ -30,7 +30,7 @@ function httpsUrl(value) {
 function validImage(image) {
     if (image === undefined) return true;
     if (!image || !limitedText(image.alt, 160)) return false;
-    return httpsUrl(image.src)
+    return isHttpsUrl(image.src)
         || (typeof image.src === 'string' && image.src.startsWith('assets/'));
 }
 
@@ -38,8 +38,8 @@ function validV2Item(item) {
     if (!item || !safeId(item.id)) return false;
     if (!['article', 'news', 'promotion'].includes(item.type)) return false;
     if (!requiredText(item.title, 120) || !requiredText(item.summary, 280)) return false;
-    if (!httpsUrl(item.url) || !dateTime(item.publishedAt)) return false;
-    if (!requiredText(item.source?.name, 80) || !httpsUrl(item.source?.url)) return false;
+    if (!isHttpsUrl(item.url) || !dateTime(item.publishedAt)) return false;
+    if (!requiredText(item.source?.name, 80) || !isHttpsUrl(item.source?.url)) return false;
     if (!requiredText(item.cta?.label, 32)) return false;
     if (!Array.isArray(item.tags) || item.tags.length === 0 || item.tags.length > 8) return false;
     return item.tags.every((tag) => safeId(tag)) && validImage(item.image);

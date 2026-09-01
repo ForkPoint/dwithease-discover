@@ -5,10 +5,12 @@ const SlugSchema = z.string()
     .max(120)
     .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
 
+const HTTPS_URL_PATTERN = '^https://\\S+$';
+
 const HttpsUrlSchema = z.string()
-    .regex(/^https:\/\//)
+    .regex(new RegExp(HTTPS_URL_PATTERN))
     .pipe(z.url({ protocol: /^https$/ }))
-    .meta({ pattern: '^https://' });
+    .meta({ pattern: HTTPS_URL_PATTERN });
 
 const DateTimeSchema = z.iso.datetime({ offset: true });
 

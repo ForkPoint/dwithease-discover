@@ -1,5 +1,6 @@
 import {
     buildCatalog,
+    isHttpsUrl,
     selectFeedName,
 } from './feed-model.js';
 
@@ -13,11 +14,7 @@ function node(document, tagName, className, text) {
 }
 
 function safeHttps(value) {
-    try {
-        return new URL(value).protocol === 'https:' ? value : '';
-    } catch {
-        return '';
-    }
+    return isHttpsUrl(value) ? value : '';
 }
 
 function actionLink(document, href, label, className = 'button') {

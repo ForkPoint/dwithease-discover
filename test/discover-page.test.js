@@ -88,6 +88,17 @@ test('renders the Discover empty state', () => {
     assert.ok(root.querySelector('[data-testid="discover-empty"]'));
 });
 
+test('does not render actions for raw URLs with whitespace', () => {
+    const root = createRoot();
+
+    renderCatalog(root, {
+        promotions: [{ ...V2_PROMOTION, url: 'https://catalogspark.com/\t' }],
+        editorial: [],
+    });
+
+    assert.equal(root.querySelector('[data-item-id="catalogspark-2026"] a'), null);
+});
+
 test('renders a working retry action after a feed error', () => {
     const root = createRoot();
     let retries = 0;
