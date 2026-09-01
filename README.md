@@ -15,13 +15,7 @@ DWithEase Discover is the DWithEase news engine for ecommerce and Salesforce B2C
 
 ## Editorial sources
 
-- [Salesforce News](https://www.salesforce.com/news/topics/commerce/)
-- [Salesforce Commerce Blog](https://www.salesforce.com/blog/category/ecommerce/)
-- [Salesforce Developers Blog](https://developer.salesforce.com/blogs)
-- [Salesforce PWA Kit releases](https://github.com/SalesforceCommerceCloud/pwa-kit/releases)
-- [Rhino Inquisitor](https://rhino-inquisitor.com/archive/)
-- [Salesforce Ben Commerce](https://www.salesforceben.com/category/commerce/)
-- [Digital Commerce 360 Technology](https://www.digitalcommerce360.com/topic/technology/)
+See [SOURCES.md](SOURCES.md) for the full source list and curation rules.
 
 ## Feed v2
 
