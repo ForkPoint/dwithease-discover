@@ -212,6 +212,46 @@ test('renders same-origin source icons at 28 by 28 pixels', async (context) => {
     }
 });
 
+test('renders feed text before a delayed source registry', async (context) => {
+    const browserContext = await browser.newContext({ viewport: { width: 320, height: 900 } });
+    context.after(() => browserContext.close());
+    const page = await browserContext.newPage();
+    let releaseSourceRoute;
+    const sourceRoute = new Promise((resolveRoute) => { releaseSourceRoute = resolveRoute; });
+
+    await page.route('**/feed-live.json', (route) => route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify(TEST_FEED),
+    }));
+    await page.route('**/sources.json', (route) => releaseSourceRoute(route));
+    await page.goto(siteUrl, { waitUntil: 'domcontentloaded' });
+
+    const card = page.locator('[data-item-id="long-promotion"]');
+    await card.waitFor({ timeout: 1_000 });
+    assert.match(await card.textContent(), new RegExp(LONG_TEXT.title));
+    assert.match(
+        await card.locator('.source-icon').getAttribute('src'),
+        /assets\/sources\/source-fallback\.svg$/,
+    );
+
+    const route = await sourceRoute;
+    await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+            sources: [{
+                name: 'Example',
+                url: 'https://example.com/',
+                icon: 'assets/sources/github.svg',
+            }],
+        }),
+    });
+    await page.waitForFunction(() => document.querySelector('.source-icon')
+        ?.src.endsWith('/assets/sources/github.svg'));
+    assert.match(await card.textContent(), new RegExp(LONG_TEXT.title));
+});
+
 test('shows the OpenAPI fallback when the Scalar CDN fails', async (context) => {
     const browserContext = await browser.newContext({
         colorScheme: 'dark',

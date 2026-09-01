@@ -7,6 +7,7 @@
     "test": "node --test test/*.test.js test/*.test.ts",
     "typecheck": "tsc --noEmit",
     "validate:feed": "node scripts/validate-feed.ts",
+    "validate:sources": "node scripts/validate-sources.js",
     "write:schema": "node scripts/write-json-schema.ts",
     "write:openapi": "node scripts/write-openapi.ts"
   },
@@ -14,7 +15,8 @@
     "@types/node": "26.4.0",
     "linkedom": "^0.18.13",
     "playwright-core": "1.62.1",
-    "typescript": "7.0.2"
+    "typescript": "7.0.2",
+    "yaml": "^2.8.3"
   },
   "dependencies": {
     "zod": "4.5.4"

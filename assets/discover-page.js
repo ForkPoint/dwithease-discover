@@ -41,6 +41,7 @@ function feedImage(document, source, className, alt = '') {
 function sourceIcon(document, source, sources) {
     const image = node(document, 'img', 'source-icon');
     image.src = sources.get(source.url)?.icon || FALLBACK_SOURCE_ICON;
+    image.dataset.sourceUrl = source.url;
     image.alt = '';
     image.setAttribute('width', '28');
     image.setAttribute('height', '28');
@@ -48,6 +49,13 @@ function sourceIcon(document, source, sources) {
         if (!image.src.endsWith(FALLBACK_SOURCE_ICON)) image.src = FALLBACK_SOURCE_ICON;
     });
     return image;
+}
+
+function applySourceIcons(root, sources) {
+    for (const image of root.querySelectorAll('.source-icon')) {
+        const icon = sources.get(image.dataset.sourceUrl)?.icon;
+        if (icon) image.src = icon;
+    }
 }
 
 function formattedDate(value) {
@@ -204,14 +212,14 @@ export async function startDiscoverPage({
     renderLoading(root);
 
     try {
-        const [feedResponse, sources] = await Promise.all([
-            fetchImpl(feedUrl, { cache: 'no-store' }),
-            loadSourceRegistry(fetchImpl, pageUrl),
-        ]);
+        const feedPromise = fetchImpl(feedUrl, { cache: 'no-store' });
+        const sourcesPromise = loadSourceRegistry(fetchImpl, pageUrl);
+        const feedResponse = await feedPromise;
         if (!feedResponse.ok) throw new Error(`Feed request failed: ${feedResponse.status}`);
 
         const feed = await feedResponse.json();
-        renderCatalog(root, buildCatalog(feed, now), sources);
+        renderCatalog(root, buildCatalog(feed, now));
+        void sourcesPromise.then((sources) => applySourceIcons(root, sources));
     } catch {
         renderError(root, () => startDiscoverPage({
             root,

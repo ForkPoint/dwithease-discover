@@ -174,11 +174,41 @@ test('loads only the selected v2 feed', async () => {
         now: Date.parse('2026-09-10T12:00:00Z'),
         pageUrl: 'https://discover.example/',
     });
+    await new Promise((resolve) => setImmediate(resolve));
 
     assert.deepEqual(requests, ['feed-dev.json', 'sources.json']);
     assert.ok(root.querySelector('[data-item-id="catalogspark-2026"]'));
     assert.equal(
         root.querySelector('[data-item-id="catalogspark-2026"] .source-icon').getAttribute('src'),
         'https://discover.example/assets/sources/catalogspark.ico',
+    );
+});
+
+test('keeps feed text when the source registry fails', async () => {
+    const root = createRoot();
+    const fetchImpl = async (url) => {
+        if (url === 'sources.json') throw new Error('Source registry unavailable');
+        return {
+            ok: true,
+            json: async () => ({
+                version: 2,
+                locale: 'en',
+                updatedAt: '2026-09-01T00:00:00Z',
+                items: [V2_PROMOTION],
+            }),
+        };
+    };
+
+    await startDiscoverPage({
+        root,
+        fetchImpl,
+        now: Date.parse('2026-09-10T12:00:00Z'),
+        pageUrl: 'https://discover.example/',
+    });
+
+    assert.match(root.textContent, /Make product data ready/);
+    assert.equal(
+        root.querySelector('.source-icon').getAttribute('src'),
+        'assets/sources/source-fallback.svg',
     );
 });

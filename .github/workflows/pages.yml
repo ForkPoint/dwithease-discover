@@ -1,26 +1,23 @@
-name: Deploy Discover site
+name: Validate and deploy Discover site
 
 on:
   push:
+    branches:
+      - main
+  pull_request:
     branches:
       - main
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: pages
+  group: discover-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  deploy:
-    if: ${{ github.ref == 'refs/heads/main' }}
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  validate:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -43,8 +40,14 @@ jobs:
       - name: Test feed and page code
         run: npm test
 
+      - name: Type-check schema code
+        run: npm run typecheck
+
       - name: Validate public feeds
         run: npm run validate:feed -- feed-live.json feed-dev.json
+
+      - name: Validate public source registry
+        run: npm run validate:sources
 
       - name: Prepare static site
         run: |
@@ -52,13 +55,25 @@ jobs:
           cp index.html schema.html openapi.json feed.schema.json sources.json CNAME .nojekyll feed-live.json feed-dev.json _site/
           cp -R assets _site/assets
 
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
-
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
           path: _site
+
+  deploy:
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    needs: validate
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
 
       - name: Deploy GitHub Pages artifact
         id: deployment

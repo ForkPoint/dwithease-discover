@@ -1,11 +1,22 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
 import { access, readFile } from 'node:fs/promises';
 
 import { buildSourceRegistry } from '../assets/feed-model.js';
 
 const PAGE_URL = 'https://discover.dwithease.com/';
 const REGISTRY_URL = `${PAGE_URL}sources.json`;
+
+test('validates the published source registry from the command line', () => {
+    const result = spawnSync(process.execPath, ['scripts/validate-sources.js'], {
+        cwd: process.cwd(),
+        encoding: 'utf8',
+    });
+
+    assert.equal(result.status, 0, result.stderr);
+    assert.match(result.stdout, /sources\.json: valid/);
+});
 
 test('covers each feed source with a local checked-in icon', async () => {
     const rawRegistry = JSON.parse(await readFile('sources.json', 'utf8'));
