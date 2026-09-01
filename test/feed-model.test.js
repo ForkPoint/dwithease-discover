@@ -68,6 +68,7 @@ test('builds the v2 catalog with schema-valid offsets and sorted editorial items
 
     const catalog = buildCatalog({
         version: 2,
+        locale: 'en',
         items: [olderArticle, V2_PROMOTION, newerNews],
     }, NOW);
 
@@ -333,6 +334,12 @@ test('rejects final line breaks across regex-backed public fields', () => {
             value: validFeed.locale,
             makeFeed: (value) => ({ ...validFeed, locale: value }),
             patterns: [jsonSchema.properties.locale.pattern, openapi.components.schemas.DiscoverFeed.properties.locale.pattern],
+        },
+        {
+            name: 'date-time',
+            value: article.publishedAt,
+            makeFeed: (value) => ({ ...validFeed, items: [{ ...article, publishedAt: value }] }),
+            patterns: [jsonArticle.properties.publishedAt.pattern, openapiArticle.properties.publishedAt.pattern],
         },
     ];
 

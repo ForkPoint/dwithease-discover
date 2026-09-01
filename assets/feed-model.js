@@ -2,6 +2,10 @@ const PRODUCT_PLACEMENTS = new Set(['discover', 'task-end', 'popup']);
 const STRICT_END = '(?![\\s\\S])';
 const SLUG_PATTERN = new RegExp(`^[a-z0-9]+(?:-[a-z0-9]+)*${STRICT_END}`);
 const LOCALE_PATTERN = new RegExp(`^[a-z]{2}(?:-[A-Z]{2})?${STRICT_END}`);
+const DATE_TIME_PATTERN = new RegExp('^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29'
+    + '|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))'
+    + 'T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))'
+    + STRICT_END);
 const RFC3986_PERCENT_ENCODED = '%[0-9A-Fa-f]{2}';
 const DNS_LABEL = '(?![Xx][Nn]--)[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?';
 const DNS_NAME = `(?![0-9]+(?:\\.[0-9]+)*\\.?(?=[:/?#]|${STRICT_END}))${DNS_LABEL}(?:\\.${DNS_LABEL})*\\.?`;
@@ -42,6 +46,7 @@ function safeId(value) {
 
 function dateTime(value) {
     return typeof value === 'string'
+        && DATE_TIME_PATTERN.test(value)
         && Number.isFinite(Date.parse(value));
 }
 
