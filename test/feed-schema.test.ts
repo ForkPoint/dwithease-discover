@@ -93,7 +93,7 @@ test('rejects a version field because the feed format is unversioned', () => {
 
     assert.equal(result.success, false);
     assert.deepEqual(result.errors.map(({ path }) => path), ['']);
-    assert.match(result.errors[0].message, /Unrecognized key/);
+    assert.match(result.errors[0]?.message ?? '', /Unrecognized key/);
 });
 
 test('checks a valid feed file from the command line', async (context) => {
