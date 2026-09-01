@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Interactive reference for the DWithEase Discover feed.">
+    <meta name="theme-color" content="#f6f9fc">
+    <title>Discover Feed Reference · DWithEase</title>
+    <link rel="icon" href="assets/dwithease-logo.svg" type="image/svg+xml">
+    <style>
+        @font-face {
+            font-family: "Mulish";
+            src: url("assets/fonts/mulish-700.woff2") format("woff2");
+            font-weight: 700;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Public Sans";
+            src: url("assets/fonts/public-sans-400.woff2") format("woff2");
+            font-weight: 400;
+            font-display: swap;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body,
+        #app {
+            min-width: 320px;
+            min-height: 100%;
+            margin: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            color: #14181f;
+            background: #f6f9fc;
+            font-family: "Public Sans", system-ui, sans-serif;
+        }
+
+        #app:empty::before {
+            display: grid;
+            min-height: 100vh;
+            place-items: center;
+            padding: 32px;
+            color: rgba(20, 24, 31, 0.64);
+            background-image: radial-gradient(60vw 40vw at 8% -10%, rgba(17, 161, 224, 0.14), transparent 60%);
+            content: "Loading the Discover feed reference…";
+        }
+
+        .scalar-fallback {
+            display: grid;
+            min-height: 100vh;
+            place-items: center;
+            padding: 32px;
+            color: #14181f;
+            background: #f6f9fc;
+            background-image: radial-gradient(60vw 40vw at 8% -10%, rgba(17, 161, 224, 0.14), transparent 60%);
+        }
+
+        .scalar-fallback-card {
+            width: min(100%, 640px);
+            padding: 32px;
+            border: 1px solid #e3eaf2;
+            border-radius: 14px;
+            background: #ffffff;
+            box-shadow: 0 16px 48px rgba(20, 24, 31, 0.08);
+        }
+
+        .scalar-fallback h1 {
+            margin: 0 0 12px;
+            font-family: "Mulish", system-ui, sans-serif;
+            font-size: clamp(1.5rem, 5vw, 2rem);
+        }
+
+        .scalar-fallback p {
+            margin: 0 0 20px;
+            line-height: 1.6;
+        }
+
+        .scalar-fallback a {
+            color: #00658f;
+            font-weight: 700;
+        }
+
+        .scalar-fallback a:hover,
+        .scalar-fallback a:focus-visible {
+            color: #004f70;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script id="scalar-script" src="https://cdn.jsdelivr.net/npm/@scalar/api-reference@1.67.0" async></script>
+    <script>
+        (() => {
+            const app = document.querySelector('#app');
+            const scalarScript = document.querySelector('#scalar-script');
+            let settled = false;
+            let fallbackTimer;
+
+            const showFallback = () => {
+                if (settled) return;
+                settled = true;
+                window.clearTimeout(fallbackTimer);
+                app.innerHTML = `
+                    <main class="scalar-fallback" data-testid="scalar-fallback" role="alert">
+                        <section class="scalar-fallback-card">
+                            <h1>The interactive reference could not load</h1>
+                            <p>The OpenAPI document is still available.</p>
+                            <a href="openapi.json">Open the OpenAPI document</a>
+                        </section>
+                    </main>
+                `;
+            };
+
+            const initializeScalar = () => {
+                if (settled) return;
+                if (typeof window.Scalar?.createApiReference !== 'function') {
+                    showFallback();
+                    return;
+                }
+
+                try {
+                    window.Scalar.createApiReference('#app', {
+                        url: 'openapi.json',
+                        theme: 'default',
+                        layout: 'modern',
+                        showDeveloperTools: 'never',
+                        forceDarkModeState: 'light',
+                        hideDarkModeToggle: true,
+                        hideClientButton: true,
+                        hideTestRequestButton: true,
+                        hiddenClients: true,
+                        modelsSectionLabel: 'Schemas',
+                        documentDownloadType: 'none',
+                        withDefaultFonts: false,
+                        telemetry: false,
+                        agent: {
+                            disabled: true,
+                        },
+                        mcp: {
+                            disabled: true,
+                        },
+                        customCss: `
+                @font-face {
+                    font-family: "Mulish";
+                    src: url("assets/fonts/mulish-700.woff2") format("woff2");
+                    font-weight: 700;
+                    font-display: swap;
+                }
+
+                @font-face {
+                    font-family: "Public Sans";
+                    src: url("assets/fonts/public-sans-400.woff2") format("woff2");
+                    font-weight: 400;
+                    font-display: swap;
+                }
+
+                :root {
+                    --scalar-font: "Public Sans", system-ui, sans-serif;
+                    --scalar-font-code: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+                    --scalar-color-1: #14181f;
+                    --scalar-color-2: rgba(20, 24, 31, 0.64);
+                    --scalar-color-3: rgba(20, 24, 31, 0.44);
+                    --scalar-color-accent: #11a1e0;
+                    --scalar-background-1: #f6f9fc;
+                    --scalar-background-2: #ffffff;
+                    --scalar-background-3: #f2f6fa;
+                    --scalar-background-accent: #e7f6fc;
+                    --scalar-border-color: #e3eaf2;
+                    --scalar-radius: 14px;
+                }
+
+                .request-card.dark-mode {
+                    --scalar-color-1: #14181f;
+                    --scalar-color-2: rgba(20, 24, 31, 0.64);
+                    --scalar-color-3: rgba(20, 24, 31, 0.44);
+                    --scalar-color-accent: #087fb3;
+                    --scalar-background-1: #f6f9fc;
+                    --scalar-background-2: #ffffff;
+                    --scalar-background-3: #f2f6fa;
+                    --scalar-background-accent: #e7f6fc;
+                    --scalar-border-color: #e3eaf2;
+                }
+
+                h1, h2, h3, h4, h5, h6,
+                .section-header {
+                    font-family: "Mulish", system-ui, sans-serif;
+                }
+
+                .references-layout {
+                    background-image:
+                        radial-gradient(60vw 40vw at 8% -10%, rgba(17, 161, 224, 0.12), transparent 60%),
+                        radial-gradient(52vw 36vw at 96% 6%, rgba(120, 200, 160, 0.08), transparent 62%);
+                    background-attachment: fixed;
+                }
+
+                .section-container,
+                .model-card,
+                .response-card {
+                    border-radius: 14px;
+                }
+
+                .scalar-mcp-layer {
+                    display: none !important;
+                }
+                        `,
+                    });
+                    settled = true;
+                    window.clearTimeout(fallbackTimer);
+                } catch {
+                    showFallback();
+                }
+            };
+
+            if (!scalarScript) {
+                showFallback();
+                return;
+            }
+
+            scalarScript.addEventListener('load', initializeScalar, { once: true });
+            scalarScript.addEventListener('error', showFallback, { once: true });
+            fallbackTimer = window.setTimeout(() => {
+                if (typeof window.Scalar?.createApiReference === 'function') {
+                    initializeScalar();
+                } else {
+                    showFallback();
+                }
+            }, 5_000);
+
+            if (typeof window.Scalar?.createApiReference === 'function') {
+                initializeScalar();
+            }
+        })();
+    </script>
+    <noscript>
+        <p>JavaScript is required. You can read the <a href="openapi.json">OpenAPI document</a> directly.</p>
+    </noscript>
+</body>
+</html>

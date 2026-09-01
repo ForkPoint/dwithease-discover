@@ -1,0 +1,703 @@
+{
+  "version": 2,
+  "locale": "en",
+  "updatedAt": "2026-09-01T12:50:31.306Z",
+  "items": [
+    {
+      "id": "promotion-agentic-storefront-audit",
+      "type": "promotion",
+      "title": "See How AI Shopping Agents Read Your Store",
+      "summary": "Run a free storefront audit across 199 checks for AI discoverability, product data, protocols, and agent-ready checkout.",
+      "url": "https://audit.agenticstorefront.com/",
+      "source": {
+        "name": "Agentic Storefront Audit",
+        "url": "https://audit.agenticstorefront.com/"
+      },
+      "publishedAt": "2026-09-01T00:00:00Z",
+      "tags": ["agentic-commerce", "audit", "ecommerce"],
+      "cta": {
+        "label": "Run free audit"
+      },
+      "campaign": {
+        "id": "agentic-storefront-audit-2026",
+        "startsAt": "2026-09-01T00:00:00Z",
+        "endsAt": "2027-09-01T00:00:00Z",
+        "placements": ["discover", "task-end", "popup"]
+      }
+    },
+    {
+      "id": "promotion-catalogspark",
+      "type": "promotion",
+      "title": "Turn Product Data Into Channel-Ready Catalogs",
+      "summary": "Use AI to extract, enrich, translate, version, and publish product data across Salesforce Commerce Cloud, Shopify, Magento, and more.",
+      "url": "https://catalogspark.com/",
+      "source": {
+        "name": "CatalogSpark",
+        "url": "https://catalogspark.com/"
+      },
+      "publishedAt": "2026-09-01T00:00:00Z",
+      "tags": ["product-data", "ai", "ecommerce"],
+      "cta": {
+        "label": "Explore CatalogSpark"
+      },
+      "campaign": {
+        "id": "catalogspark-2026",
+        "startsAt": "2026-09-01T00:00:00Z",
+        "endsAt": "2027-09-01T00:00:00Z",
+        "placements": ["discover", "task-end", "popup"]
+      }
+    },
+    {
+      "id": "promotion-retailpace",
+      "type": "promotion",
+      "title": "See Store Problems Before Shoppers Do",
+      "summary": "Bring commerce data into one monitoring hub with proactive alerts and dashboards built for Salesforce Commerce Cloud operations.",
+      "url": "https://retailpace.com/",
+      "source": {
+        "name": "RetailPace",
+        "url": "https://retailpace.com/"
+      },
+      "publishedAt": "2026-09-01T00:00:00Z",
+      "tags": ["monitoring", "sfcc", "ecommerce"],
+      "cta": {
+        "label": "Explore RetailPace"
+      },
+      "campaign": {
+        "id": "retailpace-2026",
+        "startsAt": "2026-09-01T00:00:00Z",
+        "endsAt": "2027-09-01T00:00:00Z",
+        "placements": ["discover", "task-end", "popup"]
+      }
+    },
+    {
+      "id": "promotion-intentfusion",
+      "type": "promotion",
+      "title": "Help Every Shopper Find the Right Product",
+      "summary": "Add intent-aware search, recommendations, and AI chat to your ecommerce catalog with native Salesforce Commerce Cloud support.",
+      "url": "https://intentfusion.com/",
+      "source": {
+        "name": "IntentFusion",
+        "url": "https://intentfusion.com/"
+      },
+      "publishedAt": "2026-09-01T00:00:00Z",
+      "tags": ["search", "ai", "ecommerce"],
+      "cta": {
+        "label": "Explore IntentFusion"
+      },
+      "campaign": {
+        "id": "intentfusion-2026",
+        "startsAt": "2026-09-01T00:00:00Z",
+        "endsAt": "2027-09-01T00:00:00Z",
+        "placements": ["discover", "task-end", "popup"]
+      }
+    },
+    {
+      "id": "pwa-kit-v3-21-nightly-2026-09-01",
+      "type": "news",
+      "title": "PWA Kit v3.21.0 Nightly Build 2026-09-01",
+      "summary": "The latest PWA Kit nightly build provides an early integration signal for teams that track upcoming composable storefront changes.",
+      "url": "https://github.com/SalesforceCommerceCloud/pwa-kit/releases/tag/v3.21.0-nightly-20260901080519",
+      "source": {
+        "name": "PWA Kit Releases",
+        "url": "https://github.com/SalesforceCommerceCloud/pwa-kit/releases.atom"
+      },
+      "publishedAt": "2026-09-01T08:08:59Z",
+      "tags": ["pwa-kit", "release", "nightly"],
+      "cta": {
+        "label": "View release"
+      }
+    },
+    {
+      "id": "salesforce-blog-b2c-commerce-august-26-release",
+      "type": "article",
+      "title": "B2C Commerce August Release: Custom Apps and Omnichannel Innovations",
+      "summary": "The August B2C Commerce release adds custom Business Manager workspaces, anomaly detection, catalog unification, developer tools, and AI-ready product features.",
+      "url": "https://www.salesforce.com/blog/b2c-commerce-august-26-release/",
+      "source": {
+        "name": "Salesforce Commerce Blog",
+        "url": "https://www.salesforce.com/blog/category/ecommerce/"
+      },
+      "publishedAt": "2026-08-26T00:00:00Z",
+      "tags": ["sfcc", "release-notes", "business-manager"],
+      "cta": {
+        "label": "Read article"
+      }
+    },
+    {
+      "id": "rhino-b2c-commerce-26-9-release",
+      "type": "article",
+      "title": "B2C Commerce 26.9: Consent, Workspaces, and SLAS Deadlines",
+      "summary": "A technical review of Commerce Apps workspaces, shopper consent, tax items, SCAPI changes, and upcoming SLAS enforcement dates in B2C Commerce 26.9.",
+      "url": "https://rhino-inquisitor.com/b2c-commerce-cloud-26-9-release/",
+      "source": {
+        "name": "Rhino Inquisitor",
+        "url": "https://rhino-inquisitor.com/archive/"
+      },
+      "publishedAt": "2026-08-20T00:00:00Z",
+      "tags": ["sfcc", "release-notes", "slas"],
+      "cta": {
+        "label": "Read article"
+      }
+    },
+    {
+      "id": "rhino-sfcc-github-repo-access",
+      "type": "article",
+      "title": "SFCC GitHub Repo Access: Getting (and Keeping) It",
+      "summary": "A guide to obtaining and retaining access to Salesforce B2C Commerce repositories on GitHub.",
+      "url": "https://rhino-inquisitor.com/sfcc-github-repo-access/",
+      "source": {
+        "name": "Rhino Inquisitor",
+        "url": "https://rhino-inquisitor.com/archive/"
+      },
+      "publishedAt": "2026-08-12T00:00:00Z",
+      "tags": ["sfcc", "github", "developer-tools"],
+      "cta": {
+        "label": "Read article"
+      }
+    },
+    {
+      "id": "forkpoint-leading-brands-embrace-sfcc",
+      "type": "article",
+      "title": "7 Reasons Why Leading Brands Embrace Salesforce Commerce Cloud",
+      "summary": "A review of why enterprise brands choose Salesforce Commerce Cloud for scale, personalization, integration, and digital growth.",
+      "url": "https://forkpoint.com/articles/7-reasons-why-leading-brands-embrace-sfcc/",
+      "source": {
+        "name": "ForkPoint",
+        "url": "https://forkpoint.com/articles/"
+      },
+      "publishedAt": "2026-08-12T00:00:00Z",
+      "tags": ["sfcc", "ecommerce", "strategy"],
+      "cta": {
+        "label": "Read article"
+      }
+    },
+    {
+      "id": "forkpoint-ai-smart-revolution-commerce",
+      "type": "article",
+      "title": "AI – The Smart Revolution in Commerce",
+      "summary": "An overview of how AI improves personalization, inventory planning, customer service, and operational decisions in commerce.",
+      "url": "https://forkpoint.com/articles/ai-the-smart-revolution-in-commerce/",
+      "source": {
+        "name": "ForkPoint",
+        "url": "https://forkpoint.com/articles/"
+      },
+      "publishedAt": "2026-08-12T00:00:00Z",
+      "tags": ["ecommerce", "ai", "retail"],
+      "cta": {
+        "label": "Read article"
+      }
+    },
+    {
+      "id": "forkpoint-ai-better-developers",
+      "type": "article",
+      "title": "How AI Is Making Us Better Developers",
+      "summary": "ForkPoint shares how AI supports coding, testing, documentation, debugging, and developer onboarding without replacing engineering judgment.",
+      "url": "https://forkpoint.com/articles/how-ai-is-making-us-better-developers/",
+      "source": {
+        "name": "ForkPoint",
+        "url": "https://forkpoint.com/articles/"
+      },
+      "publishedAt": "2026-08-12T00:00:00Z",
+      "tags": ["ai", "development", "engineering"],
+      "cta": {
+        "label": "Read article"
+      }
+    },
+    {
+      "id": "forkpoint-invisible-commerce-2026",
+      "type": "article",
+      "title": "Invisible Commerce: What Brands Must Know in 2026",
+      "summary": "A guide to the new shopping layer where AI assistants shape product discovery before shoppers reach a storefront.",
+      "url": "https://forkpoint.com/articles/invisible-commerce-what-brands-must-know-in-2026/",
+      "source": {
+        "name": "ForkPoint",
+        "url": "https://forkpoint.com/articles/"
+      },
+      "publishedAt": "2026-08-12T00:00:00Z",
+      "tags": ["agentic-commerce", "ai-visibility", "ecommerce"],
+      "cta": {
+        "label": "Read article"
+      }
+    },
+    {
+      "id": "forkpoint-ecommerce-ai-search",
+      "type": "article",
+      "title": "Why eCommerce Brands Are Falling in Love with AI Search",
+      "summary": "A look at how AI search can reduce lost revenue by understanding shopper intent beyond exact keywords.",
+      "url": "https://forkpoint.com/articles/why-ecommerce-brands-are-falling-in-love-with-ai-search/",
+      "source": {
+        "name": "ForkPoint",
+        "url": "https://forkpoint.com/articles/"
+      },
+      "publishedAt": "2026-08-12T00:00:00Z",
+      "tags": ["search", "ai", "ecommerce"],
+      "cta": {
+        "label": "Read article"
+      }
+    },
+    {
+      "id": "dc360-ahold-delhaize-pear-commerce",
+      "type": "news",
+      "title": "Ahold Delhaize USA Adds Pear Commerce to Connect CPG Content to Online Grocery Carts",
+      "summary": "Ahold Delhaize USA is using Pear Commerce to connect recipes, product pages, and brand content directly to online grocery carts.",
+      "url": "https://www.digitalcommerce360.com/2026/08/06/ahold-delhaize-usa-adds-pear-commerce-to-connect-cpg-content-to-online-grocery-carts/",
+      "source": {
+        "name": "Digital Commerce 360",
+        "url": "https://www.digitalcommerce360.com/topic/technology/"
+      },
+      "publishedAt": "2026-08-06T00:00:00Z",
+      "tags": ["ecommerce", "retail-tech", "grocery"],
+      "cta": {
+        "label": "Read news"
+      }
+    },
+    {
+      "id": "salesforce-blog-grow-revenue-hub-ai",
+      "type": "article",
+      "title": "How To Grow a Revenue Hub With AI Agents",
+      "summary": "A practical look at guided shopping, commerce automation, connected data, and small first steps for AI-powered ecommerce.",
+      "url": "https://www.salesforce.com/blog/small-business/grow-a-revenue-hub-with-ai/",
+      "source": {
+        "name": "Salesforce Commerce Blog",
+        "url": "https://www.salesforce.com/blog/category/ecommerce/"
+      },
+      "publishedAt": "2026-08-05T00:00:00Z",
+      "tags": ["ecommerce", "ai", "agentic-commerce"],
+      "cta": {
+        "label": "Read article"
+      }
+    },
+    {
+      "id": "salesforceben-agentforce-for-architects",
+      "type": "article",
+      "title": "Introducing Agentforce for Architects: Guidance On Demand",
+      "summary": "A review of Salesforce's architecture assistant, including guidance on the Commerce Cloud move from x86 to ARM.",
+      "url": "https://www.salesforceben.com/introducing-agentforce-for-architects-guidance-on-demand/",
+      "source": {
+        "name": "Salesforce Ben",
+        "url": "https://www.salesforceben.com/category/commerce/"
+      },
+      "publishedAt": "2026-08-05T00:00:00Z",
+      "tags": ["salesforce", "architecture", "commerce-cloud"],
+      "cta": {
+        "label": "Read article"
+      }
+    },
+    {
+      "id": "rhino-sfcc-price-books",
+      "type": "article",
+      "title": "How SFCC Price Books Actually Work",
+      "summary": "A developer-focused explanation of Salesforce B2C Commerce price book behavior and how pricing resolves in real storefronts.",
+      "url": "https://rhino-inquisitor.com/how-sfcc-price-books-actually-work/",
+      "source": {
+        "name": "Rhino Inquisitor",
+        "url": "https://rhino-inquisitor.com/archive/"
+      },
+      "publishedAt": "2026-08-05T00:00:00Z",
+      "tags": ["sfcc", "pricing", "developer-guide"],
+      "cta": {
+        "label": "Read article"
+      }
+    },
+    {
+      "id": "salesforce-blog-b2b-commerce-july-26",
+      "type": "article",
+      "title": "Smarter Merchandising and Platform Extensibility: New Features for B2B Commerce in July",
+      "summary": "Salesforce reviews July B2B Commerce improvements for merchandising, storefront discovery, and platform extensibility.",
+      "url": "https://www.salesforce.com/blog/b2b-commerce-innovations-july-26/",
+      "source": {
+        "name": "Salesforce Commerce Blog",
+        "url": "https://www.salesforce.com/blog/category/ecommerce/"
+      },
+      "publishedAt": "2026-08-03T00:00:00Z",
+      "tags": ["b2b-commerce", "merchandising", "salesforce"],
+      "cta": {
+        "label": "Read article"
+      }
+    },
+    {
+      "id": "salesforce-blog-b2c-commerce-july-26",
+      "type": "article",
+      "title": "Unlock Intent-Driven Shopping: Inside the July 2026 B2C Commerce Release",
+      "summary": "The July B2C Commerce release focuses on intent-aware shopping, storefront search, and tools that help teams respond to natural-language product discovery.",
+      "url": "https://www.salesforce.com/blog/b2c-commerce-july-26-release/",
+      "source": {
+        "name": "Salesforce Commerce Blog",
+        "url": "https://www.salesforce.com/blog/category/ecommerce/"
+      },
+      "publishedAt": "2026-07-29T00:00:00Z",
+      "tags": ["sfcc", "release-notes", "search"],
+      "cta": {
+        "label": "Read article"
+      }
+    },
+    {
+      "id": "salesforce-news-agentic-search-growth",
+      "type": "news",
+      "title": "Shopping's New First Step: Agentic Search Grows 200% as Purchase Journeys Start in AI Chats",
+      "summary": "Salesforce reports that agentic search grew 200% year over year as shoppers moved product discovery into AI chats and commerce teams increased AI adoption.",
+      "url": "https://www.salesforce.com/news/stories/agentic-search-growth/",
+      "source": {
+        "name": "Salesforce News",
+        "url": "https://www.salesforce.com/news/topics/commerce/"
+      },
+      "publishedAt": "2026-07-28T00:00:00Z",
+      "tags": ["commerce", "agentic-commerce", "research"],
+      "cta": {
+        "label": "Read news"
+      }
+    },
+    {
+      "id": "rhino-storefront-next-pwa-kit-migration",
+      "type": "article",
+      "title": "Storefront Next: Architecture and the PWA Kit Migration",
+      "summary": "An architectural guide to Storefront Next and the migration path from existing PWA Kit storefronts.",
+      "url": "https://rhino-inquisitor.com/storefront-next-architecture-and-migration-from-pwa-kit/",
+      "source": {
+        "name": "Rhino Inquisitor",
+        "url": "https://rhino-inquisitor.com/archive/"
+      },
+      "publishedAt": "2026-07-27T00:00:00Z",
+      "tags": ["sfcc", "storefront-next", "pwa-kit"],
+      "cta": {
+        "label": "Read article"
+      }
+    },
+    {
+      "id": "rhino-b2c-commerce-26-8-release",
+      "type": "article",
+      "title": "B2C Commerce 26.8: Unification, Anomalies, and Deadlines",
+      "summary": "A detailed review of B2C Commerce 26.8 changes, including unified operations, anomaly detection, and dates that implementation teams must track.",
+      "url": "https://rhino-inquisitor.com/b2c-commerce-cloud-26-8-release/",
+      "source": {
+        "name": "Rhino Inquisitor",
+        "url": "https://rhino-inquisitor.com/archive/"
+      },
+      "publishedAt": "2026-07-23T00:00:00Z",
+      "tags": ["sfcc", "release-notes", "commerce-cloud"],
+      "cta": {
+        "label": "Read article"
+      }
+    },
+    {
+      "id": "agentic-storefront-chatbot-tracking-study",
+      "type": "article",
+      "title": "17 of 20 AI Chatbots Leak Data to Third Parties. Here's Why Merchants Should Care",
+      "summary": "A UC Davis study found broad third-party tracking across popular AI chatbots. This article turns the findings into a practical privacy checklist for commerce teams.",
+      "url": "https://agenticstorefront.com/blog/ai-chatbot-tracking-study-what-brands-must-know/",
+      "source": {
+        "name": "Agentic Storefront",
+        "url": "https://agenticstorefront.com/categories/agentic-commerce/"
+      },
+      "publishedAt": "2026-07-23T00:00:00Z",
+      "tags": ["agentic-commerce", "privacy", "chatbots"],
+      "cta": {
+        "label": "Read article"
+      }
+    },
+    {
+      "id": "agentic-storefront-ai-visibility-q4",
+      "type": "article",
+      "title": "Q4 Is Coming. AI Visibility Is the Most Underpriced Channel in Your Media Plan",
+      "summary": "A case for treating AI visibility as a measurable acquisition channel before paid media costs rise for the holiday season.",
+      "url": "https://agenticstorefront.com/blog/ai-visibility-most-underpriced-channel-q4/",
+      "source": {
+        "name": "Agentic Storefront",
+        "url": "https://agenticstorefront.com/categories/agentic-commerce/"
+      },
+      "publishedAt": "2026-07-23T00:00:00Z",
+      "tags": ["agentic-commerce", "geo", "marketing"],
+      "cta": {
+        "label": "Read article"
+      }
+    },
+    {
+      "id": "dc360-esw-agentic-commerce-microsoft",
+      "type": "news",
+      "title": "ESW Launches Agentic Commerce Integration, Partnering With Microsoft Copilot",
+      "summary": "ESW launches agentic commerce infrastructure for AI product discovery, secure checkout, payments, and post-purchase services.",
+      "url": "https://www.digitalcommerce360.com/2026/07/22/esw-agentic-commerce-integration-microsoft-copilot/",
+      "source": {
+        "name": "Digital Commerce 360",
+        "url": "https://www.digitalcommerce360.com/topic/technology/"
+      },
+      "publishedAt": "2026-07-22T00:00:00Z",
+      "tags": ["agentic-commerce", "ecommerce", "microsoft"],
+      "cta": {
+        "label": "Read news"
+      }
+    },
+    {
+      "id": "salesforce-blog-agentic-commerce-search",
+      "type": "article",
+      "title": "Beyond Keywords: How Agentic Commerce Search Understands True Shopper Intent",
+      "summary": "Salesforce explains how agentic commerce search moves beyond short keyword queries to interpret shopper intent and improve product discovery.",
+      "url": "https://www.salesforce.com/blog/new-agentic-commerce-search-capabilities/",
+      "source": {
+        "name": "Salesforce Commerce Blog",
+        "url": "https://www.salesforce.com/blog/category/ecommerce/"
+      },
+      "publishedAt": "2026-07-21T00:00:00Z",
+      "tags": ["search", "agentic-commerce", "ecommerce"],
+      "cta": {
+        "label": "Read article"
+      }
+    },
+    {
+      "id": "agentic-storefront-openai-product-feed",
+      "type": "article",
+      "title": "OpenAI's Product Feed: How Your Catalog Gets Into ChatGPT — and What It's Worth",
+      "summary": "A field-by-field guide to the product feed behind ChatGPT shopping, Instant Checkout, and sponsored placements.",
+      "url": "https://agenticstorefront.com/blog/openai-product-feed-chatgpt-shopping-explained/",
+      "source": {
+        "name": "Agentic Storefront",
+        "url": "https://agenticstorefront.com/categories/agentic-commerce/"
+      },
+      "publishedAt": "2026-07-16T00:00:00Z",
+      "tags": ["agentic-commerce", "product-feeds", "openai"],
+      "cta": {
+        "label": "Read article"
+      }
+    },
+    {
+      "id": "agentic-storefront-we-know-enough",
+      "type": "article",
+      "title": "\"We Know Enough\" — The Most Expensive Sentence in AI Visibility",
+      "summary": "An argument for measuring how AI systems describe and recommend a brand instead of relying on assumptions about visibility.",
+      "url": "https://agenticstorefront.com/blog/we-know-enough-ai-visibility/",
+      "source": {
+        "name": "Agentic Storefront",
+        "url": "https://agenticstorefront.com/categories/agentic-commerce/"
+      },
+      "publishedAt": "2026-07-15T00:00:00Z",
+      "tags": ["ai-visibility", "geo", "strategy"],
+      "cta": {
+        "label": "Read article"
+      }
+    },
+    {
+      "id": "agentic-storefront-catch-me-if-you-can",
+      "type": "article",
+      "title": "The \"Catch Me If You Can\" Strategy: Why E-Commerce Leaders Don't Need to Understand Every AI Model",
+      "summary": "A strategy note for commerce leaders who need to prepare for AI-driven buying without tracking every model change.",
+      "url": "https://agenticstorefront.com/blog/catch-me-if-you-can-agentic-commerce/",
+      "source": {
+        "name": "Agentic Storefront",
+        "url": "https://agenticstorefront.com/categories/agentic-commerce/"
+      },
+      "publishedAt": "2026-07-14T00:00:00Z",
+      "tags": ["agentic-commerce", "ecommerce", "strategy"],
+      "cta": {
+        "label": "Read article"
+      }
+    },
+    {
+      "id": "dc360-square-chatgpt-claude",
+      "type": "news",
+      "title": "Square Launches Agentic Commerce Integrations With ChatGPT and Claude",
+      "summary": "Square adds integrations that help sellers expose products and commerce actions through ChatGPT and Claude.",
+      "url": "https://www.digitalcommerce360.com/2026/07/01/square-agentic-commerce-integrations-chatgpt-claude/",
+      "source": {
+        "name": "Digital Commerce 360",
+        "url": "https://www.digitalcommerce360.com/topic/technology/"
+      },
+      "publishedAt": "2026-07-01T00:00:00Z",
+      "tags": ["agentic-commerce", "ecommerce", "payments"],
+      "cta": {
+        "label": "Read news"
+      }
+    },
+    {
+      "id": "dc360-newegg-conversational-ai",
+      "type": "news",
+      "title": "Newegg Adds Conversational AI Assistant for Shopping",
+      "summary": "Newegg introduces a conversational shopping assistant for product discovery and guided ecommerce decisions.",
+      "url": "https://www.digitalcommerce360.com/2026/06/29/newegg-adds-conversational-ai-assistant-for-shopping/",
+      "source": {
+        "name": "Digital Commerce 360",
+        "url": "https://www.digitalcommerce360.com/topic/technology/"
+      },
+      "publishedAt": "2026-06-29T00:00:00Z",
+      "tags": ["ecommerce", "ai", "search"],
+      "cta": {
+        "label": "Read news"
+      }
+    },
+    {
+      "id": "salesforce-news-agentforce-commerce-release",
+      "type": "news",
+      "title": "As AI Agents Transform Commerce, Salesforce Unleashes Its Biggest Agentforce Commerce Release Yet",
+      "summary": "Salesforce details a major Agentforce Commerce release focused on AI-led shopping, unified commerce, and faster storefront work.",
+      "url": "https://www.salesforce.com/news/stories/agentforce-commerce-announcement/",
+      "source": {
+        "name": "Salesforce News",
+        "url": "https://www.salesforce.com/news/topics/commerce/"
+      },
+      "publishedAt": "2026-06-24T00:00:00Z",
+      "tags": ["commerce", "agentforce", "salesforce"],
+      "cta": {
+        "label": "Read news"
+      }
+    },
+    {
+      "id": "dc360-ecommerce-trends-2026",
+      "type": "news",
+      "title": "10 Ecommerce Trends That Are Defining 2026 for Online Retailers",
+      "summary": "A review of 2026 ecommerce trends across agentic commerce, AI referrals, platform features, omnichannel retail, and resale.",
+      "url": "https://www.digitalcommerce360.com/2026/06/18/ecommerce-trends-shaping-2026/",
+      "source": {
+        "name": "Digital Commerce 360",
+        "url": "https://www.digitalcommerce360.com/topic/technology/"
+      },
+      "publishedAt": "2026-06-18T00:00:00Z",
+      "tags": ["ecommerce", "trends", "agentic-commerce"],
+      "cta": {
+        "label": "Read news"
+      }
+    },
+    {
+      "id": "salesforceben-connections-2026-guide",
+      "type": "article",
+      "title": "Complete Guide to Salesforce Connections 2026",
+      "summary": "A practical guide to Salesforce Connections 2026 for marketing and Commerce Cloud professionals.",
+      "url": "https://www.salesforceben.com/salesforce-connections/",
+      "source": {
+        "name": "Salesforce Ben",
+        "url": "https://www.salesforceben.com/category/commerce/"
+      },
+      "publishedAt": "2026-05-07T00:00:00Z",
+      "tags": ["salesforce", "events", "commerce-cloud"],
+      "cta": {
+        "label": "Read article"
+      }
+    },
+    {
+      "id": "salesforce-developers-b2c-cli-sandbox-cloning",
+      "type": "article",
+      "title": "Introducing the B2C Commerce CLI and On-Demand Sandbox Cloning",
+      "summary": "Salesforce introduces a supported B2C CLI, SDK, agent skills, and on-demand sandbox cloning for Commerce Cloud developers and admins.",
+      "url": "https://developer.salesforce.com/blogs/2026/04/introducing-the-b2c-commerce-cli-and-on-demand-sandbox-cloning",
+      "source": {
+        "name": "Salesforce Developers Blog",
+        "url": "https://developer.salesforce.com/blogs/feed"
+      },
+      "publishedAt": "2026-04-28T15:00:06.000Z",
+      "tags": ["sfcc", "developer-tools", "cli"],
+      "cta": {
+        "label": "Read article"
+      }
+    },
+    {
+      "id": "salesforceben-commerce-marketing-cloud-shrink",
+      "type": "news",
+      "title": "Salesforce Commerce Cloud and Marketing Cloud Shrink for the First Time in Years",
+      "summary": "Salesforce Ben examines the first year-over-year decline reported for Agentforce Marketing and Commerce in Salesforce's Q4 FY26 results.",
+      "url": "https://www.salesforceben.com/salesforce-commerce-cloud-and-marketing-cloud-shrink-for-the-first-time-in-years/",
+      "source": {
+        "name": "Salesforce Ben",
+        "url": "https://www.salesforceben.com/category/commerce/"
+      },
+      "publishedAt": "2026-02-26T00:00:00Z",
+      "tags": ["commerce-cloud", "salesforce", "business"],
+      "cta": {
+        "label": "Read article"
+      }
+    },
+    {
+      "id": "salesforceben-salesforce-acquires-cimulate",
+      "type": "news",
+      "title": "Salesforce Acquires Cimulate in First Acquisition of 2026",
+      "summary": "Salesforce's acquisition of Cimulate adds intent-aware product discovery technology to Agentforce Commerce.",
+      "url": "https://www.salesforceben.com/salesforce-acquires-cimulate-in-first-major-acquisition-of-2026/",
+      "source": {
+        "name": "Salesforce Ben",
+        "url": "https://www.salesforceben.com/category/commerce/"
+      },
+      "publishedAt": "2026-02-11T00:00:00Z",
+      "tags": ["agentforce", "commerce-cloud", "acquisitions"],
+      "cta": {
+        "label": "Read article"
+      }
+    },
+    {
+      "id": "salesforce-news-google-ucp-support",
+      "type": "news",
+      "title": "Salesforce Announces Support for Google's Universal Commerce Protocol",
+      "summary": "Salesforce announces support for Google's Universal Commerce Protocol for product discovery and checkout inside conversational AI.",
+      "url": "https://www.salesforce.com/news/stories/google-universal-commerce-protocol-support-announcement/",
+      "source": {
+        "name": "Salesforce News",
+        "url": "https://www.salesforce.com/news/topics/commerce/"
+      },
+      "publishedAt": "2026-01-14T00:00:00Z",
+      "tags": ["commerce", "ucp", "agentic-commerce"],
+      "cta": {
+        "label": "Read news"
+      }
+    },
+    {
+      "id": "salesforce-news-holiday-shopping-2025",
+      "type": "news",
+      "title": "Holiday Season Rakes in Record $1.29T for Retailers, Salesforce Data Shows",
+      "summary": "Salesforce reviews the 2025 holiday season and reports record global online sales shaped by AI-assisted shopping.",
+      "url": "https://www.salesforce.com/news/stories/2025-holiday-shopping-data/",
+      "source": {
+        "name": "Salesforce News",
+        "url": "https://www.salesforce.com/news/topics/commerce/"
+      },
+      "publishedAt": "2026-01-08T00:00:00Z",
+      "tags": ["ecommerce", "retail", "research"],
+      "cta": {
+        "label": "Read news"
+      }
+    },
+    {
+      "id": "salesforce-developers-pwa-kit-mcp-server",
+      "type": "article",
+      "title": "Build Composable Storefronts Smarter and Faster with the PWA Kit MCP Server",
+      "summary": "A hands-on guide to using the PWA Kit MCP Server to create and customize composable storefronts with an AI coding agent.",
+      "url": "https://developer.salesforce.com/blogs/2025/12/build-composable-storefronts-smarter-and-faster-with-the-pwa-kit-mcp-server",
+      "source": {
+        "name": "Salesforce Developers Blog",
+        "url": "https://developer.salesforce.com/blogs/feed"
+      },
+      "publishedAt": "2025-12-23T16:00:41.000Z",
+      "tags": ["pwa-kit", "mcp", "developer-tools"],
+      "cta": {
+        "label": "Read article"
+      }
+    },
+    {
+      "id": "salesforce-news-cyber-week-2025",
+      "type": "news",
+      "title": "Salesforce Data: AI and Agents Propel Cyber Week to Record $336.6B in Global Spend",
+      "summary": "Salesforce reports record Cyber Week spending and measures how AI and shopping agents influenced retail demand.",
+      "url": "https://www.salesforce.com/news/press-releases/2025/12/05/cyber-week-ai-agents-sales/",
+      "source": {
+        "name": "Salesforce News",
+        "url": "https://www.salesforce.com/news/topics/commerce/"
+      },
+      "publishedAt": "2025-12-05T00:00:00Z",
+      "tags": ["ecommerce", "retail", "ai"],
+      "cta": {
+        "label": "Read news"
+      }
+    },
+    {
+      "id": "salesforceben-agentforce-commerce-unveiled",
+      "type": "news",
+      "title": "Agentforce Commerce Unveiled With Guided Shopping, Agent-Assisted Clienteling, and More",
+      "summary": "An overview of Agentforce Commerce features for guided shopping, clienteling, catalog syndication, and conversational checkout.",
+      "url": "https://www.salesforceben.com/agentforce-commerce-unveiled-with-guided-shopping-agent-assisted-clienteling-and-more/",
+      "source": {
+        "name": "Salesforce Ben",
+        "url": "https://www.salesforceben.com/category/commerce/"
+      },
+      "publishedAt": "2025-11-18T00:00:00Z",
+      "tags": ["agentforce", "commerce-cloud", "agentic-commerce"],
+      "cta": {
+        "label": "Read article"
+      }
+    }
+  ]
+}
