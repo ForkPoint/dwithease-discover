@@ -23,6 +23,7 @@ test('writes an OpenAPI 3.1 contract for both Discover feeds', async (context) =
     const document = JSON.parse(await readFile(outputPath, 'utf8'));
     assert.equal(document.openapi, '3.1.1');
     assert.equal(document.info.title, 'DWithEase Discover Feed API');
+    assert.equal(document.info.version, '1.0.0');
     assert.equal(document.servers, undefined);
     assert.equal(
         document.paths['/feed-live.json'].get.responses['200'].content['application/json'].schema.$ref,
@@ -32,7 +33,7 @@ test('writes an OpenAPI 3.1 contract for both Discover feeds', async (context) =
         document.paths['/feed-dev.json'].get.responses['200'].content['application/json'].schema.$ref,
         '#/components/schemas/DiscoverFeed',
     );
-    assert.equal(document.components.schemas.DiscoverFeed.properties.version.const, 2);
+    assert.equal(document.components.schemas.DiscoverFeed.properties.version, undefined);
     const article = document.components.schemas.DiscoverFeed.properties.items.items.oneOf[0];
     const urlPattern = new RegExp(article.properties.url.pattern);
     assert.equal(article.properties.url.format, 'uri');
@@ -62,7 +63,7 @@ test('writes an OpenAPI 3.1 contract for both Discover feeds', async (context) =
     );
 });
 
-test('publishes both documented endpoints as v2 feeds', async () => {
+test('publishes both documented feed endpoints', async () => {
     const live = JSON.parse(await readFile('feed-live.json', 'utf8'));
     const development = JSON.parse(await readFile('feed-dev.json', 'utf8'));
 

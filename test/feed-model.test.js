@@ -11,7 +11,7 @@ import { validateFeed } from '../scripts/feed-schema.ts';
 
 const NOW = Date.parse('2026-09-10T12:00:00Z');
 
-const V2_PROMOTION = {
+const PROMOTION = {
     id: 'catalogspark-2026',
     type: 'promotion',
     title: 'Make product data ready',
@@ -40,7 +40,7 @@ test('selects the live feed unless the query asks for the dev feed', () => {
     assert.equal(selectFeedName('?feed=other'), 'live');
 });
 
-test('builds the v2 catalog with schema-valid offsets and sorted editorial items', () => {
+test('builds the catalog with schema-valid offsets and sorted editorial items', () => {
     const olderArticle = {
         id: 'older-article',
         type: 'article',
@@ -67,30 +67,29 @@ test('builds the v2 catalog with schema-valid offsets and sorted editorial items
     };
 
     const catalog = buildCatalog({
-        version: 2,
         locale: 'en',
         updatedAt: '2026-09-01T00:00:00Z',
-        items: [olderArticle, V2_PROMOTION, newerNews],
+        items: [olderArticle, PROMOTION, newerNews],
     }, NOW);
 
     assert.deepEqual(catalog.promotions.map(({ id }) => id), ['catalogspark-2026']);
     assert.deepEqual(catalog.editorial.map(({ id }) => id), ['newer-news', 'older-article']);
 });
 
-test('requires the complete v2 document before building a catalog', () => {
+test('requires the complete feed document before building a catalog', () => {
     const validFeed = {
-        version: 2,
         locale: 'en',
         updatedAt: '2026-09-01T00:00:00Z',
-        items: [V2_PROMOTION],
+        items: [PROMOTION],
     };
     const { updatedAt, ...missingUpdatedAt } = validFeed;
     const invalidFeeds = [
         missingUpdatedAt,
         { ...validFeed, updatedAt: 'not-a-date' },
         { ...validFeed, extra: true },
-        { ...validFeed, items: [{ ...V2_PROMOTION, extra: true }] },
-        { ...validFeed, items: [V2_PROMOTION, { ...V2_PROMOTION }] },
+        { ...validFeed, version: 2 },
+        { ...validFeed, items: [{ ...PROMOTION, extra: true }] },
+        { ...validFeed, items: [PROMOTION, { ...PROMOTION }] },
     ];
 
     for (const feed of invalidFeeds) {
@@ -99,7 +98,7 @@ test('requires the complete v2 document before building a catalog', () => {
     }
 });
 
-test('enforces raw v2 text limits in Zod and the browser catalog', () => {
+test('enforces raw text limits in Zod and the browser catalog', () => {
     const article = {
         id: 'raw-text-limits',
         type: 'article',
@@ -121,7 +120,6 @@ test('enforces raw v2 text limits in Zod and the browser catalog', () => {
         },
     };
     const validFeed = {
-        version: 2,
         locale: 'en',
         updatedAt: '2026-09-01T00:00:00Z',
         items: [article],
@@ -170,7 +168,6 @@ test('counts Unicode code points for browser text limits', () => {
         },
     };
     const feed = {
-        version: 2,
         locale: 'en',
         updatedAt: '2026-09-01T00:00:00Z',
         items: [article],
@@ -205,7 +202,6 @@ test('requires raw RFC 3986 lowercase HTTPS URLs across feed validators', () => 
         },
     };
     const validFeed = {
-        version: 2,
         locale: 'en',
         updatedAt: '2026-09-01T00:00:00Z',
         items: [article],
@@ -299,7 +295,6 @@ test('keeps web host validation aligned across feed contracts', () => {
 
     for (const [url, accepted] of cases) {
         const feed = {
-            version: 2,
             locale: 'en',
             updatedAt: '2026-09-01T00:00:00Z',
             items: [{ ...article, url }],
@@ -330,7 +325,6 @@ test('rejects final line breaks across regex-backed public fields', () => {
         },
     };
     const validFeed = {
-        version: 2,
         locale: 'en',
         updatedAt: '2026-09-01T00:00:00Z',
         items: [article],
@@ -398,16 +392,15 @@ test('renders schema-valid reserved-word slugs', () => {
         },
     };
     const promotion = {
-        ...V2_PROMOTION,
+        ...PROMOTION,
         id: 'prototype',
         tags: ['constructor'],
         campaign: {
-            ...V2_PROMOTION.campaign,
+            ...PROMOTION.campaign,
             id: 'constructor',
         },
     };
     const feed = {
-        version: 2,
         locale: 'en',
         updatedAt: '2026-09-01T00:00:00Z',
         items: [article, promotion],
@@ -419,7 +412,7 @@ test('renders schema-valid reserved-word slugs', () => {
     assert.deepEqual(catalog.promotions.map(({ id }) => id), ['prototype']);
 });
 
-test('returns an empty v2 catalog for invalid payloads', () => {
+test('returns an empty catalog for invalid payloads', () => {
     assert.deepEqual(buildCatalog({ items: [] }, NOW), {
         promotions: [],
         editorial: [],

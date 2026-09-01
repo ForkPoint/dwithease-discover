@@ -24,7 +24,7 @@ const document = {
     openapi: '3.1.1',
     info: {
         title: 'DWithEase Discover Feed API',
-        version: '2.0.0',
+        version: '1.0.0',
         description: 'Public commerce articles, news, and DWithEase product promotions. The Zod runtime also rejects duplicate item IDs and campaign end dates that do not follow their start dates.',
     },
     tags: [
@@ -61,7 +61,7 @@ const document = {
         schemas: {
             DiscoverFeed: {
                 title: 'Discover Feed',
-                description: 'The complete version 2 Discover document.',
+                description: 'The complete Discover feed document.',
                 ...discoverFeedSchema,
             },
         },

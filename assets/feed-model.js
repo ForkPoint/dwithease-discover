@@ -75,7 +75,7 @@ function validImage(image) {
         || (typeof image.src === 'string' && image.src.startsWith('assets/'));
 }
 
-function validV2Item(item) {
+function validFeedItem(item) {
     if (!item || !['article', 'news', 'promotion'].includes(item.type)) return false;
     const requiredKeys = [
         'id',
@@ -111,13 +111,12 @@ function validV2Item(item) {
     return campaign.placements.every((placement) => PRODUCT_PLACEMENTS.has(placement));
 }
 
-function validV2Feed(raw) {
-    if (!exactObject(raw, ['version', 'locale', 'updatedAt', 'items'])) return false;
-    if (raw.version !== 2
-        || typeof raw.locale !== 'string'
+function validFeed(raw) {
+    if (!exactObject(raw, ['locale', 'updatedAt', 'items'])) return false;
+    if (typeof raw.locale !== 'string'
         || !LOCALE_PATTERN.test(raw.locale)
         || !dateTime(raw.updatedAt)) return false;
-    if (!Array.isArray(raw.items) || !raw.items.every((item) => validV2Item(item))) return false;
+    if (!Array.isArray(raw.items) || !raw.items.every((item) => validFeedItem(item))) return false;
     return new Set(raw.items.map(({ id }) => id)).size === raw.items.length;
 }
 
@@ -159,7 +158,7 @@ export function selectFeedName(search = '') {
 }
 
 export function buildCatalog(raw, now = Date.now()) {
-    const items = validV2Feed(raw) ? raw.items : [];
+    const items = validFeed(raw) ? raw.items : [];
     const promotions = items.filter((item) => item.type === 'promotion'
         && item.campaign.placements.includes('discover')
         && Date.parse(item.campaign.startsAt) <= now

@@ -29,7 +29,6 @@ const COMMON_ITEM = {
     },
 };
 const TEST_FEED = {
-    version: 2,
     locale: 'en',
     updatedAt: '2026-09-01T00:00:00Z',
     items: [

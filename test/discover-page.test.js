@@ -16,7 +16,7 @@ function createRoot() {
     return document.getElementById('discover-content');
 }
 
-const V2_PROMOTION = {
+const PROMOTION = {
     id: 'catalogspark-2026',
     type: 'promotion',
     title: 'Make product data ready',
@@ -39,7 +39,7 @@ const V2_PROMOTION = {
     },
 };
 
-test('renders v2 promotions and editorial items with useful metadata', () => {
+test('renders promotions and editorial items with useful metadata', () => {
     const root = createRoot();
     const unsafeTitle = '<img src=x onerror=alert(1)>';
     const article = {
@@ -64,7 +64,7 @@ test('renders v2 promotions and editorial items with useful metadata', () => {
         { icon: 'https://discover.example/assets/sources/example.svg' },
     ]]);
     renderCatalog(root, {
-        promotions: [V2_PROMOTION],
+        promotions: [PROMOTION],
         editorial: [article],
     }, sources);
 
@@ -118,7 +118,7 @@ test('does not render actions for raw non-RFC URLs', () => {
         'https://catalogspark.com:65536/audit',
     ]) {
         renderCatalog(root, {
-            promotions: [{ ...V2_PROMOTION, url }],
+            promotions: [{ ...PROMOTION, url }],
             editorial: [],
         });
 
@@ -138,7 +138,7 @@ test('renders a working retry action after a feed error', () => {
     assert.equal(retries, 1);
 });
 
-test('loads only the selected v2 feed', async () => {
+test('loads only the selected feed', async () => {
     const root = createRoot();
     const requests = [];
     const fetchImpl = async (url) => {
@@ -159,10 +159,9 @@ test('loads only the selected v2 feed', async () => {
         return {
             ok: true,
             json: async () => ({
-                version: 2,
                 locale: 'en',
                 updatedAt: '2026-09-01T00:00:00Z',
-                items: [V2_PROMOTION],
+                items: [PROMOTION],
             }),
         };
     };
@@ -191,10 +190,9 @@ test('keeps feed text when the source registry fails', async () => {
         return {
             ok: true,
             json: async () => ({
-                version: 2,
                 locale: 'en',
                 updatedAt: '2026-09-01T00:00:00Z',
-                items: [V2_PROMOTION],
+                items: [PROMOTION],
             }),
         };
     };

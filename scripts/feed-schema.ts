@@ -115,7 +115,6 @@ export const FeedItemSchema = z.discriminatedUnion('type', [
 ]);
 
 export const FeedSchema = z.strictObject({
-    version: z.literal(2),
     locale: z.string().regex(new RegExp(`^[a-z]{2}(?:-[A-Z]{2})?${STRICT_END}`)),
     updatedAt: DateTimeSchema,
     items: z.array(FeedItemSchema),
