@@ -6,9 +6,22 @@ const SlugSchema = z.string()
     .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
 
 const RFC3986_PERCENT_ENCODED = '%[0-9A-Fa-f]{2}';
-const RFC3986_REG_NAME_CHARACTER = "[A-Za-z0-9._~!$&'()*+,;=-]";
-const RFC3986_IP_LITERAL = "\\[(?:[A-Fa-f0-9:.]+|[vV][0-9A-Fa-f]+\\.[A-Za-z0-9._~!$&'()*+,;=:-]+)\\]";
-const RFC3986_HOST = `(?:(?:${RFC3986_REG_NAME_CHARACTER}|${RFC3986_PERCENT_ENCODED})+|${RFC3986_IP_LITERAL})`;
+const DNS_LABEL = '[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?';
+const DNS_NAME = `(?![0-9]+(?:\\.[0-9]+)*\\.?(?=[:/?#]|$))${DNS_LABEL}(?:\\.${DNS_LABEL})*\\.?`;
+const IPV4_DECIMAL_OCTET = '(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])';
+const IPV4_ADDRESS = `(?:${IPV4_DECIMAL_OCTET}\\.){3}${IPV4_DECIMAL_OCTET}`;
+const IPV6_HEXTET = '[0-9A-Fa-f]{1,4}';
+const IPV6_LOW_32_BITS = `(?:${IPV6_HEXTET}:${IPV6_HEXTET}|${IPV4_ADDRESS})`;
+const IPV6_ADDRESS = `(?:(?:${IPV6_HEXTET}:){6}${IPV6_LOW_32_BITS}`
+    + `|::(?:${IPV6_HEXTET}:){5}${IPV6_LOW_32_BITS}`
+    + `|(?:${IPV6_HEXTET})?::(?:${IPV6_HEXTET}:){4}${IPV6_LOW_32_BITS}`
+    + `|(?:(?:${IPV6_HEXTET}:){0,1}${IPV6_HEXTET})?::(?:${IPV6_HEXTET}:){3}${IPV6_LOW_32_BITS}`
+    + `|(?:(?:${IPV6_HEXTET}:){0,2}${IPV6_HEXTET})?::(?:${IPV6_HEXTET}:){2}${IPV6_LOW_32_BITS}`
+    + `|(?:(?:${IPV6_HEXTET}:){0,3}${IPV6_HEXTET})?::${IPV6_HEXTET}:${IPV6_LOW_32_BITS}`
+    + `|(?:(?:${IPV6_HEXTET}:){0,4}${IPV6_HEXTET})?::${IPV6_LOW_32_BITS}`
+    + `|(?:(?:${IPV6_HEXTET}:){0,5}${IPV6_HEXTET})?::${IPV6_HEXTET}`
+    + `|(?:(?:${IPV6_HEXTET}:){0,6}${IPV6_HEXTET})?::)`;
+const RFC3986_HOST = `(?:${IPV4_ADDRESS}|\\[${IPV6_ADDRESS}\\]|${DNS_NAME})`;
 const RFC3986_PORT = '(?:[0-9]{1,4}|[0-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])';
 const RFC3986_AUTHORITY = `${RFC3986_HOST}(?::${RFC3986_PORT})?`;
 const RFC3986_PATH_CHARACTER = "[A-Za-z0-9._~!$&'()*+,;=:@-]";

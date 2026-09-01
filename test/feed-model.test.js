@@ -1,8 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 
 import {
     buildCatalog,
+    isHttpsUrl,
     selectFeedName,
 } from '../assets/feed-model.js';
 import { validateFeed } from '../scripts/feed-schema.ts';
@@ -225,6 +227,59 @@ test('requires raw RFC 3986 lowercase HTTPS URLs across feed validators', () => 
         const feed = { ...validFeed, items: [item] };
         assert.equal(validateFeed(feed).success, false);
         assert.deepEqual(buildCatalog(feed, NOW).editorial, []);
+    }
+});
+
+test('keeps web host validation aligned across feed contracts', () => {
+    const article = {
+        id: 'host-validation',
+        type: 'article',
+        title: 'Host validation',
+        summary: 'Checks the shared web host contract.',
+        url: 'https://example.com/',
+        source: {
+            name: 'Example',
+            url: 'https://example.com/',
+        },
+        publishedAt: '2026-08-01T00:00:00Z',
+        tags: ['commerce'],
+        cta: {
+            label: 'Read article',
+        },
+    };
+    const jsonSchema = JSON.parse(readFileSync('feed.schema.json', 'utf8'));
+    const openapi = JSON.parse(readFileSync('openapi.json', 'utf8'));
+    const contractPatterns = {
+        jsonSchema: new RegExp(jsonSchema.properties.items.items.oneOf[0].properties.url.pattern),
+        openapi: new RegExp(openapi.components.schemas.DiscoverFeed.properties.items.items.oneOf[0].properties.url.pattern),
+    };
+    const cases = [
+        ['https://example.com/path', true],
+        ['https://sub-domain.example.com:8443/path', true],
+        ['https://localhost:3000/path', true],
+        ['https://127.0.0.1/path', true],
+        ['https://[2001:db8::1]:443/path', true],
+        ['https://[::ffff:192.0.2.128]/path', true],
+        ['https://[v1.foo]/', false],
+        ['https://%23/', false],
+        ['https://256.0.0.1/', false],
+        ['https://[2001:::1]/', false],
+        ['https://-example.com/', false],
+        ['https://example-.com/', false],
+    ];
+
+    for (const [url, accepted] of cases) {
+        const feed = {
+            version: 2,
+            locale: 'en',
+            updatedAt: '2026-09-01T00:00:00Z',
+            items: [{ ...article, url }],
+        };
+        assert.equal(validateFeed(feed).success, accepted, `${url} Zod`);
+        assert.equal(isHttpsUrl(url), accepted, `${url} browser`);
+        for (const [contract, pattern] of Object.entries(contractPatterns)) {
+            assert.equal(pattern.test(url), accepted, `${url} ${contract}`);
+        }
     }
 });
 
