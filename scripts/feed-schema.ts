@@ -6,7 +6,7 @@ const SlugSchema = z.string()
     .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
 
 const RFC3986_PERCENT_ENCODED = '%[0-9A-Fa-f]{2}';
-const DNS_LABEL = '[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?';
+const DNS_LABEL = '(?![Xx][Nn]--)[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?';
 const DNS_NAME = `(?![0-9]+(?:\\.[0-9]+)*\\.?(?=[:/?#]|$))${DNS_LABEL}(?:\\.${DNS_LABEL})*\\.?`;
 const IPV4_DECIMAL_OCTET = '(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])';
 const IPV4_ADDRESS = `(?:${IPV4_DECIMAL_OCTET}\\.){3}${IPV4_DECIMAL_OCTET}`;

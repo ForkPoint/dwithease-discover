@@ -255,6 +255,7 @@ test('keeps web host validation aligned across feed contracts', () => {
     };
     const cases = [
         ['https://example.com/path', true],
+        ['https://plain-ascii.example/path', true],
         ['https://sub-domain.example.com:8443/path', true],
         ['https://localhost:3000/path', true],
         ['https://127.0.0.1/path', true],
@@ -266,6 +267,10 @@ test('keeps web host validation aligned across feed contracts', () => {
         ['https://[2001:::1]/', false],
         ['https://-example.com/', false],
         ['https://example-.com/', false],
+        ['https://xn--a/', false],
+        ['https://xn--bcher-kva.example/', false],
+        ['https://www.xn--a.example/', false],
+        ['https://XN--a.example/', false],
     ];
 
     for (const [url, accepted] of cases) {
