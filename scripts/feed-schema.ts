@@ -1,13 +1,15 @@
 import { z } from 'zod';
 
+const STRICT_END = '(?![\\s\\S])';
+
 const SlugSchema = z.string()
     .min(1)
     .max(120)
-    .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
+    .regex(new RegExp(`^[a-z0-9]+(?:-[a-z0-9]+)*${STRICT_END}`));
 
 const RFC3986_PERCENT_ENCODED = '%[0-9A-Fa-f]{2}';
 const DNS_LABEL = '(?![Xx][Nn]--)[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?';
-const DNS_NAME = `(?![0-9]+(?:\\.[0-9]+)*\\.?(?=[:/?#]|$))${DNS_LABEL}(?:\\.${DNS_LABEL})*\\.?`;
+const DNS_NAME = `(?![0-9]+(?:\\.[0-9]+)*\\.?(?=[:/?#]|${STRICT_END}))${DNS_LABEL}(?:\\.${DNS_LABEL})*\\.?`;
 const IPV4_DECIMAL_OCTET = '(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])';
 const IPV4_ADDRESS = `(?:${IPV4_DECIMAL_OCTET}\\.){3}${IPV4_DECIMAL_OCTET}`;
 const IPV6_HEXTET = '[0-9A-Fa-f]{1,4}';
@@ -29,11 +31,11 @@ const RFC3986_QUERY_CHARACTER = "[A-Za-z0-9._~!$&'()*+,;=:@/?-]";
 const HTTPS_URL_PATTERN = `^https://${RFC3986_AUTHORITY}`
     + `(?:/(?:${RFC3986_PATH_CHARACTER}|${RFC3986_PERCENT_ENCODED})*)*`
     + `(?:\\?(?:${RFC3986_QUERY_CHARACTER}|${RFC3986_PERCENT_ENCODED})*)?`
-    + `(?:#(?:${RFC3986_QUERY_CHARACTER}|${RFC3986_PERCENT_ENCODED})*)?$`;
+    + `(?:#(?:${RFC3986_QUERY_CHARACTER}|${RFC3986_PERCENT_ENCODED})*)?${STRICT_END}`;
 
 const HttpsUrlSchema = z.string()
     .regex(new RegExp(HTTPS_URL_PATTERN))
-    .pipe(z.url({ protocol: /^https$/ }))
+    .pipe(z.url({ protocol: new RegExp(`^https${STRICT_END}`) }))
     .meta({ pattern: HTTPS_URL_PATTERN });
 
 const DateTimeSchema = z.iso.datetime({ offset: true });
@@ -108,7 +110,7 @@ export const FeedItemSchema = z.discriminatedUnion('type', [
 
 export const FeedSchema = z.strictObject({
     version: z.literal(2),
-    locale: z.string().regex(/^[a-z]{2}(?:-[A-Z]{2})?$/),
+    locale: z.string().regex(new RegExp(`^[a-z]{2}(?:-[A-Z]{2})?${STRICT_END}`)),
     updatedAt: DateTimeSchema,
     items: z.array(FeedItemSchema),
 }).superRefine((feed, context) => {

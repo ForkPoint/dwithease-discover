@@ -288,6 +288,68 @@ test('keeps web host validation aligned across feed contracts', () => {
     }
 });
 
+test('rejects final line breaks across regex-backed public fields', () => {
+    const article = {
+        id: 'strict-end',
+        type: 'article',
+        title: 'Strict end checks',
+        summary: 'Rejects raw line breaks at contract boundaries.',
+        url: 'https://example.com/article',
+        source: {
+            name: 'Example',
+            url: 'https://example.com/',
+        },
+        publishedAt: '2026-08-01T00:00:00Z',
+        tags: ['commerce'],
+        cta: {
+            label: 'Read article',
+        },
+    };
+    const validFeed = {
+        version: 2,
+        locale: 'en',
+        updatedAt: '2026-09-01T00:00:00Z',
+        items: [article],
+    };
+    const jsonSchema = JSON.parse(readFileSync('feed.schema.json', 'utf8'));
+    const openapi = JSON.parse(readFileSync('openapi.json', 'utf8'));
+    const jsonArticle = jsonSchema.properties.items.items.oneOf[0];
+    const openapiArticle = openapi.components.schemas.DiscoverFeed.properties.items.items.oneOf[0];
+    const fields = [
+        {
+            name: 'URL',
+            value: article.url,
+            makeFeed: (value) => ({ ...validFeed, items: [{ ...article, url: value }] }),
+            patterns: [jsonArticle.properties.url.pattern, openapiArticle.properties.url.pattern],
+        },
+        {
+            name: 'slug',
+            value: article.id,
+            makeFeed: (value) => ({ ...validFeed, items: [{ ...article, id: value }] }),
+            patterns: [jsonArticle.properties.id.pattern, openapiArticle.properties.id.pattern],
+        },
+        {
+            name: 'locale',
+            value: validFeed.locale,
+            makeFeed: (value) => ({ ...validFeed, locale: value }),
+            patterns: [jsonSchema.properties.locale.pattern, openapi.components.schemas.DiscoverFeed.properties.locale.pattern],
+        },
+    ];
+
+    for (const lineBreak of ['\n', '\r\n']) {
+        for (const field of fields) {
+            const value = `${field.value}${lineBreak}`;
+            const feed = field.makeFeed(value);
+            const caseName = `${field.name} with ${JSON.stringify(lineBreak)}`;
+            assert.equal(validateFeed(feed).success, false, `${caseName} Zod`);
+            assert.deepEqual(buildCatalog(feed, NOW).editorial, [], `${caseName} browser`);
+            for (const pattern of field.patterns) {
+                assert.equal(new RegExp(pattern).test(value), false, `${caseName} public contract`);
+            }
+        }
+    }
+});
+
 test('renders schema-valid reserved-word slugs', () => {
     const article = {
         id: 'constructor',
