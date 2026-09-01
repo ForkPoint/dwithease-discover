@@ -1,6 +1,5 @@
 import {
     buildCatalog,
-    createImageMap,
     selectFeedName,
 } from './feed-model.js';
 
@@ -38,27 +37,6 @@ function feedImage(document, source, className, alt = '') {
         if (!image.src.endsWith(FALLBACK_IMAGE)) image.src = FALLBACK_IMAGE;
     });
     return image;
-}
-
-function productCard(document, product, images) {
-    const card = node(document, 'article', 'discover-card product-card');
-    card.dataset.productId = product.productId;
-    card.append(feedImage(document, images[product.imageId], 'product-image'));
-
-    const body = node(document, 'div', 'card-body');
-    body.append(node(document, 'p', 'eyebrow', 'From ForkPoint'));
-    body.append(node(document, 'h3', 'card-title', product.name));
-    body.append(node(document, 'p', 'card-copy', product.benefit));
-
-    const href = safeHttps(product.url);
-    if (href) {
-        const actions = node(document, 'div', 'card-actions');
-        actions.append(actionLink(document, href, product.ctaLabel));
-        body.append(actions);
-    }
-
-    card.append(body);
-    return card;
 }
 
 function formattedDate(value) {
@@ -110,39 +88,6 @@ function feedItemCard(document, item) {
     return card;
 }
 
-function updateCard(document, update, images, index) {
-    const card = node(document, 'article', 'discover-card update-card');
-    card.dataset.updateId = String(update.id ?? index);
-
-    const row = node(document, 'div', 'update-row');
-    row.append(feedImage(document, images[update.icon], 'update-icon'));
-
-    const body = node(document, 'div', 'card-body');
-    body.append(node(document, 'h3', 'card-title', String(update.title ?? '')));
-    body.append(node(
-        document,
-        'p',
-        'card-copy update-copy',
-        String(update.body ?? '').split('\\n').join('\n'),
-    ));
-    row.append(body);
-    card.append(row);
-
-    const href = safeHttps(update.link);
-    if (href) {
-        const actions = node(document, 'div', 'card-actions');
-        actions.append(actionLink(
-            document,
-            href,
-            String(update.buttonText || update.actionButton || 'Learn more'),
-            'text-link',
-        ));
-        card.append(actions);
-    }
-
-    return card;
-}
-
 function section(document, title, items, renderItem) {
     const wrapper = node(document, 'section', 'discover-section');
     wrapper.append(node(document, 'h2', 'section-title', title));
@@ -165,59 +110,30 @@ function emptyState(document) {
         document,
         'p',
         'state-copy',
-        'There are no products to discover right now.',
+        'There are no articles or tools to discover right now.',
     ));
     state.append(copy);
     return state;
 }
 
-export function renderCatalog(root, catalog, images) {
+export function renderCatalog(root, catalog) {
     const { ownerDocument: document } = root;
     root.replaceChildren();
 
-    if (Array.isArray(catalog.promotions) && Array.isArray(catalog.editorial)) {
-        if (catalog.promotions.length) {
-            root.append(section(
-                document,
-                'Featured tools',
-                catalog.promotions,
-                (item) => feedItemCard(document, item),
-            ));
-        }
-        if (catalog.editorial.length) {
-            root.append(section(
-                document,
-                'Latest from commerce',
-                catalog.editorial,
-                (item) => feedItemCard(document, item),
-            ));
-        }
-        if (!root.childElementCount) root.append(emptyState(document));
-        return;
-    }
-
-    if (catalog.ecommerce.length) {
+    if (catalog.promotions.length) {
         root.append(section(
             document,
-            'E-commerce',
-            catalog.ecommerce,
-            (product) => productCard(document, product, images),
+            'Featured tools',
+            catalog.promotions,
+            (item) => feedItemCard(document, item),
         ));
     }
-    if (catalog.webDevelopment.length) {
+    if (catalog.editorial.length) {
         root.append(section(
             document,
-            'Web Development',
-            catalog.webDevelopment,
-            (product) => productCard(document, product, images),
-        ));
-    }
-    if (catalog.updates.length) {
-        root.append(section(
-            document,
-            'Updates',
-            catalog.updates,
-            (update, index) => updateCard(document, update, images, index),
+            'Latest from commerce',
+            catalog.editorial,
+            (item) => feedItemCard(document, item),
         ));
     }
 
@@ -256,7 +172,6 @@ export async function startDiscoverPage({
 }) {
     const channel = selectFeedName(search);
     const feedUrl = `feed-${channel}.json`;
-    const imagesUrl = `images-${channel}.json`;
     root.dataset.feed = channel;
     renderLoading(root);
 
@@ -265,9 +180,7 @@ export async function startDiscoverPage({
         if (!feedResponse.ok) throw new Error(`Feed request failed: ${feedResponse.status}`);
 
         const feed = await feedResponse.json();
-        const imageResponse = await fetchImpl(imagesUrl, { cache: 'no-store' });
-        const imageData = imageResponse.ok ? await imageResponse.json() : { images: [] };
-        renderCatalog(root, buildCatalog(feed, now), createImageMap(imageData));
+        renderCatalog(root, buildCatalog(feed, now));
     } catch {
         renderError(root, () => startDiscoverPage({ root, search, fetchImpl, now: Date.now() }));
     }

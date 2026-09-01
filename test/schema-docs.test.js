@@ -7,6 +7,23 @@ import { join } from 'node:path';
 
 import { parseHTML } from 'linkedom';
 
+import { validateFeed } from '../scripts/feed-schema.ts';
+
+function parseCssRules(css) {
+    const { document } = parseHTML('<html><head><style></style></head><body></body></html>');
+    const style = document.querySelector('style');
+    style.textContent = css;
+    return [...style.sheet.cssRules];
+}
+
+function declaredValue(rules, selector, property) {
+    return rules.reduce((value, rule) => (
+        rule.selectorText === selector && rule.style.getPropertyValue(property)
+            ? rule.style.getPropertyValue(property)
+            : value
+    ), '');
+}
+
 test('writes an OpenAPI 3.1 contract for both Discover feeds', async (context) => {
     const directory = await mkdtemp(join(tmpdir(), 'discover-openapi-'));
     context.after(() => rm(directory, { recursive: true, force: true }));
@@ -31,6 +48,16 @@ test('writes an OpenAPI 3.1 contract for both Discover feeds', async (context) =
         '#/components/schemas/DiscoverFeed',
     );
     assert.equal(document.components.schemas.DiscoverFeed.properties.version.const, 2);
+});
+
+test('publishes both documented endpoints as v2 feeds', async () => {
+    const live = JSON.parse(await readFile('feed-live.json', 'utf8'));
+    const development = JSON.parse(await readFile('feed-dev.json', 'utf8'));
+
+    assert.equal(validateFeed(live).success, true);
+    assert.equal(validateFeed(development).success, true);
+    assert.deepEqual(live.items, []);
+    assert.ok(development.items.length > 0);
 });
 
 test('configures the pinned Scalar viewer for the generated contract', async () => {
@@ -66,7 +93,14 @@ test('configures the pinned Scalar viewer for the generated contract', async () 
     assert.deepEqual(call?.config.agent, { disabled: true });
     assert.deepEqual(call?.config.mcp, { disabled: true });
     assert.equal(call?.config.modelsSectionLabel, 'Schemas');
-    assert.match(call?.config.customCss, /\.request-card\.dark-mode[\s\S]*--scalar-background-2: #ffffff/);
+    assert.equal(
+        declaredValue(
+            parseCssRules(call?.config.customCss ?? ''),
+            '.request-card.dark-mode',
+            '--scalar-background-2',
+        ),
+        '#ffffff',
+    );
 });
 
 test('links the public Discover footer to the Scalar reference', async () => {
@@ -86,6 +120,10 @@ test('keeps the public Discover website in the light DWithEase theme', async () 
     assert.equal(themeColors.length, 1);
     assert.equal(themeColors[0]?.getAttribute('content'), '#f6f9fc');
     assert.equal(document.querySelector('.brand-link source[media]'), null);
-    assert.match(css, /color-scheme:\s*light;/);
-    assert.doesNotMatch(css, /prefers-color-scheme:\s*dark/);
+    const rules = parseCssRules(css);
+    assert.equal(declaredValue(rules, ':root', 'color-scheme'), 'light');
+    assert.equal(
+        rules.some((rule) => rule.media?.mediaText.includes('prefers-color-scheme')),
+        false,
+    );
 });

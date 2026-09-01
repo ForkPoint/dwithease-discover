@@ -235,12 +235,6 @@ h1 {
     transform: translateY(-2px);
 }
 
-.product-card {
-    display: flex;
-    gap: 18px;
-    padding: 18px;
-}
-
 .feed-card {
     display: flex;
     min-height: 260px;
@@ -304,16 +298,6 @@ h1 {
     line-height: 1.2;
 }
 
-.product-image {
-    width: 152px;
-    height: 118px;
-    flex: 0 0 auto;
-    border: 1px solid rgba(227, 234, 242, 0.9);
-    border-radius: 12px;
-    background: var(--surface);
-    object-fit: cover;
-}
-
 .card-body {
     display: flex;
     min-width: 0;
@@ -342,31 +326,6 @@ h1 {
     justify-content: flex-end;
     margin-top: auto;
     padding-top: 16px;
-}
-
-.update-card {
-    display: flex;
-    flex-direction: column;
-    padding: 18px;
-}
-
-.update-row {
-    display: flex;
-    min-width: 0;
-    align-items: flex-start;
-    gap: 16px;
-}
-
-.update-icon {
-    width: 40px;
-    height: 40px;
-    flex: 0 0 auto;
-    border-radius: 10px;
-    object-fit: contain;
-}
-
-.update-copy {
-    white-space: pre-line;
 }
 
 .text-link {
@@ -509,16 +468,6 @@ h1 {
 
     .page-header {
         padding: 46px 0 34px;
-    }
-
-    .product-card {
-        flex-direction: column;
-        padding: 16px;
-    }
-
-    .product-image {
-        width: 100%;
-        height: 158px;
     }
 
     .state-card,
