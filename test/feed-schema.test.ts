@@ -137,8 +137,13 @@ test('writes the public JSON Schema from the Zod contract', async (context) => {
     assert.equal(schema.title, 'DWithEase Discover Feed');
     assert.equal(schema.properties.version.const, 2);
     const article = schema.properties.items.items.oneOf[0];
-    assert.equal(article.properties.url.pattern, '^https://\\S+$');
-    assert.equal(article.properties.source.properties.url.pattern, '^https://\\S+$');
+    const urlPattern = new RegExp(article.properties.url.pattern);
+    assert.equal(article.properties.url.format, 'uri');
+    assert.equal(urlPattern.test('https://example.com/path?item=1#details'), true);
+    assert.equal(urlPattern.test('https://example.com\\path'), false);
+    assert.equal(urlPattern.test('https://example.com/%zz'), false);
+    assert.equal(urlPattern.test('https://例え.テスト/path'), false);
+    assert.equal(article.properties.source.properties.url.pattern, article.properties.url.pattern);
     assert.equal(article.properties.tags.uniqueItems, true);
     assert.equal(article.properties.title.maxLength, 120);
     assert.equal(article.properties.summary.maxLength, 280);
@@ -151,6 +156,6 @@ test('writes the public JSON Schema from the Zod contract', async (context) => {
     assert.equal(article.properties.cta.properties.label.pattern, '\\S');
     assert.deepEqual(
         article.properties.image.properties.src.anyOf.map(({ pattern }: { pattern?: string }) => pattern),
-        ['^https://\\S+$', '^assets\\/'],
+        [article.properties.url.pattern, '^assets\\/'],
     );
 });

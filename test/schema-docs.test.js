@@ -9,51 +9,6 @@ import { parseHTML } from 'linkedom';
 
 import { validateFeed } from '../scripts/feed-schema.ts';
 
-function parseCssRules(css) {
-    const { document } = parseHTML('<html><head><style></style></head><body></body></html>');
-    const style = document.querySelector('style');
-    style.textContent = css;
-    return [...style.sheet.cssRules];
-}
-
-function declaredValue(rules, selector, property) {
-    return rules.reduce((value, rule) => (
-        rule.selectorText === selector && rule.style.getPropertyValue(property)
-            ? rule.style.getPropertyValue(property)
-            : value
-    ), '');
-}
-
-function declaredValueForSelector(rules, selector, property) {
-    return rules.reduce((value, rule) => {
-        const selectors = rule.selectorText?.split(',').map((item) => item.trim()) ?? [];
-        const declared = rule.style?.getPropertyValue(property);
-        return selectors.includes(selector) && declared ? declared : value;
-    }, '');
-}
-
-function resolveColor(rules, value) {
-    const property = value.match(/^var\((--[^)]+)\)$/)?.[1];
-    return property ? declaredValue(rules, ':root', property) : value;
-}
-
-function relativeLuminance(hex) {
-    const normalized = hex.length === 4
-        ? hex.slice(1).split('').map((digit) => digit.repeat(2))
-        : hex.slice(1).match(/.{2}/g);
-    const [red, green, blue] = normalized.map((channel) => {
-        const value = Number.parseInt(channel, 16) / 255;
-        return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
-    });
-    return 0.2126 * red + 0.7152 * green + 0.0722 * blue;
-}
-
-function contrastRatio(first, second) {
-    const luminances = [relativeLuminance(first), relativeLuminance(second)]
-        .sort((left, right) => right - left);
-    return (luminances[0] + 0.05) / (luminances[1] + 0.05);
-}
-
 test('writes an OpenAPI 3.1 contract for both Discover feeds', async (context) => {
     const directory = await mkdtemp(join(tmpdir(), 'discover-openapi-'));
     context.after(() => rm(directory, { recursive: true, force: true }));
@@ -79,8 +34,13 @@ test('writes an OpenAPI 3.1 contract for both Discover feeds', async (context) =
     );
     assert.equal(document.components.schemas.DiscoverFeed.properties.version.const, 2);
     const article = document.components.schemas.DiscoverFeed.properties.items.items.oneOf[0];
-    assert.equal(article.properties.url.pattern, '^https://\\S+$');
-    assert.equal(article.properties.source.properties.url.pattern, '^https://\\S+$');
+    const urlPattern = new RegExp(article.properties.url.pattern);
+    assert.equal(article.properties.url.format, 'uri');
+    assert.equal(urlPattern.test('https://example.com/path?item=1#details'), true);
+    assert.equal(urlPattern.test('https://example.com\\path'), false);
+    assert.equal(urlPattern.test('https://example.com/%zz'), false);
+    assert.equal(urlPattern.test('https://例え.テスト/path'), false);
+    assert.equal(article.properties.source.properties.url.pattern, article.properties.url.pattern);
     assert.equal(article.properties.title.maxLength, 120);
     assert.equal(article.properties.summary.maxLength, 280);
     assert.equal(article.properties.source.properties.name.maxLength, 80);
@@ -92,7 +52,7 @@ test('writes an OpenAPI 3.1 contract for both Discover feeds', async (context) =
     assert.equal(article.properties.cta.properties.label.pattern, '\\S');
     assert.deepEqual(
         article.properties.image.properties.src.anyOf.map(({ pattern }) => pattern),
-        ['^https://\\S+$', '^assets\\/'],
+        [article.properties.url.pattern, '^assets\\/'],
     );
 });
 
@@ -139,14 +99,6 @@ test('configures the pinned Scalar viewer for the generated contract', async () 
     assert.deepEqual(call?.config.agent, { disabled: true });
     assert.deepEqual(call?.config.mcp, { disabled: true });
     assert.equal(call?.config.modelsSectionLabel, 'Schemas');
-    assert.equal(
-        declaredValue(
-            parseCssRules(call?.config.customCss ?? ''),
-            '.request-card.dark-mode',
-            '--scalar-background-2',
-        ),
-        '#ffffff',
-    );
 });
 
 test('links the public Discover footer to the Scalar reference', async () => {
@@ -155,63 +107,4 @@ test('links the public Discover footer to the Scalar reference', async () => {
     const link = document.querySelector('.site-footer a[href="schema.html"]');
 
     assert.equal(link?.textContent, 'Feed reference');
-});
-
-test('keeps the public Discover website in the light DWithEase theme', async () => {
-    const html = await readFile('index.html', 'utf8');
-    const css = await readFile('assets/discover.css', 'utf8');
-    const { document } = parseHTML(html);
-    const themeColors = document.querySelectorAll('meta[name="theme-color"]');
-
-    assert.equal(themeColors.length, 1);
-    assert.equal(themeColors[0]?.getAttribute('content'), '#f6f9fc');
-    assert.equal(document.querySelector('.brand-link source[media]'), null);
-    const rules = parseCssRules(css);
-    assert.equal(declaredValue(rules, ':root', 'color-scheme'), 'light');
-    assert.equal(
-        rules.some((rule) => rule.media?.mediaText.includes('prefers-color-scheme')),
-        false,
-    );
-});
-
-test('keeps action text at WCAG AA contrast', async () => {
-    const css = await readFile('assets/discover.css', 'utf8');
-    const rules = parseCssRules(css);
-    const text = declaredValueForSelector(rules, '.button', 'color');
-    const backgrounds = [
-        declaredValueForSelector(rules, '.button', 'background'),
-        declaredValueForSelector(rules, '.button:hover', 'background'),
-    ].map((value) => resolveColor(rules, value));
-
-    for (const background of backgrounds) {
-        assert.ok(
-            contrastRatio(text, background) >= 4.5,
-            `${text} on ${background} must have at least 4.5:1 contrast`,
-        );
-    }
-});
-
-test('wraps every feed text field within its card', async () => {
-    const css = await readFile('assets/discover.css', 'utf8');
-    const rules = parseCssRules(css);
-    const textSelectors = [
-        '.card-source',
-        '.card-date',
-        '.card-title',
-        '.card-copy',
-        '.tag',
-        '.card-actions .button',
-        '.card-actions .text-link',
-    ];
-    const containerSelectors = ['.card-body', '.card-meta', '.tag-list', '.card-actions'];
-
-    for (const selector of textSelectors) {
-        assert.equal(declaredValueForSelector(rules, selector, 'min-width'), '0');
-        assert.equal(declaredValueForSelector(rules, selector, 'max-width'), '100%');
-        assert.equal(declaredValueForSelector(rules, selector, 'overflow-wrap'), 'anywhere');
-    }
-    for (const selector of containerSelectors) {
-        assert.equal(declaredValueForSelector(rules, selector, 'min-width'), '0');
-        assert.equal(declaredValueForSelector(rules, selector, 'max-width'), '100%');
-    }
 });

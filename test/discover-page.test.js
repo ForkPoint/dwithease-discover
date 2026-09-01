@@ -88,15 +88,17 @@ test('renders the Discover empty state', () => {
     assert.ok(root.querySelector('[data-testid="discover-empty"]'));
 });
 
-test('does not render actions for raw URLs with whitespace', () => {
+test('does not render actions for raw non-RFC URLs', () => {
     const root = createRoot();
 
-    renderCatalog(root, {
-        promotions: [{ ...V2_PROMOTION, url: 'https://catalogspark.com/\t' }],
-        editorial: [],
-    });
+    for (const url of ['https://catalogspark.com/\t', 'https://catalogspark.com\\audit']) {
+        renderCatalog(root, {
+            promotions: [{ ...V2_PROMOTION, url }],
+            editorial: [],
+        });
 
-    assert.equal(root.querySelector('[data-item-id="catalogspark-2026"] a'), null);
+        assert.equal(root.querySelector('[data-item-id="catalogspark-2026"] a'), null);
+    }
 });
 
 test('renders a working retry action after a feed error', () => {

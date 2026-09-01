@@ -157,7 +157,7 @@ test('counts Unicode code points for browser text limits', () => {
     );
 });
 
-test('requires whitespace-free lowercase HTTPS URLs across feed validators', () => {
+test('requires raw RFC 3986 lowercase HTTPS URLs across feed validators', () => {
     const article = {
         id: 'lowercase-https',
         type: 'article',
@@ -198,6 +198,11 @@ test('requires whitespace-free lowercase HTTPS URLs across feed validators', () 
         { ...article, url: 'https://example.com/article\t' },
         { ...article, source: { ...article.source, url: 'https://example.com/\n' } },
         { ...article, image: { ...article.image, src: 'https://example.com/image.png ' } },
+        { ...article, url: 'https://example.com\\article' },
+        { ...article, source: { ...article.source, url: 'https://example.com/%zz' } },
+        { ...article, image: { ...article.image, src: 'https://example.com/image{1}.png' } },
+        { ...article, url: 'https://例え.テスト/article' },
+        { ...article, url: 'https://example.com/#first#second' },
     ];
 
     for (const item of invalidItems) {

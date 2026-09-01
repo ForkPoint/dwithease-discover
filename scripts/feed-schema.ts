@@ -5,7 +5,14 @@ const SlugSchema = z.string()
     .max(120)
     .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
 
-const HTTPS_URL_PATTERN = '^https://\\S+$';
+const RFC3986_PERCENT_ENCODED = '%[0-9A-Fa-f]{2}';
+const RFC3986_AUTHORITY_CHARACTER = "[A-Za-z0-9._~!$&'()*+,;=:@\\[\\]-]";
+const RFC3986_PATH_CHARACTER = "[A-Za-z0-9._~!$&'()*+,;=:@-]";
+const RFC3986_QUERY_CHARACTER = "[A-Za-z0-9._~!$&'()*+,;=:@/?-]";
+const HTTPS_URL_PATTERN = `^https://(?:${RFC3986_AUTHORITY_CHARACTER}|${RFC3986_PERCENT_ENCODED})+`
+    + `(?:/(?:${RFC3986_PATH_CHARACTER}|${RFC3986_PERCENT_ENCODED})*)*`
+    + `(?:\\?(?:${RFC3986_QUERY_CHARACTER}|${RFC3986_PERCENT_ENCODED})*)?`
+    + `(?:#(?:${RFC3986_QUERY_CHARACTER}|${RFC3986_PERCENT_ENCODED})*)?$`;
 
 const HttpsUrlSchema = z.string()
     .regex(new RegExp(HTTPS_URL_PATTERN))

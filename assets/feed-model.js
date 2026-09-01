@@ -1,5 +1,6 @@
 const PRODUCT_PLACEMENTS = new Set(['discover', 'task-end', 'popup']);
 const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const RFC3986_HTTPS_PATTERN = /^https:\/\/(?:[A-Za-z0-9._~!$&'()*+,;=:@\[\]-]|%[0-9A-Fa-f]{2})+(?:\/(?:[A-Za-z0-9._~!$&'()*+,;=:@-]|%[0-9A-Fa-f]{2})*)*(?:\?(?:[A-Za-z0-9._~!$&'()*+,;=:@/?-]|%[0-9A-Fa-f]{2})*)?(?:#(?:[A-Za-z0-9._~!$&'()*+,;=:@/?-]|%[0-9A-Fa-f]{2})*)?$/;
 
 function limitedText(value, maxLength) {
     return typeof value === 'string' && [...value].length <= maxLength;
@@ -19,7 +20,7 @@ function dateTime(value) {
 }
 
 export function isHttpsUrl(value) {
-    if (typeof value !== 'string' || !/^https:\/\/\S+$/.test(value)) return false;
+    if (typeof value !== 'string' || !RFC3986_HTTPS_PATTERN.test(value)) return false;
     try {
         return new URL(value).protocol === 'https:';
     } catch {
