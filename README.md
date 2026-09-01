@@ -5,24 +5,20 @@ DWithEase Discover is the DWithEase news engine for ecommerce and Salesforce B2C
 ## Public links
 
 - [Discover](https://discover.dwithease.com/)
-- [Live feed](https://discover.dwithease.com/feed-live.json)
-- [Development feed](https://discover.dwithease.com/feed-dev.json)
-- [Feed schema](https://discover.dwithease.com/schema.html)
+- [Live feed (legacy during curation)](https://discover.dwithease.com/feed-live.json)
+- [Development v2 feed](https://discover.dwithease.com/feed-dev.json)
+- [Interactive API reference](https://discover.dwithease.com/schema.html)
+- [JSON Schema](https://discover.dwithease.com/feed.schema.json)
+- [OpenAPI document](https://discover.dwithease.com/openapi.json)
 - [DWithEase](https://dwithease.com/)
 
 ## Editorial sources
 
-- [Salesforce News](https://www.salesforce.com/news/topics/commerce/)
-- [Salesforce Commerce Blog](https://www.salesforce.com/blog/category/ecommerce/)
-- [Salesforce Developers Blog](https://developer.salesforce.com/blogs)
-- [Salesforce PWA Kit releases](https://github.com/SalesforceCommerceCloud/pwa-kit/releases)
-- [Rhino Inquisitor](https://rhino-inquisitor.com/archive/)
-- [Salesforce Ben Commerce](https://www.salesforceben.com/category/commerce/)
-- [Digital Commerce 360 Technology](https://www.digitalcommerce360.com/topic/technology/)
+See [SOURCES.md](SOURCES.md) for the full gather source list and curation rules.
 
 ## Feed v2
 
-Both public endpoints use the v2 JSON format:
+The development endpoint uses the v2 JSON format:
 
 ```json
 {
@@ -36,6 +32,8 @@ Both public endpoints use the v2 JSON format:
 Each item has a stable slug ID, a type, an HTTPS URL, source details, a publication date, tags, and a CTA. Editorial items use `article` or `news`. Promotions also include a dated campaign and one or more placements.
 
 The development feed contains the curation corpus. The live feed keeps its legacy format until that corpus is approved. Validate the development feed before publication:
+
+The OpenAPI document describes the development response and the planned v2 live response.
 
 ```sh
 npm run validate:feed -- feed-dev.json

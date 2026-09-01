@@ -25,7 +25,7 @@ const document = {
     info: {
         title: 'DWithEase Discover Feed API',
         version: '2.0.0',
-        description: 'Public commerce articles, news, and DWithEase product promotions. The Zod runtime also rejects duplicate item IDs and campaign end dates that do not follow their start dates.',
+        description: 'Version 2 contract for the development feed and the planned live feed. The live endpoint keeps its legacy response during curation. The Zod runtime also rejects duplicate item IDs and campaign end dates that do not follow their start dates.',
     },
     tags: [
         {
@@ -38,7 +38,7 @@ const document = {
             get: {
                 operationId: 'getLiveDiscoverFeed',
                 summary: 'Get the live Discover feed',
-                description: 'Returns approved editorial items and active or scheduled product promotions.',
+                description: 'Defines the planned version 2 response after curation. The current endpoint keeps its legacy response until the development corpus is approved.',
                 tags: ['Feeds'],
                 responses: {
                     '200': feedResponse('The public Discover feed.'),

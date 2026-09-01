@@ -43,4 +43,4 @@ This file records the inputs for `feed-dev.json`.
 - 4 promotion items.
 - 42 items in total.
 
-`feed-live.json` remains a valid empty v2 feed during dev curation.
+`feed-live.json` remains unchanged in its legacy format during dev curation.
