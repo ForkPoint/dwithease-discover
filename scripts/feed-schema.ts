@@ -6,10 +6,14 @@ const SlugSchema = z.string()
     .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
 
 const RFC3986_PERCENT_ENCODED = '%[0-9A-Fa-f]{2}';
-const RFC3986_AUTHORITY_CHARACTER = "[A-Za-z0-9._~!$&'()*+,;=:@\\[\\]-]";
+const RFC3986_REG_NAME_CHARACTER = "[A-Za-z0-9._~!$&'()*+,;=-]";
+const RFC3986_IP_LITERAL = "\\[(?:[A-Fa-f0-9:.]+|[vV][0-9A-Fa-f]+\\.[A-Za-z0-9._~!$&'()*+,;=:-]+)\\]";
+const RFC3986_HOST = `(?:(?:${RFC3986_REG_NAME_CHARACTER}|${RFC3986_PERCENT_ENCODED})+|${RFC3986_IP_LITERAL})`;
+const RFC3986_PORT = '(?:[0-9]{1,4}|[0-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])';
+const RFC3986_AUTHORITY = `${RFC3986_HOST}(?::${RFC3986_PORT})?`;
 const RFC3986_PATH_CHARACTER = "[A-Za-z0-9._~!$&'()*+,;=:@-]";
 const RFC3986_QUERY_CHARACTER = "[A-Za-z0-9._~!$&'()*+,;=:@/?-]";
-const HTTPS_URL_PATTERN = `^https://(?:${RFC3986_AUTHORITY_CHARACTER}|${RFC3986_PERCENT_ENCODED})+`
+const HTTPS_URL_PATTERN = `^https://${RFC3986_AUTHORITY}`
     + `(?:/(?:${RFC3986_PATH_CHARACTER}|${RFC3986_PERCENT_ENCODED})*)*`
     + `(?:\\?(?:${RFC3986_QUERY_CHARACTER}|${RFC3986_PERCENT_ENCODED})*)?`
     + `(?:#(?:${RFC3986_QUERY_CHARACTER}|${RFC3986_PERCENT_ENCODED})*)?$`;

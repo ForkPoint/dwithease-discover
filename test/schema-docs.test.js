@@ -37,9 +37,15 @@ test('writes an OpenAPI 3.1 contract for both Discover feeds', async (context) =
     const urlPattern = new RegExp(article.properties.url.pattern);
     assert.equal(article.properties.url.format, 'uri');
     assert.equal(urlPattern.test('https://example.com/path?item=1#details'), true);
+    assert.equal(urlPattern.test('https://example.com:8443/path'), true);
+    assert.equal(urlPattern.test('https://[2001:db8::1]:443/path'), true);
     assert.equal(urlPattern.test('https://example.com\\path'), false);
     assert.equal(urlPattern.test('https://example.com/%zz'), false);
     assert.equal(urlPattern.test('https://例え.テスト/path'), false);
+    assert.equal(urlPattern.test('https://user@example.com/path'), false);
+    assert.equal(urlPattern.test('https://a@b@example.com/path'), false);
+    assert.equal(urlPattern.test('https://example.com:/path'), false);
+    assert.equal(urlPattern.test('https://example.com:65536/path'), false);
     assert.equal(article.properties.source.properties.url.pattern, article.properties.url.pattern);
     assert.equal(article.properties.title.maxLength, 120);
     assert.equal(article.properties.summary.maxLength, 280);

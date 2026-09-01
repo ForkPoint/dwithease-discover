@@ -91,7 +91,13 @@ test('renders the Discover empty state', () => {
 test('does not render actions for raw non-RFC URLs', () => {
     const root = createRoot();
 
-    for (const url of ['https://catalogspark.com/\t', 'https://catalogspark.com\\audit']) {
+    for (const url of [
+        'https://catalogspark.com/\t',
+        'https://catalogspark.com\\audit',
+        'https://user@catalogspark.com/audit',
+        'https://a@b@catalogspark.com/audit',
+        'https://catalogspark.com:65536/audit',
+    ]) {
         renderCatalog(root, {
             promotions: [{ ...V2_PROMOTION, url }],
             editorial: [],

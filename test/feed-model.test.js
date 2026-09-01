@@ -191,6 +191,18 @@ test('requires raw RFC 3986 lowercase HTTPS URLs across feed validators', () => 
         ['lowercase-https'],
     );
 
+    for (const url of [
+        'https://example.com:8443/article',
+        'https://[2001:db8::1]:443/article',
+    ]) {
+        const feed = { ...validFeed, items: [{ ...article, url }] };
+        assert.equal(validateFeed(feed).success, true);
+        assert.deepEqual(
+            buildCatalog(feed, NOW).editorial.map(({ id }) => id),
+            ['lowercase-https'],
+        );
+    }
+
     const invalidItems = [
         { ...article, url: 'HTTPS://example.com/article' },
         { ...article, source: { ...article.source, url: 'HTTPS://example.com/' } },
@@ -203,6 +215,10 @@ test('requires raw RFC 3986 lowercase HTTPS URLs across feed validators', () => 
         { ...article, image: { ...article.image, src: 'https://example.com/image{1}.png' } },
         { ...article, url: 'https://例え.テスト/article' },
         { ...article, url: 'https://example.com/#first#second' },
+        { ...article, url: 'https://user@example.com/article' },
+        { ...article, url: 'https://a@b@example.com/article' },
+        { ...article, source: { ...article.source, url: 'https://example.com:/' } },
+        { ...article, image: { ...article.image, src: 'https://example.com:65536/image.png' } },
     ];
 
     for (const item of invalidItems) {
