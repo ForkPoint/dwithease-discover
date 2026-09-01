@@ -157,6 +157,53 @@ test('counts Unicode code points for browser text limits', () => {
     );
 });
 
+test('requires lowercase HTTPS prefixes across feed validators', () => {
+    const article = {
+        id: 'lowercase-https',
+        type: 'article',
+        title: 'Lowercase HTTPS article',
+        summary: 'Every remote URL starts with the required lowercase prefix.',
+        url: 'https://example.com/article',
+        source: {
+            name: 'Example',
+            url: 'https://example.com/',
+        },
+        publishedAt: '2026-08-01T00:00:00Z',
+        tags: ['commerce'],
+        image: {
+            src: 'https://example.com/image.png',
+            alt: 'Example commerce article',
+        },
+        cta: {
+            label: 'Read article',
+        },
+    };
+    const validFeed = {
+        version: 2,
+        locale: 'en',
+        updatedAt: '2026-09-01T00:00:00Z',
+        items: [article],
+    };
+
+    assert.equal(validateFeed(validFeed).success, true);
+    assert.deepEqual(
+        buildCatalog(validFeed, NOW).editorial.map(({ id }) => id),
+        ['lowercase-https'],
+    );
+
+    const uppercaseItems = [
+        { ...article, url: 'HTTPS://example.com/article' },
+        { ...article, source: { ...article.source, url: 'HTTPS://example.com/' } },
+        { ...article, image: { ...article.image, src: 'HTTPS://example.com/image.png' } },
+    ];
+
+    for (const item of uppercaseItems) {
+        const feed = { ...validFeed, items: [item] };
+        assert.equal(validateFeed(feed).success, false);
+        assert.deepEqual(buildCatalog(feed, NOW).editorial, []);
+    }
+});
+
 test('renders schema-valid reserved-word slugs', () => {
     const article = {
         id: 'constructor',

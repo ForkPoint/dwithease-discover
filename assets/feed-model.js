@@ -19,6 +19,7 @@ function dateTime(value) {
 }
 
 function httpsUrl(value) {
+    if (typeof value !== 'string' || !value.startsWith('https://')) return false;
     try {
         return new URL(value).protocol === 'https:';
     } catch {

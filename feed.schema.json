@@ -41,9 +41,9 @@
                 "pattern": "\\S"
               },
               "url": {
+                "pattern": "^https://",
                 "type": "string",
-                "format": "uri",
-                "pattern": "^https://"
+                "format": "uri"
               },
               "source": {
                 "type": "object",
@@ -55,9 +55,9 @@
                     "pattern": "\\S"
                   },
                   "url": {
+                    "pattern": "^https://",
                     "type": "string",
-                    "format": "uri",
-                    "pattern": "^https://"
+                    "format": "uri"
                   }
                 },
                 "required": [
@@ -89,9 +89,9 @@
                   "src": {
                     "anyOf": [
                       {
+                        "pattern": "^https://",
                         "type": "string",
-                        "format": "uri",
-                        "pattern": "^https://"
+                        "format": "uri"
                       },
                       {
                         "type": "string",
@@ -168,9 +168,9 @@
                 "pattern": "\\S"
               },
               "url": {
+                "pattern": "^https://",
                 "type": "string",
-                "format": "uri",
-                "pattern": "^https://"
+                "format": "uri"
               },
               "source": {
                 "type": "object",
@@ -182,9 +182,9 @@
                     "pattern": "\\S"
                   },
                   "url": {
+                    "pattern": "^https://",
                     "type": "string",
-                    "format": "uri",
-                    "pattern": "^https://"
+                    "format": "uri"
                   }
                 },
                 "required": [
@@ -216,9 +216,9 @@
                   "src": {
                     "anyOf": [
                       {
+                        "pattern": "^https://",
                         "type": "string",
-                        "format": "uri",
-                        "pattern": "^https://"
+                        "format": "uri"
                       },
                       {
                         "type": "string",

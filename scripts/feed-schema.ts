@@ -5,7 +5,9 @@ const SlugSchema = z.string()
     .max(120)
     .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
 
-const HttpsUrlSchema = z.url({ protocol: /^https$/ })
+const HttpsUrlSchema = z.string()
+    .regex(/^https:\/\//)
+    .pipe(z.url({ protocol: /^https$/ }))
     .meta({ pattern: '^https://' });
 
 const DateTimeSchema = z.iso.datetime({ offset: true });
