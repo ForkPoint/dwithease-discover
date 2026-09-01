@@ -4,7 +4,7 @@ const RESERVED_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
 function requiredText(value, maxLength) {
     return typeof value === 'string'
         && value.trim().length > 0
-        && value.length <= maxLength;
+        && value.trim().length <= maxLength;
 }
 
 function safeId(value) {

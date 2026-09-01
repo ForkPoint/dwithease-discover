@@ -5,6 +5,7 @@ import {
     buildCatalog,
     selectFeedName,
 } from '../assets/feed-model.js';
+import { validateFeed } from '../scripts/feed-schema.ts';
 
 const NOW = Date.parse('2026-09-10T12:00:00Z');
 
@@ -70,6 +71,37 @@ test('builds the v2 catalog with schema-valid offsets and sorted editorial items
 
     assert.deepEqual(catalog.promotions.map(({ id }) => id), ['catalogspark-2026']);
     assert.deepEqual(catalog.editorial.map(({ id }) => id), ['newer-news', 'older-article']);
+});
+
+test('renders items whose trimmed text meets the v2 limits', () => {
+    const article = {
+        id: 'trimmed-text-limits',
+        type: 'article',
+        title: `  ${'T'.repeat(120)}  `,
+        summary: `  ${'S'.repeat(280)}  `,
+        url: 'https://example.com/trimmed-text-limits',
+        source: {
+            name: `  ${'N'.repeat(80)}  `,
+            url: 'https://example.com/',
+        },
+        publishedAt: '2026-08-01T00:00:00Z',
+        tags: ['commerce'],
+        cta: {
+            label: `  ${'C'.repeat(32)}  `,
+        },
+    };
+    const feed = {
+        version: 2,
+        locale: 'en',
+        updatedAt: '2026-09-01T00:00:00Z',
+        items: [article],
+    };
+
+    assert.equal(validateFeed(feed).success, true);
+    assert.deepEqual(
+        buildCatalog(feed, NOW).editorial.map(({ id }) => id),
+        ['trimmed-text-limits'],
+    );
 });
 
 test('returns an empty v2 catalog for invalid payloads', () => {
