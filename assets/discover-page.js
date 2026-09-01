@@ -98,6 +98,7 @@ function section(document, title, items, renderItem) {
 
 function emptyState(document) {
     const state = node(document, 'section', 'state-card empty-state');
+    state.setAttribute('role', 'status');
     state.dataset.testid = 'discover-empty';
     state.append(node(document, 'span', 'state-icon', 'D'));
 
@@ -140,6 +141,7 @@ export function renderCatalog(root, catalog) {
 export function renderError(root, retry) {
     const { ownerDocument: document } = root;
     const state = node(document, 'section', 'state-card error-state');
+    state.setAttribute('role', 'alert');
     const copy = node(document, 'div');
     copy.append(node(document, 'h2', 'state-title', 'Discover could not load'));
     copy.append(node(document, 'p', 'state-copy', 'Check your connection and try again.'));

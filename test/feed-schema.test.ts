@@ -109,7 +109,7 @@ test('reports bad feed fields from the command line', async (context) => {
     const directory = await mkdtemp(join(tmpdir(), 'discover-feed-'));
     context.after(() => rm(directory, { recursive: true, force: true }));
     const feedPath = join(directory, 'invalid.json');
-    await writeFile(feedPath, JSON.stringify({ ...VALID_FEED, version: 1 }));
+    await writeFile(feedPath, JSON.stringify({ ...VALID_FEED, updatedAt: 'not-a-date' }));
 
     const result = spawnSync(process.execPath, ['scripts/validate-feed.ts', feedPath], {
         cwd: process.cwd(),
@@ -117,7 +117,7 @@ test('reports bad feed fields from the command line', async (context) => {
     });
 
     assert.equal(result.status, 1);
-    assert.match(result.stderr, /invalid\.json: version: Invalid input/);
+    assert.match(result.stderr, /invalid\.json: updatedAt: Invalid string/);
 });
 
 test('writes the public JSON Schema from the Zod contract', async (context) => {

@@ -85,7 +85,7 @@ test('renders the Discover empty state', () => {
     renderCatalog(root, { promotions: [], editorial: [] });
 
     assert.match(root.textContent, /There are no articles or tools to discover right now/);
-    assert.ok(root.querySelector('[data-testid="discover-empty"]'));
+    assert.equal(root.querySelector('[data-testid="discover-empty"]').getAttribute('role'), 'status');
 });
 
 test('does not render actions for raw non-RFC URLs', () => {
@@ -115,6 +115,7 @@ test('renders a working retry action after a feed error', () => {
     root.querySelector('button').click();
 
     assert.match(root.textContent, /Discover could not load/);
+    assert.equal(root.querySelector('.error-state').getAttribute('role'), 'alert');
     assert.equal(retries, 1);
 });
 
