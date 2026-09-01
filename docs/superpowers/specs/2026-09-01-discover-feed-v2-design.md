@@ -4,15 +4,15 @@
 
 Replace the public Discover source with a typed feed for commerce news, technical articles, and owned product promotions.
 
-The public page and future extension work will read this new format only. The old feed remains hosted elsewhere.
+The public page reads this format only.
 
 ## Acceptance
 
-- `feed-live.json` contains approved editorial items and owned promotions.
-- `feed-dev.json` also contains unapproved gather candidates.
+- `feed-live.json` is a valid empty v2 feed until curation is approved.
+- `feed-dev.json` contains manually curated candidates and owned promotions.
 - Every published file passes the TypeScript 7 and Zod 4.5 contract.
-- One manual command gathers the current source pages with built-in `fetch()` and regular expressions.
-- Gathering never changes the live feed.
+- Feed curation is manual in the current scope.
+- Gather and build automation is deferred.
 - The public page renders the v2 feed without inserting remote HTML.
 - `SOURCES.md` records every source URL, fetch method, filter, and owner.
 
@@ -37,22 +37,17 @@ The `promotion` type also requires a campaign ID, start date, end date, and one 
 
 The Zod contract adds rules that JSON Schema cannot fully express. It rejects duplicate item IDs and campaign end dates that do not follow their start dates.
 
-## Content files
+## Published files
 
-- `content/candidates.json` contains gathered items for review.
-- `content/curated.json` contains approved editorial items.
-- `content/promotions.json` contains the four owned campaigns.
-- `feed-live.json` is built from curated items and promotions.
-- `feed-dev.json` is built from candidates, curated items, and promotions.
-- `feed.schema.json` is generated from the Zod contract.
+- `feed-dev.json` contains manually reviewed development candidates and the four owned campaigns.
+- `feed-live.json` remains a valid empty v2 feed until the development corpus is approved.
+- `feed.schema.json` and `openapi.json` are generated from the Zod contract.
 
-All three `content/*.json` files use `{ "items": [] }`. The build command adds the feed version, locale, and update time.
-
-The builder removes duplicate canonical URLs and duplicate IDs. Curated items win over candidates. Promotions remain separate from editorial URL deduplication.
+The current repository has no gather command, build command, or intermediate `content/*.json` files. Maintainers edit the public feed files directly and run the shared validator before publication.
 
 ## Sources
 
-The gather command reads these 9 editorial sources:
+Manual curation reviews these 9 editorial sources:
 
 1. Salesforce Commerce News RSS.
 2. Salesforce Commerce Blog RSS.
@@ -71,27 +66,13 @@ The promotion file records these 4 owned sources:
 3. RetailPace.
 4. IntentFusion.
 
-Each source parser uses source-specific regular expressions. The implementation does not add an RSS package, an XML package, a scraping package, or browser automation.
+Maintainers keep short descriptions only. They do not copy article bodies.
 
-The gather command keeps short descriptions only. It does not copy article bodies.
+## Manual curation
 
-## Gather behavior
+Maintainers review the source pages in `SOURCES.md`. They add suitable candidates to `feed-dev.json`, remove duplicate canonical URLs and IDs, and sort editorial items by `publishedAt`.
 
-`npm run gather` fetches every editorial source.
-
-Each source can fail without blocking the other sources. The command reports each failure. It exits with an error when every source fails.
-
-The command normalizes HTML entities, removes tags, converts dates to UTC ISO strings, derives stable IDs from canonical URLs, applies source keyword filters, and sorts newest items first.
-
-It writes `content/candidates.json` only after at least one source succeeds. It keeps at most 10 items per source.
-
-## Build behavior
-
-`npm run build:feed` reads the three content files.
-
-It validates each result with `FeedSchema` before it writes either public feed. A failed validation leaves the existing public feed unchanged.
-
-The live feed includes curated editorial items and active or scheduled promotions. The development feed also includes candidates.
+They run `npm run validate:feed -- feed-live.json feed-dev.json` before publication. They keep `feed-live.json` empty until the development corpus is approved. Gather and build scripts remain deferred work.
 
 ## Public page
 
@@ -107,7 +88,7 @@ The page no longer reads `images-live.json` or `images-dev.json`. Each v2 item o
 
 - Do not publish the old message format from this repository.
 - Do not auto-approve gathered candidates.
-- Do not schedule the gather command yet.
+- Do not add gather or build automation in the current scope.
 - Do not download or mirror remote article images.
 - Do not copy full article content.
 - Do not implement the shared 14-day display limit here. The extension owns that user-level state.
@@ -115,6 +96,6 @@ The page no longer reads `images-live.json` or `images-dev.json`. Each v2 item o
 
 ## Proof
 
-Automated tests cover each regex parser with local text fixtures, gather failure isolation, canonical deduplication, feed building, Zod validation, safe page rendering, and CLI exit codes.
+Automated tests cover Zod validation, both published feed files, safe page rendering, and CLI exit codes.
 
-The final gate runs `npm run typecheck`, `npm test`, `npm run build:feed`, `npm run validate:feed -- feed-live.json feed-dev.json`, `npm audit --audit-level=high`, and `git diff --check`.
+The final gate runs `npm run typecheck`, `npm test`, `npm run validate:feed -- feed-live.json feed-dev.json`, `npm audit --audit-level=high`, and `git diff --check`.
