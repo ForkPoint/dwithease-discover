@@ -165,6 +165,17 @@ async function openDiscoverPage(context) {
         contentType: 'application/json',
         body: JSON.stringify(TEST_FEED),
     }));
+    await page.route('**/sources.json', (route) => route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+            sources: [{
+                name: 'Example',
+                url: 'https://example.com/',
+                icon: 'assets/sources/github.svg',
+            }],
+        }),
+    }));
     await page.goto(siteUrl, { waitUntil: 'networkidle' });
     await page.locator('[data-item-id="long-promotion"]').waitFor();
     return page;
@@ -179,6 +190,26 @@ test('computes the light theme under a dark system preference', async (context) 
 
     assert.equal(computed.colorScheme, 'light');
     assert.ok(relativeLuminance(computed.background) >= 0.9);
+});
+
+test('renders same-origin source icons at 28 by 28 pixels', async (context) => {
+    const page = await openDiscoverPage(context);
+    const icons = await page.locator('.source-icon').evaluateAll((elements) => elements.map((element) => {
+        const bounds = element.getBoundingClientRect();
+        return {
+            width: bounds.width,
+            height: bounds.height,
+            source: element.currentSrc,
+        };
+    }));
+
+    assert.equal(icons.length, 2);
+    for (const icon of icons) {
+        assert.equal(icon.width, 28);
+        assert.equal(icon.height, 28);
+        assert.equal(new URL(icon.source).origin, new URL(siteUrl).origin);
+        assert.match(icon.source, /\/assets\/sources\/github\.svg$/);
+    }
 });
 
 test('shows the OpenAPI fallback when the Scalar CDN fails', async (context) => {

@@ -31,6 +31,15 @@ const RFC3986_HTTPS_PATTERN = new RegExp(`^https://${RFC3986_AUTHORITY}`
     + `(?:/(?:${RFC3986_PATH_CHARACTER}|${RFC3986_PERCENT_ENCODED})*)*`
     + `(?:\\?(?:${RFC3986_QUERY_CHARACTER}|${RFC3986_PERCENT_ENCODED})*)?`
     + `(?:#(?:${RFC3986_QUERY_CHARACTER}|${RFC3986_PERCENT_ENCODED})*)?${STRICT_END}`);
+const SOURCE_ICON_PATTERN = /^assets\/sources\/[a-z0-9]+(?:-[a-z0-9]+)*\.(?:ico|png|svg|webp)$/;
+
+function exactObject(value, requiredKeys, optionalKeys = []) {
+    if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+    const allowedKeys = new Set([...requiredKeys, ...optionalKeys]);
+    const keys = Object.keys(value);
+    return requiredKeys.every((key) => Object.hasOwn(value, key))
+        && keys.every((key) => allowedKeys.has(key));
+}
 
 function limitedText(value, maxLength) {
     return typeof value === 'string' && [...value].length <= maxLength;
@@ -61,30 +70,88 @@ export function isHttpsUrl(value) {
 
 function validImage(image) {
     if (image === undefined) return true;
-    if (!image || !limitedText(image.alt, 160)) return false;
+    if (!exactObject(image, ['src', 'alt']) || !limitedText(image.alt, 160)) return false;
     return isHttpsUrl(image.src)
         || (typeof image.src === 'string' && image.src.startsWith('assets/'));
 }
 
 function validV2Item(item) {
-    if (!item || !safeId(item.id)) return false;
-    if (!['article', 'news', 'promotion'].includes(item.type)) return false;
+    if (!item || !['article', 'news', 'promotion'].includes(item.type)) return false;
+    const requiredKeys = [
+        'id',
+        'type',
+        'title',
+        'summary',
+        'url',
+        'source',
+        'publishedAt',
+        'tags',
+        'cta',
+    ];
+    if (item.type === 'promotion') requiredKeys.push('campaign');
+    if (!exactObject(item, requiredKeys, ['image']) || !safeId(item.id)) return false;
     if (!requiredText(item.title, 120) || !requiredText(item.summary, 280)) return false;
     if (!isHttpsUrl(item.url) || !dateTime(item.publishedAt)) return false;
-    if (!requiredText(item.source?.name, 80) || !isHttpsUrl(item.source?.url)) return false;
-    if (!requiredText(item.cta?.label, 32)) return false;
+    if (!exactObject(item.source, ['name', 'url'])) return false;
+    if (!requiredText(item.source.name, 80) || !isHttpsUrl(item.source.url)) return false;
+    if (!exactObject(item.cta, ['label']) || !requiredText(item.cta.label, 32)) return false;
     if (!Array.isArray(item.tags) || item.tags.length === 0 || item.tags.length > 8) return false;
-    return item.tags.every((tag) => safeId(tag)) && validImage(item.image);
-}
+    if (!item.tags.every((tag) => safeId(tag)) || new Set(item.tags).size !== item.tags.length) return false;
+    if (!validImage(item.image)) return false;
+    if (item.type !== 'promotion') return true;
 
-function validV2Promotion(item) {
-    const campaign = item?.campaign;
-    if (!validV2Item(item) || item.type !== 'promotion' || !campaign) return false;
+    const { campaign } = item;
+    if (!exactObject(campaign, ['id', 'startsAt', 'endsAt', 'placements'])) return false;
     if (!safeId(campaign.id)) return false;
     if (!dateTime(campaign.startsAt) || !dateTime(campaign.endsAt)) return false;
     if (Date.parse(campaign.endsAt) <= Date.parse(campaign.startsAt)) return false;
-    if (!Array.isArray(campaign.placements) || campaign.placements.length === 0) return false;
+    if (!Array.isArray(campaign.placements)
+        || campaign.placements.length === 0
+        || campaign.placements.length > 3) return false;
     return campaign.placements.every((placement) => PRODUCT_PLACEMENTS.has(placement));
+}
+
+function validV2Feed(raw) {
+    if (!exactObject(raw, ['version', 'locale', 'updatedAt', 'items'])) return false;
+    if (raw.version !== 2
+        || typeof raw.locale !== 'string'
+        || !LOCALE_PATTERN.test(raw.locale)
+        || !dateTime(raw.updatedAt)) return false;
+    if (!Array.isArray(raw.items) || !raw.items.every((item) => validV2Item(item))) return false;
+    return new Set(raw.items.map(({ id }) => id)).size === raw.items.length;
+}
+
+export function buildSourceRegistry(raw, registryUrl, pageUrl = registryUrl) {
+    if (!exactObject(raw, ['sources']) || !Array.isArray(raw.sources)) {
+        throw new TypeError('Invalid source registry');
+    }
+
+    const pageAddress = new URL(pageUrl);
+    const registryAddress = new URL(registryUrl, pageAddress);
+    if (!['http:', 'https:'].includes(pageAddress.protocol)
+        || registryAddress.origin !== pageAddress.origin) {
+        throw new TypeError('Source registry must use the page origin');
+    }
+
+    const sources = new Map();
+    for (const source of raw.sources) {
+        if (!exactObject(source, ['name', 'url', 'icon'])
+            || !requiredText(source.name, 80)
+            || !isHttpsUrl(source.url)
+            || typeof source.icon !== 'string'
+            || !SOURCE_ICON_PATTERN.test(source.icon)
+            || sources.has(source.url)) {
+            throw new TypeError('Invalid source registry entry');
+        }
+
+        const icon = new URL(source.icon, registryAddress);
+        if (icon.origin !== pageAddress.origin) {
+            throw new TypeError('Source icon must use the page origin');
+        }
+        sources.set(source.url, { ...source, icon: icon.href });
+    }
+
+    return sources;
 }
 
 export function selectFeedName(search = '') {
@@ -92,18 +159,12 @@ export function selectFeedName(search = '') {
 }
 
 export function buildCatalog(raw, now = Date.now()) {
-    const items = raw?.version === 2
-        && typeof raw.locale === 'string'
-        && LOCALE_PATTERN.test(raw.locale)
-        && Array.isArray(raw.items)
-        ? raw.items
-        : [];
-    const promotions = items.filter((item) => validV2Promotion(item)
+    const items = validV2Feed(raw) ? raw.items : [];
+    const promotions = items.filter((item) => item.type === 'promotion'
         && item.campaign.placements.includes('discover')
         && Date.parse(item.campaign.startsAt) <= now
         && now < Date.parse(item.campaign.endsAt));
-    const editorial = items.filter((item) => validV2Item(item)
-        && (item.type === 'article' || item.type === 'news'))
+    const editorial = items.filter((item) => item.type === 'article' || item.type === 'news')
         .sort((left, right) => Date.parse(right.publishedAt) - Date.parse(left.publishedAt));
 
     return { promotions, editorial };

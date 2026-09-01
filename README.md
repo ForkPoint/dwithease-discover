@@ -10,6 +10,7 @@ DWithEase Discover is the DWithEase news engine for ecommerce and Salesforce B2C
 - [Interactive API reference](https://discover.dwithease.com/schema.html)
 - [JSON Schema](https://discover.dwithease.com/feed.schema.json)
 - [OpenAPI document](https://discover.dwithease.com/openapi.json)
+- [Source registry](https://discover.dwithease.com/sources.json)
 - [DWithEase](https://dwithease.com/)
 
 ## Editorial sources

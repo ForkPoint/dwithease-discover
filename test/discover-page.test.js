@@ -9,7 +9,10 @@ import {
 } from '../assets/discover-page.js';
 
 function createRoot() {
-    const { document } = parseHTML('<main id="discover-content"></main>');
+    const { document } = parseHTML(`
+        <base href="https://discover.example/">
+        <main id="discover-content"></main>
+    `);
     return document.getElementById('discover-content');
 }
 
@@ -56,10 +59,14 @@ test('renders v2 promotions and editorial items with useful metadata', () => {
         },
     };
 
+    const sources = new Map([[
+        'https://example.com/',
+        { icon: 'https://discover.example/assets/sources/example.svg' },
+    ]]);
     renderCatalog(root, {
         promotions: [V2_PROMOTION],
         editorial: [article],
-    });
+    }, sources);
 
     assert.deepEqual(
         [...root.querySelectorAll('[data-section-title]')].map((node) => node.textContent),
@@ -69,6 +76,18 @@ test('renders v2 promotions and editorial items with useful metadata', () => {
     assert.equal(root.querySelector('[data-item-id="commerce-news"] h3 img'), null);
     assert.match(root.querySelector('[data-item-id="commerce-news"]').textContent, /Commerce Source/);
     assert.match(root.querySelector('[data-item-id="commerce-news"]').textContent, /Aug 30, 2026/);
+    assert.equal(
+        root.querySelector('[data-item-id="commerce-news"] .source-icon').getAttribute('src'),
+        'https://discover.example/assets/sources/example.svg',
+    );
+    assert.equal(
+        root.querySelector('[data-item-id="catalogspark-2026"] .source-icon').getAttribute('src'),
+        'assets/sources/source-fallback.svg',
+    );
+    assert.equal(
+        root.querySelector('[data-item-id="commerce-news"] .source-icon').getAttribute('width'),
+        '28',
+    );
     assert.deepEqual(
         [...root.querySelectorAll('[data-item-id="commerce-news"] .tag')].map((node) => node.textContent),
         ['sfcc', 'commerce'],
@@ -124,6 +143,19 @@ test('loads only the selected v2 feed', async () => {
     const requests = [];
     const fetchImpl = async (url) => {
         requests.push(url);
+        if (url === 'sources.json') {
+            return {
+                ok: true,
+                url: 'https://discover.example/sources.json',
+                json: async () => ({
+                    sources: [{
+                        name: 'CatalogSpark',
+                        url: 'https://catalogspark.com/',
+                        icon: 'assets/sources/catalogspark.ico',
+                    }],
+                }),
+            };
+        }
         return {
             ok: true,
             json: async () => ({
@@ -140,8 +172,13 @@ test('loads only the selected v2 feed', async () => {
         search: '?feed=dev',
         fetchImpl,
         now: Date.parse('2026-09-10T12:00:00Z'),
+        pageUrl: 'https://discover.example/',
     });
 
-    assert.deepEqual(requests, ['feed-dev.json']);
+    assert.deepEqual(requests, ['feed-dev.json', 'sources.json']);
     assert.ok(root.querySelector('[data-item-id="catalogspark-2026"]'));
+    assert.equal(
+        root.querySelector('[data-item-id="catalogspark-2026"] .source-icon').getAttribute('src'),
+        'https://discover.example/assets/sources/catalogspark.ico',
+    );
 });

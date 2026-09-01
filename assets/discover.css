@@ -276,6 +276,24 @@ h1 {
     font-weight: 600;
 }
 
+.card-source-group {
+    display: inline-flex;
+    min-width: 0;
+    max-width: 100%;
+    align-items: center;
+    gap: 7px;
+}
+
+.source-icon {
+    width: 28px;
+    height: 28px;
+    flex: 0 0 28px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--paper);
+    object-fit: contain;
+}
+
 .card-date::before {
     margin-right: 10px;
     color: rgba(20, 24, 31, 0.28);
@@ -334,6 +352,7 @@ h1 {
     padding-top: 16px;
 }
 
+.card-source-group,
 .card-source,
 .card-date,
 .card-title,

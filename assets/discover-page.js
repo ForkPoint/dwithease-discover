@@ -1,10 +1,12 @@
 import {
     buildCatalog,
+    buildSourceRegistry,
     isHttpsUrl,
     selectFeedName,
 } from './feed-model.js';
 
 const FALLBACK_IMAGE = 'assets/discover-fallback.png';
+const FALLBACK_SOURCE_ICON = 'assets/sources/source-fallback.svg';
 
 function node(document, tagName, className, text) {
     const element = document.createElement(tagName);
@@ -36,6 +38,18 @@ function feedImage(document, source, className, alt = '') {
     return image;
 }
 
+function sourceIcon(document, source, sources) {
+    const image = node(document, 'img', 'source-icon');
+    image.src = sources.get(source.url)?.icon || FALLBACK_SOURCE_ICON;
+    image.alt = '';
+    image.setAttribute('width', '28');
+    image.setAttribute('height', '28');
+    image.addEventListener('error', () => {
+        if (!image.src.endsWith(FALLBACK_SOURCE_ICON)) image.src = FALLBACK_SOURCE_ICON;
+    });
+    return image;
+}
+
 function formattedDate(value) {
     return new Intl.DateTimeFormat('en', {
         day: 'numeric',
@@ -45,7 +59,7 @@ function formattedDate(value) {
     }).format(new Date(value));
 }
 
-function feedItemCard(document, item) {
+function feedItemCard(document, item, sources) {
     const card = node(document, 'article', `discover-card feed-card ${item.type}-card`);
     card.dataset.itemId = item.id;
 
@@ -59,7 +73,10 @@ function feedItemCard(document, item) {
     }
 
     const metadata = node(document, 'p', 'card-meta');
-    metadata.append(node(document, 'span', 'card-source', item.source.name));
+    const source = node(document, 'span', 'card-source-group');
+    source.append(sourceIcon(document, item.source, sources));
+    source.append(node(document, 'span', 'card-source', item.source.name));
+    metadata.append(source);
     metadata.append(node(document, 'span', 'card-date', formattedDate(item.publishedAt)));
     body.append(metadata);
     body.append(node(document, 'h3', 'card-title', item.title));
@@ -114,7 +131,7 @@ function emptyState(document) {
     return state;
 }
 
-export function renderCatalog(root, catalog) {
+export function renderCatalog(root, catalog, sources = new Map()) {
     const { ownerDocument: document } = root;
     root.replaceChildren();
 
@@ -123,7 +140,7 @@ export function renderCatalog(root, catalog) {
             document,
             'Featured tools',
             catalog.promotions,
-            (item) => feedItemCard(document, item),
+            (item) => feedItemCard(document, item, sources),
         ));
     }
     if (catalog.editorial.length) {
@@ -131,7 +148,7 @@ export function renderCatalog(root, catalog) {
             document,
             'Latest from commerce',
             catalog.editorial,
-            (item) => feedItemCard(document, item),
+            (item) => feedItemCard(document, item, sources),
         ));
     }
 
@@ -163,11 +180,23 @@ function renderLoading(root) {
     root.replaceChildren(loading);
 }
 
+async function loadSourceRegistry(fetchImpl, pageUrl) {
+    try {
+        const response = await fetchImpl('sources.json', { cache: 'no-store' });
+        if (!response.ok) throw new Error(`Source request failed: ${response.status}`);
+        const registryUrl = response.url || new URL('sources.json', pageUrl).href;
+        return buildSourceRegistry(await response.json(), registryUrl, pageUrl);
+    } catch {
+        return new Map();
+    }
+}
+
 export async function startDiscoverPage({
     root,
     search = '',
     fetchImpl = fetch,
     now = Date.now(),
+    pageUrl = root.ownerDocument.baseURI,
 }) {
     const channel = selectFeedName(search);
     const feedUrl = `feed-${channel}.json`;
@@ -175,13 +204,22 @@ export async function startDiscoverPage({
     renderLoading(root);
 
     try {
-        const feedResponse = await fetchImpl(feedUrl, { cache: 'no-store' });
+        const [feedResponse, sources] = await Promise.all([
+            fetchImpl(feedUrl, { cache: 'no-store' }),
+            loadSourceRegistry(fetchImpl, pageUrl),
+        ]);
         if (!feedResponse.ok) throw new Error(`Feed request failed: ${feedResponse.status}`);
 
         const feed = await feedResponse.json();
-        renderCatalog(root, buildCatalog(feed, now));
+        renderCatalog(root, buildCatalog(feed, now), sources);
     } catch {
-        renderError(root, () => startDiscoverPage({ root, search, fetchImpl, now: Date.now() }));
+        renderError(root, () => startDiscoverPage({
+            root,
+            search,
+            fetchImpl,
+            now: Date.now(),
+            pageUrl,
+        }));
     }
 }
 

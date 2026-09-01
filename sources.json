@@ -1,0 +1,69 @@
+{
+  "sources": [
+    {
+      "name": "Agentic Storefront",
+      "url": "https://agenticstorefront.com/categories/agentic-commerce/",
+      "icon": "assets/sources/agentic-storefront.svg"
+    },
+    {
+      "name": "Agentic Storefront Audit",
+      "url": "https://audit.agenticstorefront.com/",
+      "icon": "assets/sources/agentic-storefront-audit.svg"
+    },
+    {
+      "name": "CatalogSpark",
+      "url": "https://catalogspark.com/",
+      "icon": "assets/sources/catalogspark.ico"
+    },
+    {
+      "name": "Salesforce Developers Blog",
+      "url": "https://developer.salesforce.com/blogs/feed",
+      "icon": "assets/sources/salesforce.ico"
+    },
+    {
+      "name": "ForkPoint",
+      "url": "https://forkpoint.com/articles/",
+      "icon": "assets/sources/forkpoint.svg"
+    },
+    {
+      "name": "PWA Kit Releases",
+      "url": "https://github.com/SalesforceCommerceCloud/pwa-kit/releases.atom",
+      "icon": "assets/sources/github.svg"
+    },
+    {
+      "name": "IntentFusion",
+      "url": "https://intentfusion.com/",
+      "icon": "assets/sources/intentfusion.ico"
+    },
+    {
+      "name": "RetailPace",
+      "url": "https://retailpace.com/",
+      "icon": "assets/sources/retailpace.ico"
+    },
+    {
+      "name": "Rhino Inquisitor",
+      "url": "https://rhino-inquisitor.com/archive/",
+      "icon": "assets/sources/rhino-inquisitor.svg"
+    },
+    {
+      "name": "Digital Commerce 360",
+      "url": "https://www.digitalcommerce360.com/topic/technology/",
+      "icon": "assets/sources/digital-commerce-360.ico"
+    },
+    {
+      "name": "Salesforce Commerce Blog",
+      "url": "https://www.salesforce.com/blog/category/ecommerce/",
+      "icon": "assets/sources/salesforce.ico"
+    },
+    {
+      "name": "Salesforce News",
+      "url": "https://www.salesforce.com/news/topics/commerce/",
+      "icon": "assets/sources/salesforce.ico"
+    },
+    {
+      "name": "Salesforce Ben",
+      "url": "https://www.salesforceben.com/category/commerce/",
+      "icon": "assets/sources/salesforce-ben.png"
+    }
+  ]
+}

@@ -69,11 +69,34 @@ test('builds the v2 catalog with schema-valid offsets and sorted editorial items
     const catalog = buildCatalog({
         version: 2,
         locale: 'en',
+        updatedAt: '2026-09-01T00:00:00Z',
         items: [olderArticle, V2_PROMOTION, newerNews],
     }, NOW);
 
     assert.deepEqual(catalog.promotions.map(({ id }) => id), ['catalogspark-2026']);
     assert.deepEqual(catalog.editorial.map(({ id }) => id), ['newer-news', 'older-article']);
+});
+
+test('requires the complete v2 document before building a catalog', () => {
+    const validFeed = {
+        version: 2,
+        locale: 'en',
+        updatedAt: '2026-09-01T00:00:00Z',
+        items: [V2_PROMOTION],
+    };
+    const { updatedAt, ...missingUpdatedAt } = validFeed;
+    const invalidFeeds = [
+        missingUpdatedAt,
+        { ...validFeed, updatedAt: 'not-a-date' },
+        { ...validFeed, extra: true },
+        { ...validFeed, items: [{ ...V2_PROMOTION, extra: true }] },
+        { ...validFeed, items: [V2_PROMOTION, { ...V2_PROMOTION }] },
+    ];
+
+    for (const feed of invalidFeeds) {
+        assert.equal(validateFeed(feed).success, false);
+        assert.deepEqual(buildCatalog(feed, NOW), { promotions: [], editorial: [] });
+    }
 });
 
 test('enforces raw v2 text limits in Zod and the browser catalog', () => {

@@ -49,7 +49,7 @@ jobs:
       - name: Prepare static site
         run: |
           mkdir _site
-          cp index.html schema.html openapi.json feed.schema.json CNAME .nojekyll feed-live.json feed-dev.json _site/
+          cp index.html schema.html openapi.json feed.schema.json sources.json CNAME .nojekyll feed-live.json feed-dev.json _site/
           cp -R assets _site/assets
 
       - name: Configure GitHub Pages

@@ -2,6 +2,8 @@
 
 This file records the inputs for `feed-dev.json`.
 
+`sources.json` maps each canonical source URL to a checked-in icon under `assets/sources/`. The page uses the local fallback icon when a feed source has no exact URL match.
+
 ## Curation rules
 
 - Fetch public HTML, RSS, or Atom with a normal HTTP request.
