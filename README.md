@@ -5,8 +5,8 @@ DWithEase Discover is the DWithEase news engine for ecommerce and Salesforce B2C
 ## Public links
 
 - [Discover](https://discover.dwithease.com/)
-- [Live v2 feed](https://discover.dwithease.com/feed-live.json)
-- [Development v2 feed](https://discover.dwithease.com/feed-dev.json)
+- [Live feed](https://discover.dwithease.com/feed-live.json)
+- [Development feed](https://discover.dwithease.com/feed-dev.json)
 - [Interactive API reference](https://discover.dwithease.com/schema.html)
 - [JSON Schema](https://discover.dwithease.com/feed.schema.json)
 - [OpenAPI document](https://discover.dwithease.com/openapi.json)
@@ -17,13 +17,12 @@ DWithEase Discover is the DWithEase news engine for ecommerce and Salesforce B2C
 
 See [SOURCES.md](SOURCES.md) for the full source list and curation rules.
 
-## Feed v2
+## Feed format
 
-Both public endpoints use the v2 JSON format:
+Both public endpoints use the current JSON format:
 
 ```json
 {
-  "version": 2,
   "locale": "en",
   "updatedAt": "2026-09-01T12:00:00Z",
   "items": []

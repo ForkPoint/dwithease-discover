@@ -52,13 +52,12 @@ const PROMOTION = {
 };
 
 const VALID_FEED = {
-    version: 2,
     locale: 'en',
     updatedAt: '2026-09-01T12:00:00Z',
     items: [ARTICLE, PROMOTION],
 };
 
-test('accepts the version 2 article and promotion contract', () => {
+test('accepts the article and promotion contract', () => {
     const result = validateFeed(VALID_FEED);
 
     assert.equal(result.success, true);
@@ -66,7 +65,6 @@ test('accepts the version 2 article and promotion contract', () => {
 
 test('rejects unsafe URLs, duplicate IDs, and invalid campaign dates', () => {
     const result = validateFeed({
-        version: 2,
         locale: 'en',
         updatedAt: '2026-09-01T12:00:00Z',
         items: [
@@ -88,6 +86,14 @@ test('rejects unsafe URLs, duplicate IDs, and invalid campaign dates', () => {
         result.errors.map(({ path }) => path),
         ['items.1.url', 'items.1.campaign.endsAt', 'items.1.id'],
     );
+});
+
+test('rejects a version field because the feed format is unversioned', () => {
+    const result = validateFeed({ ...VALID_FEED, version: 2 });
+
+    assert.equal(result.success, false);
+    assert.deepEqual(result.errors.map(({ path }) => path), ['']);
+    assert.match(result.errors[0].message, /Unrecognized key/);
 });
 
 test('checks a valid feed file from the command line', async (context) => {
@@ -135,7 +141,7 @@ test('writes the public JSON Schema from the Zod contract', async (context) => {
     assert.equal(schema.$schema, 'https://json-schema.org/draft/2020-12/schema');
     assert.equal(schema.$id, 'https://discover.dwithease.com/feed.schema.json');
     assert.equal(schema.title, 'DWithEase Discover Feed');
-    assert.equal(schema.properties.version.const, 2);
+    assert.equal(schema.properties.version, undefined);
     const article = schema.properties.items.items.oneOf[0];
     const urlPattern = new RegExp(article.properties.url.pattern);
     assert.equal(article.properties.url.format, 'uri');

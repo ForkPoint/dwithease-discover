@@ -2,10 +2,6 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
-    "version": {
-      "type": "number",
-      "const": 2
-    },
     "locale": {
       "type": "string",
       "pattern": "^[a-z]{2}(?:-[A-Z]{2})?(?![\\s\\S])"
@@ -317,7 +313,6 @@
     }
   },
   "required": [
-    "version",
     "locale",
     "updatedAt",
     "items"
