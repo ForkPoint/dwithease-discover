@@ -74,7 +74,7 @@ test('publishes both documented endpoints as v2 feeds', async () => {
 
 test('configures the pinned Scalar viewer for the generated contract', async () => {
     const html = await readFile('schema.html', 'utf8');
-    const { document } = parseHTML(html);
+    const { document, window } = parseHTML(html);
     const externalScript = document.querySelector('script[src]');
     const setupScript = document.querySelector('script:not([src])');
     let call;
@@ -90,7 +90,8 @@ test('configures the pinned Scalar viewer for the generated contract', async () 
         externalScript?.getAttribute('src'),
         'https://cdn.jsdelivr.net/npm/@scalar/api-reference@1.67.0',
     );
-    Function('Scalar', setupScript?.textContent ?? '')(Scalar);
+    window.Scalar = Scalar;
+    Function('window', 'document', setupScript?.textContent ?? '')(window, document);
     assert.equal(call?.selector, '#app');
     assert.equal(call?.config.url, 'openapi.json');
     assert.equal(call?.config.showDeveloperTools, 'never');

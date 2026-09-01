@@ -181,6 +181,30 @@ test('computes the light theme under a dark system preference', async (context) 
     assert.ok(relativeLuminance(computed.background) >= 0.9);
 });
 
+test('shows the OpenAPI fallback when the Scalar CDN fails', async (context) => {
+    const browserContext = await browser.newContext({
+        colorScheme: 'dark',
+        viewport: { width: 320, height: 900 },
+    });
+    context.after(() => browserContext.close());
+    const page = await browserContext.newPage();
+    await page.route('https://cdn.jsdelivr.net/**', (route) => route.abort('blockedbyclient'));
+
+    await page.goto(`${siteUrl}schema.html`, { waitUntil: 'domcontentloaded' });
+
+    const fallback = page.locator('[data-testid="scalar-fallback"]');
+    await fallback.waitFor({ timeout: 1_000 });
+    assert.match(await fallback.textContent(), /interactive reference could not load/i);
+    const link = fallback.getByRole('link', { name: 'Open the OpenAPI document' });
+    assert.equal(await link.getAttribute('href'), 'openapi.json');
+    const colors = await fallback.evaluate((element) => ({
+        foreground: getComputedStyle(element).color,
+        background: getComputedStyle(element).backgroundColor,
+    }));
+    assert.ok(relativeLuminance(colors.background) >= 0.9);
+    assert.ok(contrastRatio(colors.foreground, colors.background) >= 4.5);
+});
+
 test('computes WCAG AA contrast for normal and hovered action text', async (context) => {
     const page = await openDiscoverPage(context);
     const button = page.locator('.promotion-card .button');
