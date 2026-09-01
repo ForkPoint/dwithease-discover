@@ -2,7 +2,7 @@ const PRODUCT_PLACEMENTS = new Set(['discover', 'task-end', 'popup']);
 const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 function limitedText(value, maxLength) {
-    return typeof value === 'string' && value.length <= maxLength;
+    return typeof value === 'string' && [...value].length <= maxLength;
 }
 
 function requiredText(value, maxLength) {

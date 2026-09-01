@@ -54,6 +54,10 @@ test('writes an OpenAPI 3.1 contract for both Discover feeds', async (context) =
     assert.equal(article.properties.source.properties.name.maxLength, 80);
     assert.equal(article.properties.cta.properties.label.maxLength, 32);
     assert.equal(article.properties.image.properties.alt.maxLength, 160);
+    assert.equal(article.properties.title.pattern, '\\S');
+    assert.equal(article.properties.summary.pattern, '\\S');
+    assert.equal(article.properties.source.properties.name.pattern, '\\S');
+    assert.equal(article.properties.cta.properties.label.pattern, '\\S');
 });
 
 test('publishes both documented endpoints as v2 feeds', async () => {

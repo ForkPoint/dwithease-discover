@@ -144,6 +144,10 @@ test('writes the public JSON Schema from the Zod contract', async (context) => {
     assert.equal(article.properties.source.properties.name.maxLength, 80);
     assert.equal(article.properties.cta.properties.label.maxLength, 32);
     assert.equal(article.properties.image.properties.alt.maxLength, 160);
+    assert.equal(article.properties.title.pattern, '\\S');
+    assert.equal(article.properties.summary.pattern, '\\S');
+    assert.equal(article.properties.source.properties.name.pattern, '\\S');
+    assert.equal(article.properties.cta.properties.label.pattern, '\\S');
     assert.deepEqual(
         article.properties.image.properties.src.anyOf.map(({ pattern }: { pattern?: string }) => pattern),
         ['^https://', '^assets\\/'],

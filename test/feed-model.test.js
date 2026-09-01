@@ -122,6 +122,41 @@ test('enforces raw v2 text limits in Zod and the browser catalog', () => {
     }
 });
 
+test('counts Unicode code points for browser text limits', () => {
+    const article = {
+        id: 'unicode-text-limits',
+        type: 'article',
+        title: '😀'.repeat(120),
+        summary: '😀'.repeat(280),
+        url: 'https://example.com/unicode-text-limits',
+        source: {
+            name: '😀'.repeat(80),
+            url: 'https://example.com/',
+        },
+        publishedAt: '2026-08-01T00:00:00Z',
+        tags: ['commerce'],
+        image: {
+            src: 'assets/example.png',
+            alt: '😀'.repeat(160),
+        },
+        cta: {
+            label: '😀'.repeat(32),
+        },
+    };
+    const feed = {
+        version: 2,
+        locale: 'en',
+        updatedAt: '2026-09-01T00:00:00Z',
+        items: [article],
+    };
+
+    assert.equal(validateFeed(feed).success, true);
+    assert.deepEqual(
+        buildCatalog(feed, NOW).editorial.map(({ id }) => id),
+        ['unicode-text-limits'],
+    );
+});
+
 test('renders schema-valid reserved-word slugs', () => {
     const article = {
         id: 'constructor',

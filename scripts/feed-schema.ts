@@ -19,7 +19,7 @@ const TagsSchema = z.array(SlugSchema)
     .meta({ uniqueItems: true });
 
 const SourceSchema = z.strictObject({
-    name: z.string().max(80).trim().min(1),
+    name: z.string().max(80).regex(/\S/).trim().min(1),
     url: HttpsUrlSchema,
 });
 
@@ -32,13 +32,13 @@ const ImageSchema = z.strictObject({
 });
 
 const CtaSchema = z.strictObject({
-    label: z.string().max(32).trim().min(1),
+    label: z.string().max(32).regex(/\S/).trim().min(1),
 });
 
 const CommonItemShape = {
     id: SlugSchema,
-    title: z.string().max(120).trim().min(1),
-    summary: z.string().max(280).trim().min(1),
+    title: z.string().max(120).regex(/\S/).trim().min(1),
+    summary: z.string().max(280).regex(/\S/).trim().min(1),
     url: HttpsUrlSchema,
     source: SourceSchema,
     publishedAt: DateTimeSchema,

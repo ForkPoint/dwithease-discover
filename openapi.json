@@ -93,12 +93,14 @@
                     "title": {
                       "type": "string",
                       "minLength": 1,
-                      "maxLength": 120
+                      "maxLength": 120,
+                      "pattern": "\\S"
                     },
                     "summary": {
                       "type": "string",
                       "minLength": 1,
-                      "maxLength": 280
+                      "maxLength": 280,
+                      "pattern": "\\S"
                     },
                     "url": {
                       "type": "string",
@@ -111,7 +113,8 @@
                         "name": {
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 80
+                          "maxLength": 80,
+                          "pattern": "\\S"
                         },
                         "url": {
                           "type": "string",
@@ -175,7 +178,8 @@
                         "label": {
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32
+                          "maxLength": 32,
+                          "pattern": "\\S"
                         }
                       },
                       "required": [
@@ -216,12 +220,14 @@
                     "title": {
                       "type": "string",
                       "minLength": 1,
-                      "maxLength": 120
+                      "maxLength": 120,
+                      "pattern": "\\S"
                     },
                     "summary": {
                       "type": "string",
                       "minLength": 1,
-                      "maxLength": 280
+                      "maxLength": 280,
+                      "pattern": "\\S"
                     },
                     "url": {
                       "type": "string",
@@ -234,7 +240,8 @@
                         "name": {
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 80
+                          "maxLength": 80,
+                          "pattern": "\\S"
                         },
                         "url": {
                           "type": "string",
@@ -298,7 +305,8 @@
                         "label": {
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32
+                          "maxLength": 32,
+                          "pattern": "\\S"
                         }
                       },
                       "required": [
