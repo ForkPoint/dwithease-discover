@@ -48,6 +48,12 @@ test('writes an OpenAPI 3.1 contract for both Discover feeds', async (context) =
         '#/components/schemas/DiscoverFeed',
     );
     assert.equal(document.components.schemas.DiscoverFeed.properties.version.const, 2);
+    const article = document.components.schemas.DiscoverFeed.properties.items.items.oneOf[0];
+    assert.equal(article.properties.title.maxLength, 120);
+    assert.equal(article.properties.summary.maxLength, 280);
+    assert.equal(article.properties.source.properties.name.maxLength, 80);
+    assert.equal(article.properties.cta.properties.label.maxLength, 32);
+    assert.equal(article.properties.image.properties.alt.maxLength, 160);
 });
 
 test('publishes both documented endpoints as v2 feeds', async () => {

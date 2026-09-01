@@ -1,14 +1,16 @@
 const PRODUCT_PLACEMENTS = new Set(['discover', 'task-end', 'popup']);
-const RESERVED_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
+const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+
+function limitedText(value, maxLength) {
+    return typeof value === 'string' && value.length <= maxLength;
+}
 
 function requiredText(value, maxLength) {
-    return typeof value === 'string'
-        && value.trim().length > 0
-        && value.trim().length <= maxLength;
+    return limitedText(value, maxLength) && value.trim().length > 0;
 }
 
 function safeId(value) {
-    return requiredText(value, 120) && !RESERVED_KEYS.has(value);
+    return limitedText(value, 120) && SLUG_PATTERN.test(value);
 }
 
 function dateTime(value) {
@@ -24,6 +26,13 @@ function httpsUrl(value) {
     }
 }
 
+function validImage(image) {
+    if (image === undefined) return true;
+    if (!image || !limitedText(image.alt, 160)) return false;
+    return httpsUrl(image.src)
+        || (typeof image.src === 'string' && image.src.startsWith('assets/'));
+}
+
 function validV2Item(item) {
     if (!item || !safeId(item.id)) return false;
     if (!['article', 'news', 'promotion'].includes(item.type)) return false;
@@ -32,7 +41,7 @@ function validV2Item(item) {
     if (!requiredText(item.source?.name, 80) || !httpsUrl(item.source?.url)) return false;
     if (!requiredText(item.cta?.label, 32)) return false;
     if (!Array.isArray(item.tags) || item.tags.length === 0 || item.tags.length > 8) return false;
-    return item.tags.every((tag) => safeId(tag));
+    return item.tags.every((tag) => safeId(tag)) && validImage(item.image);
 }
 
 function validV2Promotion(item) {

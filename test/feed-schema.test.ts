@@ -139,6 +139,11 @@ test('writes the public JSON Schema from the Zod contract', async (context) => {
     const article = schema.properties.items.items.oneOf[0];
     assert.equal(article.properties.url.pattern, '^https://');
     assert.equal(article.properties.tags.uniqueItems, true);
+    assert.equal(article.properties.title.maxLength, 120);
+    assert.equal(article.properties.summary.maxLength, 280);
+    assert.equal(article.properties.source.properties.name.maxLength, 80);
+    assert.equal(article.properties.cta.properties.label.maxLength, 32);
+    assert.equal(article.properties.image.properties.alt.maxLength, 160);
     assert.deepEqual(
         article.properties.image.properties.src.anyOf.map(({ pattern }: { pattern?: string }) => pattern),
         ['^https://', '^assets\\/'],
