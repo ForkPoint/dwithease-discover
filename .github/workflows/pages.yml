@@ -34,13 +34,18 @@ jobs:
       - name: Install test packages
         run: npm ci
 
+      - name: Generate schema references
+        run: |
+          npm run write:schema
+          npm run write:openapi
+
       - name: Test feed and page code
         run: npm test
 
       - name: Prepare static site
         run: |
           mkdir _site
-          cp index.html CNAME .nojekyll feed-live.json feed-dev.json images-live.json images-dev.json _site/
+          cp index.html schema.html openapi.json feed.schema.json CNAME .nojekyll feed-live.json feed-dev.json images-live.json images-dev.json _site/
           cp -R assets _site/assets
 
       - name: Configure GitHub Pages

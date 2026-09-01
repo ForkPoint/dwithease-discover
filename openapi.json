@@ -1,0 +1,383 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "DWithEase Discover Feed API",
+    "version": "2.0.0",
+    "description": "Public commerce articles, news, and DWithEase product promotions. The Zod runtime also rejects duplicate item IDs and campaign end dates that do not follow their start dates."
+  },
+  "tags": [
+    {
+      "name": "Feeds",
+      "description": "Read-only JSON feeds for Discover clients."
+    }
+  ],
+  "paths": {
+    "/feed-live.json": {
+      "get": {
+        "operationId": "getLiveDiscoverFeed",
+        "summary": "Get the live Discover feed",
+        "description": "Returns approved editorial items and active or scheduled product promotions.",
+        "tags": [
+          "Feeds"
+        ],
+        "responses": {
+          "200": {
+            "description": "The public Discover feed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiscoverFeed"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/feed-dev.json": {
+      "get": {
+        "operationId": "getDevelopmentDiscoverFeed",
+        "summary": "Get the development Discover feed",
+        "description": "Returns approved content, promotions, and unapproved gather candidates for review.",
+        "tags": [
+          "Feeds"
+        ],
+        "responses": {
+          "200": {
+            "description": "The development Discover feed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiscoverFeed"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DiscoverFeed": {
+        "title": "Discover Feed",
+        "description": "The complete version 2 Discover document.",
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "number",
+            "const": 2
+          },
+          "locale": {
+            "type": "string",
+            "pattern": "^[a-z]{2}(?:-[A-Z]{2})?$"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 120,
+                      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+                    },
+                    "title": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 120
+                    },
+                    "summary": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 280
+                    },
+                    "url": {
+                      "type": "string",
+                      "format": "uri",
+                      "pattern": "^https://"
+                    },
+                    "source": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 80
+                        },
+                        "url": {
+                          "type": "string",
+                          "format": "uri",
+                          "pattern": "^https://"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "url"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "publishedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+                    },
+                    "tags": {
+                      "minItems": 1,
+                      "maxItems": 8,
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 120,
+                        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+                      },
+                      "uniqueItems": true
+                    },
+                    "image": {
+                      "type": "object",
+                      "properties": {
+                        "src": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "format": "uri",
+                              "pattern": "^https://"
+                            },
+                            {
+                              "type": "string",
+                              "pattern": "^assets\\/"
+                            }
+                          ]
+                        },
+                        "alt": {
+                          "type": "string",
+                          "maxLength": 160
+                        }
+                      },
+                      "required": [
+                        "src",
+                        "alt"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "cta": {
+                      "type": "object",
+                      "properties": {
+                        "label": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 32
+                        }
+                      },
+                      "required": [
+                        "label"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "article",
+                        "news"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "title",
+                    "summary",
+                    "url",
+                    "source",
+                    "publishedAt",
+                    "tags",
+                    "cta",
+                    "type"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 120,
+                      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+                    },
+                    "title": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 120
+                    },
+                    "summary": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 280
+                    },
+                    "url": {
+                      "type": "string",
+                      "format": "uri",
+                      "pattern": "^https://"
+                    },
+                    "source": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 80
+                        },
+                        "url": {
+                          "type": "string",
+                          "format": "uri",
+                          "pattern": "^https://"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "url"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "publishedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+                    },
+                    "tags": {
+                      "minItems": 1,
+                      "maxItems": 8,
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 120,
+                        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+                      },
+                      "uniqueItems": true
+                    },
+                    "image": {
+                      "type": "object",
+                      "properties": {
+                        "src": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "format": "uri",
+                              "pattern": "^https://"
+                            },
+                            {
+                              "type": "string",
+                              "pattern": "^assets\\/"
+                            }
+                          ]
+                        },
+                        "alt": {
+                          "type": "string",
+                          "maxLength": 160
+                        }
+                      },
+                      "required": [
+                        "src",
+                        "alt"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "cta": {
+                      "type": "object",
+                      "properties": {
+                        "label": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 32
+                        }
+                      },
+                      "required": [
+                        "label"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "type": {
+                      "type": "string",
+                      "const": "promotion"
+                    },
+                    "campaign": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 120,
+                          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+                        },
+                        "startsAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+                        },
+                        "endsAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+                        },
+                        "placements": {
+                          "minItems": 1,
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "enum": [
+                              "discover",
+                              "task-end",
+                              "popup"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "startsAt",
+                        "endsAt",
+                        "placements"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "title",
+                    "summary",
+                    "url",
+                    "source",
+                    "publishedAt",
+                    "tags",
+                    "cta",
+                    "type",
+                    "campaign"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            }
+          }
+        },
+        "required": [
+          "version",
+          "locale",
+          "updatedAt",
+          "items"
+        ],
+        "additionalProperties": false
+      }
+    }
+  }
+}

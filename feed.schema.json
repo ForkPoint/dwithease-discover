@@ -1,0 +1,320 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "number",
+      "const": 2
+    },
+    "locale": {
+      "type": "string",
+      "pattern": "^[a-z]{2}(?:-[A-Z]{2})?$"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120,
+                "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "summary": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 280
+              },
+              "url": {
+                "type": "string",
+                "format": "uri",
+                "pattern": "^https://"
+              },
+              "source": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 80
+                  },
+                  "url": {
+                    "type": "string",
+                    "format": "uri",
+                    "pattern": "^https://"
+                  }
+                },
+                "required": [
+                  "name",
+                  "url"
+                ],
+                "additionalProperties": false
+              },
+              "publishedAt": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+              },
+              "tags": {
+                "minItems": 1,
+                "maxItems": 8,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120,
+                  "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+                },
+                "uniqueItems": true
+              },
+              "image": {
+                "type": "object",
+                "properties": {
+                  "src": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "format": "uri",
+                        "pattern": "^https://"
+                      },
+                      {
+                        "type": "string",
+                        "pattern": "^assets\\/"
+                      }
+                    ]
+                  },
+                  "alt": {
+                    "type": "string",
+                    "maxLength": 160
+                  }
+                },
+                "required": [
+                  "src",
+                  "alt"
+                ],
+                "additionalProperties": false
+              },
+              "cta": {
+                "type": "object",
+                "properties": {
+                  "label": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 32
+                  }
+                },
+                "required": [
+                  "label"
+                ],
+                "additionalProperties": false
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "article",
+                  "news"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "summary",
+              "url",
+              "source",
+              "publishedAt",
+              "tags",
+              "cta",
+              "type"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120,
+                "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "summary": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 280
+              },
+              "url": {
+                "type": "string",
+                "format": "uri",
+                "pattern": "^https://"
+              },
+              "source": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 80
+                  },
+                  "url": {
+                    "type": "string",
+                    "format": "uri",
+                    "pattern": "^https://"
+                  }
+                },
+                "required": [
+                  "name",
+                  "url"
+                ],
+                "additionalProperties": false
+              },
+              "publishedAt": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+              },
+              "tags": {
+                "minItems": 1,
+                "maxItems": 8,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120,
+                  "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+                },
+                "uniqueItems": true
+              },
+              "image": {
+                "type": "object",
+                "properties": {
+                  "src": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "format": "uri",
+                        "pattern": "^https://"
+                      },
+                      {
+                        "type": "string",
+                        "pattern": "^assets\\/"
+                      }
+                    ]
+                  },
+                  "alt": {
+                    "type": "string",
+                    "maxLength": 160
+                  }
+                },
+                "required": [
+                  "src",
+                  "alt"
+                ],
+                "additionalProperties": false
+              },
+              "cta": {
+                "type": "object",
+                "properties": {
+                  "label": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 32
+                  }
+                },
+                "required": [
+                  "label"
+                ],
+                "additionalProperties": false
+              },
+              "type": {
+                "type": "string",
+                "const": "promotion"
+              },
+              "campaign": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120,
+                    "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+                  },
+                  "startsAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+                  },
+                  "endsAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+                  },
+                  "placements": {
+                    "minItems": 1,
+                    "maxItems": 3,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "discover",
+                        "task-end",
+                        "popup"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "id",
+                  "startsAt",
+                  "endsAt",
+                  "placements"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "summary",
+              "url",
+              "source",
+              "publishedAt",
+              "tags",
+              "cta",
+              "type",
+              "campaign"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "version",
+    "locale",
+    "updatedAt",
+    "items"
+  ],
+  "additionalProperties": false,
+  "$id": "https://discover.dwithease.com/feed.schema.json",
+  "title": "DWithEase Discover Feed"
+}

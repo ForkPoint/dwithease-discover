@@ -28,6 +28,72 @@ const PRODUCT = {
     placements: ['discover'],
 };
 
+const V2_PROMOTION = {
+    id: 'catalogspark-2026',
+    type: 'promotion',
+    title: 'Make product data ready',
+    summary: 'Prepare product data for every commerce channel.',
+    url: 'https://catalogspark.com/',
+    source: {
+        name: 'CatalogSpark',
+        url: 'https://catalogspark.com/',
+    },
+    publishedAt: '2026-09-01T00:00:00Z',
+    tags: ['product-data'],
+    cta: {
+        label: 'Explore CatalogSpark',
+    },
+    campaign: {
+        id: 'catalogspark-2026',
+        startsAt: '2026-09-01T00:00:00Z',
+        endsAt: '2026-10-01T00:00:00Z',
+        placements: ['discover'],
+    },
+};
+
+test('renders v2 promotions and editorial items with useful metadata', () => {
+    const root = createRoot();
+    const unsafeTitle = '<img src=x onerror=alert(1)>';
+    const article = {
+        id: 'commerce-news',
+        type: 'article',
+        title: unsafeTitle,
+        summary: 'A useful commerce update.',
+        url: 'https://example.com/article',
+        source: {
+            name: 'Commerce Source',
+            url: 'https://example.com/',
+        },
+        publishedAt: '2026-08-30T00:00:00Z',
+        tags: ['sfcc', 'commerce'],
+        cta: {
+            label: 'Read article',
+        },
+    };
+
+    renderCatalog(root, {
+        promotions: [V2_PROMOTION],
+        editorial: [article],
+    }, {});
+
+    assert.deepEqual(
+        [...root.querySelectorAll('[data-section-title]')].map((node) => node.textContent),
+        ['Featured tools', 'Latest from commerce'],
+    );
+    assert.equal(root.querySelector('[data-item-id="commerce-news"] h3').textContent, unsafeTitle);
+    assert.equal(root.querySelector('[data-item-id="commerce-news"] h3 img'), null);
+    assert.match(root.querySelector('[data-item-id="commerce-news"]').textContent, /Commerce Source/);
+    assert.match(root.querySelector('[data-item-id="commerce-news"]').textContent, /Aug 30, 2026/);
+    assert.deepEqual(
+        [...root.querySelectorAll('[data-item-id="commerce-news"] .tag')].map((node) => node.textContent),
+        ['sfcc', 'commerce'],
+    );
+    assert.equal(
+        root.querySelector('[data-item-id="catalogspark-2026"] a').getAttribute('href'),
+        'https://catalogspark.com/',
+    );
+});
+
 test('renders products and updates in extension order with safe text', () => {
     const root = createRoot();
     const unsafeTitle = '<img src=x onerror=alert(1)>';

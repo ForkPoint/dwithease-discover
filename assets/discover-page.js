@@ -29,10 +29,10 @@ function actionLink(document, href, label, className = 'button') {
     return link;
 }
 
-function feedImage(document, source, className) {
+function feedImage(document, source, className, alt = '') {
     const image = node(document, 'img', className);
     image.src = source || FALLBACK_IMAGE;
-    image.alt = '';
+    image.alt = alt;
     image.loading = 'lazy';
     image.addEventListener('error', () => {
         if (!image.src.endsWith(FALLBACK_IMAGE)) image.src = FALLBACK_IMAGE;
@@ -54,6 +54,55 @@ function productCard(document, product, images) {
     if (href) {
         const actions = node(document, 'div', 'card-actions');
         actions.append(actionLink(document, href, product.ctaLabel));
+        body.append(actions);
+    }
+
+    card.append(body);
+    return card;
+}
+
+function formattedDate(value) {
+    return new Intl.DateTimeFormat('en', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+        timeZone: 'UTC',
+    }).format(new Date(value));
+}
+
+function feedItemCard(document, item) {
+    const card = node(document, 'article', `discover-card feed-card ${item.type}-card`);
+    card.dataset.itemId = item.id;
+
+    if (item.image?.src) {
+        card.append(feedImage(document, item.image.src, 'feed-image', item.image.alt));
+    }
+
+    const body = node(document, 'div', 'card-body');
+    if (item.type === 'promotion') {
+        body.append(node(document, 'p', 'eyebrow', 'Featured'));
+    }
+
+    const metadata = node(document, 'p', 'card-meta');
+    metadata.append(node(document, 'span', 'card-source', item.source.name));
+    metadata.append(node(document, 'span', 'card-date', formattedDate(item.publishedAt)));
+    body.append(metadata);
+    body.append(node(document, 'h3', 'card-title', item.title));
+    body.append(node(document, 'p', 'card-copy', item.summary));
+
+    const tags = node(document, 'div', 'tag-list');
+    item.tags.forEach((tag) => tags.append(node(document, 'span', 'tag', tag)));
+    body.append(tags);
+
+    const href = safeHttps(item.url);
+    if (href) {
+        const actions = node(document, 'div', 'card-actions');
+        actions.append(actionLink(
+            document,
+            href,
+            item.cta.label,
+            item.type === 'promotion' ? 'button' : 'text-link',
+        ));
         body.append(actions);
     }
 
@@ -125,6 +174,27 @@ function emptyState(document) {
 export function renderCatalog(root, catalog, images) {
     const { ownerDocument: document } = root;
     root.replaceChildren();
+
+    if (Array.isArray(catalog.promotions) && Array.isArray(catalog.editorial)) {
+        if (catalog.promotions.length) {
+            root.append(section(
+                document,
+                'Featured tools',
+                catalog.promotions,
+                (item) => feedItemCard(document, item),
+            ));
+        }
+        if (catalog.editorial.length) {
+            root.append(section(
+                document,
+                'Latest from commerce',
+                catalog.editorial,
+                (item) => feedItemCard(document, item),
+            ));
+        }
+        if (!root.childElementCount) root.append(emptyState(document));
+        return;
+    }
 
     if (catalog.ecommerce.length) {
         root.append(section(
