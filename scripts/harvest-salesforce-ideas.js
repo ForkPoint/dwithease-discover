@@ -19,7 +19,12 @@ export function mergeCandidates(catalog, rows, harvestedAt) {
     const knownIds = new Set(catalog.ideas.map(({ id }) => id.toLowerCase()));
     const additions = rows
         .map(makeCandidate)
-        .filter(({ id }) => !knownIds.has(id.toLowerCase()));
+        .filter(({ id }) => {
+            const normalizedId = id.toLowerCase();
+            if (knownIds.has(normalizedId)) return false;
+            knownIds.add(normalizedId);
+            return true;
+        });
     if (!additions.length) return { catalog, additions };
     return {
         additions,

@@ -29,7 +29,7 @@ test('adds each candidate once without changing the Discover feed', () => {
         harvestedAt: '2026-09-01T00:00:00Z',
         ideas: [],
     };
-    const first = mergeCandidates(catalog, [row], '2026-09-10T08:00:00.000Z');
+    const first = mergeCandidates(catalog, [row, row], '2026-09-10T08:00:00.000Z');
     const second = mergeCandidates(first.catalog, [{ ...row, ideaId: 'A0BTEST123' }], '2026-09-11T08:00:00.000Z');
     assert.equal(first.additions.length, 1);
     assert.deepEqual(first.catalog.ideas.map(({ id }) => id), ['a0BTest123']);
