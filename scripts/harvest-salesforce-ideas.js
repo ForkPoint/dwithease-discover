@@ -37,9 +37,10 @@ async function harvestCommerceIdeas() {
     const browser = await chromium.launch({ headless: true });
     const page = await browser.newPage();
     let commerceRows;
+    let captureCommerceRows = false;
 
     page.on('response', async (response) => {
-        if (!response.url().includes('/s/sfsites/aura?')) return;
+        if (!captureCommerceRows || !response.url().includes('/s/sfsites/aura?')) return;
         try {
             const payload = await response.json();
             const values = payload.actions
@@ -61,6 +62,8 @@ async function harvestCommerceIdeas() {
         await page.getByRole('combobox').click();
         const commerceOption = page.locator('[role="option"][aria-label^="Commerce,"]');
         await commerceOption.waitFor({ state: 'visible', timeout: 10_000 });
+        commerceRows = undefined;
+        captureCommerceRows = true;
         await commerceOption.click();
         for (let attempt = 0; attempt < 30 && !commerceRows?.length; attempt += 1) {
             await page.waitForTimeout(1_000);
