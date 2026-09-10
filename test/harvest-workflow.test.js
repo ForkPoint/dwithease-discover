@@ -13,5 +13,4 @@ test('grants the scheduled Salesforce harvest write access', async () => {
         contents: 'write',
         'pull-requests': 'write',
     });
-
 });
