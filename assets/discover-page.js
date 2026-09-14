@@ -67,8 +67,42 @@ function formattedDate(value) {
     }).format(new Date(value));
 }
 
+const TOPIC_PRESETS = [
+    { id: 'all', label: 'All' },
+    { id: 'sfcc', label: 'SFCC' },
+    { id: 'pwa-kit', label: 'PWA Kit' },
+    { id: 'release-notes', label: 'Releases' },
+    { id: 'ai', label: 'AI & Agents' },
+    { id: 'agentic-commerce', label: 'Agentic' },
+    { id: 'strategy', label: 'Strategy' },
+    { id: 'developer-tools', label: 'Dev Tools' },
+];
+
+function extractFilters(editorial) {
+    if (!editorial || editorial.length <= 1) return [];
+    const tagCounts = new Map();
+    editorial.forEach((item) => {
+        (item.tags || []).forEach((tag) => {
+            tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+        });
+    });
+
+    const available = [{ id: 'all', label: `All (${editorial.length})` }];
+    TOPIC_PRESETS.slice(1).forEach((preset) => {
+        const count = tagCounts.get(preset.id);
+        if (count) {
+            available.push({
+                id: preset.id,
+                label: `${preset.label} (${count})`,
+            });
+        }
+    });
+    return available.length > 1 ? available : [];
+}
+
 function feedItemCard(document, item, sources) {
     const card = node(document, 'article', `discover-card feed-card ${item.type}-card`);
+    card.id = item.id;
     card.dataset.itemId = item.id;
 
     if (item.image?.src) {
@@ -77,7 +111,7 @@ function feedItemCard(document, item, sources) {
 
     const body = node(document, 'div', 'card-body');
     if (item.type === 'promotion') {
-        body.append(node(document, 'p', 'eyebrow', 'Featured'));
+        body.append(node(document, 'p', 'eyebrow eyebrow-featured', 'Featured Tool'));
     }
 
     const metadata = node(document, 'p', 'card-meta');
@@ -87,14 +121,26 @@ function feedItemCard(document, item, sources) {
     metadata.append(source);
     metadata.append(node(document, 'span', 'card-date', formattedDate(item.publishedAt)));
     body.append(metadata);
-    body.append(node(document, 'h3', 'card-title', item.title));
+
+    const href = safeHttps(item.url);
+    const title = node(document, 'h3', 'card-title');
+    if (href) {
+        title.append(actionLink(document, href, item.title, 'card-title-link'));
+    } else {
+        title.textContent = item.title;
+    }
+    body.append(title);
+
     body.append(node(document, 'p', 'card-copy', item.summary));
 
     const tags = node(document, 'div', 'tag-list');
-    item.tags.forEach((tag) => tags.append(node(document, 'span', 'tag', tag)));
+    item.tags.forEach((tag) => {
+        const tagEl = node(document, 'span', 'tag', tag);
+        tagEl.dataset.tag = tag;
+        tags.append(tagEl);
+    });
     body.append(tags);
 
-    const href = safeHttps(item.url);
     if (href) {
         const actions = node(document, 'div', 'card-actions');
         actions.append(actionLink(
@@ -118,6 +164,87 @@ function section(document, title, items, renderItem) {
     const grid = node(document, 'div', 'card-grid');
     items.forEach((item, index) => grid.append(renderItem(item, index)));
     wrapper.append(grid);
+    return wrapper;
+}
+
+function editorialSection(document, title, items, sources) {
+    const wrapper = node(document, 'section', 'discover-section');
+    wrapper.append(node(document, 'h2', 'section-title', title));
+    wrapper.lastElementChild.dataset.sectionTitle = '';
+
+    const cardEntries = items.map((item) => ({
+        item,
+        card: feedItemCard(document, item, sources),
+    }));
+
+    const grid = node(document, 'div', 'card-grid');
+    cardEntries.forEach(({ card }) => grid.append(card));
+
+    const emptyNotice = node(document, 'div', 'filter-empty-state');
+    emptyNotice.hidden = true;
+    emptyNotice.append(node(document, 'p', 'filter-empty-text', 'No articles match the selected topic.'));
+
+    const filters = extractFilters(items);
+    if (filters.length > 1) {
+        const bar = node(document, 'div', 'filter-bar');
+        bar.setAttribute('role', 'toolbar');
+        bar.setAttribute('aria-label', 'Filter articles by topic');
+
+        let currentFilter = 'all';
+
+        const applyFilter = (filterId) => {
+            currentFilter = filterId;
+            bar.querySelectorAll('.filter-pill').forEach((btn) => {
+                const isActive = btn.dataset.filter === currentFilter;
+                btn.classList.toggle('is-active', isActive);
+                btn.setAttribute('aria-pressed', String(isActive));
+            });
+
+            let visibleCount = 0;
+            cardEntries.forEach(({ item, card }) => {
+                const matches = currentFilter === 'all' || item.tags?.includes(currentFilter);
+                card.hidden = !matches;
+                if (matches) visibleCount += 1;
+            });
+
+            emptyNotice.hidden = visibleCount > 0;
+        };
+
+        const resetBtn = node(document, 'button', 'filter-reset-btn', 'Show all articles');
+        resetBtn.type = 'button';
+        resetBtn.addEventListener('click', () => applyFilter('all'));
+        emptyNotice.append(resetBtn);
+
+        filters.forEach((filter) => {
+            const btn = node(document, 'button', 'filter-pill', filter.label);
+            btn.type = 'button';
+            btn.dataset.filter = filter.id;
+            if (filter.id === 'all') {
+                btn.classList.add('is-active');
+                btn.setAttribute('aria-pressed', 'true');
+            } else {
+                btn.setAttribute('aria-pressed', 'false');
+            }
+            btn.addEventListener('click', () => applyFilter(filter.id));
+            bar.append(btn);
+        });
+
+        cardEntries.forEach(({ card }) => {
+            card.querySelectorAll('.tag').forEach((tagSpan) => {
+                const tagId = tagSpan.dataset.tag;
+                if (filters.some((f) => f.id === tagId)) {
+                    tagSpan.classList.add('interactive-tag');
+                    tagSpan.title = `Filter by #${tagId}`;
+                    tagSpan.addEventListener('click', () => applyFilter(tagId));
+                }
+            });
+        });
+
+        wrapper.append(bar);
+    }
+
+    wrapper.append(grid);
+    wrapper.append(emptyNotice);
     return wrapper;
 }
 
@@ -152,11 +279,11 @@ export function renderCatalog(root, catalog, sources = new Map()) {
         ));
     }
     if (catalog.editorial.length) {
-        root.append(section(
+        root.append(editorialSection(
             document,
             'Latest from commerce',
             catalog.editorial,
-            (item) => feedItemCard(document, item, sources),
+            sources,
         ));
     }
 

@@ -116,3 +116,15 @@ test('links the public Discover footer to the Scalar reference', async () => {
 
     assert.equal(link?.textContent, 'Feed reference');
 });
+
+test('provides social sharing metadata and feed discovery in index.html', async () => {
+    const html = await readFile('index.html', 'utf8');
+    const { document } = parseHTML(html);
+
+    assert.equal(document.querySelector('link[rel="canonical"]')?.getAttribute('href'), 'https://discover.dwithease.com/');
+    assert.equal(document.querySelector('link[rel="alternate"]')?.getAttribute('href'), 'feed-live.json');
+    assert.equal(document.querySelector('meta[property="og:type"]')?.getAttribute('content'), 'website');
+    assert.equal(document.querySelector('meta[property="og:site_name"]')?.getAttribute('content'), 'DWithEase Discover');
+    assert.equal(document.querySelector('meta[name="twitter:card"]')?.getAttribute('content'), 'summary_large_image');
+    assert.ok(document.querySelector('.feed-badge-row a[href="feed-live.json"]'));
+});
