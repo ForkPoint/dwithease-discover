@@ -522,9 +522,40 @@ h1 {
     display: flex;
     min-width: 0;
     max-width: 100%;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
     margin-top: auto;
     padding-top: 16px;
+}
+
+.card-share-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--paper);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 160ms ease;
+    flex-shrink: 0;
+}
+
+.card-share-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent-hover);
+    background: var(--accent-tint);
+    transform: translateY(-1px);
+}
+
+.card-share-btn.is-copied {
+    border-color: #10b981;
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.12);
 }
 
 .card-source-group,

@@ -269,4 +269,9 @@ test('renders card titles as links and renders topic filters for multi-item edit
 
     assert.equal(root.querySelector('[data-item-id="sfcc-guide"]').hidden, false);
     assert.equal(root.querySelector('[data-item-id="pwa-guide"]').hidden, true);
+
+    // Share button
+    const shareBtn = root.querySelector('[data-item-id="sfcc-guide"] .card-share-btn');
+    assert.ok(shareBtn);
+    assert.equal(shareBtn.getAttribute('aria-label'), 'Copy link to this card');
 });

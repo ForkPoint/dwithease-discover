@@ -27,6 +27,27 @@ function actionLink(document, href, label, className = 'button') {
     return link;
 }
 
+function shareIcon(document) {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('width', '14');
+    svg.setAttribute('height', '14');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor');
+    svg.setAttribute('stroke-width', '2');
+    svg.setAttribute('stroke-linecap', 'round');
+    svg.setAttribute('stroke-linejoin', 'round');
+    svg.setAttribute('aria-hidden', 'true');
+
+    const path1 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path1.setAttribute('d', 'M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71');
+    const path2 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path2.setAttribute('d', 'M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71');
+
+    svg.append(path1, path2);
+    return svg;
+}
+
 function feedImage(document, source, className, alt = '') {
     const image = node(document, 'img', className);
     image.src = source || FALLBACK_IMAGE;
@@ -143,6 +164,34 @@ function feedItemCard(document, item, sources) {
 
     if (href) {
         const actions = node(document, 'div', 'card-actions');
+        const shareBtn = node(document, 'button', 'card-share-btn');
+        shareBtn.type = 'button';
+        shareBtn.setAttribute('aria-label', 'Copy link to this card');
+        shareBtn.title = 'Copy link';
+        shareBtn.append(shareIcon(document));
+        shareBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            try {
+                const current = typeof window !== 'undefined' && window.location?.href
+                    ? window.location.href
+                    : 'https://discover.dwithease.com/';
+                const cardUrl = new URL(current);
+                cardUrl.hash = item.id;
+                if (typeof navigator !== 'undefined' && navigator.clipboard?.writeText) {
+                    await navigator.clipboard.writeText(cardUrl.href);
+                }
+                shareBtn.classList.add('is-copied');
+                shareBtn.title = 'Copied!';
+                setTimeout(() => {
+                    shareBtn.classList.remove('is-copied');
+                    shareBtn.title = 'Copy link';
+                }, 1800);
+            } catch {
+                // Clipboard fallback
+            }
+        });
+        actions.append(shareBtn);
         actions.append(actionLink(
             document,
             href,

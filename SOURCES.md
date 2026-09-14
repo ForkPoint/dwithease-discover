@@ -38,7 +38,7 @@ This file records the inputs for `feed-dev.json`.
 | RetailPace | https://retailpace.com/ | Promotion |
 | IntentFusion | https://intentfusion.com/ | Promotion |
 
-## Current dev corpus
+## Current feed corpus
 
 `feed-dev.json` contains:
 
@@ -46,4 +46,4 @@ This file records the inputs for `feed-dev.json`.
 - 4 promotion items.
 - 42 items in total.
 
-`feed-live.json` remains a valid empty feed during dev curation.
+`feed-live.json` contains the curated production feed with verified editorial items and active storefront tool promotions.

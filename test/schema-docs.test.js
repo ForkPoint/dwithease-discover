@@ -69,7 +69,7 @@ test('publishes both documented feed endpoints', async () => {
 
     assert.equal(validateFeed(live).success, true);
     assert.equal(validateFeed(development).success, true);
-    assert.deepEqual(live.items, []);
+    assert.ok(live.items.length > 0);
     assert.ok(development.items.length > 0);
 });
 
