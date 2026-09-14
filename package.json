@@ -8,6 +8,7 @@
     "typecheck": "tsc --noEmit",
     "validate:feed": "node scripts/validate-feed.ts",
     "validate:sources": "node scripts/validate-sources.js",
+    "harvest:salesforce-ideas": "node scripts/harvest-salesforce-ideas.js",
     "write:schema": "node scripts/write-json-schema.ts",
     "write:openapi": "node scripts/write-openapi.ts"
   },

@@ -210,3 +210,68 @@ test('keeps feed text when the source registry fails', async () => {
         'assets/sources/source-fallback.svg',
     );
 });
+
+test('renders card titles as links and renders topic filters for multi-item editorial feeds', () => {
+    const root = createRoot();
+    const articles = [
+        {
+            id: 'sfcc-guide',
+            type: 'article',
+            title: 'SFCC Developer Guide',
+            summary: 'A deep dive into SFCC.',
+            url: 'https://example.com/sfcc-guide',
+            source: { name: 'Source', url: 'https://example.com/' },
+            publishedAt: '2026-09-02T00:00:00Z',
+            tags: ['sfcc', 'developer-tools'],
+            cta: { label: 'Read guide' },
+        },
+        {
+            id: 'pwa-guide',
+            type: 'article',
+            title: 'PWA Kit Architecture',
+            summary: 'Headless storefront overview.',
+            url: 'https://example.com/pwa-guide',
+            source: { name: 'Source', url: 'https://example.com/' },
+            publishedAt: '2026-09-01T00:00:00Z',
+            tags: ['pwa-kit'],
+            cta: { label: 'Explore architecture' },
+        },
+    ];
+
+    renderCatalog(root, { promotions: [PROMOTION], editorial: articles });
+
+    const titleLink = root.querySelector('[data-item-id="sfcc-guide"] .card-title a');
+    assert.ok(titleLink);
+    assert.equal(titleLink.getAttribute('href'), 'https://example.com/sfcc-guide');
+    assert.equal(titleLink.getAttribute('target'), '_blank');
+    assert.equal(titleLink.textContent, 'SFCC Developer Guide');
+
+    // Promotion card eyebrow
+    assert.equal(root.querySelector('[data-item-id="catalogspark-2026"] .eyebrow-featured').textContent, 'Featured Tool');
+
+    // Filter bar
+    const filterBar = root.querySelector('.filter-bar');
+    assert.ok(filterBar);
+    const pills = [...filterBar.querySelectorAll('.filter-pill')];
+    assert.ok(pills.some((p) => p.dataset.filter === 'sfcc'));
+    assert.ok(pills.some((p) => p.dataset.filter === 'pwa-kit'));
+
+    // Filter by PWA Kit
+    const pwaPill = pills.find((p) => p.dataset.filter === 'pwa-kit');
+    pwaPill.click();
+
+    assert.equal(root.querySelector('[data-item-id="sfcc-guide"]').hidden, true);
+    assert.equal(root.querySelector('[data-item-id="pwa-guide"]').hidden, false);
+
+    // Clicking SFCC tag on a card triggers SFCC filter
+    const sfccTag = root.querySelector('[data-item-id="sfcc-guide"] [data-tag="sfcc"]');
+    sfccTag.click();
+
+    assert.equal(root.querySelector('[data-item-id="sfcc-guide"]').hidden, false);
+    assert.equal(root.querySelector('[data-item-id="pwa-guide"]').hidden, true);
+
+    // Share button
+    const shareBtn = root.querySelector('[data-item-id="sfcc-guide"] .card-share-btn');
+    assert.ok(shareBtn);
+    assert.equal(shareBtn.getAttribute('aria-label'), 'Copy link to this card');
+});

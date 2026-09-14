@@ -1,0 +1,81 @@
+{
+  "source": "https://ideas.salesforce.com/s/insights",
+  "harvestedAt": "2026-09-10T18:19:06.814Z",
+  "ideas": [
+    {
+      "id": "a0B8W00000GdZcWUAV",
+      "title": "Page Designer: Category Dynamic Pages - Subcategories should be optional",
+      "availability": "Winter '26",
+      "points": 1060,
+      "ideaUrl": "https://ideas.salesforce.com/s/idea/a0B8W00000GdZcWUAV",
+      "releaseNotesUrl": "https://help.salesforce.com/s/articleView?language=en_US&id=commerce.b2c_rn_25_10_category_assignments.htm&type=5"
+    },
+    {
+      "id": "a0B8W00000GdnAfUAJ",
+      "title": "Enable Appeasements when order has been exported to fulfillment",
+      "availability": "Winter '26",
+      "points": 30,
+      "ideaUrl": "https://ideas.salesforce.com/s/idea/a0B8W00000GdnAfUAJ",
+      "releaseNotesUrl": "https://help.salesforce.com/s/articleView?id=release-notes.rn_om_adjustment_tax.htm&release=258&type=5"
+    },
+    {
+      "id": "a0BHp000019Oq05MAC",
+      "title": "Show refund destination method separate from original on Order Summary",
+      "availability": "Winter '26",
+      "points": 10,
+      "ideaUrl": "https://ideas.salesforce.com/s/idea/a0BHp000019Oq05MAC",
+      "releaseNotesUrl": "https://help.salesforce.com/s/articleView?id=release-notes.rn_om_unreferenced_refunds.htm&release=258&type=5"
+    },
+    {
+      "id": "a0BHp000019OklCMAS",
+      "title": "USD Nickel Rounding Feature",
+      "availability": "Spring '26",
+      "points": 40,
+      "ideaUrl": "https://ideas.salesforce.com/s/idea/a0BHp000019OklCMAS"
+    },
+    {
+      "id": "a0BHp000019On7UMAS",
+      "title": "Commerce Cloud - add storefront shortcut to Administration view",
+      "availability": "Spring '26",
+      "points": 10,
+      "ideaUrl": "https://ideas.salesforce.com/s/idea/a0BHp000019On7UMAS",
+      "releaseNotesUrl": "https://help.salesforce.com/s/articleView?id=commerce.b2c_rn_26_1_storefront_controls.htm&type=5"
+    },
+    {
+      "id": "a0B8W00000OX07KUAT",
+      "title": "Allow \"Sequencing\" of Order Payment Summary Priority in Invoice and Ensure Funds",
+      "availability": "Winter '26",
+      "points": 390,
+      "ideaUrl": "https://ideas.salesforce.com/s/idea/a0B8W00000OX07KUAT"
+    },
+    {
+      "id": "a0B8W00000KTdfUUAT",
+      "title": "Allow different Reason Code lists for different OMS flows",
+      "availability": "Winter '26",
+      "points": 250,
+      "ideaUrl": "https://ideas.salesforce.com/s/idea/a0B8W00000KTdfUUAT"
+    },
+    {
+      "id": "a0B8W00000JIjxDUAT",
+      "title": "Add sku to appeasement / cancel / return screen flow",
+      "availability": "Winter '26",
+      "points": 140,
+      "ideaUrl": "https://ideas.salesforce.com/s/idea/a0B8W00000JIjxDUAT"
+    },
+    {
+      "id": "a0B8W00000GdpGDUAZ",
+      "title": "Appeasements for sales tax in SOM",
+      "availability": "Winter '26",
+      "points": 40,
+      "ideaUrl": "https://ideas.salesforce.com/s/idea/a0B8W00000GdpGDUAZ",
+      "releaseNotesUrl": "https://help.salesforce.com/s/articleView?id=release-notes.rn_om_adjustment_tax.htm&release=258&type=5"
+    },
+    {
+      "id": "a0B8W00000MOp9JUAT",
+      "title": "Include the headers of service requests in communication logs (SFCC)",
+      "availability": "Winter '26",
+      "points": 20,
+      "ideaUrl": "https://ideas.salesforce.com/s/idea/a0B8W00000MOp9JUAT"
+    }
+  ]
+}

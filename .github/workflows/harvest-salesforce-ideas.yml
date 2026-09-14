@@ -1,0 +1,73 @@
+name: Harvest Salesforce Commerce ideas
+
+on:
+  schedule:
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: harvest-salesforce-ideas
+  cancel-in-progress: false
+
+jobs:
+  harvest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Continue the candidate branch
+        run: |
+          branch="automation/salesforce-commerce-ideas"
+          git fetch origin main
+          if git fetch origin "refs/heads/$branch:refs/remotes/origin/$branch"; then
+            git switch -C "$branch" "origin/$branch"
+            git rebase origin/main
+          else
+            git switch -c "$branch" origin/main
+          fi
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install packages
+        run: npm ci
+
+      - name: Install browser
+        run: npx playwright-core install --with-deps chromium
+
+      - name: Harvest Commerce ideas
+        run: npm run harvest:salesforce-ideas
+
+      - name: Open an update pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet -- salesforce-ideas.json; then
+            echo "No new Commerce ideas."
+            exit 0
+          fi
+
+          branch="automation/salesforce-commerce-ideas"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add salesforce-ideas.json
+          git commit -m "data: harvest Salesforce Commerce ideas"
+          git push --force-with-lease origin "$branch"
+
+          if [ "$(gh pr list --state open --head "$branch" --json number --jq 'length')" -eq 0 ]; then
+            gh pr create \
+              --base main \
+              --head "$branch" \
+              --title "data: harvest Salesforce Commerce ideas" \
+              --body "Adds newly delivered Commerce ideas from Salesforce IdeaExchange to the review catalog. This does not change the Discover feed. Pick each feed item in a separate PR."
+          fi

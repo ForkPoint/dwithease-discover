@@ -3,9 +3,26 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Useful tools and updates for e-commerce and web development from DWithEase and ForkPoint.">
-    <meta name="theme-color" content="#f6f9fc">
     <title>Discover · DWithEase</title>
+    <meta name="description" content="Useful tools, technical deep-dives, and commerce updates from DWithEase and ForkPoint.">
+    <link rel="canonical" href="https://discover.dwithease.com/">
+    <link rel="alternate" type="application/json" title="DWithEase Discover Live Feed" href="feed-live.json">
+    <meta name="theme-color" content="#f6f9fc">
+
+    <!-- OpenGraph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="DWithEase Discover">
+    <meta property="og:title" content="Discover · Commerce News &amp; Tools by DWithEase">
+    <meta property="og:description" content="Useful tools, technical deep-dives, and commerce updates from DWithEase and ForkPoint.">
+    <meta property="og:url" content="https://discover.dwithease.com/">
+    <meta property="og:image" content="https://discover.dwithease.com/assets/discover-fallback.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Discover · Commerce News &amp; Tools by DWithEase">
+    <meta name="twitter:description" content="Useful tools, technical deep-dives, and commerce updates from DWithEase and ForkPoint.">
+    <meta name="twitter:image" content="https://discover.dwithease.com/assets/discover-fallback.png">
+
     <link rel="icon" href="assets/dwithease-logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="assets/discover.css">
     <script type="module" src="assets/discover-page.js"></script>
@@ -24,6 +41,14 @@
                 <p class="eyebrow">DWithEase · By ForkPoint</p>
                 <h1>Discover</h1>
                 <p class="page-intro">Commerce news, technical articles, and useful tools for teams that build online stores.</p>
+                <div class="feed-badge-row">
+                    <a class="feed-badge-pill" href="feed-live.json" target="_blank" rel="noopener noreferrer" title="Live JSON Feed">
+                        <span class="pulse-indicator"></span> Live JSON Feed
+                    </a>
+                    <a class="feed-badge-pill secondary" href="schema.html" title="Feed Reference &amp; API">
+                        Feed Reference &amp; API
+                    </a>
+                </div>
             </header>
 
             <div id="discover-content" class="discover-content">
@@ -37,6 +62,7 @@
         <footer class="site-footer">
             <span>Discover by DWithEase</span>
             <nav class="footer-links" aria-label="Footer links">
+                <a href="feed-live.json" target="_blank" rel="noopener noreferrer">Live JSON feed</a>
                 <a href="schema.html">Feed reference</a>
                 <a href="https://dwithease.com/" target="_blank" rel="noopener noreferrer">dwithease.com</a>
             </nav>

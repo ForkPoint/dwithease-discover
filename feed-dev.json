@@ -119,7 +119,7 @@
       "publishedAt": "2026-08-26T00:00:00Z",
       "tags": ["sfcc", "release-notes", "business-manager"],
       "cta": {
-        "label": "Read article"
+        "label": "See what's new"
       }
     },
     {
@@ -135,7 +135,7 @@
       "publishedAt": "2026-08-20T00:00:00Z",
       "tags": ["sfcc", "release-notes", "slas"],
       "cta": {
-        "label": "Read article"
+        "label": "Read 26.9 breakdown"
       }
     },
     {
@@ -151,7 +151,7 @@
       "publishedAt": "2026-08-12T00:00:00Z",
       "tags": ["sfcc", "github", "developer-tools"],
       "cta": {
-        "label": "Read article"
+        "label": "Get repo access guide"
       }
     },
     {
@@ -167,7 +167,7 @@
       "publishedAt": "2026-08-12T00:00:00Z",
       "tags": ["sfcc", "ecommerce", "strategy"],
       "cta": {
-        "label": "Read article"
+        "label": "Explore 7 reasons"
       }
     },
     {
@@ -183,7 +183,7 @@
       "publishedAt": "2026-08-12T00:00:00Z",
       "tags": ["ecommerce", "ai", "retail"],
       "cta": {
-        "label": "Read article"
+        "label": "Explore AI insights"
       }
     },
     {
@@ -199,7 +199,7 @@
       "publishedAt": "2026-08-12T00:00:00Z",
       "tags": ["ai", "development", "engineering"],
       "cta": {
-        "label": "Read article"
+        "label": "Read developer guide"
       }
     },
     {
@@ -215,7 +215,7 @@
       "publishedAt": "2026-08-12T00:00:00Z",
       "tags": ["agentic-commerce", "ai-visibility", "ecommerce"],
       "cta": {
-        "label": "Read article"
+        "label": "Explore 2026 trends"
       }
     },
     {
@@ -231,7 +231,7 @@
       "publishedAt": "2026-08-12T00:00:00Z",
       "tags": ["search", "ai", "ecommerce"],
       "cta": {
-        "label": "Read article"
+        "label": "Discover AI search"
       }
     },
     {
@@ -247,7 +247,7 @@
       "publishedAt": "2026-08-06T00:00:00Z",
       "tags": ["ecommerce", "retail-tech", "grocery"],
       "cta": {
-        "label": "Read news"
+        "label": "Read announcement"
       }
     },
     {
@@ -263,7 +263,7 @@
       "publishedAt": "2026-08-05T00:00:00Z",
       "tags": ["ecommerce", "ai", "agentic-commerce"],
       "cta": {
-        "label": "Read article"
+        "label": "Explore AI agents"
       }
     },
     {
@@ -279,7 +279,7 @@
       "publishedAt": "2026-08-05T00:00:00Z",
       "tags": ["salesforce", "architecture", "commerce-cloud"],
       "cta": {
-        "label": "Read article"
+        "label": "Explore Agentforce"
       }
     },
     {
@@ -295,7 +295,7 @@
       "publishedAt": "2026-08-05T00:00:00Z",
       "tags": ["sfcc", "pricing", "developer-guide"],
       "cta": {
-        "label": "Read article"
+        "label": "Learn Price Books"
       }
     },
     {
@@ -311,7 +311,7 @@
       "publishedAt": "2026-08-03T00:00:00Z",
       "tags": ["b2b-commerce", "merchandising", "salesforce"],
       "cta": {
-        "label": "Read article"
+        "label": "See B2B features"
       }
     },
     {
@@ -327,7 +327,7 @@
       "publishedAt": "2026-07-29T00:00:00Z",
       "tags": ["sfcc", "release-notes", "search"],
       "cta": {
-        "label": "Read article"
+        "label": "Inside July release"
       }
     },
     {
@@ -343,7 +343,7 @@
       "publishedAt": "2026-07-28T00:00:00Z",
       "tags": ["commerce", "agentic-commerce", "research"],
       "cta": {
-        "label": "Read news"
+        "label": "Read trend report"
       }
     },
     {
@@ -359,7 +359,7 @@
       "publishedAt": "2026-07-27T00:00:00Z",
       "tags": ["sfcc", "storefront-next", "pwa-kit"],
       "cta": {
-        "label": "Read article"
+        "label": "Read migration guide"
       }
     },
     {
@@ -375,7 +375,7 @@
       "publishedAt": "2026-07-23T00:00:00Z",
       "tags": ["sfcc", "release-notes", "commerce-cloud"],
       "cta": {
-        "label": "Read article"
+        "label": "Read 26.8 review"
       }
     },
     {
@@ -391,7 +391,7 @@
       "publishedAt": "2026-07-23T00:00:00Z",
       "tags": ["agentic-commerce", "privacy", "chatbots"],
       "cta": {
-        "label": "Read article"
+        "label": "Read privacy study"
       }
     },
     {
@@ -407,7 +407,7 @@
       "publishedAt": "2026-07-23T00:00:00Z",
       "tags": ["agentic-commerce", "geo", "marketing"],
       "cta": {
-        "label": "Read article"
+        "label": "Read Q4 playbook"
       }
     },
     {
@@ -423,7 +423,7 @@
       "publishedAt": "2026-07-22T00:00:00Z",
       "tags": ["agentic-commerce", "ecommerce", "microsoft"],
       "cta": {
-        "label": "Read news"
+        "label": "Read partnership news"
       }
     },
     {
@@ -439,7 +439,7 @@
       "publishedAt": "2026-07-21T00:00:00Z",
       "tags": ["search", "agentic-commerce", "ecommerce"],
       "cta": {
-        "label": "Read article"
+        "label": "Explore intent search"
       }
     },
     {
@@ -455,7 +455,7 @@
       "publishedAt": "2026-07-16T00:00:00Z",
       "tags": ["agentic-commerce", "product-feeds", "openai"],
       "cta": {
-        "label": "Read article"
+        "label": "Read feed strategy"
       }
     },
     {
@@ -471,7 +471,7 @@
       "publishedAt": "2026-07-15T00:00:00Z",
       "tags": ["ai-visibility", "geo", "strategy"],
       "cta": {
-        "label": "Read article"
+        "label": "Read perspective"
       }
     },
     {
@@ -487,7 +487,7 @@
       "publishedAt": "2026-07-14T00:00:00Z",
       "tags": ["agentic-commerce", "ecommerce", "strategy"],
       "cta": {
-        "label": "Read article"
+        "label": "Read strategy guide"
       }
     },
     {
@@ -503,7 +503,7 @@
       "publishedAt": "2026-07-01T00:00:00Z",
       "tags": ["agentic-commerce", "ecommerce", "payments"],
       "cta": {
-        "label": "Read news"
+        "label": "Read integration news"
       }
     },
     {
@@ -519,7 +519,7 @@
       "publishedAt": "2026-06-29T00:00:00Z",
       "tags": ["ecommerce", "ai", "search"],
       "cta": {
-        "label": "Read news"
+        "label": "Read news update"
       }
     },
     {
@@ -535,7 +535,7 @@
       "publishedAt": "2026-06-24T00:00:00Z",
       "tags": ["commerce", "agentforce", "salesforce"],
       "cta": {
-        "label": "Read news"
+        "label": "See Agentforce release"
       }
     },
     {
@@ -551,7 +551,7 @@
       "publishedAt": "2026-06-18T00:00:00Z",
       "tags": ["ecommerce", "trends", "agentic-commerce"],
       "cta": {
-        "label": "Read news"
+        "label": "Explore 2026 trends"
       }
     },
     {
@@ -567,7 +567,7 @@
       "publishedAt": "2026-05-07T00:00:00Z",
       "tags": ["salesforce", "events", "commerce-cloud"],
       "cta": {
-        "label": "Read article"
+        "label": "Read Connections guide"
       }
     },
     {
@@ -583,7 +583,7 @@
       "publishedAt": "2026-04-28T15:00:06.000Z",
       "tags": ["sfcc", "developer-tools", "cli"],
       "cta": {
-        "label": "Read article"
+        "label": "Explore CLI & cloning"
       }
     },
     {
@@ -599,7 +599,7 @@
       "publishedAt": "2026-02-26T00:00:00Z",
       "tags": ["commerce-cloud", "salesforce", "business"],
       "cta": {
-        "label": "Read article"
+        "label": "Read market analysis"
       }
     },
     {
@@ -615,7 +615,7 @@
       "publishedAt": "2026-02-11T00:00:00Z",
       "tags": ["agentforce", "commerce-cloud", "acquisitions"],
       "cta": {
-        "label": "Read article"
+        "label": "Read acquisition news"
       }
     },
     {
@@ -631,7 +631,7 @@
       "publishedAt": "2026-01-14T00:00:00Z",
       "tags": ["commerce", "ucp", "agentic-commerce"],
       "cta": {
-        "label": "Read news"
+        "label": "Explore protocol news"
       }
     },
     {
@@ -647,7 +647,7 @@
       "publishedAt": "2026-01-08T00:00:00Z",
       "tags": ["ecommerce", "retail", "research"],
       "cta": {
-        "label": "Read news"
+        "label": "See holiday benchmarks"
       }
     },
     {
@@ -663,7 +663,7 @@
       "publishedAt": "2025-12-23T16:00:41.000Z",
       "tags": ["pwa-kit", "mcp", "developer-tools"],
       "cta": {
-        "label": "Read article"
+        "label": "Read MCP server guide"
       }
     },
     {
@@ -679,7 +679,7 @@
       "publishedAt": "2025-12-05T00:00:00Z",
       "tags": ["ecommerce", "retail", "ai"],
       "cta": {
-        "label": "Read news"
+        "label": "See Cyber Week data"
       }
     },
     {
@@ -695,7 +695,7 @@
       "publishedAt": "2025-11-18T00:00:00Z",
       "tags": ["agentforce", "commerce-cloud", "agentic-commerce"],
       "cta": {
-        "label": "Read article"
+        "label": "Explore Agentforce"
       }
     }
   ]

@@ -27,6 +27,7 @@ This file records the inputs for `feed-dev.json`.
 | ForkPoint | https://forkpoint.com/articles/ | HTML | Working. Article pages do not expose a reliable publication date. The dev feed uses the shared HTTP `Last-Modified` date as a temporary value. Set real dates before live use. |
 | Salesforce Ben | https://www.salesforceben.com/category/commerce/ | HTML | Partial. The category page shell does not expose a full item list in the first HTML response. Use commerce search results and article pages as the fallback. |
 | Digital Commerce 360 | https://www.digitalcommerce360.com/topic/technology/ | HTML | Working. Apply ecommerce, agentic commerce, storefront, search, retail, or platform term filters. |
+| Salesforce IdeaExchange | https://ideas.salesforce.com/s/insights | Browser | Daily CI harvest. Select Commerce under Recently Delivered. Check the first 10 rows and append new ideas to `salesforce-ideas.json`. The job opens a review PR only when it finds new ideas. Do not add candidates to `feed-dev.json` automatically. Add each selected feed item in a separate PR. |
 
 ## Product sources
 
@@ -37,7 +38,7 @@ This file records the inputs for `feed-dev.json`.
 | RetailPace | https://retailpace.com/ | Promotion |
 | IntentFusion | https://intentfusion.com/ | Promotion |
 
-## Current dev corpus
+## Current feed corpus
 
 `feed-dev.json` contains:
 
@@ -45,4 +46,4 @@ This file records the inputs for `feed-dev.json`.
 - 4 promotion items.
 - 42 items in total.
 
-`feed-live.json` remains a valid empty feed during dev curation.
+`feed-live.json` contains the curated production feed with verified editorial items and active storefront tool promotions.
