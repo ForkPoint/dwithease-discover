@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://discover.dwithease.com/</id>
+  <title>DWithEase Discover</title>
+  <subtitle>Commerce news, technical articles, and useful tools for teams that build online stores.</subtitle>
+  <link href="https://discover.dwithease.com/" rel="alternate" type="text/html"/>
+  <link href="https://discover.dwithease.com/atom.xml" rel="self" type="application/atom+xml"/>
+  <updated>2026-09-14T12:00:00.000Z</updated>
+  <entry>
+    <id>https://discover.dwithease.com/#promotion-agentic-storefront-audit</id>
+    <title>See How AI Shopping Agents Read Your Store</title>
+    <link href="https://audit.agenticstorefront.com/" rel="alternate"/>
+    <published>2026-09-01T00:00:00.000Z</published>
+    <updated>2026-09-01T00:00:00.000Z</updated>
+    <summary>Run a free storefront audit across 199 checks for AI discoverability, product data, protocols, and agent-ready checkout.</summary>
+    <author>
+      <name>Agentic Storefront Audit</name>
+      <uri>https://audit.agenticstorefront.com/</uri>
+    </author>
+    <category term="agentic-commerce"/>
+    <category term="audit"/>
+    <category term="ecommerce"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#promotion-catalogspark</id>
+    <title>Turn Product Data Into Channel-Ready Catalogs</title>
+    <link href="https://catalogspark.com/" rel="alternate"/>
+    <published>2026-09-01T00:00:00.000Z</published>
+    <updated>2026-09-01T00:00:00.000Z</updated>
+    <summary>Use AI to extract, enrich, translate, version, and publish product data across Salesforce Commerce Cloud, Shopify, Magento, and more.</summary>
+    <author>
+      <name>CatalogSpark</name>
+      <uri>https://catalogspark.com/</uri>
+    </author>
+    <category term="product-data"/>
+    <category term="ai"/>
+    <category term="ecommerce"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#promotion-retailpace</id>
+    <title>See Store Problems Before Shoppers Do</title>
+    <link href="https://retailpace.com/" rel="alternate"/>
+    <published>2026-09-01T00:00:00.000Z</published>
+    <updated>2026-09-01T00:00:00.000Z</updated>
+    <summary>Bring commerce data into one monitoring hub with proactive alerts and dashboards built for Salesforce Commerce Cloud operations.</summary>
+    <author>
+      <name>RetailPace</name>
+      <uri>https://retailpace.com/</uri>
+    </author>
+    <category term="monitoring"/>
+    <category term="sfcc"/>
+    <category term="ecommerce"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#promotion-intentfusion</id>
+    <title>Help Every Shopper Find the Right Product</title>
+    <link href="https://intentfusion.com/" rel="alternate"/>
+    <published>2026-09-01T00:00:00.000Z</published>
+    <updated>2026-09-01T00:00:00.000Z</updated>
+    <summary>Add intent-aware search, recommendations, and AI chat to your ecommerce catalog with native Salesforce Commerce Cloud support.</summary>
+    <author>
+      <name>IntentFusion</name>
+      <uri>https://intentfusion.com/</uri>
+    </author>
+    <category term="search"/>
+    <category term="ai"/>
+    <category term="ecommerce"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#pwa-kit-v3-21-nightly-2026-09-01</id>
+    <title>PWA Kit v3.21.0 Nightly Build 2026-09-01</title>
+    <link href="https://github.com/SalesforceCommerceCloud/pwa-kit/releases/tag/v3.21.0-nightly-20260901080519" rel="alternate"/>
+    <published>2026-09-01T08:08:59.000Z</published>
+    <updated>2026-09-01T08:08:59.000Z</updated>
+    <summary>The latest PWA Kit nightly build provides an early integration signal for teams that track upcoming composable storefront changes.</summary>
+    <author>
+      <name>PWA Kit Releases</name>
+      <uri>https://github.com/SalesforceCommerceCloud/pwa-kit/releases.atom</uri>
+    </author>
+    <category term="pwa-kit"/>
+    <category term="release"/>
+    <category term="nightly"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#salesforce-blog-b2c-commerce-august-26-release</id>
+    <title>B2C Commerce August Release: Custom Apps and Omnichannel Innovations</title>
+    <link href="https://www.salesforce.com/blog/b2c-commerce-august-26-release/" rel="alternate"/>
+    <published>2026-08-26T00:00:00.000Z</published>
+    <updated>2026-08-26T00:00:00.000Z</updated>
+    <summary>The August B2C Commerce release adds custom Business Manager workspaces, anomaly detection, catalog unification, developer tools, and AI-ready product features.</summary>
+    <author>
+      <name>Salesforce Commerce Blog</name>
+      <uri>https://www.salesforce.com/blog/category/ecommerce/</uri>
+    </author>
+    <category term="sfcc"/>
+    <category term="release-notes"/>
+    <category term="business-manager"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#rhino-b2c-commerce-26-9-release</id>
+    <title>B2C Commerce 26.9: Consent, Workspaces, and SLAS Deadlines</title>
+    <link href="https://rhino-inquisitor.com/b2c-commerce-cloud-26-9-release/" rel="alternate"/>
+    <published>2026-08-20T00:00:00.000Z</published>
+    <updated>2026-08-20T00:00:00.000Z</updated>
+    <summary>A technical review of Commerce Apps workspaces, shopper consent, tax items, SCAPI changes, and upcoming SLAS enforcement dates in B2C Commerce 26.9.</summary>
+    <author>
+      <name>Rhino Inquisitor</name>
+      <uri>https://rhino-inquisitor.com/archive/</uri>
+    </author>
+    <category term="sfcc"/>
+    <category term="release-notes"/>
+    <category term="slas"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#rhino-sfcc-github-repo-access</id>
+    <title>SFCC GitHub Repo Access: Getting (and Keeping) It</title>
+    <link href="https://rhino-inquisitor.com/sfcc-github-repo-access/" rel="alternate"/>
+    <published>2026-08-12T00:00:00.000Z</published>
+    <updated>2026-08-12T00:00:00.000Z</updated>
+    <summary>A guide to obtaining and retaining access to Salesforce B2C Commerce repositories on GitHub.</summary>
+    <author>
+      <name>Rhino Inquisitor</name>
+      <uri>https://rhino-inquisitor.com/archive/</uri>
+    </author>
+    <category term="sfcc"/>
+    <category term="github"/>
+    <category term="developer-tools"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#forkpoint-leading-brands-embrace-sfcc</id>
+    <title>7 Reasons Why Leading Brands Embrace Salesforce Commerce Cloud</title>
+    <link href="https://forkpoint.com/articles/7-reasons-why-leading-brands-embrace-sfcc/" rel="alternate"/>
+    <published>2026-08-12T00:00:00.000Z</published>
+    <updated>2026-08-12T00:00:00.000Z</updated>
+    <summary>A review of why enterprise brands choose Salesforce Commerce Cloud for scale, personalization, integration, and digital growth.</summary>
+    <author>
+      <name>ForkPoint</name>
+      <uri>https://forkpoint.com/articles/</uri>
+    </author>
+    <category term="sfcc"/>
+    <category term="ecommerce"/>
+    <category term="strategy"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#forkpoint-ai-smart-revolution-commerce</id>
+    <title>AI – The Smart Revolution in Commerce</title>
+    <link href="https://forkpoint.com/articles/ai-the-smart-revolution-in-commerce/" rel="alternate"/>
+    <published>2026-08-12T00:00:00.000Z</published>
+    <updated>2026-08-12T00:00:00.000Z</updated>
+    <summary>An overview of how AI improves personalization, inventory planning, customer service, and operational decisions in commerce.</summary>
+    <author>
+      <name>ForkPoint</name>
+      <uri>https://forkpoint.com/articles/</uri>
+    </author>
+    <category term="ecommerce"/>
+    <category term="ai"/>
+    <category term="retail"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#forkpoint-ai-better-developers</id>
+    <title>How AI Is Making Us Better Developers</title>
+    <link href="https://forkpoint.com/articles/how-ai-is-making-us-better-developers/" rel="alternate"/>
+    <published>2026-08-12T00:00:00.000Z</published>
+    <updated>2026-08-12T00:00:00.000Z</updated>
+    <summary>ForkPoint shares how AI supports coding, testing, documentation, debugging, and developer onboarding without replacing engineering judgment.</summary>
+    <author>
+      <name>ForkPoint</name>
+      <uri>https://forkpoint.com/articles/</uri>
+    </author>
+    <category term="ai"/>
+    <category term="development"/>
+    <category term="engineering"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#forkpoint-invisible-commerce-2026</id>
+    <title>Invisible Commerce: What Brands Must Know in 2026</title>
+    <link href="https://forkpoint.com/articles/invisible-commerce-what-brands-must-know-in-2026/" rel="alternate"/>
+    <published>2026-08-12T00:00:00.000Z</published>
+    <updated>2026-08-12T00:00:00.000Z</updated>
+    <summary>A guide to the new shopping layer where AI assistants shape product discovery before shoppers reach a storefront.</summary>
+    <author>
+      <name>ForkPoint</name>
+      <uri>https://forkpoint.com/articles/</uri>
+    </author>
+    <category term="agentic-commerce"/>
+    <category term="ai-visibility"/>
+    <category term="ecommerce"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#forkpoint-ecommerce-ai-search</id>
+    <title>Why eCommerce Brands Are Falling in Love with AI Search</title>
+    <link href="https://forkpoint.com/articles/why-ecommerce-brands-are-falling-in-love-with-ai-search/" rel="alternate"/>
+    <published>2026-08-12T00:00:00.000Z</published>
+    <updated>2026-08-12T00:00:00.000Z</updated>
+    <summary>A look at how AI search can reduce lost revenue by understanding shopper intent beyond exact keywords.</summary>
+    <author>
+      <name>ForkPoint</name>
+      <uri>https://forkpoint.com/articles/</uri>
+    </author>
+    <category term="search"/>
+    <category term="ai"/>
+    <category term="ecommerce"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#dc360-ahold-delhaize-pear-commerce</id>
+    <title>Ahold Delhaize USA Adds Pear Commerce to Connect CPG Content to Online Grocery Carts</title>
+    <link href="https://www.digitalcommerce360.com/2026/08/06/ahold-delhaize-usa-adds-pear-commerce-to-connect-cpg-content-to-online-grocery-carts/" rel="alternate"/>
+    <published>2026-08-06T00:00:00.000Z</published>
+    <updated>2026-08-06T00:00:00.000Z</updated>
+    <summary>Ahold Delhaize USA is using Pear Commerce to connect recipes, product pages, and brand content directly to online grocery carts.</summary>
+    <author>
+      <name>Digital Commerce 360</name>
+      <uri>https://www.digitalcommerce360.com/topic/technology/</uri>
+    </author>
+    <category term="ecommerce"/>
+    <category term="retail-tech"/>
+    <category term="grocery"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#salesforce-blog-grow-revenue-hub-ai</id>
+    <title>How To Grow a Revenue Hub With AI Agents</title>
+    <link href="https://www.salesforce.com/blog/small-business/grow-a-revenue-hub-with-ai/" rel="alternate"/>
+    <published>2026-08-05T00:00:00.000Z</published>
+    <updated>2026-08-05T00:00:00.000Z</updated>
+    <summary>A practical look at guided shopping, commerce automation, connected data, and small first steps for AI-powered ecommerce.</summary>
+    <author>
+      <name>Salesforce Commerce Blog</name>
+      <uri>https://www.salesforce.com/blog/category/ecommerce/</uri>
+    </author>
+    <category term="ecommerce"/>
+    <category term="ai"/>
+    <category term="agentic-commerce"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#salesforceben-agentforce-for-architects</id>
+    <title>Introducing Agentforce for Architects: Guidance On Demand</title>
+    <link href="https://www.salesforceben.com/introducing-agentforce-for-architects-guidance-on-demand/" rel="alternate"/>
+    <published>2026-08-05T00:00:00.000Z</published>
+    <updated>2026-08-05T00:00:00.000Z</updated>
+    <summary>A review of Salesforce&apos;s architecture assistant, including guidance on the Commerce Cloud move from x86 to ARM.</summary>
+    <author>
+      <name>Salesforce Ben</name>
+      <uri>https://www.salesforceben.com/category/commerce/</uri>
+    </author>
+    <category term="salesforce"/>
+    <category term="architecture"/>
+    <category term="commerce-cloud"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#rhino-sfcc-price-books</id>
+    <title>How SFCC Price Books Actually Work</title>
+    <link href="https://rhino-inquisitor.com/how-sfcc-price-books-actually-work/" rel="alternate"/>
+    <published>2026-08-05T00:00:00.000Z</published>
+    <updated>2026-08-05T00:00:00.000Z</updated>
+    <summary>A developer-focused explanation of Salesforce B2C Commerce price book behavior and how pricing resolves in real storefronts.</summary>
+    <author>
+      <name>Rhino Inquisitor</name>
+      <uri>https://rhino-inquisitor.com/archive/</uri>
+    </author>
+    <category term="sfcc"/>
+    <category term="pricing"/>
+    <category term="developer-guide"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#salesforce-blog-b2b-commerce-july-26</id>
+    <title>Smarter Merchandising and Platform Extensibility: New Features for B2B Commerce in July</title>
+    <link href="https://www.salesforce.com/blog/b2b-commerce-innovations-july-26/" rel="alternate"/>
+    <published>2026-08-03T00:00:00.000Z</published>
+    <updated>2026-08-03T00:00:00.000Z</updated>
+    <summary>Salesforce reviews July B2B Commerce improvements for merchandising, storefront discovery, and platform extensibility.</summary>
+    <author>
+      <name>Salesforce Commerce Blog</name>
+      <uri>https://www.salesforce.com/blog/category/ecommerce/</uri>
+    </author>
+    <category term="b2b-commerce"/>
+    <category term="merchandising"/>
+    <category term="salesforce"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#salesforce-blog-b2c-commerce-july-26</id>
+    <title>Unlock Intent-Driven Shopping: Inside the July 2026 B2C Commerce Release</title>
+    <link href="https://www.salesforce.com/blog/b2c-commerce-july-26-release/" rel="alternate"/>
+    <published>2026-07-29T00:00:00.000Z</published>
+    <updated>2026-07-29T00:00:00.000Z</updated>
+    <summary>The July B2C Commerce release focuses on intent-aware shopping, storefront search, and tools that help teams respond to natural-language product discovery.</summary>
+    <author>
+      <name>Salesforce Commerce Blog</name>
+      <uri>https://www.salesforce.com/blog/category/ecommerce/</uri>
+    </author>
+    <category term="sfcc"/>
+    <category term="release-notes"/>
+    <category term="search"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#salesforce-news-agentic-search-growth</id>
+    <title>Shopping&apos;s New First Step: Agentic Search Grows 200% as Purchase Journeys Start in AI Chats</title>
+    <link href="https://www.salesforce.com/news/stories/agentic-search-growth/" rel="alternate"/>
+    <published>2026-07-28T00:00:00.000Z</published>
+    <updated>2026-07-28T00:00:00.000Z</updated>
+    <summary>Salesforce reports that agentic search grew 200% year over year as shoppers moved product discovery into AI chats and commerce teams increased AI adoption.</summary>
+    <author>
+      <name>Salesforce News</name>
+      <uri>https://www.salesforce.com/news/topics/commerce/</uri>
+    </author>
+    <category term="commerce"/>
+    <category term="agentic-commerce"/>
+    <category term="research"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#rhino-storefront-next-pwa-kit-migration</id>
+    <title>Storefront Next: Architecture and the PWA Kit Migration</title>
+    <link href="https://rhino-inquisitor.com/storefront-next-architecture-and-migration-from-pwa-kit/" rel="alternate"/>
+    <published>2026-07-27T00:00:00.000Z</published>
+    <updated>2026-07-27T00:00:00.000Z</updated>
+    <summary>An architectural guide to Storefront Next and the migration path from existing PWA Kit storefronts.</summary>
+    <author>
+      <name>Rhino Inquisitor</name>
+      <uri>https://rhino-inquisitor.com/archive/</uri>
+    </author>
+    <category term="sfcc"/>
+    <category term="storefront-next"/>
+    <category term="pwa-kit"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#rhino-b2c-commerce-26-8-release</id>
+    <title>B2C Commerce 26.8: Unification, Anomalies, and Deadlines</title>
+    <link href="https://rhino-inquisitor.com/b2c-commerce-cloud-26-8-release/" rel="alternate"/>
+    <published>2026-07-23T00:00:00.000Z</published>
+    <updated>2026-07-23T00:00:00.000Z</updated>
+    <summary>A detailed review of B2C Commerce 26.8 changes, including unified operations, anomaly detection, and dates that implementation teams must track.</summary>
+    <author>
+      <name>Rhino Inquisitor</name>
+      <uri>https://rhino-inquisitor.com/archive/</uri>
+    </author>
+    <category term="sfcc"/>
+    <category term="release-notes"/>
+    <category term="commerce-cloud"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#agentic-storefront-chatbot-tracking-study</id>
+    <title>17 of 20 AI Chatbots Leak Data to Third Parties. Here&apos;s Why Merchants Should Care</title>
+    <link href="https://agenticstorefront.com/blog/ai-chatbot-tracking-study-what-brands-must-know/" rel="alternate"/>
+    <published>2026-07-23T00:00:00.000Z</published>
+    <updated>2026-07-23T00:00:00.000Z</updated>
+    <summary>A UC Davis study found broad third-party tracking across popular AI chatbots. This article turns the findings into a practical privacy checklist for commerce teams.</summary>
+    <author>
+      <name>Agentic Storefront</name>
+      <uri>https://agenticstorefront.com/categories/agentic-commerce/</uri>
+    </author>
+    <category term="agentic-commerce"/>
+    <category term="privacy"/>
+    <category term="chatbots"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#agentic-storefront-ai-visibility-q4</id>
+    <title>Q4 Is Coming. AI Visibility Is the Most Underpriced Channel in Your Media Plan</title>
+    <link href="https://agenticstorefront.com/blog/ai-visibility-most-underpriced-channel-q4/" rel="alternate"/>
+    <published>2026-07-23T00:00:00.000Z</published>
+    <updated>2026-07-23T00:00:00.000Z</updated>
+    <summary>A case for treating AI visibility as a measurable acquisition channel before paid media costs rise for the holiday season.</summary>
+    <author>
+      <name>Agentic Storefront</name>
+      <uri>https://agenticstorefront.com/categories/agentic-commerce/</uri>
+    </author>
+    <category term="agentic-commerce"/>
+    <category term="geo"/>
+    <category term="marketing"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#dc360-esw-agentic-commerce-microsoft</id>
+    <title>ESW Launches Agentic Commerce Integration, Partnering With Microsoft Copilot</title>
+    <link href="https://www.digitalcommerce360.com/2026/07/22/esw-agentic-commerce-integration-microsoft-copilot/" rel="alternate"/>
+    <published>2026-07-22T00:00:00.000Z</published>
+    <updated>2026-07-22T00:00:00.000Z</updated>
+    <summary>ESW launches agentic commerce infrastructure for AI product discovery, secure checkout, payments, and post-purchase services.</summary>
+    <author>
+      <name>Digital Commerce 360</name>
+      <uri>https://www.digitalcommerce360.com/topic/technology/</uri>
+    </author>
+    <category term="agentic-commerce"/>
+    <category term="ecommerce"/>
+    <category term="microsoft"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#salesforce-blog-agentic-commerce-search</id>
+    <title>Beyond Keywords: How Agentic Commerce Search Understands True Shopper Intent</title>
+    <link href="https://www.salesforce.com/blog/new-agentic-commerce-search-capabilities/" rel="alternate"/>
+    <published>2026-07-21T00:00:00.000Z</published>
+    <updated>2026-07-21T00:00:00.000Z</updated>
+    <summary>Salesforce explains how agentic commerce search moves beyond short keyword queries to interpret shopper intent and improve product discovery.</summary>
+    <author>
+      <name>Salesforce Commerce Blog</name>
+      <uri>https://www.salesforce.com/blog/category/ecommerce/</uri>
+    </author>
+    <category term="search"/>
+    <category term="agentic-commerce"/>
+    <category term="ecommerce"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#agentic-storefront-openai-product-feed</id>
+    <title>OpenAI&apos;s Product Feed: How Your Catalog Gets Into ChatGPT — and What It&apos;s Worth</title>
+    <link href="https://agenticstorefront.com/blog/openai-product-feed-chatgpt-shopping-explained/" rel="alternate"/>
+    <published>2026-07-16T00:00:00.000Z</published>
+    <updated>2026-07-16T00:00:00.000Z</updated>
+    <summary>A field-by-field guide to the product feed behind ChatGPT shopping, Instant Checkout, and sponsored placements.</summary>
+    <author>
+      <name>Agentic Storefront</name>
+      <uri>https://agenticstorefront.com/categories/agentic-commerce/</uri>
+    </author>
+    <category term="agentic-commerce"/>
+    <category term="product-feeds"/>
+    <category term="openai"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#agentic-storefront-we-know-enough</id>
+    <title>&quot;We Know Enough&quot; — The Most Expensive Sentence in AI Visibility</title>
+    <link href="https://agenticstorefront.com/blog/we-know-enough-ai-visibility/" rel="alternate"/>
+    <published>2026-07-15T00:00:00.000Z</published>
+    <updated>2026-07-15T00:00:00.000Z</updated>
+    <summary>An argument for measuring how AI systems describe and recommend a brand instead of relying on assumptions about visibility.</summary>
+    <author>
+      <name>Agentic Storefront</name>
+      <uri>https://agenticstorefront.com/categories/agentic-commerce/</uri>
+    </author>
+    <category term="ai-visibility"/>
+    <category term="geo"/>
+    <category term="strategy"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#agentic-storefront-catch-me-if-you-can</id>
+    <title>The &quot;Catch Me If You Can&quot; Strategy: Why E-Commerce Leaders Don&apos;t Need to Understand Every AI Model</title>
+    <link href="https://agenticstorefront.com/blog/catch-me-if-you-can-agentic-commerce/" rel="alternate"/>
+    <published>2026-07-14T00:00:00.000Z</published>
+    <updated>2026-07-14T00:00:00.000Z</updated>
+    <summary>A strategy note for commerce leaders who need to prepare for AI-driven buying without tracking every model change.</summary>
+    <author>
+      <name>Agentic Storefront</name>
+      <uri>https://agenticstorefront.com/categories/agentic-commerce/</uri>
+    </author>
+    <category term="agentic-commerce"/>
+    <category term="ecommerce"/>
+    <category term="strategy"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#dc360-square-chatgpt-claude</id>
+    <title>Square Launches Agentic Commerce Integrations With ChatGPT and Claude</title>
+    <link href="https://www.digitalcommerce360.com/2026/07/01/square-agentic-commerce-integrations-chatgpt-claude/" rel="alternate"/>
+    <published>2026-07-01T00:00:00.000Z</published>
+    <updated>2026-07-01T00:00:00.000Z</updated>
+    <summary>Square adds integrations that help sellers expose products and commerce actions through ChatGPT and Claude.</summary>
+    <author>
+      <name>Digital Commerce 360</name>
+      <uri>https://www.digitalcommerce360.com/topic/technology/</uri>
+    </author>
+    <category term="agentic-commerce"/>
+    <category term="ecommerce"/>
+    <category term="payments"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#dc360-newegg-conversational-ai</id>
+    <title>Newegg Adds Conversational AI Assistant for Shopping</title>
+    <link href="https://www.digitalcommerce360.com/2026/06/29/newegg-adds-conversational-ai-assistant-for-shopping/" rel="alternate"/>
+    <published>2026-06-29T00:00:00.000Z</published>
+    <updated>2026-06-29T00:00:00.000Z</updated>
+    <summary>Newegg introduces a conversational shopping assistant for product discovery and guided ecommerce decisions.</summary>
+    <author>
+      <name>Digital Commerce 360</name>
+      <uri>https://www.digitalcommerce360.com/topic/technology/</uri>
+    </author>
+    <category term="ecommerce"/>
+    <category term="ai"/>
+    <category term="search"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#salesforce-news-agentforce-commerce-release</id>
+    <title>As AI Agents Transform Commerce, Salesforce Unleashes Its Biggest Agentforce Commerce Release Yet</title>
+    <link href="https://www.salesforce.com/news/stories/agentforce-commerce-announcement/" rel="alternate"/>
+    <published>2026-06-24T00:00:00.000Z</published>
+    <updated>2026-06-24T00:00:00.000Z</updated>
+    <summary>Salesforce details a major Agentforce Commerce release focused on AI-led shopping, unified commerce, and faster storefront work.</summary>
+    <author>
+      <name>Salesforce News</name>
+      <uri>https://www.salesforce.com/news/topics/commerce/</uri>
+    </author>
+    <category term="commerce"/>
+    <category term="agentforce"/>
+    <category term="salesforce"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#dc360-ecommerce-trends-2026</id>
+    <title>10 Ecommerce Trends That Are Defining 2026 for Online Retailers</title>
+    <link href="https://www.digitalcommerce360.com/2026/06/18/ecommerce-trends-shaping-2026/" rel="alternate"/>
+    <published>2026-06-18T00:00:00.000Z</published>
+    <updated>2026-06-18T00:00:00.000Z</updated>
+    <summary>A review of 2026 ecommerce trends across agentic commerce, AI referrals, platform features, omnichannel retail, and resale.</summary>
+    <author>
+      <name>Digital Commerce 360</name>
+      <uri>https://www.digitalcommerce360.com/topic/technology/</uri>
+    </author>
+    <category term="ecommerce"/>
+    <category term="trends"/>
+    <category term="agentic-commerce"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#salesforceben-connections-2026-guide</id>
+    <title>Complete Guide to Salesforce Connections 2026</title>
+    <link href="https://www.salesforceben.com/salesforce-connections/" rel="alternate"/>
+    <published>2026-05-07T00:00:00.000Z</published>
+    <updated>2026-05-07T00:00:00.000Z</updated>
+    <summary>A practical guide to Salesforce Connections 2026 for marketing and Commerce Cloud professionals.</summary>
+    <author>
+      <name>Salesforce Ben</name>
+      <uri>https://www.salesforceben.com/category/commerce/</uri>
+    </author>
+    <category term="salesforce"/>
+    <category term="events"/>
+    <category term="commerce-cloud"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#salesforce-developers-b2c-cli-sandbox-cloning</id>
+    <title>Introducing the B2C Commerce CLI and On-Demand Sandbox Cloning</title>
+    <link href="https://developer.salesforce.com/blogs/2026/04/introducing-the-b2c-commerce-cli-and-on-demand-sandbox-cloning" rel="alternate"/>
+    <published>2026-04-28T15:00:06.000Z</published>
+    <updated>2026-04-28T15:00:06.000Z</updated>
+    <summary>Salesforce introduces a supported B2C CLI, SDK, agent skills, and on-demand sandbox cloning for Commerce Cloud developers and admins.</summary>
+    <author>
+      <name>Salesforce Developers Blog</name>
+      <uri>https://developer.salesforce.com/blogs/feed</uri>
+    </author>
+    <category term="sfcc"/>
+    <category term="developer-tools"/>
+    <category term="cli"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#salesforceben-commerce-marketing-cloud-shrink</id>
+    <title>Salesforce Commerce Cloud and Marketing Cloud Shrink for the First Time in Years</title>
+    <link href="https://www.salesforceben.com/salesforce-commerce-cloud-and-marketing-cloud-shrink-for-the-first-time-in-years/" rel="alternate"/>
+    <published>2026-02-26T00:00:00.000Z</published>
+    <updated>2026-02-26T00:00:00.000Z</updated>
+    <summary>Salesforce Ben examines the first year-over-year decline reported for Agentforce Marketing and Commerce in Salesforce&apos;s Q4 FY26 results.</summary>
+    <author>
+      <name>Salesforce Ben</name>
+      <uri>https://www.salesforceben.com/category/commerce/</uri>
+    </author>
+    <category term="commerce-cloud"/>
+    <category term="salesforce"/>
+    <category term="business"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#salesforceben-salesforce-acquires-cimulate</id>
+    <title>Salesforce Acquires Cimulate in First Acquisition of 2026</title>
+    <link href="https://www.salesforceben.com/salesforce-acquires-cimulate-in-first-major-acquisition-of-2026/" rel="alternate"/>
+    <published>2026-02-11T00:00:00.000Z</published>
+    <updated>2026-02-11T00:00:00.000Z</updated>
+    <summary>Salesforce&apos;s acquisition of Cimulate adds intent-aware product discovery technology to Agentforce Commerce.</summary>
+    <author>
+      <name>Salesforce Ben</name>
+      <uri>https://www.salesforceben.com/category/commerce/</uri>
+    </author>
+    <category term="agentforce"/>
+    <category term="commerce-cloud"/>
+    <category term="acquisitions"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#salesforce-news-google-ucp-support</id>
+    <title>Salesforce Announces Support for Google&apos;s Universal Commerce Protocol</title>
+    <link href="https://www.salesforce.com/news/stories/google-universal-commerce-protocol-support-announcement/" rel="alternate"/>
+    <published>2026-01-14T00:00:00.000Z</published>
+    <updated>2026-01-14T00:00:00.000Z</updated>
+    <summary>Salesforce announces support for Google&apos;s Universal Commerce Protocol for product discovery and checkout inside conversational AI.</summary>
+    <author>
+      <name>Salesforce News</name>
+      <uri>https://www.salesforce.com/news/topics/commerce/</uri>
+    </author>
+    <category term="commerce"/>
+    <category term="ucp"/>
+    <category term="agentic-commerce"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#salesforce-news-holiday-shopping-2025</id>
+    <title>Holiday Season Rakes in Record $1.29T for Retailers, Salesforce Data Shows</title>
+    <link href="https://www.salesforce.com/news/stories/2025-holiday-shopping-data/" rel="alternate"/>
+    <published>2026-01-08T00:00:00.000Z</published>
+    <updated>2026-01-08T00:00:00.000Z</updated>
+    <summary>Salesforce reviews the 2025 holiday season and reports record global online sales shaped by AI-assisted shopping.</summary>
+    <author>
+      <name>Salesforce News</name>
+      <uri>https://www.salesforce.com/news/topics/commerce/</uri>
+    </author>
+    <category term="ecommerce"/>
+    <category term="retail"/>
+    <category term="research"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#salesforce-developers-pwa-kit-mcp-server</id>
+    <title>Build Composable Storefronts Smarter and Faster with the PWA Kit MCP Server</title>
+    <link href="https://developer.salesforce.com/blogs/2025/12/build-composable-storefronts-smarter-and-faster-with-the-pwa-kit-mcp-server" rel="alternate"/>
+    <published>2025-12-23T16:00:41.000Z</published>
+    <updated>2025-12-23T16:00:41.000Z</updated>
+    <summary>A hands-on guide to using the PWA Kit MCP Server to create and customize composable storefronts with an AI coding agent.</summary>
+    <author>
+      <name>Salesforce Developers Blog</name>
+      <uri>https://developer.salesforce.com/blogs/feed</uri>
+    </author>
+    <category term="pwa-kit"/>
+    <category term="mcp"/>
+    <category term="developer-tools"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#salesforce-news-cyber-week-2025</id>
+    <title>Salesforce Data: AI and Agents Propel Cyber Week to Record $336.6B in Global Spend</title>
+    <link href="https://www.salesforce.com/news/press-releases/2025/12/05/cyber-week-ai-agents-sales/" rel="alternate"/>
+    <published>2025-12-05T00:00:00.000Z</published>
+    <updated>2025-12-05T00:00:00.000Z</updated>
+    <summary>Salesforce reports record Cyber Week spending and measures how AI and shopping agents influenced retail demand.</summary>
+    <author>
+      <name>Salesforce News</name>
+      <uri>https://www.salesforce.com/news/topics/commerce/</uri>
+    </author>
+    <category term="ecommerce"/>
+    <category term="retail"/>
+    <category term="ai"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#salesforceben-agentforce-commerce-unveiled</id>
+    <title>Agentforce Commerce Unveiled With Guided Shopping, Agent-Assisted Clienteling, and More</title>
+    <link href="https://www.salesforceben.com/agentforce-commerce-unveiled-with-guided-shopping-agent-assisted-clienteling-and-more/" rel="alternate"/>
+    <published>2025-11-18T00:00:00.000Z</published>
+    <updated>2025-11-18T00:00:00.000Z</updated>
+    <summary>An overview of Agentforce Commerce features for guided shopping, clienteling, catalog syndication, and conversational checkout.</summary>
+    <author>
+      <name>Salesforce Ben</name>
+      <uri>https://www.salesforceben.com/category/commerce/</uri>
+    </author>
+    <category term="agentforce"/>
+    <category term="commerce-cloud"/>
+    <category term="agentic-commerce"/>
+  </entry>
+</feed>

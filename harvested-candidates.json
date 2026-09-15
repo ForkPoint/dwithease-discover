@@ -1,0 +1,165 @@
+{
+  "harvestedAt": "2026-09-15T21:41:50.457Z",
+  "candidates": [
+    {
+      "id": "salesforce-developers-build-custom-salesforce-connect-adapters-smarter-with-salesforce-skills",
+      "type": "article",
+      "title": "Build Custom Salesforce Connect Adapters Smarter with Salesforce Skills",
+      "summary": "Learn how the Salesforce Connect adapter generation skill helps coding agents build a working custom Apex adapter from a plain-language API description. The post Build Custom Salesforce Connect Adapters Smarter with Salesforce Skills appeared first on Salesfor",
+      "url": "https://developer.salesforce.com/blogs/2026/09/build-custom-salesforce-connect-adapters-smarter-with-salesforce-skills",
+      "source": {
+        "name": "Salesforce Developers",
+        "url": "https://developer.salesforce.com/blogs"
+      },
+      "publishedAt": "2026-09-14T17:43:41.000Z",
+      "tags": [
+        "sfcc",
+        "developer-tools",
+        "salesforce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "salesforce-developers-improve-enterprise-rag-accuracy-in-data-360",
+      "type": "article",
+      "title": "Improve Enterprise RAG Accuracy in Data 360",
+      "summary": "Learn how to improve enterprise RAG accuracy in Data 360 with three configuration changes that help AI agents deliver more accurate answers without custom code or model training. The post Improve Enterprise RAG Accuracy in Data 360 appeared first on Salesforce",
+      "url": "https://developer.salesforce.com/blogs/2026/09/improve-enterprise-rag-accuracy-in-data-360",
+      "source": {
+        "name": "Salesforce Developers",
+        "url": "https://developer.salesforce.com/blogs"
+      },
+      "publishedAt": "2026-09-02T17:00:22.000Z",
+      "tags": [
+        "sfcc",
+        "developer-tools",
+        "salesforce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "salesforce-developers-tdx-tokyo-2026-lightning-minihack-live-ai",
+      "type": "article",
+      "title": "【TDX Tokyo 2026】Lightning MiniHack Live ファイナリスト座談会: 初代チャンピオンと挑戦者たちが語る「最速」の舞台裏と AI 時代の実装力",
+      "summary": "&#26412;&#35352;&#20107;&#12391;&#12399;&#12289;TDX Tokyo 2026 &#12391;&#38283;&#20652;&#12373;&#12428;&#12383; Lightning MiniHack Live &#12398;&#12501;&#12449;&#12452;&#12490;&#12522;&#12473;&#12488; &#12398;&#30342;&#12373;&#12435;&#12434;&#12362;&#25307;&#1",
+      "url": "https://developer.salesforce.com/blogs/2026/08/tdx-tokyo-2026-lightning-minihack-live",
+      "source": {
+        "name": "Salesforce Developers",
+        "url": "https://developer.salesforce.com/blogs"
+      },
+      "publishedAt": "2026-08-31T05:55:13.000Z",
+      "tags": [
+        "sfcc",
+        "developer-tools",
+        "salesforce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "salesforce-developers-shift-left-natively-testing-and-quality-gates-in-devops-center",
+      "type": "article",
+      "title": "Shift Left Natively: Testing and Quality Gates in DevOps Center",
+      "summary": "Learn how generally available testing in DevOps Center helps you catch issues earlier and ship with confidence by automating tests and enforcing quality gates before changes reach production. The post Shift Left Natively: Testing and Quality Gates in DevOps Ce",
+      "url": "https://developer.salesforce.com/blogs/2026/08/shift-left-natively-testing-and-quality-gates-in-devops-center",
+      "source": {
+        "name": "Salesforce Developers",
+        "url": "https://developer.salesforce.com/blogs"
+      },
+      "publishedAt": "2026-08-25T15:00:43.000Z",
+      "tags": [
+        "sfcc",
+        "developer-tools",
+        "salesforce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "salesforce-developers-agentforce",
+      "type": "article",
+      "title": "新しいAgentforceメタデータと開発ライフサイクル",
+      "summary": "&#26032;&#12375;&#12356;&#12496;&#12540;&#12472;&#12519;&#12531;&#31649;&#29702;&#20184;&#12365;&#12513;&#12479;&#12487;&#12540;&#12479;&#12514;&#12487;&#12523;&#12392;&#12289;&#20154;&#38291;&#12364;&#35501;&#12415;&#12420;&#12377;&#12356;Agent Script&#12434;",
+      "url": "https://developer.salesforce.com/blogs/2026/08/new-agentforce-metadata-and-development-lifecycle-jp",
+      "source": {
+        "name": "Salesforce Developers",
+        "url": "https://developer.salesforce.com/blogs"
+      },
+      "publishedAt": "2026-08-25T12:03:40.000Z",
+      "tags": [
+        "sfcc",
+        "developer-tools",
+        "salesforce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "salesforce-commerce-blog-the-dreamstore-runs-on-salesforce-how-we-built-a-retail-experience-for-40k-",
+      "type": "article",
+      "title": "The Dreamstore runs on Salesforce: How we built a retail experience for 40K attendees in just two months",
+      "summary": "Product launches. Bold ideas. Breakthroughs. These are some of the most exciting aspects of Dreamforce. But, let’s be honest… The swag deserves a shoutout, too. Enter: The Dreamstore, the official onsite shop at&#8230;",
+      "url": "https://www.salesforce.com/blog/dreamstore-runs-on-salesforce/",
+      "source": {
+        "name": "Salesforce Commerce Blog",
+        "url": "https://www.salesforce.com/blog/category/ecommerce/"
+      },
+      "publishedAt": "2026-09-14T16:14:21.000Z",
+      "tags": [
+        "sfcc",
+        "strategy",
+        "ecommerce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "salesforce-commerce-blog-salesforce-collaborates-with-hp-for-friction-free-global-point-of-sale",
+      "type": "article",
+      "title": "Salesforce collaborates with HP for friction-free, global point of sale",
+      "summary": "Picture a retailer&#8217;s busiest week of the year: Holiday shoppers are lined up and most of the associates working the floor just started their job last week. There was no time for a&#8230;",
+      "url": "https://www.salesforce.com/blog/salesforce-pos-hp/",
+      "source": {
+        "name": "Salesforce Commerce Blog",
+        "url": "https://www.salesforce.com/blog/category/ecommerce/"
+      },
+      "publishedAt": "2026-09-11T15:25:35.000Z",
+      "tags": [
+        "sfcc",
+        "strategy",
+        "ecommerce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "salesforce-commerce-blog-the-price-is-right-tips-on-pricing-your-products-to-match-your-value",
+      "type": "article",
+      "title": "The Price is Right: Tips on Pricing your Products to Match Your Value",
+      "summary": "What’s the right price for your product? Here are some things to consider.",
+      "url": "https://www.salesforce.com/blog/small-business/how-to-price-your-products/",
+      "source": {
+        "name": "Salesforce Commerce Blog",
+        "url": "https://www.salesforce.com/blog/category/ecommerce/"
+      },
+      "publishedAt": "2026-09-07T13:00:00.000Z",
+      "tags": [
+        "sfcc",
+        "strategy",
+        "ecommerce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    }
+  ]
+}

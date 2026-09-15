@@ -275,3 +275,154 @@ test('renders card titles as links and renders topic filters for multi-item edit
     assert.ok(shareBtn);
     assert.equal(shareBtn.getAttribute('aria-label'), 'Copy link to this card');
 });
+
+test('filters articles by search input query and clears search', () => {
+    const root = createRoot();
+    const articles = [
+        {
+            id: 'sfcc-guide',
+            type: 'article',
+            title: 'SFCC Developer Guide',
+            summary: 'A deep dive into Commerce Cloud.',
+            url: 'https://example.com/sfcc-guide',
+            source: { name: 'ForkPoint', url: 'https://forkpoint.com/' },
+            publishedAt: '2026-09-02T00:00:00Z',
+            tags: ['sfcc'],
+            cta: { label: 'Read guide' },
+        },
+        {
+            id: 'pwa-guide',
+            type: 'article',
+            title: 'PWA Kit Architecture',
+            summary: 'Headless storefront overview.',
+            url: 'https://example.com/pwa-guide',
+            source: { name: 'Salesforce', url: 'https://salesforce.com/' },
+            publishedAt: '2026-09-01T00:00:00Z',
+            tags: ['pwa-kit'],
+            cta: { label: 'Explore architecture' },
+        },
+    ];
+
+    renderCatalog(root, { promotions: [], editorial: articles });
+
+    const searchInput = root.querySelector('.feed-search-input');
+    const clearBtn = root.querySelector('.search-clear-btn');
+    assert.ok(searchInput);
+    assert.ok(clearBtn);
+
+    // Search for "headless" (only in pwa-guide summary)
+    searchInput.value = 'headless';
+    searchInput.dispatchEvent(new root.ownerDocument.defaultView.Event('input'));
+
+    assert.equal(root.querySelector('[data-item-id="sfcc-guide"]').hidden, true);
+    assert.equal(root.querySelector('[data-item-id="pwa-guide"]').hidden, false);
+    assert.equal(clearBtn.hidden, false);
+
+    // Clear search
+    clearBtn.click();
+    assert.equal(searchInput.value, '');
+    assert.equal(root.querySelector('[data-item-id="sfcc-guide"]').hidden, false);
+    assert.equal(root.querySelector('[data-item-id="pwa-guide"]').hidden, false);
+    assert.equal(clearBtn.hidden, true);
+});
+
+test('toggles bookmarks, updates Saved pill, and filters saved items', () => {
+    const root = createRoot();
+    const articles = [
+        {
+            id: 'sfcc-guide',
+            type: 'article',
+            title: 'SFCC Developer Guide',
+            summary: 'A deep dive into SFCC.',
+            url: 'https://example.com/sfcc-guide',
+            source: { name: 'Source', url: 'https://example.com/' },
+            publishedAt: '2026-09-02T00:00:00Z',
+            tags: ['sfcc'],
+            cta: { label: 'Read guide' },
+        },
+        {
+            id: 'pwa-guide',
+            type: 'article',
+            title: 'PWA Kit Architecture',
+            summary: 'Headless storefront overview.',
+            url: 'https://example.com/pwa-guide',
+            source: { name: 'Source', url: 'https://example.com/' },
+            publishedAt: '2026-09-01T00:00:00Z',
+            tags: ['pwa-kit'],
+            cta: { label: 'Explore architecture' },
+        },
+    ];
+
+    renderCatalog(root, { promotions: [], editorial: articles });
+
+    const bookmarkBtn = root.querySelector('[data-item-id="sfcc-guide"] .card-bookmark-btn');
+    assert.ok(bookmarkBtn);
+
+    // Click bookmark button to bookmark sfcc-guide
+    bookmarkBtn.click();
+    assert.ok(bookmarkBtn.classList.contains('is-bookmarked'));
+
+    // Verify Saved pill appears
+    const filterBar = root.querySelector('.filter-bar');
+    const savedPill = filterBar.querySelector('[data-filter="saved"]');
+    assert.ok(savedPill);
+    assert.match(savedPill.textContent, /Saved \(1\)/);
+
+    // Filter by Saved
+    savedPill.click();
+    assert.equal(root.querySelector('[data-item-id="sfcc-guide"]').hidden, false);
+    assert.equal(root.querySelector('[data-item-id="pwa-guide"]').hidden, true);
+
+    // Unbookmark
+    bookmarkBtn.click();
+    assert.ok(!bookmarkBtn.classList.contains('is-bookmarked'));
+});
+
+test('toggles view density between Grid and List view', () => {
+    const root = createRoot();
+    const articles = [
+        {
+            id: 'sfcc-guide',
+            type: 'article',
+            title: 'SFCC Developer Guide',
+            summary: 'A deep dive into SFCC.',
+            url: 'https://example.com/sfcc-guide',
+            source: { name: 'Source', url: 'https://example.com/' },
+            publishedAt: '2026-09-02T00:00:00Z',
+            tags: ['sfcc'],
+            cta: { label: 'Read guide' },
+        },
+        {
+            id: 'pwa-guide',
+            type: 'article',
+            title: 'PWA Kit Architecture',
+            summary: 'Headless storefront overview.',
+            url: 'https://example.com/pwa-guide',
+            source: { name: 'Source', url: 'https://example.com/' },
+            publishedAt: '2026-09-01T00:00:00Z',
+            tags: ['pwa-kit'],
+            cta: { label: 'Explore architecture' },
+        },
+    ];
+
+    renderCatalog(root, { promotions: [], editorial: articles });
+
+    const grid = root.querySelector('.card-grid');
+    const listBtn = root.querySelector('.view-toggle-btn[data-view="list"]');
+    const gridBtn = root.querySelector('.view-toggle-btn[data-view="grid"]');
+
+    assert.ok(listBtn);
+    assert.ok(gridBtn);
+    assert.equal(grid.classList.contains('is-list-view'), false);
+
+    // Switch to List view
+    listBtn.click();
+    assert.equal(grid.classList.contains('is-list-view'), true);
+    assert.equal(listBtn.classList.contains('is-active'), true);
+    assert.equal(gridBtn.classList.contains('is-active'), false);
+
+    // Switch back to Grid view
+    gridBtn.click();
+    assert.equal(grid.classList.contains('is-list-view'), false);
+    assert.equal(gridBtn.classList.contains('is-active'), true);
+});

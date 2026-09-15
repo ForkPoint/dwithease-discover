@@ -36,6 +36,7 @@ jobs:
         run: |
           npm run write:schema
           npm run write:openapi
+          npm run write:syndication
 
       - name: Test feed and page code
         run: npm test
@@ -52,7 +53,7 @@ jobs:
       - name: Prepare static site
         run: |
           mkdir _site
-          cp index.html schema.html openapi.json feed.schema.json sources.json CNAME .nojekyll feed-live.json feed-dev.json _site/
+          cp index.html schema.html openapi.json feed.schema.json sources.json CNAME .nojekyll feed-live.json feed-dev.json rss.xml atom.xml _site/
           cp -R assets _site/assets
 
       - name: Upload GitHub Pages artifact
