@@ -1,6 +1,6 @@
 {
   "locale": "en",
-  "updatedAt": "2026-09-14T12:00:00.000Z",
+  "updatedAt": "2026-09-16T17:36:48.572Z",
   "items": [
     {
       "id": "promotion-agentic-storefront-audit",
@@ -120,6 +120,86 @@
           "task-end",
           "popup"
         ]
+      }
+    },
+    {
+      "id": "salesforce-developers-build-custom-salesforce-connect-adapters-smarter-with-salesforce-skills",
+      "type": "article",
+      "title": "Build Custom Salesforce Connect Adapters Smarter with Salesforce Skills",
+      "summary": "Learn how the Salesforce Connect adapter generation skill helps coding agents build a working custom Apex adapter from a plain-language API description. The post Build Custom Salesforce Connect Adapters Smarter with Salesforce Skills appeared first on Salesfor",
+      "url": "https://developer.salesforce.com/blogs/2026/09/build-custom-salesforce-connect-adapters-smarter-with-salesforce-skills",
+      "source": {
+        "name": "Salesforce Developers Blog",
+        "url": "https://developer.salesforce.com/blogs/feed"
+      },
+      "publishedAt": "2026-09-14T17:43:41.000Z",
+      "tags": [
+        "sfcc",
+        "developer-tools",
+        "salesforce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "salesforce-commerce-blog-the-dreamstore-runs-on-salesforce-how-we-built-a-retail-experience-for-40k",
+      "type": "article",
+      "title": "The Dreamstore runs on Salesforce: How we built a retail experience for 40K attendees in just two months",
+      "summary": "Product launches. Bold ideas. Breakthroughs. These are some of the most exciting aspects of Dreamforce. But, let’s be honest… The swag deserves a shoutout, too. Enter: The Dreamstore, the official onsite shop at…",
+      "url": "https://www.salesforce.com/blog/dreamstore-runs-on-salesforce/",
+      "source": {
+        "name": "Salesforce Commerce Blog",
+        "url": "https://www.salesforce.com/blog/category/ecommerce/"
+      },
+      "publishedAt": "2026-09-14T16:14:21.000Z",
+      "tags": [
+        "sfcc",
+        "strategy",
+        "ecommerce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "salesforce-commerce-blog-salesforce-collaborates-with-hp-for-friction-free-global-point-of-sale",
+      "type": "article",
+      "title": "Salesforce collaborates with HP for friction-free, global point of sale",
+      "summary": "Picture a retailer’s busiest week of the year: Holiday shoppers are lined up and most of the associates working the floor just started their job last week. There was no time for a…",
+      "url": "https://www.salesforce.com/blog/salesforce-pos-hp/",
+      "source": {
+        "name": "Salesforce Commerce Blog",
+        "url": "https://www.salesforce.com/blog/category/ecommerce/"
+      },
+      "publishedAt": "2026-09-11T15:25:35.000Z",
+      "tags": [
+        "sfcc",
+        "strategy",
+        "ecommerce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "salesforce-developers-improve-enterprise-rag-accuracy-in-data-360",
+      "type": "article",
+      "title": "Improve Enterprise RAG Accuracy in Data 360",
+      "summary": "Learn how to improve enterprise RAG accuracy in Data 360 with three configuration changes that help AI agents deliver more accurate answers without custom code or model training. The post Improve Enterprise RAG Accuracy in Data 360 appeared first on Salesforce",
+      "url": "https://developer.salesforce.com/blogs/2026/09/improve-enterprise-rag-accuracy-in-data-360",
+      "source": {
+        "name": "Salesforce Developers Blog",
+        "url": "https://developer.salesforce.com/blogs/feed"
+      },
+      "publishedAt": "2026-09-02T17:00:22.000Z",
+      "tags": [
+        "sfcc",
+        "developer-tools",
+        "salesforce"
+      ],
+      "cta": {
+        "label": "Read update"
       }
     },
     {

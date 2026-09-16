@@ -134,11 +134,13 @@ export function buildSourceRegistry(raw, registryUrl, pageUrl = registryUrl) {
 
     const sources = new Map();
     for (const source of raw.sources) {
-        if (!exactObject(source, ['name', 'url', 'icon'])
+        if (!exactObject(source, ['name', 'url', 'icon'], ['iconDark'])
             || !requiredText(source.name, 80)
             || !isHttpsUrl(source.url)
             || typeof source.icon !== 'string'
             || !SOURCE_ICON_PATTERN.test(source.icon)
+            || (source.iconDark !== undefined
+                && (typeof source.iconDark !== 'string' || !SOURCE_ICON_PATTERN.test(source.iconDark)))
             || sources.has(source.url)) {
             throw new TypeError('Invalid source registry entry');
         }
@@ -147,7 +149,21 @@ export function buildSourceRegistry(raw, registryUrl, pageUrl = registryUrl) {
         if (icon.origin !== pageAddress.origin) {
             throw new TypeError('Source icon must use the page origin');
         }
-        sources.set(source.url, { ...source, icon: icon.href });
+
+        let iconDarkHref;
+        if (source.iconDark) {
+            const iconDark = new URL(source.iconDark, registryAddress);
+            if (iconDark.origin !== pageAddress.origin) {
+                throw new TypeError('Source icon must use the page origin');
+            }
+            iconDarkHref = iconDark.href;
+        }
+
+        sources.set(source.url, {
+            ...source,
+            icon: icon.href,
+            ...(iconDarkHref ? { iconDark: iconDarkHref } : {}),
+        });
     }
 
     return sources;

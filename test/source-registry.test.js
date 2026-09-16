@@ -31,6 +31,10 @@ test('covers each feed source with a local checked-in icon', async () => {
         assert.equal(source.name, feedSources.get(source.url));
         assert.equal(registry.get(source.url).icon, new URL(source.icon, REGISTRY_URL).href);
         await access(source.icon);
+        if (source.iconDark) {
+            assert.equal(registry.get(source.url).iconDark, new URL(source.iconDark, REGISTRY_URL).href);
+            await access(source.iconDark);
+        }
     }
 
     await access('assets/sources/source-fallback.svg');
@@ -42,12 +46,17 @@ test('resolves safe icon paths from the registry response URL', () => {
             name: 'Example',
             url: 'https://example.com/news/',
             icon: 'assets/sources/example.svg',
+            iconDark: 'assets/sources/example-dark.svg',
         }],
     }, 'https://discover.example/catalog/sources.json', 'https://discover.example/');
 
     assert.equal(
         registry.get('https://example.com/news/').icon,
         'https://discover.example/catalog/assets/sources/example.svg',
+    );
+    assert.equal(
+        registry.get('https://example.com/news/').iconDark,
+        'https://discover.example/catalog/assets/sources/example-dark.svg',
     );
 });
 
@@ -67,6 +76,9 @@ test('rejects unsafe source registries', () => {
     ]) {
         assert.throws(() => buildSourceRegistry({
             sources: [{ ...source, icon }],
+        }, REGISTRY_URL, PAGE_URL), /Invalid source registry entry/);
+        assert.throws(() => buildSourceRegistry({
+            sources: [{ ...source, iconDark: icon }],
         }, REGISTRY_URL, PAGE_URL), /Invalid source registry entry/);
     }
 

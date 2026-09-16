@@ -14,3 +14,15 @@ test('grants the scheduled Salesforce harvest write access', async () => {
         'pull-requests': 'write',
     });
 });
+
+test('grants the scheduled RSS sources harvest write access', async () => {
+    const workflow = parse(await readFile('.github/workflows/harvest-rss-sources.yml', 'utf8'));
+
+    assert.deepEqual(workflow.on.schedule, [{ cron: '37 6 * * *' }]);
+    assert.ok(Object.hasOwn(workflow.on, 'workflow_dispatch'));
+    assert.deepEqual(workflow.permissions, {
+        contents: 'write',
+        'pull-requests': 'write',
+    });
+});
+

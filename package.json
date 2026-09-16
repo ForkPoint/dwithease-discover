@@ -10,6 +10,9 @@
     "validate:sources": "node scripts/validate-sources.js",
     "harvest:salesforce-ideas": "node scripts/harvest-salesforce-ideas.js",
     "harvest:rss-sources": "node scripts/harvest-rss-sources.js",
+    "curate": "node scripts/curate.js",
+    "promote:feed": "node scripts/promote-feed.js",
+    "check": "npm run typecheck && npm test && npm run validate:feed -- feed-live.json feed-dev.json && npm run validate:sources",
     "write:schema": "node scripts/write-json-schema.ts",
     "write:openapi": "node scripts/write-openapi.ts",
     "write:syndication": "node scripts/write-syndication.ts"

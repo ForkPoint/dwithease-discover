@@ -25,17 +25,38 @@
     <meta name="twitter:description" content="Useful tools, technical deep-dives, and commerce updates from DWithEase and ForkPoint.">
     <meta name="twitter:image" content="https://discover.dwithease.com/assets/discover-fallback.png">
 
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="apple-touch-icon" href="assets/dwithease-logo.svg">
     <link rel="icon" href="assets/dwithease-logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="assets/discover.css">
+    <script>
+        try {
+            const savedTheme = localStorage.getItem('dwithease_discover_theme');
+            if (savedTheme === 'dark' || savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            }
+        } catch { /* storage restricted */ }
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').catch(() => {});
+            });
+        }
+    </script>
     <script type="module" src="assets/discover-page.js"></script>
 </head>
 <body>
     <div class="page-shell">
         <header class="site-header">
             <a class="brand-link" href="https://dwithease.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit DWithEase">
-                <img src="assets/dwithease-logo.svg" alt="DWithEase" class="brand-logo">
+                <picture class="brand-logo-frame">
+                    <source srcset="assets/dwithease-logo-on-dark.svg" media="(prefers-color-scheme: dark)">
+                    <img src="assets/dwithease-logo.svg" alt="DWithEase" class="brand-logo">
+                </picture>
             </a>
-            <a class="site-link" href="https://dwithease.com/" target="_blank" rel="noopener noreferrer">Visit DWithEase</a>
+            <div class="site-header-actions">
+                <div id="theme-switcher-mount" class="theme-switcher-mount"></div>
+                <a class="site-link" href="https://dwithease.com/" target="_blank" rel="noopener noreferrer">Visit DWithEase</a>
+            </div>
         </header>
 
         <main>
@@ -53,6 +74,9 @@
                     <a class="feed-badge-pill secondary" href="schema.html" title="Feed Reference &amp; API">
                         Feed Reference &amp; API
                     </a>
+                    <button type="button" class="feed-badge-pill secondary subscribe-modal-trigger" id="subscribe-feed-btn" title="Subscribe in your feed reader">
+                        📡 Reader Apps
+                    </button>
                 </div>
             </header>
 
@@ -71,6 +95,7 @@
                 <a href="rss.xml" target="_blank" rel="noopener noreferrer">RSS feed</a>
                 <a href="atom.xml" target="_blank" rel="noopener noreferrer">Atom feed</a>
                 <a href="schema.html">Feed reference</a>
+                <button type="button" class="shortcuts-footer-btn" id="shortcuts-btn" title="Keyboard shortcuts (Press ?)">Shortcuts (?)</button>
                 <a href="https://dwithease.com/" target="_blank" rel="noopener noreferrer">dwithease.com</a>
             </nav>
         </footer>

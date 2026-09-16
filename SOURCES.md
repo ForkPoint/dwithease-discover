@@ -2,7 +2,7 @@
 
 This file records the inputs for `feed-dev.json`.
 
-`sources.json` maps each canonical source URL to a checked-in icon under `assets/sources/`. The page uses the local fallback icon when a feed source has no exact URL match.
+`sources.json` maps each canonical source URL to checked-in icons under `assets/sources/` (`icon` and optional `iconDark`). When `iconDark` is provided, the feed alternates between variants based on the theme. When only one icon is configured, the feed renders it with a high-contrast tile on dark surfaces. The page uses the local fallback icon when a feed source has no exact URL match.
 
 ## Curation rules
 

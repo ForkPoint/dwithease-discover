@@ -1,6 +1,6 @@
 {
   "locale": "en",
-  "updatedAt": "2026-09-01T12:50:31.306Z",
+  "updatedAt": "2026-09-16T17:26:35.638Z",
   "items": [
     {
       "id": "promotion-agentic-storefront-audit",
@@ -13,7 +13,11 @@
         "url": "https://audit.agenticstorefront.com/"
       },
       "publishedAt": "2026-09-01T00:00:00Z",
-      "tags": ["agentic-commerce", "audit", "ecommerce"],
+      "tags": [
+        "agentic-commerce",
+        "audit",
+        "ecommerce"
+      ],
       "cta": {
         "label": "Run free audit"
       },
@@ -21,7 +25,11 @@
         "id": "agentic-storefront-audit-2026",
         "startsAt": "2026-09-01T00:00:00Z",
         "endsAt": "2027-09-01T00:00:00Z",
-        "placements": ["discover", "task-end", "popup"]
+        "placements": [
+          "discover",
+          "task-end",
+          "popup"
+        ]
       }
     },
     {
@@ -35,7 +43,11 @@
         "url": "https://catalogspark.com/"
       },
       "publishedAt": "2026-09-01T00:00:00Z",
-      "tags": ["product-data", "ai", "ecommerce"],
+      "tags": [
+        "product-data",
+        "ai",
+        "ecommerce"
+      ],
       "cta": {
         "label": "Explore CatalogSpark"
       },
@@ -43,7 +55,11 @@
         "id": "catalogspark-2026",
         "startsAt": "2026-09-01T00:00:00Z",
         "endsAt": "2027-09-01T00:00:00Z",
-        "placements": ["discover", "task-end", "popup"]
+        "placements": [
+          "discover",
+          "task-end",
+          "popup"
+        ]
       }
     },
     {
@@ -57,7 +73,11 @@
         "url": "https://retailpace.com/"
       },
       "publishedAt": "2026-09-01T00:00:00Z",
-      "tags": ["monitoring", "sfcc", "ecommerce"],
+      "tags": [
+        "monitoring",
+        "sfcc",
+        "ecommerce"
+      ],
       "cta": {
         "label": "Explore RetailPace"
       },
@@ -65,7 +85,11 @@
         "id": "retailpace-2026",
         "startsAt": "2026-09-01T00:00:00Z",
         "endsAt": "2027-09-01T00:00:00Z",
-        "placements": ["discover", "task-end", "popup"]
+        "placements": [
+          "discover",
+          "task-end",
+          "popup"
+        ]
       }
     },
     {
@@ -79,7 +103,11 @@
         "url": "https://intentfusion.com/"
       },
       "publishedAt": "2026-09-01T00:00:00Z",
-      "tags": ["search", "ai", "ecommerce"],
+      "tags": [
+        "search",
+        "ai",
+        "ecommerce"
+      ],
       "cta": {
         "label": "Explore IntentFusion"
       },
@@ -87,7 +115,91 @@
         "id": "intentfusion-2026",
         "startsAt": "2026-09-01T00:00:00Z",
         "endsAt": "2027-09-01T00:00:00Z",
-        "placements": ["discover", "task-end", "popup"]
+        "placements": [
+          "discover",
+          "task-end",
+          "popup"
+        ]
+      }
+    },
+    {
+      "id": "salesforce-developers-build-custom-salesforce-connect-adapters-smarter-with-salesforce-skills",
+      "type": "article",
+      "title": "Build Custom Salesforce Connect Adapters Smarter with Salesforce Skills",
+      "summary": "Learn how the Salesforce Connect adapter generation skill helps coding agents build a working custom Apex adapter from a plain-language API description. The post Build Custom Salesforce Connect Adapters Smarter with Salesforce Skills appeared first on Salesfor",
+      "url": "https://developer.salesforce.com/blogs/2026/09/build-custom-salesforce-connect-adapters-smarter-with-salesforce-skills",
+      "source": {
+        "name": "Salesforce Developers Blog",
+        "url": "https://developer.salesforce.com/blogs/feed"
+      },
+      "publishedAt": "2026-09-14T17:43:41.000Z",
+      "tags": [
+        "sfcc",
+        "developer-tools",
+        "salesforce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "salesforce-commerce-blog-the-dreamstore-runs-on-salesforce-how-we-built-a-retail-experience-for-40k",
+      "type": "article",
+      "title": "The Dreamstore runs on Salesforce: How we built a retail experience for 40K attendees in just two months",
+      "summary": "Product launches. Bold ideas. Breakthroughs. These are some of the most exciting aspects of Dreamforce. But, let’s be honest… The swag deserves a shoutout, too. Enter: The Dreamstore, the official onsite shop at…",
+      "url": "https://www.salesforce.com/blog/dreamstore-runs-on-salesforce/",
+      "source": {
+        "name": "Salesforce Commerce Blog",
+        "url": "https://www.salesforce.com/blog/category/ecommerce/"
+      },
+      "publishedAt": "2026-09-14T16:14:21.000Z",
+      "tags": [
+        "sfcc",
+        "strategy",
+        "ecommerce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "salesforce-commerce-blog-salesforce-collaborates-with-hp-for-friction-free-global-point-of-sale",
+      "type": "article",
+      "title": "Salesforce collaborates with HP for friction-free, global point of sale",
+      "summary": "Picture a retailer’s busiest week of the year: Holiday shoppers are lined up and most of the associates working the floor just started their job last week. There was no time for a…",
+      "url": "https://www.salesforce.com/blog/salesforce-pos-hp/",
+      "source": {
+        "name": "Salesforce Commerce Blog",
+        "url": "https://www.salesforce.com/blog/category/ecommerce/"
+      },
+      "publishedAt": "2026-09-11T15:25:35.000Z",
+      "tags": [
+        "sfcc",
+        "strategy",
+        "ecommerce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "salesforce-developers-improve-enterprise-rag-accuracy-in-data-360",
+      "type": "article",
+      "title": "Improve Enterprise RAG Accuracy in Data 360",
+      "summary": "Learn how to improve enterprise RAG accuracy in Data 360 with three configuration changes that help AI agents deliver more accurate answers without custom code or model training. The post Improve Enterprise RAG Accuracy in Data 360 appeared first on Salesforce",
+      "url": "https://developer.salesforce.com/blogs/2026/09/improve-enterprise-rag-accuracy-in-data-360",
+      "source": {
+        "name": "Salesforce Developers Blog",
+        "url": "https://developer.salesforce.com/blogs/feed"
+      },
+      "publishedAt": "2026-09-02T17:00:22.000Z",
+      "tags": [
+        "sfcc",
+        "developer-tools",
+        "salesforce"
+      ],
+      "cta": {
+        "label": "Read update"
       }
     },
     {
@@ -101,7 +213,11 @@
         "url": "https://github.com/SalesforceCommerceCloud/pwa-kit/releases.atom"
       },
       "publishedAt": "2026-09-01T08:08:59Z",
-      "tags": ["pwa-kit", "release", "nightly"],
+      "tags": [
+        "pwa-kit",
+        "release",
+        "nightly"
+      ],
       "cta": {
         "label": "View release"
       }
@@ -117,7 +233,11 @@
         "url": "https://www.salesforce.com/blog/category/ecommerce/"
       },
       "publishedAt": "2026-08-26T00:00:00Z",
-      "tags": ["sfcc", "release-notes", "business-manager"],
+      "tags": [
+        "sfcc",
+        "release-notes",
+        "business-manager"
+      ],
       "cta": {
         "label": "See what's new"
       }
@@ -133,7 +253,11 @@
         "url": "https://rhino-inquisitor.com/archive/"
       },
       "publishedAt": "2026-08-20T00:00:00Z",
-      "tags": ["sfcc", "release-notes", "slas"],
+      "tags": [
+        "sfcc",
+        "release-notes",
+        "slas"
+      ],
       "cta": {
         "label": "Read 26.9 breakdown"
       }
@@ -149,7 +273,11 @@
         "url": "https://rhino-inquisitor.com/archive/"
       },
       "publishedAt": "2026-08-12T00:00:00Z",
-      "tags": ["sfcc", "github", "developer-tools"],
+      "tags": [
+        "sfcc",
+        "github",
+        "developer-tools"
+      ],
       "cta": {
         "label": "Get repo access guide"
       }
@@ -165,7 +293,11 @@
         "url": "https://forkpoint.com/articles/"
       },
       "publishedAt": "2026-08-12T00:00:00Z",
-      "tags": ["sfcc", "ecommerce", "strategy"],
+      "tags": [
+        "sfcc",
+        "ecommerce",
+        "strategy"
+      ],
       "cta": {
         "label": "Explore 7 reasons"
       }
@@ -181,7 +313,11 @@
         "url": "https://forkpoint.com/articles/"
       },
       "publishedAt": "2026-08-12T00:00:00Z",
-      "tags": ["ecommerce", "ai", "retail"],
+      "tags": [
+        "ecommerce",
+        "ai",
+        "retail"
+      ],
       "cta": {
         "label": "Explore AI insights"
       }
@@ -197,7 +333,11 @@
         "url": "https://forkpoint.com/articles/"
       },
       "publishedAt": "2026-08-12T00:00:00Z",
-      "tags": ["ai", "development", "engineering"],
+      "tags": [
+        "ai",
+        "development",
+        "engineering"
+      ],
       "cta": {
         "label": "Read developer guide"
       }
@@ -213,7 +353,11 @@
         "url": "https://forkpoint.com/articles/"
       },
       "publishedAt": "2026-08-12T00:00:00Z",
-      "tags": ["agentic-commerce", "ai-visibility", "ecommerce"],
+      "tags": [
+        "agentic-commerce",
+        "ai-visibility",
+        "ecommerce"
+      ],
       "cta": {
         "label": "Explore 2026 trends"
       }
@@ -229,7 +373,11 @@
         "url": "https://forkpoint.com/articles/"
       },
       "publishedAt": "2026-08-12T00:00:00Z",
-      "tags": ["search", "ai", "ecommerce"],
+      "tags": [
+        "search",
+        "ai",
+        "ecommerce"
+      ],
       "cta": {
         "label": "Discover AI search"
       }
@@ -245,7 +393,11 @@
         "url": "https://www.digitalcommerce360.com/topic/technology/"
       },
       "publishedAt": "2026-08-06T00:00:00Z",
-      "tags": ["ecommerce", "retail-tech", "grocery"],
+      "tags": [
+        "ecommerce",
+        "retail-tech",
+        "grocery"
+      ],
       "cta": {
         "label": "Read announcement"
       }
@@ -261,7 +413,11 @@
         "url": "https://www.salesforce.com/blog/category/ecommerce/"
       },
       "publishedAt": "2026-08-05T00:00:00Z",
-      "tags": ["ecommerce", "ai", "agentic-commerce"],
+      "tags": [
+        "ecommerce",
+        "ai",
+        "agentic-commerce"
+      ],
       "cta": {
         "label": "Explore AI agents"
       }
@@ -277,7 +433,11 @@
         "url": "https://www.salesforceben.com/category/commerce/"
       },
       "publishedAt": "2026-08-05T00:00:00Z",
-      "tags": ["salesforce", "architecture", "commerce-cloud"],
+      "tags": [
+        "salesforce",
+        "architecture",
+        "commerce-cloud"
+      ],
       "cta": {
         "label": "Explore Agentforce"
       }
@@ -293,7 +453,11 @@
         "url": "https://rhino-inquisitor.com/archive/"
       },
       "publishedAt": "2026-08-05T00:00:00Z",
-      "tags": ["sfcc", "pricing", "developer-guide"],
+      "tags": [
+        "sfcc",
+        "pricing",
+        "developer-guide"
+      ],
       "cta": {
         "label": "Learn Price Books"
       }
@@ -309,7 +473,11 @@
         "url": "https://www.salesforce.com/blog/category/ecommerce/"
       },
       "publishedAt": "2026-08-03T00:00:00Z",
-      "tags": ["b2b-commerce", "merchandising", "salesforce"],
+      "tags": [
+        "b2b-commerce",
+        "merchandising",
+        "salesforce"
+      ],
       "cta": {
         "label": "See B2B features"
       }
@@ -325,7 +493,11 @@
         "url": "https://www.salesforce.com/blog/category/ecommerce/"
       },
       "publishedAt": "2026-07-29T00:00:00Z",
-      "tags": ["sfcc", "release-notes", "search"],
+      "tags": [
+        "sfcc",
+        "release-notes",
+        "search"
+      ],
       "cta": {
         "label": "Inside July release"
       }
@@ -341,7 +513,11 @@
         "url": "https://www.salesforce.com/news/topics/commerce/"
       },
       "publishedAt": "2026-07-28T00:00:00Z",
-      "tags": ["commerce", "agentic-commerce", "research"],
+      "tags": [
+        "commerce",
+        "agentic-commerce",
+        "research"
+      ],
       "cta": {
         "label": "Read trend report"
       }
@@ -357,7 +533,11 @@
         "url": "https://rhino-inquisitor.com/archive/"
       },
       "publishedAt": "2026-07-27T00:00:00Z",
-      "tags": ["sfcc", "storefront-next", "pwa-kit"],
+      "tags": [
+        "sfcc",
+        "storefront-next",
+        "pwa-kit"
+      ],
       "cta": {
         "label": "Read migration guide"
       }
@@ -373,7 +553,11 @@
         "url": "https://rhino-inquisitor.com/archive/"
       },
       "publishedAt": "2026-07-23T00:00:00Z",
-      "tags": ["sfcc", "release-notes", "commerce-cloud"],
+      "tags": [
+        "sfcc",
+        "release-notes",
+        "commerce-cloud"
+      ],
       "cta": {
         "label": "Read 26.8 review"
       }
@@ -389,7 +573,11 @@
         "url": "https://agenticstorefront.com/categories/agentic-commerce/"
       },
       "publishedAt": "2026-07-23T00:00:00Z",
-      "tags": ["agentic-commerce", "privacy", "chatbots"],
+      "tags": [
+        "agentic-commerce",
+        "privacy",
+        "chatbots"
+      ],
       "cta": {
         "label": "Read privacy study"
       }
@@ -405,7 +593,11 @@
         "url": "https://agenticstorefront.com/categories/agentic-commerce/"
       },
       "publishedAt": "2026-07-23T00:00:00Z",
-      "tags": ["agentic-commerce", "geo", "marketing"],
+      "tags": [
+        "agentic-commerce",
+        "geo",
+        "marketing"
+      ],
       "cta": {
         "label": "Read Q4 playbook"
       }
@@ -421,7 +613,11 @@
         "url": "https://www.digitalcommerce360.com/topic/technology/"
       },
       "publishedAt": "2026-07-22T00:00:00Z",
-      "tags": ["agentic-commerce", "ecommerce", "microsoft"],
+      "tags": [
+        "agentic-commerce",
+        "ecommerce",
+        "microsoft"
+      ],
       "cta": {
         "label": "Read partnership news"
       }
@@ -437,7 +633,11 @@
         "url": "https://www.salesforce.com/blog/category/ecommerce/"
       },
       "publishedAt": "2026-07-21T00:00:00Z",
-      "tags": ["search", "agentic-commerce", "ecommerce"],
+      "tags": [
+        "search",
+        "agentic-commerce",
+        "ecommerce"
+      ],
       "cta": {
         "label": "Explore intent search"
       }
@@ -453,7 +653,11 @@
         "url": "https://agenticstorefront.com/categories/agentic-commerce/"
       },
       "publishedAt": "2026-07-16T00:00:00Z",
-      "tags": ["agentic-commerce", "product-feeds", "openai"],
+      "tags": [
+        "agentic-commerce",
+        "product-feeds",
+        "openai"
+      ],
       "cta": {
         "label": "Read feed strategy"
       }
@@ -469,7 +673,11 @@
         "url": "https://agenticstorefront.com/categories/agentic-commerce/"
       },
       "publishedAt": "2026-07-15T00:00:00Z",
-      "tags": ["ai-visibility", "geo", "strategy"],
+      "tags": [
+        "ai-visibility",
+        "geo",
+        "strategy"
+      ],
       "cta": {
         "label": "Read perspective"
       }
@@ -485,7 +693,11 @@
         "url": "https://agenticstorefront.com/categories/agentic-commerce/"
       },
       "publishedAt": "2026-07-14T00:00:00Z",
-      "tags": ["agentic-commerce", "ecommerce", "strategy"],
+      "tags": [
+        "agentic-commerce",
+        "ecommerce",
+        "strategy"
+      ],
       "cta": {
         "label": "Read strategy guide"
       }
@@ -501,7 +713,11 @@
         "url": "https://www.digitalcommerce360.com/topic/technology/"
       },
       "publishedAt": "2026-07-01T00:00:00Z",
-      "tags": ["agentic-commerce", "ecommerce", "payments"],
+      "tags": [
+        "agentic-commerce",
+        "ecommerce",
+        "payments"
+      ],
       "cta": {
         "label": "Read integration news"
       }
@@ -517,7 +733,11 @@
         "url": "https://www.digitalcommerce360.com/topic/technology/"
       },
       "publishedAt": "2026-06-29T00:00:00Z",
-      "tags": ["ecommerce", "ai", "search"],
+      "tags": [
+        "ecommerce",
+        "ai",
+        "search"
+      ],
       "cta": {
         "label": "Read news update"
       }
@@ -533,7 +753,11 @@
         "url": "https://www.salesforce.com/news/topics/commerce/"
       },
       "publishedAt": "2026-06-24T00:00:00Z",
-      "tags": ["commerce", "agentforce", "salesforce"],
+      "tags": [
+        "commerce",
+        "agentforce",
+        "salesforce"
+      ],
       "cta": {
         "label": "See Agentforce release"
       }
@@ -549,7 +773,11 @@
         "url": "https://www.digitalcommerce360.com/topic/technology/"
       },
       "publishedAt": "2026-06-18T00:00:00Z",
-      "tags": ["ecommerce", "trends", "agentic-commerce"],
+      "tags": [
+        "ecommerce",
+        "trends",
+        "agentic-commerce"
+      ],
       "cta": {
         "label": "Explore 2026 trends"
       }
@@ -565,7 +793,11 @@
         "url": "https://www.salesforceben.com/category/commerce/"
       },
       "publishedAt": "2026-05-07T00:00:00Z",
-      "tags": ["salesforce", "events", "commerce-cloud"],
+      "tags": [
+        "salesforce",
+        "events",
+        "commerce-cloud"
+      ],
       "cta": {
         "label": "Read Connections guide"
       }
@@ -581,7 +813,11 @@
         "url": "https://developer.salesforce.com/blogs/feed"
       },
       "publishedAt": "2026-04-28T15:00:06.000Z",
-      "tags": ["sfcc", "developer-tools", "cli"],
+      "tags": [
+        "sfcc",
+        "developer-tools",
+        "cli"
+      ],
       "cta": {
         "label": "Explore CLI & cloning"
       }
@@ -597,7 +833,11 @@
         "url": "https://www.salesforceben.com/category/commerce/"
       },
       "publishedAt": "2026-02-26T00:00:00Z",
-      "tags": ["commerce-cloud", "salesforce", "business"],
+      "tags": [
+        "commerce-cloud",
+        "salesforce",
+        "business"
+      ],
       "cta": {
         "label": "Read market analysis"
       }
@@ -613,7 +853,11 @@
         "url": "https://www.salesforceben.com/category/commerce/"
       },
       "publishedAt": "2026-02-11T00:00:00Z",
-      "tags": ["agentforce", "commerce-cloud", "acquisitions"],
+      "tags": [
+        "agentforce",
+        "commerce-cloud",
+        "acquisitions"
+      ],
       "cta": {
         "label": "Read acquisition news"
       }
@@ -629,7 +873,11 @@
         "url": "https://www.salesforce.com/news/topics/commerce/"
       },
       "publishedAt": "2026-01-14T00:00:00Z",
-      "tags": ["commerce", "ucp", "agentic-commerce"],
+      "tags": [
+        "commerce",
+        "ucp",
+        "agentic-commerce"
+      ],
       "cta": {
         "label": "Explore protocol news"
       }
@@ -645,7 +893,11 @@
         "url": "https://www.salesforce.com/news/topics/commerce/"
       },
       "publishedAt": "2026-01-08T00:00:00Z",
-      "tags": ["ecommerce", "retail", "research"],
+      "tags": [
+        "ecommerce",
+        "retail",
+        "research"
+      ],
       "cta": {
         "label": "See holiday benchmarks"
       }
@@ -661,7 +913,11 @@
         "url": "https://developer.salesforce.com/blogs/feed"
       },
       "publishedAt": "2025-12-23T16:00:41.000Z",
-      "tags": ["pwa-kit", "mcp", "developer-tools"],
+      "tags": [
+        "pwa-kit",
+        "mcp",
+        "developer-tools"
+      ],
       "cta": {
         "label": "Read MCP server guide"
       }
@@ -677,7 +933,11 @@
         "url": "https://www.salesforce.com/news/topics/commerce/"
       },
       "publishedAt": "2025-12-05T00:00:00Z",
-      "tags": ["ecommerce", "retail", "ai"],
+      "tags": [
+        "ecommerce",
+        "retail",
+        "ai"
+      ],
       "cta": {
         "label": "See Cyber Week data"
       }
@@ -693,7 +953,11 @@
         "url": "https://www.salesforceben.com/category/commerce/"
       },
       "publishedAt": "2025-11-18T00:00:00Z",
-      "tags": ["agentforce", "commerce-cloud", "agentic-commerce"],
+      "tags": [
+        "agentforce",
+        "commerce-cloud",
+        "agentic-commerce"
+      ],
       "cta": {
         "label": "Explore Agentforce"
       }

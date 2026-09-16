@@ -35,6 +35,9 @@ try {
             throw new TypeError(`Missing source registry entry for ${source.url}`);
         }
         await access(resolve(dirname(registryPath), source.icon));
+        if (source.iconDark) {
+            await access(resolve(dirname(registryPath), source.iconDark));
+        }
     }
 
     console.log(`${basename(registryPath)}: valid`);

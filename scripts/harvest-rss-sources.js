@@ -147,16 +147,16 @@ export function mergeCandidates(existingCandidates = [], newEntries = [], knownU
 
 const RSS_SOURCES = [
     {
-        name: 'PWA Kit',
-        url: 'https://github.com/SalesforceCommerceCloud/pwa-kit',
+        name: 'PWA Kit Releases',
+        url: 'https://github.com/SalesforceCommerceCloud/pwa-kit/releases.atom',
         feedUrl: 'https://github.com/SalesforceCommerceCloud/pwa-kit/releases.atom',
         type: 'atom',
         tags: ['pwa-kit', 'release-notes', 'sfcc'],
         filter: (entry) => !entry.url.includes('nightly') && !entry.title.toLowerCase().includes('nightly'),
     },
     {
-        name: 'Salesforce Developers',
-        url: 'https://developer.salesforce.com/blogs',
+        name: 'Salesforce Developers Blog',
+        url: 'https://developer.salesforce.com/blogs/feed',
         feedUrl: 'https://developer.salesforce.com/blogs/feed',
         type: 'rss',
         tags: ['sfcc', 'developer-tools', 'salesforce'],

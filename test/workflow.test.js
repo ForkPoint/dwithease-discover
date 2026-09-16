@@ -41,7 +41,7 @@ test('validates pull requests and deploys only main pushes', async () => {
         'npm run validate:feed -- feed-live.json feed-dev.json',
         'npm run validate:sources',
         'mkdir _site',
-        'cp index.html schema.html openapi.json feed.schema.json sources.json CNAME .nojekyll feed-live.json feed-dev.json rss.xml atom.xml _site/',
+        'cp index.html schema.html openapi.json feed.schema.json sources.json CNAME .nojekyll feed-live.json feed-dev.json rss.xml atom.xml manifest.webmanifest sw.js _site/',
         'cp -R assets _site/assets',
     ]);
 

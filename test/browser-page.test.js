@@ -180,15 +180,25 @@ async function openDiscoverPage(context) {
     return page;
 }
 
-test('computes the light theme under a dark system preference', async (context) => {
+test('computes the dark theme under a dark system preference and toggles to light', async (context) => {
     const page = await openDiscoverPage(context);
-    const computed = await page.evaluate(() => ({
+    const darkComputed = await page.evaluate(() => ({
         colorScheme: getComputedStyle(document.documentElement).colorScheme,
         background: getComputedStyle(document.body).backgroundColor,
     }));
 
-    assert.equal(computed.colorScheme, 'light');
-    assert.ok(relativeLuminance(computed.background) >= 0.9);
+    assert.equal(darkComputed.colorScheme, 'dark');
+    assert.ok(relativeLuminance(darkComputed.background) <= 0.2);
+
+    await page.locator('.theme-btn[data-theme-option="light"]').click();
+    await page.waitForFunction(() => getComputedStyle(document.body).backgroundColor !== 'rgb(9, 13, 20)');
+    const lightComputed = await page.evaluate(() => ({
+        colorScheme: getComputedStyle(document.documentElement).colorScheme,
+        background: getComputedStyle(document.body).backgroundColor,
+    }));
+
+    assert.equal(lightComputed.colorScheme, 'light');
+    assert.ok(relativeLuminance(lightComputed.background) >= 0.9);
 });
 
 test('renders same-origin source icons at 28 by 28 pixels', async (context) => {
@@ -209,6 +219,79 @@ test('renders same-origin source icons at 28 by 28 pixels', async (context) => {
         assert.equal(new URL(icon.source).origin, new URL(siteUrl).origin);
         assert.match(icon.source, /\/assets\/sources\/github\.svg$/);
     }
+});
+
+test('alternates dual icons and provides high-contrast tiles for single icons under dark preference', async (context) => {
+    const browserContext = await browser.newContext({
+        colorScheme: 'dark',
+        viewport: { width: 320, height: 900 },
+    });
+    context.after(() => browserContext.close());
+    const page = await browserContext.newPage();
+    const testFeed = {
+        locale: 'en',
+        updatedAt: '2026-09-01T00:00:00Z',
+        items: [
+            {
+                ...TEST_FEED.items[0],
+                source: { name: 'Dual Source', url: 'https://dual.example/' },
+            },
+            {
+                ...TEST_FEED.items[1],
+                source: { name: 'Single Source', url: 'https://single.example/' },
+            },
+        ],
+    };
+    await page.route('**/feed-live.json', (route) => route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify(testFeed),
+    }));
+    await page.route('**/sources.json', (route) => route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+            sources: [
+                {
+                    name: 'Dual Source',
+                    url: 'https://dual.example/',
+                    icon: 'assets/sources/github.svg',
+                    iconDark: 'assets/sources/github-dark.svg',
+                },
+                {
+                    name: 'Single Source',
+                    url: 'https://single.example/',
+                    icon: 'assets/sources/retailpace.ico',
+                },
+            ],
+        }),
+    }));
+    await page.goto(siteUrl, { waitUntil: 'networkidle' });
+    await page.locator('[data-item-id="long-promotion"]').waitFor();
+    await page.waitForFunction(() => document.querySelector('.source-icon[data-has-dual-icon="true"]'));
+
+    const brandLogoSrc = await page.locator('.brand-logo').evaluate((el) => el.currentSrc);
+    assert.match(brandLogoSrc, /dwithease-logo-on-dark\.svg$/);
+
+    const dualIcon = page.locator(`[data-item-id="${testFeed.items[0].id}"] .source-icon`);
+    const dualMetrics = await dualIcon.evaluate((el) => ({
+        source: el.currentSrc,
+        hasDual: el.dataset.hasDualIcon,
+        background: getComputedStyle(el).backgroundColor,
+    }));
+    assert.match(dualMetrics.source, /github-dark\.svg$/);
+    assert.equal(dualMetrics.hasDual, 'true');
+    assert.equal(dualMetrics.background, 'rgba(0, 0, 0, 0)');
+
+    const singleIcon = page.locator(`[data-item-id="${testFeed.items[1].id}"] .source-icon`);
+    const singleMetrics = await singleIcon.evaluate((el) => ({
+        source: el.currentSrc,
+        hasDual: el.dataset.hasDualIcon,
+        background: getComputedStyle(el).backgroundColor,
+    }));
+    assert.match(singleMetrics.source, /retailpace\.ico$/);
+    assert.equal(singleMetrics.hasDual, undefined);
+    assert.equal(singleMetrics.background, 'rgb(255, 255, 255)');
 });
 
 test('renders feed text before a delayed source registry', async (context) => {
@@ -354,4 +437,62 @@ test('wraps all accepted feed text without overflow or clamping', async (context
         assert.ok(card.horizontal <= 1);
         assert.ok(card.vertical <= 1);
     }
+});
+
+test('displays toast notifications and toggles keyboard shortcuts modal in the browser', async (context) => {
+    const page = await openDiscoverPage(context);
+
+    // Press '?' to open shortcuts modal
+    await page.keyboard.press('?');
+    const modal = page.locator('#shortcuts-modal');
+    await modal.waitFor({ state: 'visible', timeout: 2000 });
+    assert.equal(await modal.getAttribute('role'), 'dialog');
+
+    // Press Escape to close modal
+    await page.keyboard.press('Escape');
+    await page.waitForFunction(() => {
+        const m = document.getElementById('shortcuts-modal');
+        return !m || m.hasAttribute('hidden');
+    });
+
+    // Click shortcuts button in footer to open modal
+    const footerBtn = page.locator('#shortcuts-btn');
+    await footerBtn.click();
+    await modal.waitFor({ state: 'visible', timeout: 2000 });
+
+    // Close via close button
+    await page.locator('.modal-close-btn').click();
+    await page.waitForFunction(() => {
+        const m = document.getElementById('shortcuts-modal');
+        return !m || m.hasAttribute('hidden');
+    });
+
+    // Click bookmark button on a card and check toast notification
+    const bookmarkBtn = page.locator('.card-bookmark-btn').first();
+    await bookmarkBtn.click();
+    const toast = page.locator('.toast');
+    await toast.waitFor({ state: 'visible', timeout: 2000 });
+    assert.match(await toast.textContent(), /Article saved to bookmarks/);
+
+    // Verify toast contrast in dark mode
+    const toastColors = await toast.evaluate((el) => ({
+        color: getComputedStyle(el).color,
+        background: getComputedStyle(el).backgroundColor,
+    }));
+    assert.ok(contrastRatio(toastColors.color, toastColors.background) >= 4.5);
+
+    // Click Reader Apps button to open subscribe modal
+    const subscribeBtn = page.locator('#subscribe-feed-btn');
+    await subscribeBtn.click();
+    const subModal = page.locator('#subscribe-modal');
+    await subModal.waitFor({ state: 'visible', timeout: 2000 });
+    assert.equal(await subModal.getAttribute('role'), 'dialog');
+    assert.match(await subModal.textContent(), /Live JSON Feed/);
+
+    // Close subscribe modal
+    await subModal.locator('.modal-close-btn').click();
+    await page.waitForFunction(() => {
+        const m = document.getElementById('subscribe-modal');
+        return !m || m.hasAttribute('hidden');
+    });
 });
