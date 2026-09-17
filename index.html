@@ -9,7 +9,8 @@
     <link rel="alternate" type="application/json" title="DWithEase Discover Live Feed" href="feed-live.json">
     <link rel="alternate" type="application/rss+xml" title="DWithEase Discover RSS Feed" href="rss.xml">
     <link rel="alternate" type="application/atom+xml" title="DWithEase Discover Atom Feed" href="atom.xml">
-    <meta name="theme-color" content="#f6f9fc">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f9fc">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#090d14">
 
     <!-- OpenGraph / Social Sharing -->
     <meta property="og:type" content="website">
@@ -34,6 +35,8 @@
             const savedTheme = localStorage.getItem('dwithease_discover_theme');
             if (savedTheme === 'dark' || savedTheme === 'light') {
                 document.documentElement.setAttribute('data-theme', savedTheme);
+                const metas = document.querySelectorAll('meta[name="theme-color"]');
+                metas.forEach((m) => m.setAttribute('content', savedTheme === 'dark' ? '#090d14' : '#f6f9fc'));
             }
         } catch { /* storage restricted */ }
         if ('serviceWorker' in navigator) {

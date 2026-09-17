@@ -210,6 +210,13 @@ export function applyTheme(theme, doc = typeof document !== 'undefined' ? docume
             img.src = logoSrc;
         }
     }
+
+    const themeColorMetas = doc.querySelectorAll('meta[name="theme-color"]');
+    if (themeColorMetas.length) {
+        const isDark = theme === 'dark' || (theme !== 'light' && typeof window !== 'undefined' && window.matchMedia?.('(prefers-color-scheme: dark)').matches);
+        const targetColor = isDark ? '#090d14' : '#f6f9fc';
+        themeColorMetas.forEach((meta) => meta.setAttribute('content', targetColor));
+    }
 }
 
 export function estimateReadingTime(title, summary) {
@@ -979,14 +986,29 @@ export function setupKeyboardNavigation(document, { searchInput, clearBtn, apply
     const handler = (e) => {
         const modal = document.getElementById('shortcuts-modal');
         const isModalOpen = modal && !modal.hasAttribute('hidden');
+        const subscribeModal = document.getElementById('subscribe-modal');
+        const isSubscribeOpen = subscribeModal && !subscribeModal.hasAttribute('hidden');
 
         const activeSearch = searchInput || document.querySelector('.feed-search-input');
         const activeClear = clearBtn || document.querySelector('.search-clear-btn');
 
         if (e.key === 'Escape') {
+            if (isSubscribeOpen) {
+                e.preventDefault();
+                subscribeModal.setAttribute('hidden', '');
+                return;
+            }
             if (isModalOpen) {
                 e.preventDefault();
                 modal.setAttribute('hidden', '');
+                return;
+            }
+            const exportDropdown = document.querySelector('.export-dropdown:not([hidden])');
+            if (exportDropdown) {
+                e.preventDefault();
+                exportDropdown.hidden = true;
+                const exportBtn = exportDropdown.parentElement?.querySelector('.export-action-btn');
+                if (exportBtn) exportBtn.setAttribute('aria-expanded', 'false');
                 return;
             }
             if (activeSearch && document.activeElement === activeSearch) {

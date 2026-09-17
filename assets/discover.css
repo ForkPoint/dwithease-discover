@@ -485,6 +485,11 @@ h1 {
     box-shadow: 0 0 0 2px var(--accent-tint);
 }
 
+.source-filter-select option {
+    background: var(--paper);
+    color: var(--ink);
+}
+
 .export-menu-wrapper {
     position: relative;
     display: inline-flex;
