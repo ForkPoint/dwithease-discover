@@ -189,6 +189,8 @@ test('computes the dark theme under a dark system preference and toggles to ligh
 
     assert.equal(darkComputed.colorScheme, 'dark');
     assert.ok(relativeLuminance(darkComputed.background) <= 0.2);
+    const darkLogo = await page.locator('.brand-logo').evaluate((el) => el.currentSrc || el.src);
+    assert.match(darkLogo, /dwithease-logo-on-dark\.svg$/);
 
     await page.locator('.theme-btn[data-theme-option="light"]').click();
     await page.waitForFunction(() => getComputedStyle(document.body).backgroundColor !== 'rgb(9, 13, 20)');
@@ -199,6 +201,8 @@ test('computes the dark theme under a dark system preference and toggles to ligh
 
     assert.equal(lightComputed.colorScheme, 'light');
     assert.ok(relativeLuminance(lightComputed.background) >= 0.9);
+    const lightLogo = await page.locator('.brand-logo').evaluate((el) => el.currentSrc || el.src);
+    assert.match(lightLogo, /dwithease-logo\.svg$/);
 });
 
 test('renders same-origin source icons at 28 by 28 pixels', async (context) => {

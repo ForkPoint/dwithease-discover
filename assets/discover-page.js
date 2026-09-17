@@ -187,6 +187,26 @@ export function applyTheme(theme, doc = typeof document !== 'undefined' ? docume
     } else {
         root.removeAttribute('data-theme');
     }
+
+    const brandLogoFrame = doc.querySelector('.brand-logo-frame');
+    if (brandLogoFrame) {
+        const source = brandLogoFrame.querySelector('source');
+        const img = brandLogoFrame.querySelector('img');
+        const isDark = theme === 'dark' || (theme !== 'light' && typeof window !== 'undefined' && window.matchMedia?.('(prefers-color-scheme: dark)').matches);
+        const logoSrc = isDark ? 'assets/dwithease-logo-on-dark.svg' : 'assets/dwithease-logo.svg';
+        if (source) {
+            if (theme === 'dark' || theme === 'light') {
+                source.removeAttribute('media');
+                source.srcset = logoSrc;
+            } else {
+                source.setAttribute('media', '(prefers-color-scheme: dark)');
+                source.srcset = 'assets/dwithease-logo-on-dark.svg';
+            }
+        }
+        if (img) {
+            img.src = logoSrc;
+        }
+    }
 }
 
 export function estimateReadingTime(title, summary) {

@@ -299,6 +299,7 @@ h1 {
     font-weight: 600;
     line-height: 1.3;
     text-decoration: none;
+    cursor: pointer;
     box-shadow: 0 1px 4px rgba(17, 161, 224, 0.08);
     backdrop-filter: blur(8px);
     transition: all 160ms ease;
@@ -550,7 +551,7 @@ h1 {
 .export-dropdown-item:hover,
 .export-dropdown-item:focus-visible {
     background: var(--accent-tint);
-    color: var(--accent);
+    color: var(--accent-deep);
     outline: none;
 }
 
@@ -697,7 +698,7 @@ h1 {
 }
 
 .feed-card.is-read:hover .card-title-link {
-    color: var(--accent-hover);
+    color: var(--accent-deep);
 }
 
 .promotion-card {
@@ -712,7 +713,7 @@ h1 {
 }
 
 .eyebrow-featured {
-    color: var(--accent);
+    color: var(--accent-deep);
     letter-spacing: 0.1em;
 }
 
@@ -869,7 +870,7 @@ h1 {
 
 .card-title-link:hover,
 .feed-card:hover .card-title-link {
-    color: var(--accent-hover);
+    color: var(--accent-deep);
 }
 
 .card-copy {
@@ -936,6 +937,32 @@ h1 {
     border-color: #d97706;
     color: #b45309;
     background: rgba(245, 158, 11, 0.20);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .card-bookmark-btn.is-bookmarked {
+        border-color: rgba(245, 158, 11, 0.45);
+        color: #fbbf24;
+        background: rgba(245, 158, 11, 0.16);
+    }
+
+    :root:not([data-theme="light"]) .card-bookmark-btn.is-bookmarked:hover {
+        border-color: #f59e0b;
+        color: #fde68a;
+        background: rgba(245, 158, 11, 0.26);
+    }
+}
+
+:root[data-theme="dark"] .card-bookmark-btn.is-bookmarked {
+    border-color: rgba(245, 158, 11, 0.45);
+    color: #fbbf24;
+    background: rgba(245, 158, 11, 0.16);
+}
+
+:root[data-theme="dark"] .card-bookmark-btn.is-bookmarked:hover {
+    border-color: #f59e0b;
+    color: #fde68a;
+    background: rgba(245, 158, 11, 0.26);
 }
 
 .card-grid.is-list-view {
@@ -1020,7 +1047,7 @@ h1 {
 
 .text-link:hover {
     background: var(--accent-tint);
-    color: var(--accent-hover);
+    color: var(--accent-deep);
 }
 
 .text-link:hover::after {
@@ -1046,7 +1073,7 @@ h1 {
     place-items: center;
     border-radius: 14px;
     color: #fff;
-    background: linear-gradient(145deg, var(--accent-deep), var(--accent));
+    background: linear-gradient(145deg, #0879aa, #076d99);
     font-family: "Mulish", sans-serif;
     font-size: 1.25rem;
     font-weight: 800;
@@ -1205,7 +1232,7 @@ h1 {
 }
 
 .shortcuts-footer-btn:hover {
-    color: var(--accent-hover);
+    color: var(--ink);
     text-decoration: underline;
 }
 
