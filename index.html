@@ -53,6 +53,29 @@
                     <img src="assets/dwithease-logo.svg" alt="DWithEase" class="brand-logo">
                 </picture>
             </a>
+            <script>
+                (function() {
+                    try {
+                        const savedTheme = localStorage.getItem('dwithease_discover_theme');
+                        const frame = document.querySelector('.brand-logo-frame');
+                        const source = frame ? frame.querySelector('source') : null;
+                        const img = frame ? frame.querySelector('img') : null;
+                        if (savedTheme === 'light') {
+                            if (source) {
+                                source.setAttribute('media', 'not all');
+                                source.srcset = 'assets/dwithease-logo.svg';
+                            }
+                            if (img) img.src = 'assets/dwithease-logo.svg';
+                        } else if (savedTheme === 'dark') {
+                            if (source) {
+                                source.setAttribute('media', 'all');
+                                source.srcset = 'assets/dwithease-logo-on-dark.svg';
+                            }
+                            if (img) img.src = 'assets/dwithease-logo-on-dark.svg';
+                        }
+                    } catch { /* storage restricted */ }
+                })();
+            </script>
             <div class="site-header-actions">
                 <div id="theme-switcher-mount" class="theme-switcher-mount"></div>
                 <a class="site-link" href="https://dwithease.com/" target="_blank" rel="noopener noreferrer">Visit DWithEase</a>

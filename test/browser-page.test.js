@@ -203,6 +203,10 @@ test('computes the dark theme under a dark system preference and toggles to ligh
     assert.ok(relativeLuminance(lightComputed.background) >= 0.9);
     const lightLogo = await page.locator('.brand-logo').evaluate((el) => el.currentSrc || el.src);
     assert.match(lightLogo, /dwithease-logo\.svg$/);
+
+    await page.reload({ waitUntil: 'networkidle' });
+    const reloadedLightLogo = await page.locator('.brand-logo').evaluate((el) => el.currentSrc || el.src);
+    assert.match(reloadedLightLogo, /dwithease-logo\.svg$/);
 });
 
 test('renders same-origin source icons at 28 by 28 pixels', async (context) => {

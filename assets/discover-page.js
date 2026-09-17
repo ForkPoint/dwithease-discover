@@ -195,9 +195,12 @@ export function applyTheme(theme, doc = typeof document !== 'undefined' ? docume
         const isDark = theme === 'dark' || (theme !== 'light' && typeof window !== 'undefined' && window.matchMedia?.('(prefers-color-scheme: dark)').matches);
         const logoSrc = isDark ? 'assets/dwithease-logo-on-dark.svg' : 'assets/dwithease-logo.svg';
         if (source) {
-            if (theme === 'dark' || theme === 'light') {
-                source.removeAttribute('media');
-                source.srcset = logoSrc;
+            if (theme === 'dark') {
+                source.setAttribute('media', 'all');
+                source.srcset = 'assets/dwithease-logo-on-dark.svg';
+            } else if (theme === 'light') {
+                source.setAttribute('media', 'not all');
+                source.srcset = 'assets/dwithease-logo.svg';
             } else {
                 source.setAttribute('media', '(prefers-color-scheme: dark)');
                 source.srcset = 'assets/dwithease-logo-on-dark.svg';
@@ -1592,4 +1595,18 @@ if (typeof document !== 'undefined') {
     }
     const root = document.getElementById('discover-content');
     if (root) startDiscoverPage({ root, search: window.location.search });
+
+    if (typeof window !== 'undefined' && window.matchMedia) {
+        const colorSchemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        const handleSchemeChange = () => {
+            if (getThemePreference() === 'system') {
+                applyTheme('system', document);
+            }
+        };
+        if (typeof colorSchemeQuery.addEventListener === 'function') {
+            colorSchemeQuery.addEventListener('change', handleSchemeChange);
+        } else if (typeof colorSchemeQuery.addListener === 'function') {
+            colorSchemeQuery.addListener(handleSchemeChange);
+        }
+    }
 }
