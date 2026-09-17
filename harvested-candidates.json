@@ -1,6 +1,66 @@
 {
-  "harvestedAt": "2026-09-16T17:26:35.639Z",
+  "harvestedAt": "2026-09-17T11:59:31.385Z",
   "candidates": [
+    {
+      "id": "salesforce-developers-blog-ai",
+      "type": "article",
+      "title": "AIエージェント用の意思決定スコアリングスキルを作成する",
+      "summary": "発見、リスクスコアリング、そしてステークホルダーに提示できる意思決定記録を網羅した、構造化された意思決定パイプラインのためのエージェントスキルの構築方法について学びましょう。 The post AIエージェント用の意思決定スコアリングスキルを作成する appeared first on Salesforce Developers Blog .",
+      "url": "https://developer.salesforce.com/blogs/2026/09/build-a-decision-scoring-skill-for-any-agent-jp",
+      "source": {
+        "name": "Salesforce Developers Blog",
+        "url": "https://developer.salesforce.com/blogs/feed"
+      },
+      "publishedAt": "2026-09-16T11:53:02.000Z",
+      "tags": [
+        "sfcc",
+        "developer-tools",
+        "salesforce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "salesforce-developers-blog-hosted-mcp-server-salesforce-slack",
+      "type": "article",
+      "title": "Hosted MCP Serverを使ってSalesforceにSlackを接続する",
+      "summary": "Headless 360 が、Salesforce Hosted MCP サーバーを Slackbot に統合し、チームが CRM データへのアクセス、フローの実行、Tableau へのクエリ実行を、単一の安全な対話型インターフェースから行えるようになる仕組みをご紹介します。 The post Hosted MCP Serverを使ってSalesforceにSlackを接続する appeared first on Salesforce Developers Blog .",
+      "url": "https://developer.salesforce.com/blogs/2026/09/connect-slack-to-salesforce-with-hosted-mcp-servers-jp",
+      "source": {
+        "name": "Salesforce Developers Blog",
+        "url": "https://developer.salesforce.com/blogs/feed"
+      },
+      "publishedAt": "2026-09-16T09:06:40.000Z",
+      "tags": [
+        "sfcc",
+        "developer-tools",
+        "salesforce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "salesforce-developers-blog-agentforce-vibes",
+      "type": "article",
+      "title": "開発の意図に応じてツールを自動で選択 – Agentforce Vibesの新機能「アビリティ」",
+      "summary": "Agentforce Vibes に搭載されたインテリジェントなコンテキスト起動システム「Abilities」を活用して、各リクエストに最も関連性の高いSalesforce DX MCP Serverツールを特定します。 The post 開発の意図に応じてツールを自動で選択 – Agentforce Vibesの新機能「アビリティ」 appeared first on Salesforce Developers Blog .",
+      "url": "https://developer.salesforce.com/blogs/2026/09/intent-driven-tool-selection-using-abilities-in-agentforce-vibes-jp",
+      "source": {
+        "name": "Salesforce Developers Blog",
+        "url": "https://developer.salesforce.com/blogs/feed"
+      },
+      "publishedAt": "2026-09-16T07:51:17.000Z",
+      "tags": [
+        "sfcc",
+        "developer-tools",
+        "salesforce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
     {
       "id": "salesforce-developers-tdx-tokyo-2026-lightning-minihack-live-ai",
       "type": "article",
