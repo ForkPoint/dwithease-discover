@@ -496,3 +496,87 @@ test('displays toast notifications and toggles keyboard shortcuts modal in the b
         return !m || m.hasAttribute('hidden');
     });
 });
+
+test('renders filter pills, view toggles, and search input with high contrast under dark theme', async (context) => {
+    const browserContext = await browser.newContext({
+        colorScheme: 'dark',
+        reducedMotion: 'reduce',
+        viewport: { width: 400, height: 900 },
+    });
+    context.after(() => browserContext.close());
+    const page = await browserContext.newPage();
+    await page.route('**/feed-live.json', (route) => route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+            locale: 'en',
+            updatedAt: '2026-09-01T00:00:00Z',
+            items: [
+                {
+                    ...COMMON_ITEM,
+                    id: 'art-1',
+                    type: 'article',
+                    url: 'https://example.com/art-1',
+                    tags: ['sfcc'],
+                },
+                {
+                    ...COMMON_ITEM,
+                    id: 'art-2',
+                    type: 'article',
+                    url: 'https://example.com/art-2',
+                    tags: ['pwa-kit'],
+                },
+            ],
+        }),
+    }));
+    await page.route('**/sources.json', (route) => route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({ sources: [] }),
+    }));
+    await page.goto(siteUrl, { waitUntil: 'networkidle' });
+    await page.locator('.filter-bar').waitFor();
+
+    // Inactive filter pill
+    const inactivePill = page.locator('.filter-pill:not(.is-active)').first();
+    const inactivePillColors = await inactivePill.evaluate((el) => ({
+        color: getComputedStyle(el).color,
+        background: getComputedStyle(el).backgroundColor,
+    }));
+    assert.ok(contrastRatio(inactivePillColors.color, inactivePillColors.background) >= 4.5);
+    assert.ok(relativeLuminance(inactivePillColors.background) <= 0.2);
+
+    // Active filter pill
+    const activePill = page.locator('.filter-pill.is-active');
+    const activePillColors = await activePill.evaluate((el) => ({
+        color: getComputedStyle(el).color,
+        background: getComputedStyle(el).backgroundColor,
+    }));
+    assert.ok(contrastRatio(activePillColors.color, activePillColors.background) >= 4.5);
+
+    // View toggle buttons
+    const activeToggle = page.locator('.view-toggle-btn.is-active');
+    const activeToggleColors = await activeToggle.evaluate((el) => ({
+        color: getComputedStyle(el).color,
+        background: getComputedStyle(el).backgroundColor,
+    }));
+    assert.ok(contrastRatio(activeToggleColors.color, activeToggleColors.background) >= 4.5);
+
+    const inactiveToggle = page.locator('.view-toggle-btn:not(.is-active)').first();
+    const toggleContainer = page.locator('.view-toggle');
+    const inactiveToggleColors = await inactiveToggle.evaluate((el) => ({
+        color: getComputedStyle(el).color,
+    }));
+    const toggleContainerBg = await toggleContainer.evaluate((el) => getComputedStyle(el).backgroundColor);
+    assert.ok(contrastRatio(inactiveToggleColors.color, toggleContainerBg) >= 4.5);
+
+    // Search input
+    const searchInput = page.locator('.feed-search-input');
+    const searchColors = await searchInput.evaluate((el) => ({
+        color: getComputedStyle(el).color,
+        background: getComputedStyle(el).backgroundColor,
+    }));
+    assert.ok(contrastRatio(searchColors.color, searchColors.background) >= 4.5);
+    assert.ok(relativeLuminance(searchColors.background) <= 0.2);
+});
+
