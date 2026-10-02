@@ -13,12 +13,12 @@
     {
       "name": "CatalogSpark",
       "url": "https://catalogspark.com/",
-      "icon": "assets/sources/catalogspark.ico"
+      "icon": "assets/sources/catalogspark.svg"
     },
     {
       "name": "Salesforce Developers Blog",
       "url": "https://developer.salesforce.com/blogs/feed",
-      "icon": "assets/sources/salesforce.ico"
+      "icon": "assets/sources/salesforce.svg"
     },
     {
       "name": "ForkPoint",
@@ -40,7 +40,7 @@
     {
       "name": "RetailPace",
       "url": "https://retailpace.com/",
-      "icon": "assets/sources/retailpace.ico"
+      "icon": "assets/sources/retailpace.svg"
     },
     {
       "name": "Rhino Inquisitor",
@@ -50,22 +50,22 @@
     {
       "name": "Digital Commerce 360",
       "url": "https://www.digitalcommerce360.com/topic/technology/",
-      "icon": "assets/sources/digital-commerce-360.ico"
+      "icon": "assets/sources/digital-commerce-360.svg"
     },
     {
       "name": "Salesforce Commerce Blog",
       "url": "https://www.salesforce.com/blog/category/ecommerce/",
-      "icon": "assets/sources/salesforce.ico"
+      "icon": "assets/sources/salesforce.svg"
     },
     {
       "name": "Salesforce News",
       "url": "https://www.salesforce.com/news/topics/commerce/",
-      "icon": "assets/sources/salesforce.ico"
+      "icon": "assets/sources/salesforce.svg"
     },
     {
       "name": "Salesforce Ben",
       "url": "https://www.salesforceben.com/category/commerce/",
-      "icon": "assets/sources/salesforce-ben.png"
+      "icon": "assets/sources/salesforce-ben.svg"
     }
   ]
 }

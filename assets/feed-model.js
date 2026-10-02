@@ -31,7 +31,7 @@ const RFC3986_HTTPS_PATTERN = new RegExp(`^https://${RFC3986_AUTHORITY}`
     + `(?:/(?:${RFC3986_PATH_CHARACTER}|${RFC3986_PERCENT_ENCODED})*)*`
     + `(?:\\?(?:${RFC3986_QUERY_CHARACTER}|${RFC3986_PERCENT_ENCODED})*)?`
     + `(?:#(?:${RFC3986_QUERY_CHARACTER}|${RFC3986_PERCENT_ENCODED})*)?${STRICT_END}`);
-const SOURCE_ICON_PATTERN = /^assets\/sources\/[a-z0-9]+(?:-[a-z0-9]+)*\.(?:ico|png|svg|webp)$/;
+const SOURCE_ICON_PATTERN = /^assets\/sources\/[a-z0-9]+(?:-[a-z0-9]+)*\.svg$/;
 
 function exactObject(value, requiredKeys, optionalKeys = []) {
     if (!value || typeof value !== 'object' || Array.isArray(value)) return false;

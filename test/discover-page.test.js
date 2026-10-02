@@ -160,7 +160,7 @@ test('loads only the selected feed', async () => {
                     sources: [{
                         name: 'CatalogSpark',
                         url: 'https://catalogspark.com/',
-                        icon: 'assets/sources/catalogspark.ico',
+                        icon: 'assets/sources/catalogspark.svg',
                     }],
                 }),
             };
@@ -188,7 +188,7 @@ test('loads only the selected feed', async () => {
     assert.ok(root.querySelector('[data-item-id="catalogspark-2026"]'));
     assert.equal(
         root.querySelector('[data-item-id="catalogspark-2026"] .source-icon').getAttribute('src'),
-        'https://discover.example/assets/sources/catalogspark.ico',
+        'https://discover.example/assets/sources/catalogspark.svg',
     );
     assert.equal(
         root.querySelector('[data-item-id="catalogspark-2026"] .source-icon').dataset.hasDualIcon,

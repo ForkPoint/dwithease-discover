@@ -34,8 +34,14 @@ try {
         if (feedSources.get(source.url) !== source.name) {
             throw new TypeError(`Missing source registry entry for ${source.url}`);
         }
+        if (!source.icon.endsWith('.svg')) {
+            throw new TypeError(`Source icon must be an SVG image: ${source.icon}`);
+        }
         await access(resolve(dirname(registryPath), source.icon));
         if (source.iconDark) {
+            if (!source.iconDark.endsWith('.svg')) {
+                throw new TypeError(`Source dark icon must be an SVG image: ${source.iconDark}`);
+            }
             await access(resolve(dirname(registryPath), source.iconDark));
         }
     }

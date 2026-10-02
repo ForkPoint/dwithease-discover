@@ -269,7 +269,7 @@ test('alternates dual icons and provides high-contrast tiles for single icons un
                 {
                     name: 'Single Source',
                     url: 'https://single.example/',
-                    icon: 'assets/sources/retailpace.ico',
+                    icon: 'assets/sources/retailpace.svg',
                 },
             ],
         }),
@@ -297,7 +297,7 @@ test('alternates dual icons and provides high-contrast tiles for single icons un
         hasDual: el.dataset.hasDualIcon,
         background: getComputedStyle(el).backgroundColor,
     }));
-    assert.match(singleMetrics.source, /retailpace\.ico$/);
+    assert.match(singleMetrics.source, /retailpace\.svg$/);
     assert.equal(singleMetrics.hasDual, undefined);
     assert.equal(singleMetrics.background, 'rgb(255, 255, 255)');
 });
@@ -587,4 +587,62 @@ test('renders filter pills, view toggles, and search input with high contrast un
     assert.ok(contrastRatio(searchColors.color, searchColors.background) >= 4.5);
     assert.ok(relativeLuminance(searchColors.background) <= 0.2);
 });
+
+test('clicking filter pills in the browser visually hides non-matching cards', async (context) => {
+    const browserContext = await browser.newContext({
+        colorScheme: 'dark',
+        reducedMotion: 'reduce',
+        viewport: { width: 400, height: 900 },
+    });
+    context.after(() => browserContext.close());
+    const page = await browserContext.newPage();
+    await page.route('**/feed-live.json', (route) => route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+            locale: 'en',
+            updatedAt: '2026-09-01T00:00:00Z',
+            items: [
+                {
+                    ...COMMON_ITEM,
+                    id: 'art-sfcc',
+                    type: 'article',
+                    url: 'https://example.com/art-sfcc',
+                    tags: ['sfcc'],
+                },
+                {
+                    ...COMMON_ITEM,
+                    id: 'art-pwa',
+                    type: 'article',
+                    url: 'https://example.com/art-pwa',
+                    tags: ['pwa-kit'],
+                },
+            ],
+        }),
+    }));
+    await page.route('**/sources.json', (route) => route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({ sources: [] }),
+    }));
+    await page.goto(siteUrl, { waitUntil: 'networkidle' });
+    await page.locator('.filter-bar').waitFor();
+
+    const sfccCard = page.locator('[data-item-id="art-sfcc"]');
+    const pwaCard = page.locator('[data-item-id="art-pwa"]');
+
+    assert.notEqual(await sfccCard.evaluate((el) => getComputedStyle(el).display), 'none');
+    assert.notEqual(await pwaCard.evaluate((el) => getComputedStyle(el).display), 'none');
+
+    // Click SFCC pill -> pwaCard must be visually hidden (display: none)
+    await page.locator('.filter-pill[data-filter="sfcc"]').click();
+    assert.notEqual(await sfccCard.evaluate((el) => getComputedStyle(el).display), 'none');
+    assert.equal(await pwaCard.evaluate((el) => getComputedStyle(el).display), 'none');
+
+    // Click PWA Kit pill -> sfccCard must be visually hidden (display: none)
+    await page.locator('.filter-pill[data-filter="pwa-kit"]').click();
+    assert.equal(await sfccCard.evaluate((el) => getComputedStyle(el).display), 'none');
+    assert.notEqual(await pwaCard.evaluate((el) => getComputedStyle(el).display), 'none');
+});
+
 

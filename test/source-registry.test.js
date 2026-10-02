@@ -29,9 +29,11 @@ test('covers each feed source with a local checked-in icon', async () => {
 
     for (const source of rawRegistry.sources) {
         assert.equal(source.name, feedSources.get(source.url));
+        assert.ok(source.icon.endsWith('.svg'), `${source.icon} must be an svg`);
         assert.equal(registry.get(source.url).icon, new URL(source.icon, REGISTRY_URL).href);
         await access(source.icon);
         if (source.iconDark) {
+            assert.ok(source.iconDark.endsWith('.svg'), `${source.iconDark} must be an svg`);
             assert.equal(registry.get(source.url).iconDark, new URL(source.iconDark, REGISTRY_URL).href);
             await access(source.iconDark);
         }
@@ -73,6 +75,10 @@ test('rejects unsafe source registries', () => {
         'assets/sources/../example.svg',
         'assets/sources/example.svg?remote=1',
         'https://example.com/icon.svg',
+        'assets/sources/example.ico',
+        'assets/sources/example.png',
+        'assets/sources/example.webp',
+        'assets/sources/example.jpg',
     ]) {
         assert.throws(() => buildSourceRegistry({
             sources: [{ ...source, icon }],

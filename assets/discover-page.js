@@ -679,7 +679,8 @@ function sourceIcon(document, source, sources) {
     const frame = node(document, 'picture', 'source-icon-frame');
     const image = node(document, 'img', 'source-icon');
     const sourceData = sources.get(source.url);
-    image.src = sourceData?.icon || FALLBACK_SOURCE_ICON;
+    const icon = sourceData?.icon && sourceData.icon.endsWith('.svg') ? sourceData.icon : FALLBACK_SOURCE_ICON;
+    image.src = icon;
     image.dataset.sourceUrl = source.url;
     image.alt = '';
     image.setAttribute('width', '28');
@@ -688,7 +689,7 @@ function sourceIcon(document, source, sources) {
         if (!image.src.endsWith(FALLBACK_SOURCE_ICON)) image.src = FALLBACK_SOURCE_ICON;
     });
 
-    if (sourceData?.iconDark) {
+    if (sourceData?.iconDark && sourceData.iconDark.endsWith('.svg')) {
         image.dataset.hasDualIcon = 'true';
         const darkSource = node(document, 'source');
         darkSource.setAttribute('srcset', sourceData.iconDark);
@@ -703,9 +704,9 @@ function applySourceIcons(root, sources) {
     for (const image of root.querySelectorAll('.source-icon')) {
         const sourceData = sources.get(image.dataset.sourceUrl);
         if (!sourceData) continue;
-        if (sourceData.icon) image.src = sourceData.icon;
+        if (sourceData.icon && sourceData.icon.endsWith('.svg')) image.src = sourceData.icon;
         const parent = image.parentElement;
-        if (sourceData.iconDark) {
+        if (sourceData.iconDark && sourceData.iconDark.endsWith('.svg')) {
             image.dataset.hasDualIcon = 'true';
             if (parent && parent.tagName.toLowerCase() === 'picture') {
                 let darkSource = parent.querySelector('source[media*="prefers-color-scheme: dark"]');
@@ -1318,10 +1319,12 @@ function editorialSection(document, title, items, sources) {
 
                 const matches = topicMatch && sourceMatch && queryMatch;
                 card.hidden = !matches;
+                card.style.display = matches ? '' : 'none';
                 if (matches) visibleCount += 1;
             });
 
             emptyNotice.hidden = visibleCount > 0;
+            emptyNotice.style.display = visibleCount > 0 ? 'none' : 'flex';
             if (!emptyNotice.hidden) {
                 if (query) {
                     emptyNoticeText.textContent = `No articles match "${searchInput.value}".`;
@@ -1343,6 +1346,7 @@ function editorialSection(document, title, items, sources) {
             searchInput.value = '';
             currentQuery = '';
             clearBtn.hidden = true;
+            clearBtn.style.display = 'none';
             if (sourceSelect) {
                 sourceSelect.selectedIndex = 0;
                 try { sourceSelect.value = 'all'; } catch { /* ignore */ }
@@ -1355,6 +1359,7 @@ function editorialSection(document, title, items, sources) {
         searchInput.addEventListener('input', (e) => {
             currentQuery = (e.target.value || '').trim();
             clearBtn.hidden = !currentQuery;
+            clearBtn.style.display = currentQuery ? '' : 'none';
             applyFilter();
         });
 
@@ -1362,6 +1367,7 @@ function editorialSection(document, title, items, sources) {
             searchInput.value = '';
             currentQuery = '';
             clearBtn.hidden = true;
+            clearBtn.style.display = 'none';
             applyFilter();
             searchInput.focus();
         });
@@ -1386,10 +1392,21 @@ function editorialSection(document, title, items, sources) {
         cardEntries.forEach(({ card }) => {
             card.querySelectorAll('.tag').forEach((tagSpan) => {
                 const tagId = tagSpan.dataset.tag;
-                if (filters.some((f) => f.id === tagId) || TOPIC_PRESETS.some((f) => f.id === tagId)) {
+                if (tagId) {
                     tagSpan.classList.add('interactive-tag');
                     tagSpan.title = `Filter by #${tagId}`;
-                    tagSpan.addEventListener('click', () => applyFilter(tagId));
+                    tagSpan.addEventListener('click', () => {
+                        let existingPill = bar.querySelector(`[data-filter="${tagId}"]`);
+                        if (!existingPill) {
+                            existingPill = node(document, 'button', 'filter-pill', `#${tagId}`);
+                            existingPill.type = 'button';
+                            existingPill.dataset.filter = tagId;
+                            existingPill.setAttribute('aria-pressed', 'false');
+                            existingPill.addEventListener('click', () => applyFilter(tagId));
+                            bar.append(existingPill);
+                        }
+                        applyFilter(tagId);
+                    });
                 }
             });
         });
