@@ -1,7 +1,23 @@
 {
   "source": "https://ideas.salesforce.com/s/insights",
-  "harvestedAt": "2026-09-10T18:19:06.814Z",
+  "harvestedAt": "2026-09-30T12:39:28.479Z",
   "ideas": [
+    {
+      "id": "a0BHp000019Okl7MAC",
+      "title": "Tax Display on Product Lines for Receipts",
+      "availability": "Summer '26",
+      "points": 10,
+      "ideaUrl": "https://ideas.salesforce.com/s/idea/a0BHp000019Okl7MAC",
+      "releaseNotesUrl": "https://help.salesforce.com/s/articleView?id=release-notes.rn_pos_line_level_tax.htm&release=262&type=5"
+    },
+    {
+      "id": "a0BHp000019OoayMAC",
+      "title": "CMS - Separation of Duty",
+      "availability": "Summer '26",
+      "points": 10,
+      "ideaUrl": "https://ideas.salesforce.com/s/idea/a0BHp000019OoayMAC",
+      "releaseNotesUrl": "https://help.salesforce.com/s/articleView?id=release-notes.rn_pos_inventorymodule_permission_roles.htm&release=262&type=5"
+    },
     {
       "id": "a0B8W00000GdZcWUAV",
       "title": "Page Designer: Category Dynamic Pages - Subcategories should be optional",
