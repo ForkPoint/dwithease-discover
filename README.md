@@ -43,6 +43,16 @@ The development feed contains the curation corpus. The live feed remains empty u
 npm run validate:feed -- feed-live.json feed-dev.json
 ```
 
+### Publishing schedule
+
+`feed-dev.json` acts as the publish queue. Every weekday at 08:00 UTC, the `Publish queued feed items` workflow moves the oldest unpublished editorial items to `feed-live.json`, regenerates `rss.xml` and `atom.xml`, commits to `main`, and deploys the site. This keeps extension users from receiving a large batch at once.
+
+The workflow publishes 2 items per run. Set the `FEED_PUBLISH_LIMIT` repository variable to change this. To publish one batch locally:
+
+```sh
+npm run promote:feed -- --limit 2
+```
+
 ## UX authoring guidance
 
 Use the preferred length when possible. The raw maximum counts the original JSON string before trimming.

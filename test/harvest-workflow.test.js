@@ -26,3 +26,15 @@ test('grants the scheduled RSS sources harvest write access', async () => {
     });
 });
 
+
+test('publishes a limited batch each weekday and starts the deploy', async () => {
+    const workflow = parse(await readFile('.github/workflows/publish-feed.yml', 'utf8'));
+
+    assert.deepEqual(workflow.on.schedule, [{ cron: '0 8 * * 1-5' }]);
+    assert.ok(Object.hasOwn(workflow.on, 'workflow_dispatch'));
+    assert.deepEqual(workflow.permissions, { contents: 'write', actions: 'write' });
+
+    const run = workflow.jobs.publish.steps.map((step) => step.run ?? '').join('\n');
+    assert.match(run, /npm run promote:feed -- --limit "\$PUBLISH_LIMIT"/);
+    assert.match(run, /gh workflow run pages\.yml --ref main/);
+});

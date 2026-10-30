@@ -15,6 +15,13 @@ export function getPromotableItems(devFeed, liveFeed) {
     });
 }
 
+// Release the queue in publication order so a backlog drains oldest-first.
+export function selectBatch(items, limit = Infinity) {
+    return [...items]
+        .sort((a, b) => new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime())
+        .slice(0, limit);
+}
+
 export function mergeAndSortFeed(liveFeed, newItems, timestamp = new Date().toISOString()) {
     const promotions = liveFeed.items.filter((i) => i.type === 'promotion');
     const existingEditorial = liveFeed.items.filter((i) => i.type !== 'promotion');
@@ -57,13 +64,21 @@ export async function runPromoteCli(args = process.argv.slice(2), { stdout = pro
     let itemId = null;
     let dryRun = false;
     let listOnly = false;
+    let limit = Infinity;
 
     for (let i = 0; i < args.length; i++) {
         if (args[i] === '--from' && args[i + 1]) fromPath = args[++i];
         else if (args[i] === '--to' && args[i + 1]) toPath = args[++i];
+        else if (args[i] === '--rss' && args[i + 1]) rssPath = args[++i];
+        else if (args[i] === '--atom' && args[i + 1]) atomPath = args[++i];
         else if (args[i] === '--item' && args[i + 1]) itemId = args[++i];
+        else if (args[i] === '--limit' && args[i + 1]) limit = Number(args[++i]);
         else if (args[i] === '--dry-run') dryRun = true;
         else if (args[i] === '--list') listOnly = true;
+    }
+
+    if (!(limit === Infinity || (Number.isInteger(limit) && limit > 0))) {
+        throw new Error('--limit must be a positive integer');
     }
 
     const devFeed = JSON.parse(await readFile(fromPath, 'utf8'));
@@ -90,6 +105,7 @@ export async function runPromoteCli(args = process.argv.slice(2), { stdout = pro
             return;
         }
     }
+    itemsToPromote = selectBatch(itemsToPromote, limit);
 
     if (itemsToPromote.length === 0) {
         stdout.write(`No new items to promote from ${fromPath} to ${toPath}.\n`);

@@ -14,7 +14,7 @@ function actions(job) {
     return job.steps.flatMap(({ uses }) => (uses ? [uses] : []));
 }
 
-test('validates pull requests and deploys only main pushes', async () => {
+test('validates pull requests and deploys only main pushes or dispatches', async () => {
     const workflow = parse(await readFile('.github/workflows/pages.yml', 'utf8'));
 
     assert.deepEqual(workflow.on.push.branches, ['main']);
@@ -49,7 +49,7 @@ test('validates pull requests and deploys only main pushes', async () => {
     assert.equal(deploy.needs, 'validate');
     assert.equal(
         deploy.if,
-        "${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}",
+        "${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main' }}",
     );
     assert.deepEqual(deploy.permissions, {
         contents: 'read',
