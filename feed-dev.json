@@ -1,6 +1,6 @@
 {
   "locale": "en",
-  "updatedAt": "2026-10-05T20:12:28.679Z",
+  "updatedAt": "2026-10-30T08:01:06.525Z",
   "items": [
     {
       "id": "promotion-agentic-storefront-audit",
@@ -127,6 +127,90 @@
       }
     },
     {
+      "id": "salesforce-commerce-blog-peak-ready-precision-the-october-2026-b2c-commerce-release",
+      "type": "article",
+      "title": "Peak-Ready Precision: The October 2026 B2C Commerce Release",
+      "summary": "Time is money, especially during the holiday shopping season when every second matters for your brand’s bottom line. When merchandisers spend hours clicking through catalog hierarchies, or developers burn an entire afternoon building…",
+      "url": "https://www.salesforce.com/blog/b2c-commerce-october-26-release/",
+      "source": {
+        "name": "Salesforce Commerce Blog",
+        "url": "https://www.salesforce.com/blog/category/ecommerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
+      },
+      "publishedAt": "2026-10-26T21:21:58.000Z",
+      "tags": [
+        "sfcc",
+        "strategy",
+        "ecommerce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "salesforce-developers-blog-stop-credential-stuffing-with-b2c-commerce-ecdn",
+      "type": "article",
+      "title": "Stop Credential Stuffing with B2C Commerce eCDN",
+      "summary": "Protect your B2C Commerce storefront from credential stuffing with new eCDN leaked-credential detection. Learn how to configure firewall and rate-limiting rules, detect suspicious login attempts, and prompt shoppers to reset exposed passwords. The post Stop Cr",
+      "url": "https://developer.salesforce.com/blogs/2026/10/stop-credential-stuffing-with-b2c-commerce-ecdn",
+      "source": {
+        "name": "Salesforce Developers Blog",
+        "url": "https://developer.salesforce.com/blogs/feed",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
+      },
+      "publishedAt": "2026-10-14T15:00:41.000Z",
+      "tags": [
+        "sfcc",
+        "developer-tools",
+        "salesforce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "salesforce-commerce-blog-bot-mitigation-in-the-age-of-ai-crawlers-how-to-strategize-your-defense",
+      "type": "article",
+      "title": "Bot Mitigation in the Age of AI Crawlers: How to Strategize Your Defense",
+      "summary": "Not all bot traffic is bad. For years, bots were synonymous with risk: scrapers, scalpers, and credential stuffers trying to steal inventory, stuff stolen credentials into your login page, or scrape pricing and…",
+      "url": "https://www.salesforce.com/blog/bot-mitigation-strategy/",
+      "source": {
+        "name": "Salesforce Commerce Blog",
+        "url": "https://www.salesforce.com/blog/category/ecommerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
+      },
+      "publishedAt": "2026-10-07T15:28:51.000Z",
+      "tags": [
+        "sfcc",
+        "strategy",
+        "ecommerce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "salesforce-commerce-blog-turn-tiktok-scrolls-into-sales-inside-our-new-agentic-commerce-partnership",
+      "type": "article",
+      "title": "Turn TikTok Scrolls into Sales: Inside Our New Agentic Commerce Partnership",
+      "summary": "In the past three months, 27% of consumers have reported making a purchase on a social shopping platform. This is led by 48% of Gen Z consumers and 37% of Millennial consumers, according…",
+      "url": "https://www.salesforce.com/blog/commerce-cloud-tiktok-integration/",
+      "source": {
+        "name": "Salesforce Commerce Blog",
+        "url": "https://www.salesforce.com/blog/category/ecommerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
+      },
+      "publishedAt": "2026-10-05T22:05:49.000Z",
+      "tags": [
+        "sfcc",
+        "strategy",
+        "ecommerce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
       "id": "salesforce-commerce-blog-what-s-new-in-b2c-commerce-the-september-2026-release",
       "type": "article",
       "title": "What’s New in B2C Commerce: The September 2026 Release",
@@ -180,6 +264,27 @@
         "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
       },
       "publishedAt": "2026-09-30T17:33:53.000Z",
+      "tags": [
+        "sfcc",
+        "strategy",
+        "ecommerce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "salesforce-commerce-blog-state-of-commerce-report-takeaways-for-startups-and-smbs",
+      "type": "article",
+      "title": "State of Commerce Report Takeaways For Startups and SMBs",
+      "summary": "AI just became your customers' first stop before they ever land on your site — here's what the latest State of Commerce report means for your business.",
+      "url": "https://www.salesforce.com/blog/small-business/state-of-commerce-report-takeaways-for-smbs/",
+      "source": {
+        "name": "Salesforce Commerce Blog",
+        "url": "https://www.salesforce.com/blog/category/ecommerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
+      },
+      "publishedAt": "2026-09-25T13:00:00.000Z",
       "tags": [
         "sfcc",
         "strategy",
