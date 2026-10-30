@@ -5,7 +5,7 @@
     <link>https://discover.dwithease.com/</link>
     <description>Commerce news, technical articles, and useful tools for teams that build online stores.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 05 Oct 2026 20:12:28 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 30 Oct 2026 08:01:50 GMT</lastBuildDate>
     <atom:link href="https://discover.dwithease.com/rss.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>See How AI Shopping Agents Read Your Store</title>
@@ -52,6 +52,17 @@
       <category>ecommerce</category>
     </item>
     <item>
+      <title>Turn TikTok Scrolls into Sales: Inside Our New Agentic Commerce Partnership</title>
+      <link>https://www.salesforce.com/blog/commerce-cloud-tiktok-integration/</link>
+      <guid isPermaLink="false">salesforce-commerce-blog-turn-tiktok-scrolls-into-sales-inside-our-new-agentic-commerce-partnership</guid>
+      <pubDate>Mon, 05 Oct 2026 22:05:49 GMT</pubDate>
+      <description>In the past three months, 27% of consumers have reported making a purchase on a social shopping platform. This is led by 48% of Gen Z consumers and 37% of Millennial consumers, according…</description>
+      <source url="https://www.salesforce.com/blog/category/ecommerce/">Salesforce Commerce Blog</source>
+      <category>sfcc</category>
+      <category>strategy</category>
+      <category>ecommerce</category>
+    </item>
+    <item>
       <title>What’s New in B2C Commerce: The September 2026 Release</title>
       <link>https://www.salesforce.com/blog/b2c-commerce-september-26-release/</link>
       <guid isPermaLink="false">salesforce-commerce-blog-what-s-new-in-b2c-commerce-the-september-2026-release</guid>
@@ -79,6 +90,17 @@
       <guid isPermaLink="false">salesforce-commerce-blog-how-west-marine-drives-revenue-and-scalability-with-ai-native-search-and-ag</guid>
       <pubDate>Wed, 30 Sep 2026 17:33:53 GMT</pubDate>
       <description>For over 58 years, West Marine has been the go-to destination for water sports, fishing, and boating enthusiasts. Serving water lovers of all kinds means catering to a broad spectrum of customers from…</description>
+      <source url="https://www.salesforce.com/blog/category/ecommerce/">Salesforce Commerce Blog</source>
+      <category>sfcc</category>
+      <category>strategy</category>
+      <category>ecommerce</category>
+    </item>
+    <item>
+      <title>State of Commerce Report Takeaways For Startups and SMBs</title>
+      <link>https://www.salesforce.com/blog/small-business/state-of-commerce-report-takeaways-for-smbs/</link>
+      <guid isPermaLink="false">salesforce-commerce-blog-state-of-commerce-report-takeaways-for-startups-and-smbs</guid>
+      <pubDate>Fri, 25 Sep 2026 13:00:00 GMT</pubDate>
+      <description>AI just became your customers&apos; first stop before they ever land on your site — here&apos;s what the latest State of Commerce report means for your business.</description>
       <source url="https://www.salesforce.com/blog/category/ecommerce/">Salesforce Commerce Blog</source>
       <category>sfcc</category>
       <category>strategy</category>

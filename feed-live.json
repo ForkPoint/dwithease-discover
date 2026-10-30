@@ -1,6 +1,6 @@
 {
   "locale": "en",
-  "updatedAt": "2026-10-05T20:12:28.666Z",
+  "updatedAt": "2026-10-30T08:01:50.317Z",
   "items": [
     {
       "id": "promotion-agentic-storefront-audit",
@@ -127,6 +127,27 @@
       }
     },
     {
+      "id": "salesforce-commerce-blog-turn-tiktok-scrolls-into-sales-inside-our-new-agentic-commerce-partnership",
+      "type": "article",
+      "title": "Turn TikTok Scrolls into Sales: Inside Our New Agentic Commerce Partnership",
+      "summary": "In the past three months, 27% of consumers have reported making a purchase on a social shopping platform. This is led by 48% of Gen Z consumers and 37% of Millennial consumers, according…",
+      "url": "https://www.salesforce.com/blog/commerce-cloud-tiktok-integration/",
+      "source": {
+        "name": "Salesforce Commerce Blog",
+        "url": "https://www.salesforce.com/blog/category/ecommerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
+      },
+      "publishedAt": "2026-10-05T22:05:49.000Z",
+      "tags": [
+        "sfcc",
+        "strategy",
+        "ecommerce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
       "id": "salesforce-commerce-blog-what-s-new-in-b2c-commerce-the-september-2026-release",
       "type": "article",
       "title": "What’s New in B2C Commerce: The September 2026 Release",
@@ -180,6 +201,27 @@
         "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
       },
       "publishedAt": "2026-09-30T17:33:53.000Z",
+      "tags": [
+        "sfcc",
+        "strategy",
+        "ecommerce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "salesforce-commerce-blog-state-of-commerce-report-takeaways-for-startups-and-smbs",
+      "type": "article",
+      "title": "State of Commerce Report Takeaways For Startups and SMBs",
+      "summary": "AI just became your customers' first stop before they ever land on your site — here's what the latest State of Commerce report means for your business.",
+      "url": "https://www.salesforce.com/blog/small-business/state-of-commerce-report-takeaways-for-smbs/",
+      "source": {
+        "name": "Salesforce Commerce Blog",
+        "url": "https://www.salesforce.com/blog/category/ecommerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
+      },
+      "publishedAt": "2026-09-25T13:00:00.000Z",
       "tags": [
         "sfcc",
         "strategy",

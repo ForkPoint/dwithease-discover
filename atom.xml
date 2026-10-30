@@ -5,7 +5,7 @@
   <subtitle>Commerce news, technical articles, and useful tools for teams that build online stores.</subtitle>
   <link href="https://discover.dwithease.com/" rel="alternate" type="text/html"/>
   <link href="https://discover.dwithease.com/atom.xml" rel="self" type="application/atom+xml"/>
-  <updated>2026-10-05T20:12:28.666Z</updated>
+  <updated>2026-10-30T08:01:50.317Z</updated>
   <entry>
     <id>https://discover.dwithease.com/#promotion-agentic-storefront-audit</id>
     <title>See How AI Shopping Agents Read Your Store</title>
@@ -67,6 +67,21 @@
     <category term="ecommerce"/>
   </entry>
   <entry>
+    <id>https://discover.dwithease.com/#salesforce-commerce-blog-turn-tiktok-scrolls-into-sales-inside-our-new-agentic-commerce-partnership</id>
+    <title>Turn TikTok Scrolls into Sales: Inside Our New Agentic Commerce Partnership</title>
+    <link href="https://www.salesforce.com/blog/commerce-cloud-tiktok-integration/" rel="alternate"/>
+    <published>2026-10-05T22:05:49.000Z</published>
+    <updated>2026-10-05T22:05:49.000Z</updated>
+    <summary>In the past three months, 27% of consumers have reported making a purchase on a social shopping platform. This is led by 48% of Gen Z consumers and 37% of Millennial consumers, according…</summary>
+    <author>
+      <name>Salesforce Commerce Blog</name>
+      <uri>https://www.salesforce.com/blog/category/ecommerce/</uri>
+    </author>
+    <category term="sfcc"/>
+    <category term="strategy"/>
+    <category term="ecommerce"/>
+  </entry>
+  <entry>
     <id>https://discover.dwithease.com/#salesforce-commerce-blog-what-s-new-in-b2c-commerce-the-september-2026-release</id>
     <title>What’s New in B2C Commerce: The September 2026 Release</title>
     <link href="https://www.salesforce.com/blog/b2c-commerce-september-26-release/" rel="alternate"/>
@@ -103,6 +118,21 @@
     <published>2026-09-30T17:33:53.000Z</published>
     <updated>2026-09-30T17:33:53.000Z</updated>
     <summary>For over 58 years, West Marine has been the go-to destination for water sports, fishing, and boating enthusiasts. Serving water lovers of all kinds means catering to a broad spectrum of customers from…</summary>
+    <author>
+      <name>Salesforce Commerce Blog</name>
+      <uri>https://www.salesforce.com/blog/category/ecommerce/</uri>
+    </author>
+    <category term="sfcc"/>
+    <category term="strategy"/>
+    <category term="ecommerce"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#salesforce-commerce-blog-state-of-commerce-report-takeaways-for-startups-and-smbs</id>
+    <title>State of Commerce Report Takeaways For Startups and SMBs</title>
+    <link href="https://www.salesforce.com/blog/small-business/state-of-commerce-report-takeaways-for-smbs/" rel="alternate"/>
+    <published>2026-09-25T13:00:00.000Z</published>
+    <updated>2026-09-25T13:00:00.000Z</updated>
+    <summary>AI just became your customers&apos; first stop before they ever land on your site — here&apos;s what the latest State of Commerce report means for your business.</summary>
     <author>
       <name>Salesforce Commerce Blog</name>
       <uri>https://www.salesforce.com/blog/category/ecommerce/</uri>
