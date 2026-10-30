@@ -47,6 +47,7 @@ test('validates pull requests and deploys only main pushes or dispatches', async
 
     const deploy = workflow.jobs.deploy;
     assert.equal(deploy.needs, 'validate');
+    assert.deepEqual(deploy.concurrency, { group: 'pages-deploy', 'cancel-in-progress': false });
     assert.equal(
         deploy.if,
         "${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main' }}",

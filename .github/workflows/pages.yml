@@ -64,6 +64,10 @@ jobs:
   deploy:
     if: ${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main' }}
     needs: validate
+    # Pages rejects overlapping deployments, so queue push and dispatch deploys together.
+    concurrency:
+      group: pages-deploy
+      cancel-in-progress: false
     permissions:
       contents: read
       pages: write
