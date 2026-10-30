@@ -5,7 +5,7 @@
   <subtitle>Commerce news, technical articles, and useful tools for teams that build online stores.</subtitle>
   <link href="https://discover.dwithease.com/" rel="alternate" type="text/html"/>
   <link href="https://discover.dwithease.com/atom.xml" rel="self" type="application/atom+xml"/>
-  <updated>2026-09-16T17:36:48.572Z</updated>
+  <updated>2026-10-05T20:12:28.666Z</updated>
   <entry>
     <id>https://discover.dwithease.com/#promotion-agentic-storefront-audit</id>
     <title>See How AI Shopping Agents Read Your Store</title>
@@ -64,6 +64,81 @@
     </author>
     <category term="search"/>
     <category term="ai"/>
+    <category term="ecommerce"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#salesforce-commerce-blog-what-s-new-in-b2c-commerce-the-september-2026-release</id>
+    <title>What’s New in B2C Commerce: The September 2026 Release</title>
+    <link href="https://www.salesforce.com/blog/b2c-commerce-september-26-release/" rel="alternate"/>
+    <published>2026-10-01T19:43:53.000Z</published>
+    <updated>2026-10-01T19:43:53.000Z</updated>
+    <summary>Summer is officially over and the holiday season is closing in fast for retailers. Ecommerce teams have their hands full: Merchandisers are optimizing catalogs, marketers are racing to capture compliant customer consent without…</summary>
+    <author>
+      <name>Salesforce Commerce Blog</name>
+      <uri>https://www.salesforce.com/blog/category/ecommerce/</uri>
+    </author>
+    <category term="sfcc"/>
+    <category term="strategy"/>
+    <category term="ecommerce"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#salesforce-developers-blog-agentforce-voice-for-agent-script-voice-enabling-best-practices</id>
+    <title>Agentforce Voice for Agent Script: Voice-Enabling Best Practices</title>
+    <link href="https://developer.salesforce.com/blogs/2026/10/agentforce-voice-for-agent-script-voice-enabling-best-practices" rel="alternate"/>
+    <published>2026-10-01T16:55:17.000Z</published>
+    <updated>2026-10-01T16:55:17.000Z</updated>
+    <summary>Learn how to voice-enable an Agent Script agent with Agentforce Voice, from configuring voice settings to writing instructions that make spoken conversations clear and natural. The post Agentforce Voice for Agent Script: Voice-Enabling Best Practices appeared</summary>
+    <author>
+      <name>Salesforce Developers Blog</name>
+      <uri>https://developer.salesforce.com/blogs/feed</uri>
+    </author>
+    <category term="sfcc"/>
+    <category term="developer-tools"/>
+    <category term="salesforce"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#salesforce-commerce-blog-how-west-marine-drives-revenue-and-scalability-with-ai-native-search-and-ag</id>
+    <title>How West Marine Drives Revenue and Scalability with AI-Native Search and Agents</title>
+    <link href="https://www.salesforce.com/blog/west-marine-customer-story/" rel="alternate"/>
+    <published>2026-09-30T17:33:53.000Z</published>
+    <updated>2026-09-30T17:33:53.000Z</updated>
+    <summary>For over 58 years, West Marine has been the go-to destination for water sports, fishing, and boating enthusiasts. Serving water lovers of all kinds means catering to a broad spectrum of customers from…</summary>
+    <author>
+      <name>Salesforce Commerce Blog</name>
+      <uri>https://www.salesforce.com/blog/category/ecommerce/</uri>
+    </author>
+    <category term="sfcc"/>
+    <category term="strategy"/>
+    <category term="ecommerce"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#pwa-kit-releases-commerce-sdk-react-v5-4-1-retail-react-app-v10-2-1</id>
+    <title>commerce-sdk-react v5.4.1 (retail-react-app v10.2.1)</title>
+    <link href="https://github.com/SalesforceCommerceCloud/pwa-kit/releases/tag/commerce-sdk-react-v5.4.1" rel="alternate"/>
+    <published>2026-09-23T17:07:56.000Z</published>
+    <updated>2026-09-23T17:07:56.000Z</updated>
+    <summary>Summary This package-only patch release keeps the Page Designer preview URL bar synchronized with client-side storefront navigation. It publishes @salesforce/commerce-sdk-react@5.4.1 together with its runtime dependent, @salesfor</summary>
+    <author>
+      <name>PWA Kit Releases</name>
+      <uri>https://github.com/SalesforceCommerceCloud/pwa-kit/releases.atom</uri>
+    </author>
+    <category term="pwa-kit"/>
+    <category term="release-notes"/>
+    <category term="sfcc"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#salesforce-commerce-blog-build-agents-your-way-with-claude-and-commerce-cloud</id>
+    <title>Build Agents Your Way with Claude and Commerce Cloud</title>
+    <link href="https://www.salesforce.com/blog/agentforce-commerce-anthropic-agents/" rel="alternate"/>
+    <published>2026-09-22T15:10:12.000Z</published>
+    <updated>2026-09-22T15:10:12.000Z</updated>
+    <summary>Anthropic recently launched a blueprint to help build commerce agents on Claude. This new starter kit for developers includes the reference code, guardrails, and best practices needed to build a shopping agent (to…</summary>
+    <author>
+      <name>Salesforce Commerce Blog</name>
+      <uri>https://www.salesforce.com/blog/category/ecommerce/</uri>
+    </author>
+    <category term="sfcc"/>
+    <category term="strategy"/>
     <category term="ecommerce"/>
   </entry>
   <entry>

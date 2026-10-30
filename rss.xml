@@ -5,7 +5,7 @@
     <link>https://discover.dwithease.com/</link>
     <description>Commerce news, technical articles, and useful tools for teams that build online stores.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 16 Sep 2026 17:36:48 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 05 Oct 2026 20:12:28 GMT</lastBuildDate>
     <atom:link href="https://discover.dwithease.com/rss.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>See How AI Shopping Agents Read Your Store</title>
@@ -49,6 +49,61 @@
       <source url="https://intentfusion.com/">IntentFusion</source>
       <category>search</category>
       <category>ai</category>
+      <category>ecommerce</category>
+    </item>
+    <item>
+      <title>What’s New in B2C Commerce: The September 2026 Release</title>
+      <link>https://www.salesforce.com/blog/b2c-commerce-september-26-release/</link>
+      <guid isPermaLink="false">salesforce-commerce-blog-what-s-new-in-b2c-commerce-the-september-2026-release</guid>
+      <pubDate>Thu, 01 Oct 2026 19:43:53 GMT</pubDate>
+      <description>Summer is officially over and the holiday season is closing in fast for retailers. Ecommerce teams have their hands full: Merchandisers are optimizing catalogs, marketers are racing to capture compliant customer consent without…</description>
+      <source url="https://www.salesforce.com/blog/category/ecommerce/">Salesforce Commerce Blog</source>
+      <category>sfcc</category>
+      <category>strategy</category>
+      <category>ecommerce</category>
+    </item>
+    <item>
+      <title>Agentforce Voice for Agent Script: Voice-Enabling Best Practices</title>
+      <link>https://developer.salesforce.com/blogs/2026/10/agentforce-voice-for-agent-script-voice-enabling-best-practices</link>
+      <guid isPermaLink="false">salesforce-developers-blog-agentforce-voice-for-agent-script-voice-enabling-best-practices</guid>
+      <pubDate>Thu, 01 Oct 2026 16:55:17 GMT</pubDate>
+      <description>Learn how to voice-enable an Agent Script agent with Agentforce Voice, from configuring voice settings to writing instructions that make spoken conversations clear and natural. The post Agentforce Voice for Agent Script: Voice-Enabling Best Practices appeared</description>
+      <source url="https://developer.salesforce.com/blogs/feed">Salesforce Developers Blog</source>
+      <category>sfcc</category>
+      <category>developer-tools</category>
+      <category>salesforce</category>
+    </item>
+    <item>
+      <title>How West Marine Drives Revenue and Scalability with AI-Native Search and Agents</title>
+      <link>https://www.salesforce.com/blog/west-marine-customer-story/</link>
+      <guid isPermaLink="false">salesforce-commerce-blog-how-west-marine-drives-revenue-and-scalability-with-ai-native-search-and-ag</guid>
+      <pubDate>Wed, 30 Sep 2026 17:33:53 GMT</pubDate>
+      <description>For over 58 years, West Marine has been the go-to destination for water sports, fishing, and boating enthusiasts. Serving water lovers of all kinds means catering to a broad spectrum of customers from…</description>
+      <source url="https://www.salesforce.com/blog/category/ecommerce/">Salesforce Commerce Blog</source>
+      <category>sfcc</category>
+      <category>strategy</category>
+      <category>ecommerce</category>
+    </item>
+    <item>
+      <title>commerce-sdk-react v5.4.1 (retail-react-app v10.2.1)</title>
+      <link>https://github.com/SalesforceCommerceCloud/pwa-kit/releases/tag/commerce-sdk-react-v5.4.1</link>
+      <guid isPermaLink="false">pwa-kit-releases-commerce-sdk-react-v5-4-1-retail-react-app-v10-2-1</guid>
+      <pubDate>Wed, 23 Sep 2026 17:07:56 GMT</pubDate>
+      <description>Summary This package-only patch release keeps the Page Designer preview URL bar synchronized with client-side storefront navigation. It publishes @salesforce/commerce-sdk-react@5.4.1 together with its runtime dependent, @salesfor</description>
+      <source url="https://github.com/SalesforceCommerceCloud/pwa-kit/releases.atom">PWA Kit Releases</source>
+      <category>pwa-kit</category>
+      <category>release-notes</category>
+      <category>sfcc</category>
+    </item>
+    <item>
+      <title>Build Agents Your Way with Claude and Commerce Cloud</title>
+      <link>https://www.salesforce.com/blog/agentforce-commerce-anthropic-agents/</link>
+      <guid isPermaLink="false">salesforce-commerce-blog-build-agents-your-way-with-claude-and-commerce-cloud</guid>
+      <pubDate>Tue, 22 Sep 2026 15:10:12 GMT</pubDate>
+      <description>Anthropic recently launched a blueprint to help build commerce agents on Claude. This new starter kit for developers includes the reference code, guardrails, and best practices needed to build a shopping agent (to…</description>
+      <source url="https://www.salesforce.com/blog/category/ecommerce/">Salesforce Commerce Blog</source>
+      <category>sfcc</category>
+      <category>strategy</category>
       <category>ecommerce</category>
     </item>
     <item>

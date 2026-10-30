@@ -1,5 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import {
     addItemToFeed,
     curateCandidate,
@@ -52,6 +55,13 @@ test('normalizeCuratedItem rejects invalid URLs', () => {
     assert.throws(
         () => normalizeCuratedItem({ title: 'Test', url: 'http://insecure.example.com' }),
         /must have a valid HTTPS URL/
+    );
+});
+
+test('normalizeCuratedItem rejects non-English items', () => {
+    assert.throws(
+        () => normalizeCuratedItem({ title: 'AIエージェント', url: 'https://example.com/jp' }),
+        /must be in English/
     );
 });
 
@@ -176,4 +186,40 @@ test('runCurateCli supports --list mode non-interactively', async () => {
     });
 
     assert.ok(output.includes('candidate(s) in harvested-candidates.json'));
+});
+
+for (const action of ['accept', 'reject']) {
+    test(`runCurateCli ${action} preserves other candidates regardless of language`, async () => {
+        const directory = await mkdtemp(join(tmpdir(), 'discover-curate-'));
+        try {
+            const candidatesPath = join(directory, 'candidates.json');
+            const feedPath = join(directory, 'feed.json');
+            const selected = { id: 'selected', title: 'Commerce release', url: 'https://example.com/release' };
+            const remaining = [
+                { id: 'mixed', title: 'Support Japanese text (日本語) in storefront search', url: 'https://example.com/search' },
+                { id: 'japanese', title: '日本語タイトル', url: 'https://example.com/jp' },
+            ];
+            await writeFile(candidatesPath, JSON.stringify({ candidates: [selected, ...remaining] }));
+            await writeFile(feedPath, JSON.stringify({ locale: 'en', updatedAt: '2026-09-01T00:00:00Z', items: [] }));
+            await runCurateCli(['--candidates', candidatesPath, '--feed', feedPath, `--${action}`, selected.id], {
+                stdin: { isTTY: false }, stdout: { write() {} },
+            });
+            assert.deepEqual(JSON.parse(await readFile(candidatesPath, 'utf8')).candidates, remaining);
+        } finally {
+            await rm(directory, { recursive: true, force: true });
+        }
+    });
+}
+
+test('normalizeCuratedItem rejects Spanish text and accepts English with Japanese terms', () => {
+    assert.throws(() => normalizeCuratedItem({
+        title: 'Nuevas funciones de comercio para tiendas',
+        summary: 'Descubre las novedades para tus clientes.',
+        url: 'https://example.com/nuevas-funciones',
+    }), /must be in English/);
+    assert.equal(normalizeCuratedItem({
+        title: 'Support Japanese text (日本語) in storefront search',
+        summary: 'This release adds Japanese search support.',
+        url: 'https://example.com/search',
+    }).title, 'Support Japanese text (日本語) in storefront search');
 });

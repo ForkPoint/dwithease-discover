@@ -1,7 +1,8 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { createInterface } from 'node:readline/promises';
 import { pathToFileURL } from 'node:url';
-import { cleanText, slugify } from './harvest-rss-sources.js';
+import { cleanText, isEnglish, slugify } from './harvest-rss-sources.js';
+import { withSourceIcon } from './source-icons.js';
 
 export function normalizeTag(tag) {
     return slugify(tag).slice(0, 32);
@@ -36,6 +37,10 @@ export function normalizeCuratedItem(candidate, overrides = {}) {
         throw new Error(`Candidate must have a valid HTTPS URL: ${url}`);
     }
 
+    if (!isEnglish({ title: cleanTitle, summary: cleanSummary, url })) {
+        throw new Error(`Candidate must be in English: ${cleanTitle || url}`);
+    }
+
     const sourceName = cleanText(overrides.sourceName ?? candidate.source?.name ?? 'External Source').slice(0, 80);
     const sourceUrl = overrides.sourceUrl ?? candidate.source?.url ?? new URL(url).origin + '/';
 
@@ -43,7 +48,7 @@ export function normalizeCuratedItem(candidate, overrides = {}) {
 
     const ctaLabel = cleanText(overrides.ctaLabel ?? candidate.cta?.label ?? 'Read update').slice(0, 32);
 
-    return {
+    return withSourceIcon({
         id,
         type: 'article',
         title: cleanTitle,
@@ -58,7 +63,7 @@ export function normalizeCuratedItem(candidate, overrides = {}) {
         cta: {
             label: ctaLabel || 'Read update',
         },
-    };
+    });
 }
 
 export function addItemToFeed(feed, item) {

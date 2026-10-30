@@ -33,6 +33,10 @@ Both public endpoints use the current JSON format:
 
 Each item has a stable slug ID, a type, an HTTPS URL, source details, a publication date, tags, and a CTA. Editorial items use `article` or `news`. Promotions also include a dated campaign and one or more placements.
 
+`source.icon` is an optional HTTPS URL for the source logo. Curation and promotion add
+this URL from `sources.json`, so consumers can render icons from the feed alone. Older
+feeds without this field remain valid. Unknown sources use the publisher's fallback SVG.
+
 The development feed contains the curation corpus. The live feed remains empty until that corpus is approved. Validate both files before publication:
 
 ```sh

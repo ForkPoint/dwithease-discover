@@ -42,8 +42,8 @@ This file records the inputs for `feed-dev.json`.
 
 `feed-dev.json` contains:
 
-- 38 editorial items.
+- 47 editorial items.
 - 4 promotion items.
-- 42 items in total.
+- 51 items in total.
 
 `feed-live.json` contains the curated production feed with verified editorial items and active storefront tool promotions.

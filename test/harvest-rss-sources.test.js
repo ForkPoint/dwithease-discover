@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import {
     cleanText,
     harvestFromSources,
+    isEnglish,
     mergeCandidates,
     normalizeCandidate,
     parseAtomEntries,
@@ -144,4 +145,27 @@ test('harvestFromSources fetches and filters mock feeds', async () => {
     const candidates = await harvestFromSources(sources, mockFetch);
     assert.equal(candidates.length, 1);
     assert.equal(candidates[0].title, 'v3.6.0');
+});
+
+test('isEnglish identifies English content and rejects non-English or localized URLs', () => {
+    assert.equal(isEnglish({ title: 'New Storefront Features', url: 'https://example.com/features' }), true);
+    assert.equal(isEnglish({ title: '日本語タイトル', url: 'https://example.com/post' }), false);
+    assert.equal(isEnglish({ title: 'English Title', url: 'https://developer.salesforce.com/blogs/2026/09/post-jp' }), false);
+    assert.equal(isEnglish({ title: 'English Title', summary: '概要説明', url: 'https://example.com/post' }), false);
+    assert.equal(isEnglish(null), false);
+});
+
+test('isEnglish rejects Latin-script languages and accepts English with Japanese terms', () => {
+    for (const entry of [
+        { title: 'Nuevas funciones de comercio para tiendas', summary: 'Descubre las novedades para tus clientes.' },
+        { title: 'Découvrez les nouvelles fonctionnalités du commerce', summary: 'Cette mise à jour améliore la recherche dans votre boutique.' },
+        { title: 'Neue Funktionen für den Handel', summary: 'Diese Veröffentlichung verbessert die Suche in Ihrem Online-Shop.' },
+    ]) assert.equal(isEnglish({ ...entry, url: 'https://example.com/post' }), false);
+    assert.equal(isEnglish({
+        title: 'Support Japanese text (日本語) in storefront search',
+        summary: 'This release adds Japanese search support.',
+        url: 'https://example.com/search',
+    }), true);
+    assert.equal(isEnglish({ title: 'v3.6.0', summary: 'Release notes', url: 'https://example.com/v3.6.0' }), true);
+    assert.equal(isEnglish({ title: 'Commerce release', url: 'https://example.com/post?lang=ja' }), false);
 });

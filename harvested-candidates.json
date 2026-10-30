@@ -1,21 +1,41 @@
 {
-  "harvestedAt": "2026-09-16T17:26:35.639Z",
+  "harvestedAt": "2026-10-05T12:35:39.795Z",
   "candidates": [
     {
-      "id": "salesforce-developers-tdx-tokyo-2026-lightning-minihack-live-ai",
+      "id": "salesforce-developers-blog-pro-code-chunking-of-data-360-search-indexes-for-agentforce",
       "type": "article",
-      "title": "【TDX Tokyo 2026】Lightning MiniHack Live ファイナリスト座談会: 初代チャンピオンと挑戦者たちが語る「最速」の舞台裏と AI 時代の実装力",
-      "summary": "&#26412;&#35352;&#20107;&#12391;&#12399;&#12289;TDX Tokyo 2026 &#12391;&#38283;&#20652;&#12373;&#12428;&#12383; Lightning MiniHack Live &#12398;&#12501;&#12449;&#12452;&#12490;&#12522;&#12473;&#12488; &#12398;&#30342;&#12373;&#12435;&#12434;&#12362;&#25307;&#1",
-      "url": "https://developer.salesforce.com/blogs/2026/08/tdx-tokyo-2026-lightning-minihack-live",
+      "title": "Pro-Code Chunking of Data 360 Search Indexes for Agentforce",
+      "summary": "Learn how pro-code chunking with Data 360 Code Extension functions gives Agentforce the right context by preserving complex tables and conversations, masking PII, and improving search indexes. The post Pro-Code Chunking of Data 360 Search Indexes for Agentforc",
+      "url": "https://developer.salesforce.com/blogs/2026/09/pro-code-chunking-of-data-360-search-indexes-for-agentforce",
       "source": {
-        "name": "Salesforce Developers",
-        "url": "https://developer.salesforce.com/blogs"
+        "name": "Salesforce Developers Blog",
+        "url": "https://developer.salesforce.com/blogs/feed"
       },
-      "publishedAt": "2026-08-31T05:55:13.000Z",
+      "publishedAt": "2026-09-24T15:00:15.000Z",
       "tags": [
         "sfcc",
         "developer-tools",
         "salesforce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "salesforce-commerce-blog-state-of-commerce-report-takeaways-for-startups-and-smbs",
+      "type": "article",
+      "title": "State of Commerce Report Takeaways For Startups and SMBs",
+      "summary": "AI just became your customers' first stop before they ever land on your site — here's what the latest State of Commerce report means for your business.",
+      "url": "https://www.salesforce.com/blog/small-business/state-of-commerce-report-takeaways-for-smbs/",
+      "source": {
+        "name": "Salesforce Commerce Blog",
+        "url": "https://www.salesforce.com/blog/category/ecommerce/"
+      },
+      "publishedAt": "2026-09-25T13:00:00.000Z",
+      "tags": [
+        "sfcc",
+        "strategy",
+        "ecommerce"
       ],
       "cta": {
         "label": "Read update"
@@ -32,26 +52,6 @@
         "url": "https://developer.salesforce.com/blogs"
       },
       "publishedAt": "2026-08-25T15:00:43.000Z",
-      "tags": [
-        "sfcc",
-        "developer-tools",
-        "salesforce"
-      ],
-      "cta": {
-        "label": "Read update"
-      }
-    },
-    {
-      "id": "salesforce-developers-agentforce",
-      "type": "article",
-      "title": "新しいAgentforceメタデータと開発ライフサイクル",
-      "summary": "&#26032;&#12375;&#12356;&#12496;&#12540;&#12472;&#12519;&#12531;&#31649;&#29702;&#20184;&#12365;&#12513;&#12479;&#12487;&#12540;&#12479;&#12514;&#12487;&#12523;&#12392;&#12289;&#20154;&#38291;&#12364;&#35501;&#12415;&#12420;&#12377;&#12356;Agent Script&#12434;",
-      "url": "https://developer.salesforce.com/blogs/2026/08/new-agentforce-metadata-and-development-lifecycle-jp",
-      "source": {
-        "name": "Salesforce Developers",
-        "url": "https://developer.salesforce.com/blogs"
-      },
-      "publishedAt": "2026-08-25T12:03:40.000Z",
       "tags": [
         "sfcc",
         "developer-tools",

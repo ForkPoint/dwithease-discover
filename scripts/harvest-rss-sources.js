@@ -1,5 +1,6 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { pathToFileURL } from 'node:url';
+import { franc } from 'franc-min';
 
 const COMMERCE_KEYWORDS = [
     'commerce',
@@ -106,6 +107,30 @@ export function matchesKeywords(text, keywords = COMMERCE_KEYWORDS) {
     return keywords.some((kw) => lower.includes(kw));
 }
 
+export function isEnglish(entry) {
+    if (!entry) return false;
+    try {
+        const url = new URL(entry.url);
+        if (/(?:-|\/)(?:jp|ja|cn|zh|ko|es|fr|de|pt|ru)(?:$|\/)/i.test(url.pathname)) return false;
+        for (const key of ['lang', 'language', 'locale']) {
+            const language = url.searchParams.get(key);
+            if (language && !/^en(?:[-_]|$)/i.test(language)) return false;
+        }
+    } catch {
+        // Text-only entries can still be checked before URL validation.
+    }
+    const fields = [cleanText(entry.title || ''), cleanText(entry.summary || '')];
+    for (const text of fields) {
+        const latinLetters = text.match(/\p{Script=Latin}/gu)?.length ?? 0;
+        const otherLetters = text.match(/(?!\p{Script=Latin})\p{Letter}/gu)?.length ?? 0;
+        // Allow foreign terms in English text, but reject predominantly foreign scripts.
+        if (otherLetters > latinLetters) return false;
+    }
+    // Short release names do not provide enough text for reliable detection.
+    const language = franc([...new Set(fields)].join(' '), { minLength: 40 });
+    return language === 'eng' || language === 'und';
+}
+
 export function normalizeCandidate(entry, source, defaultTags = ['sfcc', 'commerce']) {
     return {
         id: slugify(`${source.name}-${entry.title}`),
@@ -186,7 +211,8 @@ export async function harvestFromSources(sources = RSS_SOURCES, fetchImpl = fetc
             }
             const text = await res.text();
             const entries = source.type === 'atom' ? parseAtomEntries(text) : parseRssItems(text);
-            const filtered = source.filter ? entries.filter(source.filter) : entries;
+            const englishEntries = entries.filter(isEnglish);
+            const filtered = source.filter ? englishEntries.filter(source.filter) : englishEntries;
             for (const entry of filtered.slice(0, 5)) {
                 harvested.push(normalizeCandidate(entry, source, source.tags));
             }

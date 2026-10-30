@@ -1,6 +1,6 @@
 {
   "locale": "en",
-  "updatedAt": "2026-09-16T17:36:48.572Z",
+  "updatedAt": "2026-10-05T20:12:28.666Z",
   "items": [
     {
       "id": "promotion-agentic-storefront-audit",
@@ -10,7 +10,8 @@
       "url": "https://audit.agenticstorefront.com/",
       "source": {
         "name": "Agentic Storefront Audit",
-        "url": "https://audit.agenticstorefront.com/"
+        "url": "https://audit.agenticstorefront.com/",
+        "icon": "https://discover.dwithease.com/assets/sources/agentic-storefront-audit.svg"
       },
       "publishedAt": "2026-09-01T00:00:00Z",
       "tags": [
@@ -40,7 +41,8 @@
       "url": "https://catalogspark.com/",
       "source": {
         "name": "CatalogSpark",
-        "url": "https://catalogspark.com/"
+        "url": "https://catalogspark.com/",
+        "icon": "https://discover.dwithease.com/assets/sources/catalogspark.svg"
       },
       "publishedAt": "2026-09-01T00:00:00Z",
       "tags": [
@@ -70,7 +72,8 @@
       "url": "https://retailpace.com/",
       "source": {
         "name": "RetailPace",
-        "url": "https://retailpace.com/"
+        "url": "https://retailpace.com/",
+        "icon": "https://discover.dwithease.com/assets/sources/retailpace.svg"
       },
       "publishedAt": "2026-09-01T00:00:00Z",
       "tags": [
@@ -100,7 +103,8 @@
       "url": "https://intentfusion.com/",
       "source": {
         "name": "IntentFusion",
-        "url": "https://intentfusion.com/"
+        "url": "https://intentfusion.com/",
+        "icon": "https://discover.dwithease.com/assets/sources/intentfusion.svg"
       },
       "publishedAt": "2026-09-01T00:00:00Z",
       "tags": [
@@ -123,6 +127,111 @@
       }
     },
     {
+      "id": "salesforce-commerce-blog-what-s-new-in-b2c-commerce-the-september-2026-release",
+      "type": "article",
+      "title": "What’s New in B2C Commerce: The September 2026 Release",
+      "summary": "Summer is officially over and the holiday season is closing in fast for retailers. Ecommerce teams have their hands full: Merchandisers are optimizing catalogs, marketers are racing to capture compliant customer consent without…",
+      "url": "https://www.salesforce.com/blog/b2c-commerce-september-26-release/",
+      "source": {
+        "name": "Salesforce Commerce Blog",
+        "url": "https://www.salesforce.com/blog/category/ecommerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
+      },
+      "publishedAt": "2026-10-01T19:43:53.000Z",
+      "tags": [
+        "sfcc",
+        "strategy",
+        "ecommerce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "salesforce-developers-blog-agentforce-voice-for-agent-script-voice-enabling-best-practices",
+      "type": "article",
+      "title": "Agentforce Voice for Agent Script: Voice-Enabling Best Practices",
+      "summary": "Learn how to voice-enable an Agent Script agent with Agentforce Voice, from configuring voice settings to writing instructions that make spoken conversations clear and natural. The post Agentforce Voice for Agent Script: Voice-Enabling Best Practices appeared",
+      "url": "https://developer.salesforce.com/blogs/2026/10/agentforce-voice-for-agent-script-voice-enabling-best-practices",
+      "source": {
+        "name": "Salesforce Developers Blog",
+        "url": "https://developer.salesforce.com/blogs/feed",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
+      },
+      "publishedAt": "2026-10-01T16:55:17.000Z",
+      "tags": [
+        "sfcc",
+        "developer-tools",
+        "salesforce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "salesforce-commerce-blog-how-west-marine-drives-revenue-and-scalability-with-ai-native-search-and-ag",
+      "type": "article",
+      "title": "How West Marine Drives Revenue and Scalability with AI-Native Search and Agents",
+      "summary": "For over 58 years, West Marine has been the go-to destination for water sports, fishing, and boating enthusiasts. Serving water lovers of all kinds means catering to a broad spectrum of customers from…",
+      "url": "https://www.salesforce.com/blog/west-marine-customer-story/",
+      "source": {
+        "name": "Salesforce Commerce Blog",
+        "url": "https://www.salesforce.com/blog/category/ecommerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
+      },
+      "publishedAt": "2026-09-30T17:33:53.000Z",
+      "tags": [
+        "sfcc",
+        "strategy",
+        "ecommerce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "pwa-kit-releases-commerce-sdk-react-v5-4-1-retail-react-app-v10-2-1",
+      "type": "article",
+      "title": "commerce-sdk-react v5.4.1 (retail-react-app v10.2.1)",
+      "summary": "Summary This package-only patch release keeps the Page Designer preview URL bar synchronized with client-side storefront navigation. It publishes @salesforce/commerce-sdk-react@5.4.1 together with its runtime dependent, @salesfor",
+      "url": "https://github.com/SalesforceCommerceCloud/pwa-kit/releases/tag/commerce-sdk-react-v5.4.1",
+      "source": {
+        "name": "PWA Kit Releases",
+        "url": "https://github.com/SalesforceCommerceCloud/pwa-kit/releases.atom",
+        "icon": "https://discover.dwithease.com/assets/sources/github.svg"
+      },
+      "publishedAt": "2026-09-23T17:07:56Z",
+      "tags": [
+        "pwa-kit",
+        "release-notes",
+        "sfcc"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "salesforce-commerce-blog-build-agents-your-way-with-claude-and-commerce-cloud",
+      "type": "article",
+      "title": "Build Agents Your Way with Claude and Commerce Cloud",
+      "summary": "Anthropic recently launched a blueprint to help build commerce agents on Claude. This new starter kit for developers includes the reference code, guardrails, and best practices needed to build a shopping agent (to…",
+      "url": "https://www.salesforce.com/blog/agentforce-commerce-anthropic-agents/",
+      "source": {
+        "name": "Salesforce Commerce Blog",
+        "url": "https://www.salesforce.com/blog/category/ecommerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
+      },
+      "publishedAt": "2026-09-22T15:10:12.000Z",
+      "tags": [
+        "sfcc",
+        "strategy",
+        "ecommerce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
       "id": "salesforce-developers-build-custom-salesforce-connect-adapters-smarter-with-salesforce-skills",
       "type": "article",
       "title": "Build Custom Salesforce Connect Adapters Smarter with Salesforce Skills",
@@ -130,7 +239,8 @@
       "url": "https://developer.salesforce.com/blogs/2026/09/build-custom-salesforce-connect-adapters-smarter-with-salesforce-skills",
       "source": {
         "name": "Salesforce Developers Blog",
-        "url": "https://developer.salesforce.com/blogs/feed"
+        "url": "https://developer.salesforce.com/blogs/feed",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
       },
       "publishedAt": "2026-09-14T17:43:41.000Z",
       "tags": [
@@ -150,7 +260,8 @@
       "url": "https://www.salesforce.com/blog/dreamstore-runs-on-salesforce/",
       "source": {
         "name": "Salesforce Commerce Blog",
-        "url": "https://www.salesforce.com/blog/category/ecommerce/"
+        "url": "https://www.salesforce.com/blog/category/ecommerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
       },
       "publishedAt": "2026-09-14T16:14:21.000Z",
       "tags": [
@@ -170,7 +281,8 @@
       "url": "https://www.salesforce.com/blog/salesforce-pos-hp/",
       "source": {
         "name": "Salesforce Commerce Blog",
-        "url": "https://www.salesforce.com/blog/category/ecommerce/"
+        "url": "https://www.salesforce.com/blog/category/ecommerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
       },
       "publishedAt": "2026-09-11T15:25:35.000Z",
       "tags": [
@@ -190,7 +302,8 @@
       "url": "https://developer.salesforce.com/blogs/2026/09/improve-enterprise-rag-accuracy-in-data-360",
       "source": {
         "name": "Salesforce Developers Blog",
-        "url": "https://developer.salesforce.com/blogs/feed"
+        "url": "https://developer.salesforce.com/blogs/feed",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
       },
       "publishedAt": "2026-09-02T17:00:22.000Z",
       "tags": [
@@ -210,7 +323,8 @@
       "url": "https://github.com/SalesforceCommerceCloud/pwa-kit/releases/tag/v3.21.0-nightly-20260901080519",
       "source": {
         "name": "PWA Kit Releases",
-        "url": "https://github.com/SalesforceCommerceCloud/pwa-kit/releases.atom"
+        "url": "https://github.com/SalesforceCommerceCloud/pwa-kit/releases.atom",
+        "icon": "https://discover.dwithease.com/assets/sources/github.svg"
       },
       "publishedAt": "2026-09-01T08:08:59Z",
       "tags": [
@@ -230,7 +344,8 @@
       "url": "https://www.salesforce.com/blog/b2c-commerce-august-26-release/",
       "source": {
         "name": "Salesforce Commerce Blog",
-        "url": "https://www.salesforce.com/blog/category/ecommerce/"
+        "url": "https://www.salesforce.com/blog/category/ecommerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
       },
       "publishedAt": "2026-08-26T00:00:00Z",
       "tags": [
@@ -250,7 +365,8 @@
       "url": "https://rhino-inquisitor.com/b2c-commerce-cloud-26-9-release/",
       "source": {
         "name": "Rhino Inquisitor",
-        "url": "https://rhino-inquisitor.com/archive/"
+        "url": "https://rhino-inquisitor.com/archive/",
+        "icon": "https://discover.dwithease.com/assets/sources/rhino-inquisitor.svg"
       },
       "publishedAt": "2026-08-20T00:00:00Z",
       "tags": [
@@ -270,7 +386,8 @@
       "url": "https://rhino-inquisitor.com/sfcc-github-repo-access/",
       "source": {
         "name": "Rhino Inquisitor",
-        "url": "https://rhino-inquisitor.com/archive/"
+        "url": "https://rhino-inquisitor.com/archive/",
+        "icon": "https://discover.dwithease.com/assets/sources/rhino-inquisitor.svg"
       },
       "publishedAt": "2026-08-12T00:00:00Z",
       "tags": [
@@ -290,7 +407,8 @@
       "url": "https://forkpoint.com/articles/7-reasons-why-leading-brands-embrace-sfcc/",
       "source": {
         "name": "ForkPoint",
-        "url": "https://forkpoint.com/articles/"
+        "url": "https://forkpoint.com/articles/",
+        "icon": "https://discover.dwithease.com/assets/sources/forkpoint.svg"
       },
       "publishedAt": "2026-08-12T00:00:00Z",
       "tags": [
@@ -310,7 +428,8 @@
       "url": "https://forkpoint.com/articles/ai-the-smart-revolution-in-commerce/",
       "source": {
         "name": "ForkPoint",
-        "url": "https://forkpoint.com/articles/"
+        "url": "https://forkpoint.com/articles/",
+        "icon": "https://discover.dwithease.com/assets/sources/forkpoint.svg"
       },
       "publishedAt": "2026-08-12T00:00:00Z",
       "tags": [
@@ -330,7 +449,8 @@
       "url": "https://forkpoint.com/articles/how-ai-is-making-us-better-developers/",
       "source": {
         "name": "ForkPoint",
-        "url": "https://forkpoint.com/articles/"
+        "url": "https://forkpoint.com/articles/",
+        "icon": "https://discover.dwithease.com/assets/sources/forkpoint.svg"
       },
       "publishedAt": "2026-08-12T00:00:00Z",
       "tags": [
@@ -350,7 +470,8 @@
       "url": "https://forkpoint.com/articles/invisible-commerce-what-brands-must-know-in-2026/",
       "source": {
         "name": "ForkPoint",
-        "url": "https://forkpoint.com/articles/"
+        "url": "https://forkpoint.com/articles/",
+        "icon": "https://discover.dwithease.com/assets/sources/forkpoint.svg"
       },
       "publishedAt": "2026-08-12T00:00:00Z",
       "tags": [
@@ -370,7 +491,8 @@
       "url": "https://forkpoint.com/articles/why-ecommerce-brands-are-falling-in-love-with-ai-search/",
       "source": {
         "name": "ForkPoint",
-        "url": "https://forkpoint.com/articles/"
+        "url": "https://forkpoint.com/articles/",
+        "icon": "https://discover.dwithease.com/assets/sources/forkpoint.svg"
       },
       "publishedAt": "2026-08-12T00:00:00Z",
       "tags": [
@@ -390,7 +512,8 @@
       "url": "https://www.digitalcommerce360.com/2026/08/06/ahold-delhaize-usa-adds-pear-commerce-to-connect-cpg-content-to-online-grocery-carts/",
       "source": {
         "name": "Digital Commerce 360",
-        "url": "https://www.digitalcommerce360.com/topic/technology/"
+        "url": "https://www.digitalcommerce360.com/topic/technology/",
+        "icon": "https://discover.dwithease.com/assets/sources/digital-commerce-360.svg"
       },
       "publishedAt": "2026-08-06T00:00:00Z",
       "tags": [
@@ -410,7 +533,8 @@
       "url": "https://www.salesforce.com/blog/small-business/grow-a-revenue-hub-with-ai/",
       "source": {
         "name": "Salesforce Commerce Blog",
-        "url": "https://www.salesforce.com/blog/category/ecommerce/"
+        "url": "https://www.salesforce.com/blog/category/ecommerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
       },
       "publishedAt": "2026-08-05T00:00:00Z",
       "tags": [
@@ -430,7 +554,8 @@
       "url": "https://www.salesforceben.com/introducing-agentforce-for-architects-guidance-on-demand/",
       "source": {
         "name": "Salesforce Ben",
-        "url": "https://www.salesforceben.com/category/commerce/"
+        "url": "https://www.salesforceben.com/category/commerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce-ben.svg"
       },
       "publishedAt": "2026-08-05T00:00:00Z",
       "tags": [
@@ -450,7 +575,8 @@
       "url": "https://rhino-inquisitor.com/how-sfcc-price-books-actually-work/",
       "source": {
         "name": "Rhino Inquisitor",
-        "url": "https://rhino-inquisitor.com/archive/"
+        "url": "https://rhino-inquisitor.com/archive/",
+        "icon": "https://discover.dwithease.com/assets/sources/rhino-inquisitor.svg"
       },
       "publishedAt": "2026-08-05T00:00:00Z",
       "tags": [
@@ -470,7 +596,8 @@
       "url": "https://www.salesforce.com/blog/b2b-commerce-innovations-july-26/",
       "source": {
         "name": "Salesforce Commerce Blog",
-        "url": "https://www.salesforce.com/blog/category/ecommerce/"
+        "url": "https://www.salesforce.com/blog/category/ecommerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
       },
       "publishedAt": "2026-08-03T00:00:00Z",
       "tags": [
@@ -490,7 +617,8 @@
       "url": "https://www.salesforce.com/blog/b2c-commerce-july-26-release/",
       "source": {
         "name": "Salesforce Commerce Blog",
-        "url": "https://www.salesforce.com/blog/category/ecommerce/"
+        "url": "https://www.salesforce.com/blog/category/ecommerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
       },
       "publishedAt": "2026-07-29T00:00:00Z",
       "tags": [
@@ -510,7 +638,8 @@
       "url": "https://www.salesforce.com/news/stories/agentic-search-growth/",
       "source": {
         "name": "Salesforce News",
-        "url": "https://www.salesforce.com/news/topics/commerce/"
+        "url": "https://www.salesforce.com/news/topics/commerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
       },
       "publishedAt": "2026-07-28T00:00:00Z",
       "tags": [
@@ -530,7 +659,8 @@
       "url": "https://rhino-inquisitor.com/storefront-next-architecture-and-migration-from-pwa-kit/",
       "source": {
         "name": "Rhino Inquisitor",
-        "url": "https://rhino-inquisitor.com/archive/"
+        "url": "https://rhino-inquisitor.com/archive/",
+        "icon": "https://discover.dwithease.com/assets/sources/rhino-inquisitor.svg"
       },
       "publishedAt": "2026-07-27T00:00:00Z",
       "tags": [
@@ -550,7 +680,8 @@
       "url": "https://rhino-inquisitor.com/b2c-commerce-cloud-26-8-release/",
       "source": {
         "name": "Rhino Inquisitor",
-        "url": "https://rhino-inquisitor.com/archive/"
+        "url": "https://rhino-inquisitor.com/archive/",
+        "icon": "https://discover.dwithease.com/assets/sources/rhino-inquisitor.svg"
       },
       "publishedAt": "2026-07-23T00:00:00Z",
       "tags": [
@@ -570,7 +701,8 @@
       "url": "https://agenticstorefront.com/blog/ai-chatbot-tracking-study-what-brands-must-know/",
       "source": {
         "name": "Agentic Storefront",
-        "url": "https://agenticstorefront.com/categories/agentic-commerce/"
+        "url": "https://agenticstorefront.com/categories/agentic-commerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/agentic-storefront.svg"
       },
       "publishedAt": "2026-07-23T00:00:00Z",
       "tags": [
@@ -590,7 +722,8 @@
       "url": "https://agenticstorefront.com/blog/ai-visibility-most-underpriced-channel-q4/",
       "source": {
         "name": "Agentic Storefront",
-        "url": "https://agenticstorefront.com/categories/agentic-commerce/"
+        "url": "https://agenticstorefront.com/categories/agentic-commerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/agentic-storefront.svg"
       },
       "publishedAt": "2026-07-23T00:00:00Z",
       "tags": [
@@ -610,7 +743,8 @@
       "url": "https://www.digitalcommerce360.com/2026/07/22/esw-agentic-commerce-integration-microsoft-copilot/",
       "source": {
         "name": "Digital Commerce 360",
-        "url": "https://www.digitalcommerce360.com/topic/technology/"
+        "url": "https://www.digitalcommerce360.com/topic/technology/",
+        "icon": "https://discover.dwithease.com/assets/sources/digital-commerce-360.svg"
       },
       "publishedAt": "2026-07-22T00:00:00Z",
       "tags": [
@@ -630,7 +764,8 @@
       "url": "https://www.salesforce.com/blog/new-agentic-commerce-search-capabilities/",
       "source": {
         "name": "Salesforce Commerce Blog",
-        "url": "https://www.salesforce.com/blog/category/ecommerce/"
+        "url": "https://www.salesforce.com/blog/category/ecommerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
       },
       "publishedAt": "2026-07-21T00:00:00Z",
       "tags": [
@@ -650,7 +785,8 @@
       "url": "https://agenticstorefront.com/blog/openai-product-feed-chatgpt-shopping-explained/",
       "source": {
         "name": "Agentic Storefront",
-        "url": "https://agenticstorefront.com/categories/agentic-commerce/"
+        "url": "https://agenticstorefront.com/categories/agentic-commerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/agentic-storefront.svg"
       },
       "publishedAt": "2026-07-16T00:00:00Z",
       "tags": [
@@ -670,7 +806,8 @@
       "url": "https://agenticstorefront.com/blog/we-know-enough-ai-visibility/",
       "source": {
         "name": "Agentic Storefront",
-        "url": "https://agenticstorefront.com/categories/agentic-commerce/"
+        "url": "https://agenticstorefront.com/categories/agentic-commerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/agentic-storefront.svg"
       },
       "publishedAt": "2026-07-15T00:00:00Z",
       "tags": [
@@ -690,7 +827,8 @@
       "url": "https://agenticstorefront.com/blog/catch-me-if-you-can-agentic-commerce/",
       "source": {
         "name": "Agentic Storefront",
-        "url": "https://agenticstorefront.com/categories/agentic-commerce/"
+        "url": "https://agenticstorefront.com/categories/agentic-commerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/agentic-storefront.svg"
       },
       "publishedAt": "2026-07-14T00:00:00Z",
       "tags": [
@@ -710,7 +848,8 @@
       "url": "https://www.digitalcommerce360.com/2026/07/01/square-agentic-commerce-integrations-chatgpt-claude/",
       "source": {
         "name": "Digital Commerce 360",
-        "url": "https://www.digitalcommerce360.com/topic/technology/"
+        "url": "https://www.digitalcommerce360.com/topic/technology/",
+        "icon": "https://discover.dwithease.com/assets/sources/digital-commerce-360.svg"
       },
       "publishedAt": "2026-07-01T00:00:00Z",
       "tags": [
@@ -730,7 +869,8 @@
       "url": "https://www.digitalcommerce360.com/2026/06/29/newegg-adds-conversational-ai-assistant-for-shopping/",
       "source": {
         "name": "Digital Commerce 360",
-        "url": "https://www.digitalcommerce360.com/topic/technology/"
+        "url": "https://www.digitalcommerce360.com/topic/technology/",
+        "icon": "https://discover.dwithease.com/assets/sources/digital-commerce-360.svg"
       },
       "publishedAt": "2026-06-29T00:00:00Z",
       "tags": [
@@ -750,7 +890,8 @@
       "url": "https://www.salesforce.com/news/stories/agentforce-commerce-announcement/",
       "source": {
         "name": "Salesforce News",
-        "url": "https://www.salesforce.com/news/topics/commerce/"
+        "url": "https://www.salesforce.com/news/topics/commerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
       },
       "publishedAt": "2026-06-24T00:00:00Z",
       "tags": [
@@ -770,7 +911,8 @@
       "url": "https://www.digitalcommerce360.com/2026/06/18/ecommerce-trends-shaping-2026/",
       "source": {
         "name": "Digital Commerce 360",
-        "url": "https://www.digitalcommerce360.com/topic/technology/"
+        "url": "https://www.digitalcommerce360.com/topic/technology/",
+        "icon": "https://discover.dwithease.com/assets/sources/digital-commerce-360.svg"
       },
       "publishedAt": "2026-06-18T00:00:00Z",
       "tags": [
@@ -790,7 +932,8 @@
       "url": "https://www.salesforceben.com/salesforce-connections/",
       "source": {
         "name": "Salesforce Ben",
-        "url": "https://www.salesforceben.com/category/commerce/"
+        "url": "https://www.salesforceben.com/category/commerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce-ben.svg"
       },
       "publishedAt": "2026-05-07T00:00:00Z",
       "tags": [
@@ -810,7 +953,8 @@
       "url": "https://developer.salesforce.com/blogs/2026/04/introducing-the-b2c-commerce-cli-and-on-demand-sandbox-cloning",
       "source": {
         "name": "Salesforce Developers Blog",
-        "url": "https://developer.salesforce.com/blogs/feed"
+        "url": "https://developer.salesforce.com/blogs/feed",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
       },
       "publishedAt": "2026-04-28T15:00:06.000Z",
       "tags": [
@@ -830,7 +974,8 @@
       "url": "https://www.salesforceben.com/salesforce-commerce-cloud-and-marketing-cloud-shrink-for-the-first-time-in-years/",
       "source": {
         "name": "Salesforce Ben",
-        "url": "https://www.salesforceben.com/category/commerce/"
+        "url": "https://www.salesforceben.com/category/commerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce-ben.svg"
       },
       "publishedAt": "2026-02-26T00:00:00Z",
       "tags": [
@@ -850,7 +995,8 @@
       "url": "https://www.salesforceben.com/salesforce-acquires-cimulate-in-first-major-acquisition-of-2026/",
       "source": {
         "name": "Salesforce Ben",
-        "url": "https://www.salesforceben.com/category/commerce/"
+        "url": "https://www.salesforceben.com/category/commerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce-ben.svg"
       },
       "publishedAt": "2026-02-11T00:00:00Z",
       "tags": [
@@ -870,7 +1016,8 @@
       "url": "https://www.salesforce.com/news/stories/google-universal-commerce-protocol-support-announcement/",
       "source": {
         "name": "Salesforce News",
-        "url": "https://www.salesforce.com/news/topics/commerce/"
+        "url": "https://www.salesforce.com/news/topics/commerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
       },
       "publishedAt": "2026-01-14T00:00:00Z",
       "tags": [
@@ -890,7 +1037,8 @@
       "url": "https://www.salesforce.com/news/stories/2025-holiday-shopping-data/",
       "source": {
         "name": "Salesforce News",
-        "url": "https://www.salesforce.com/news/topics/commerce/"
+        "url": "https://www.salesforce.com/news/topics/commerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
       },
       "publishedAt": "2026-01-08T00:00:00Z",
       "tags": [
@@ -910,7 +1058,8 @@
       "url": "https://developer.salesforce.com/blogs/2025/12/build-composable-storefronts-smarter-and-faster-with-the-pwa-kit-mcp-server",
       "source": {
         "name": "Salesforce Developers Blog",
-        "url": "https://developer.salesforce.com/blogs/feed"
+        "url": "https://developer.salesforce.com/blogs/feed",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
       },
       "publishedAt": "2025-12-23T16:00:41.000Z",
       "tags": [
@@ -930,7 +1079,8 @@
       "url": "https://www.salesforce.com/news/press-releases/2025/12/05/cyber-week-ai-agents-sales/",
       "source": {
         "name": "Salesforce News",
-        "url": "https://www.salesforce.com/news/topics/commerce/"
+        "url": "https://www.salesforce.com/news/topics/commerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
       },
       "publishedAt": "2025-12-05T00:00:00Z",
       "tags": [
@@ -950,7 +1100,8 @@
       "url": "https://www.salesforceben.com/agentforce-commerce-unveiled-with-guided-shopping-agent-assisted-clienteling-and-more/",
       "source": {
         "name": "Salesforce Ben",
-        "url": "https://www.salesforceben.com/category/commerce/"
+        "url": "https://www.salesforceben.com/category/commerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce-ben.svg"
       },
       "publishedAt": "2025-11-18T00:00:00Z",
       "tags": [

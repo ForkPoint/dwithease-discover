@@ -57,6 +57,7 @@ const TagsSchema = z.array(SlugSchema)
 const SourceSchema = z.strictObject({
     name: z.string().max(80).regex(/\S/).trim().min(1),
     url: HttpsUrlSchema,
+    icon: HttpsUrlSchema.optional(),
 });
 
 const ImageSchema = z.strictObject({

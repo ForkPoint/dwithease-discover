@@ -92,8 +92,9 @@ function validFeedItem(item) {
     if (!exactObject(item, requiredKeys, ['image']) || !safeId(item.id)) return false;
     if (!requiredText(item.title, 120) || !requiredText(item.summary, 280)) return false;
     if (!isHttpsUrl(item.url) || !dateTime(item.publishedAt)) return false;
-    if (!exactObject(item.source, ['name', 'url'])) return false;
+    if (!exactObject(item.source, ['name', 'url'], ['icon'])) return false;
     if (!requiredText(item.source.name, 80) || !isHttpsUrl(item.source.url)) return false;
+    if (item.source.icon !== undefined && !isHttpsUrl(item.source.icon)) return false;
     if (!exactObject(item.cta, ['label']) || !requiredText(item.cta.label, 32)) return false;
     if (!Array.isArray(item.tags) || item.tags.length === 0 || item.tags.length > 8) return false;
     if (!item.tags.every((tag) => safeId(tag)) || new Set(item.tags).size !== item.tags.length) return false;

@@ -2,6 +2,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { pathToFileURL } from 'node:url';
 import { FeedSchema } from './feed-schema.ts';
 import { generateAtom, generateRss } from './write-syndication.ts';
+import { withSourceIcon } from './source-icons.js';
 
 export function getPromotableItems(devFeed, liveFeed) {
     const liveUrls = new Set(liveFeed.items.map((i) => i.url));
@@ -106,6 +107,8 @@ export async function runPromoteCli(args = process.argv.slice(2), { stdout = pro
     }
 
     const { feed: updatedFeed, addedCount } = mergeAndSortFeed(liveFeed, itemsToPromote);
+    updatedFeed.items = updatedFeed.items.map(withSourceIcon);
+    FeedSchema.parse(updatedFeed);
 
     await writeFile(toPath, `${JSON.stringify(updatedFeed, null, 2)}\n`);
 
