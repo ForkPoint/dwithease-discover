@@ -1,6 +1,6 @@
 {
   "locale": "en",
-  "updatedAt": "2026-10-30T08:01:50.317Z",
+  "updatedAt": "2026-11-02T17:46:17.507Z",
   "items": [
     {
       "id": "promotion-agentic-storefront-audit",
@@ -124,6 +124,48 @@
           "task-end",
           "popup"
         ]
+      }
+    },
+    {
+      "id": "salesforce-developers-blog-stop-credential-stuffing-with-b2c-commerce-ecdn",
+      "type": "article",
+      "title": "Stop Credential Stuffing with B2C Commerce eCDN",
+      "summary": "Protect your B2C Commerce storefront from credential stuffing with new eCDN leaked-credential detection. Learn how to configure firewall and rate-limiting rules, detect suspicious login attempts, and prompt shoppers to reset exposed passwords. The post Stop Cr",
+      "url": "https://developer.salesforce.com/blogs/2026/10/stop-credential-stuffing-with-b2c-commerce-ecdn",
+      "source": {
+        "name": "Salesforce Developers Blog",
+        "url": "https://developer.salesforce.com/blogs/feed",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
+      },
+      "publishedAt": "2026-10-14T15:00:41.000Z",
+      "tags": [
+        "sfcc",
+        "developer-tools",
+        "salesforce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "salesforce-commerce-blog-bot-mitigation-in-the-age-of-ai-crawlers-how-to-strategize-your-defense",
+      "type": "article",
+      "title": "Bot Mitigation in the Age of AI Crawlers: How to Strategize Your Defense",
+      "summary": "Not all bot traffic is bad. For years, bots were synonymous with risk: scrapers, scalpers, and credential stuffers trying to steal inventory, stuff stolen credentials into your login page, or scrape pricing and…",
+      "url": "https://www.salesforce.com/blog/bot-mitigation-strategy/",
+      "source": {
+        "name": "Salesforce Commerce Blog",
+        "url": "https://www.salesforce.com/blog/category/ecommerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
+      },
+      "publishedAt": "2026-10-07T15:28:51.000Z",
+      "tags": [
+        "sfcc",
+        "strategy",
+        "ecommerce"
+      ],
+      "cta": {
+        "label": "Read update"
       }
     },
     {

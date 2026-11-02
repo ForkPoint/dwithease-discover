@@ -5,7 +5,7 @@
   <subtitle>Commerce news, technical articles, and useful tools for teams that build online stores.</subtitle>
   <link href="https://discover.dwithease.com/" rel="alternate" type="text/html"/>
   <link href="https://discover.dwithease.com/atom.xml" rel="self" type="application/atom+xml"/>
-  <updated>2026-10-30T08:01:50.317Z</updated>
+  <updated>2026-11-02T17:46:17.507Z</updated>
   <entry>
     <id>https://discover.dwithease.com/#promotion-agentic-storefront-audit</id>
     <title>See How AI Shopping Agents Read Your Store</title>
@@ -64,6 +64,36 @@
     </author>
     <category term="search"/>
     <category term="ai"/>
+    <category term="ecommerce"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#salesforce-developers-blog-stop-credential-stuffing-with-b2c-commerce-ecdn</id>
+    <title>Stop Credential Stuffing with B2C Commerce eCDN</title>
+    <link href="https://developer.salesforce.com/blogs/2026/10/stop-credential-stuffing-with-b2c-commerce-ecdn" rel="alternate"/>
+    <published>2026-10-14T15:00:41.000Z</published>
+    <updated>2026-10-14T15:00:41.000Z</updated>
+    <summary>Protect your B2C Commerce storefront from credential stuffing with new eCDN leaked-credential detection. Learn how to configure firewall and rate-limiting rules, detect suspicious login attempts, and prompt shoppers to reset exposed passwords. The post Stop Cr</summary>
+    <author>
+      <name>Salesforce Developers Blog</name>
+      <uri>https://developer.salesforce.com/blogs/feed</uri>
+    </author>
+    <category term="sfcc"/>
+    <category term="developer-tools"/>
+    <category term="salesforce"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#salesforce-commerce-blog-bot-mitigation-in-the-age-of-ai-crawlers-how-to-strategize-your-defense</id>
+    <title>Bot Mitigation in the Age of AI Crawlers: How to Strategize Your Defense</title>
+    <link href="https://www.salesforce.com/blog/bot-mitigation-strategy/" rel="alternate"/>
+    <published>2026-10-07T15:28:51.000Z</published>
+    <updated>2026-10-07T15:28:51.000Z</updated>
+    <summary>Not all bot traffic is bad. For years, bots were synonymous with risk: scrapers, scalpers, and credential stuffers trying to steal inventory, stuff stolen credentials into your login page, or scrape pricing and…</summary>
+    <author>
+      <name>Salesforce Commerce Blog</name>
+      <uri>https://www.salesforce.com/blog/category/ecommerce/</uri>
+    </author>
+    <category term="sfcc"/>
+    <category term="strategy"/>
     <category term="ecommerce"/>
   </entry>
   <entry>
