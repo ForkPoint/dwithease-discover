@@ -8,6 +8,7 @@ import {
     cleanText,
     harvestFromSources,
     isEnglish,
+    isSfccRelated,
     loadRejectedUrls,
     mergeCandidates,
     normalizeCandidate,
@@ -188,4 +189,21 @@ test('rejected URLs block a candidate from being harvested again', async () => {
     } finally {
         await rm(directory, { recursive: true, force: true });
     }
+});
+
+test('isSfccRelated keeps B2C Commerce posts and drops general Salesforce or small-business posts', () => {
+    const keep = [
+        { title: 'Stop Credential Stuffing with B2C Commerce eCDN', summary: '', url: 'https://developer.salesforce.com/blogs/2026/10/stop-credential-stuffing-with-b2c-commerce-ecdn' },
+        { title: 'Peak-Ready Precision: The October 2026 B2C Commerce Release', summary: '', url: 'https://www.salesforce.com/blog/b2c-commerce-october-26-release/' },
+        { title: 'Turn TikTok Scrolls into Sales', summary: '', url: 'https://www.salesforce.com/blog/commerce-cloud-tiktok-integration/' },
+        { title: 'Bot Mitigation in the Age of AI Crawlers', summary: 'Protect your storefront from scrapers.', url: 'https://www.salesforce.com/blog/bot-mitigation-strategy/' },
+    ];
+    const drop = [
+        { title: 'Agentforce Voice for Agent Script: Route Real Phone Calls to Your Agent', summary: 'Omni-Channel routing', url: 'https://developer.salesforce.com/blogs/2026/10/agentforce-voice' },
+        { title: 'Pro-Code Chunking of Data 360 Search Indexes for Agentforce', summary: '', url: 'https://developer.salesforce.com/blogs/2026/09/pro-code-chunking' },
+        { title: '25 Online Business Ideas For All Your Commerce Needs', summary: 'turn a spare evening into a real storefront', url: 'https://www.salesforce.com/blog/small-business/online-business-ideas-for-commerce/' },
+    ];
+
+    for (const entry of keep) assert.equal(isSfccRelated(entry), true, entry.title);
+    for (const entry of drop) assert.equal(isSfccRelated(entry), false, entry.title);
 });

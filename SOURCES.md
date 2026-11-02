@@ -20,8 +20,8 @@ This file records the inputs for `feed-dev.json`.
 | Source | Source URL | Method | Cycle result on 2026-09-01 |
 | --- | --- | --- | --- |
 | Salesforce News | https://www.salesforce.com/news/topics/commerce/ | HTML | Working. The old `/stories/category/commerce/feed/` URL returned HTTP 404. The HTML topic page is the fallback. |
-| Salesforce Commerce Blog | https://www.salesforce.com/blog/category/ecommerce/ | HTML or RSS | Working. The commerce RSS feed also returned HTTP 200. |
-| Salesforce Developers Blog | https://developer.salesforce.com/blogs/feed | RSS | Working. Apply an SFCC, B2C Commerce, PWA Kit, or composable storefront term filter. |
+| Salesforce Commerce Blog | https://www.salesforce.com/blog/category/ecommerce/ | HTML or RSS | Working. The commerce RSS feed also returned HTTP 200. Apply the SFCC term filter and skip `/small-business/` posts. |
+| Salesforce Developers Blog | https://developer.salesforce.com/blogs/feed | RSS | Working. Apply the SFCC term filter (B2C Commerce, Commerce Cloud, SFRA, PWA Kit, storefront, eCDN, SCAPI, OCAPI, Managed Runtime). General Salesforce posts are out of scope. |
 | PWA Kit Releases | https://github.com/SalesforceCommerceCloud/pwa-kit/releases.atom | Atom | Working. The current Atom window contains nightly builds. The dev feed keeps 1 nightly item for testing. Exclude nightly builds from live curation unless they add useful release detail. |
 | Rhino Inquisitor | https://rhino-inquisitor.com/archive/ | HTML | Working. `/feed/` returned a small HTML page instead of a usable XML feed. Use the archive page. |
 | Agentic Storefront | https://agenticstorefront.com/categories/agentic-commerce/ | HTML | Working. |

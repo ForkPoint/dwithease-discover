@@ -3,20 +3,23 @@ import { dirname, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { franc } from 'franc-min';
 
-const COMMERCE_KEYWORDS = [
-    'commerce',
-    'b2c',
+// Terms that tie a post to Salesforce B2C Commerce (SFCC), not to Salesforce in general.
+const SFCC_KEYWORDS = [
+    'b2c commerce',
+    'b2c-commerce',
+    'commerce cloud',
+    'commerce-cloud',
     'sfcc',
-    'pwa',
+    'sfra',
+    'pwa kit',
     'pwa-kit',
+    'composable storefront',
     'storefront',
-    'composable',
-    'agentforce',
-    'agentic',
-    'retail',
-    'cart',
-    'checkout',
-];
+    'ecdn',
+    'scapi',
+    'ocapi',
+    'managed runtime',
+]
 
 export function slugify(text) {
     return text
@@ -103,9 +106,15 @@ export function parseRssItems(xmlString) {
     return items;
 }
 
-export function matchesKeywords(text, keywords = COMMERCE_KEYWORDS) {
+export function matchesKeywords(text, keywords = SFCC_KEYWORDS) {
     const lower = text.toLowerCase();
     return keywords.some((kw) => lower.includes(kw));
+}
+
+export function isSfccRelated(entry) {
+    // Small-business posts reuse commerce words but are not about the platform.
+    if (entry.url.includes('/small-business/')) return false;
+    return matchesKeywords(`${entry.title} ${entry.summary ?? ''} ${entry.url} ${(entry.categories || []).join(' ')}`);
 }
 
 export function isEnglish(entry) {
@@ -206,7 +215,7 @@ const RSS_SOURCES = [
         feedUrl: 'https://developer.salesforce.com/blogs/feed',
         type: 'rss',
         tags: ['sfcc', 'developer-tools', 'salesforce'],
-        filter: (entry) => matchesKeywords(`${entry.title} ${entry.summary} ${(entry.categories || []).join(' ')}`),
+        filter: isSfccRelated,
     },
     {
         name: 'Salesforce Commerce Blog',
@@ -214,7 +223,7 @@ const RSS_SOURCES = [
         feedUrl: 'https://www.salesforce.com/blog/category/ecommerce/feed/',
         type: 'rss',
         tags: ['sfcc', 'strategy', 'ecommerce'],
-        filter: () => true,
+        filter: isSfccRelated,
     },
 ];
 
