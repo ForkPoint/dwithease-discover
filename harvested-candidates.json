@@ -1,6 +1,66 @@
 {
-  "harvestedAt": "2026-10-30T08:01:06.527Z",
+  "harvestedAt": "2026-11-02T11:23:53.702Z",
   "candidates": [
+    {
+      "id": "salesforce-developers-blog-build-trusted-conversational-analytics-with-aiforce-data-360-and-tableau-",
+      "type": "article",
+      "title": "Build Trusted Conversational Analytics with AIforce, Data 360, and Tableau Semantics",
+      "summary": "Learn how to create shared business definitions that help AI agents deliver consistent, context-aware insights across conversational experiences. The post Build Trusted Conversational Analytics with AIforce, Data 360, and Tableau Semantics appeared first on Sa",
+      "url": "https://developer.salesforce.com/blogs/2026/10/build-trusted-conversational-analytics-with-aiforce-data-360-and-tableau-semantics",
+      "source": {
+        "name": "Salesforce Developers Blog",
+        "url": "https://developer.salesforce.com/blogs/feed"
+      },
+      "publishedAt": "2026-10-29T15:15:49.000Z",
+      "tags": [
+        "sfcc",
+        "developer-tools",
+        "salesforce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "salesforce-developers-blog-explore-the-headless-toolkit-with-the-pronto-sample-app",
+      "type": "article",
+      "title": "Explore the Headless Toolkit with the Pronto Sample App",
+      "summary": "Discover how the Pronto sample app demonstrates the power of the Headless Toolkit with Agentforce, Hosted MCP servers, and rich experiences across surfaces. The post Explore the Headless Toolkit with the Pronto Sample App appeared first on Salesforce Developer",
+      "url": "https://developer.salesforce.com/blogs/2026/10/explore-the-headless-toolkit-with-the-pronto-sample-app",
+      "source": {
+        "name": "Salesforce Developers Blog",
+        "url": "https://developer.salesforce.com/blogs/feed"
+      },
+      "publishedAt": "2026-10-28T14:00:05.000Z",
+      "tags": [
+        "sfcc",
+        "developer-tools",
+        "salesforce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "salesforce-commerce-blog-the-consignment-process-practical-steps-for-businesses",
+      "type": "article",
+      "title": "The Consignment Process: Practical Steps for Businesses",
+      "summary": "Consignment lets you get your products on shelves without spending a dollar — here's how the process works.",
+      "url": "https://www.salesforce.com/blog/small-business/consignment-process/",
+      "source": {
+        "name": "Salesforce Commerce Blog",
+        "url": "https://www.salesforce.com/blog/category/ecommerce/"
+      },
+      "publishedAt": "2026-10-29T13:00:00.000Z",
+      "tags": [
+        "sfcc",
+        "strategy",
+        "ecommerce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
     {
       "id": "salesforce-developers-blog-headless-experience-layer-widget-formulas-math-and-logic-with-json",
       "type": "article",
