@@ -1,6 +1,14 @@
 {
   "urls": [
+    "https://developer.salesforce.com/blogs/2026/08/shift-left-natively-testing-and-quality-gates-in-devops-center",
+    "https://developer.salesforce.com/blogs/2026/09/pro-code-chunking-of-data-360-search-indexes-for-agentforce",
+    "https://developer.salesforce.com/blogs/2026/10/agentforce-voice-for-agent-script-route-real-phone-calls-to-your-agent",
     "https://developer.salesforce.com/blogs/2026/10/build-trusted-conversational-analytics-with-aiforce-data-360-and-tableau-semantics",
-    "https://www.salesforce.com/blog/small-business/consignment-process/"
+    "https://developer.salesforce.com/blogs/2026/10/building-interactive-ui-with-hxl",
+    "https://developer.salesforce.com/blogs/2026/10/headless-experience-layer-widget-formulas-math-and-logic-with-json",
+    "https://developer.salesforce.com/blogs/2026/10/whats-new-in-salesforce-multi-framework-angular-is-now-ga",
+    "https://www.salesforce.com/blog/small-business/consignment-process/",
+    "https://www.salesforce.com/blog/small-business/how-to-price-your-products/",
+    "https://www.salesforce.com/blog/small-business/online-business-ideas-for-commerce/"
   ]
 }
