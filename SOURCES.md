@@ -13,6 +13,7 @@ This file records the inputs for `feed-dev.json`.
 - Remove duplicate URLs and duplicate item IDs.
 - Sort editorial items by `publishedAt`, newest first.
 - Review every item before it moves to `feed-live.json`.
+- `npm run curate -- --reject <id>` records the URL in `rejected-candidates.json`. The RSS harvester skips these URLs, so rejected items do not return.
 
 ## Editorial sources
 

@@ -1,7 +1,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { createInterface } from 'node:readline/promises';
 import { pathToFileURL } from 'node:url';
-import { cleanText, isEnglish, slugify } from './harvest-rss-sources.js';
+import { cleanText, isEnglish, loadRejectedUrls, recordRejection, rejectedPathFor, slugify } from './harvest-rss-sources.js';
 import { withSourceIcon } from './source-icons.js';
 
 export function normalizeTag(tag) {
@@ -127,6 +127,8 @@ export async function loadCandidates(filePath) {
     }
 }
 
+export { loadRejectedUrls };
+
 export async function saveCandidates(filePath, candidates) {
     const output = {
         harvestedAt: new Date().toISOString(),
@@ -233,6 +235,7 @@ export async function runCurateCli(args = process.argv.slice(2), { stdin = proce
         const result = await curateCandidate({ candidate: match, action: 'reject', feed, candidates });
         candidates = result.candidates;
         await saveCandidates(candidatesPath, candidates);
+        await recordRejection(rejectedPathFor(candidatesPath), match.url);
         stdout.write(`✗ Rejected "${match.title}" from ${candidatesPath}\n`);
         return;
     }
@@ -296,6 +299,7 @@ export async function runCurateCli(args = process.argv.slice(2), { stdin = proce
             const result = await curateCandidate({ candidate, action: 'reject', feed, candidates });
             candidates = result.candidates;
             await saveCandidates(candidatesPath, candidates);
+            await recordRejection(rejectedPathFor(candidatesPath), candidate.url);
             stdout.write(`✗ Rejected candidate.\n\n`);
         } else {
             stdout.write(`Skipped.\n\n`);

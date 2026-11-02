@@ -1,14 +1,20 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { mkdtemp, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 
 import {
     cleanText,
     harvestFromSources,
     isEnglish,
+    loadRejectedUrls,
     mergeCandidates,
     normalizeCandidate,
     parseAtomEntries,
     parseRssItems,
+    recordRejection,
+    rejectedPathFor,
     slugify,
 } from '../scripts/harvest-rss-sources.js';
 
@@ -168,4 +174,18 @@ test('isEnglish rejects Latin-script languages and accepts English with Japanese
     }), true);
     assert.equal(isEnglish({ title: 'v3.6.0', summary: 'Release notes', url: 'https://example.com/v3.6.0' }), true);
     assert.equal(isEnglish({ title: 'Commerce release', url: 'https://example.com/post?lang=ja' }), false);
+});
+
+test('rejected URLs block a candidate from being harvested again', async () => {
+    const directory = await mkdtemp(join(tmpdir(), 'discover-rejected-'));
+    try {
+        const rejectedPath = rejectedPathFor(join(directory, 'harvested-candidates.json'));
+        await recordRejection(rejectedPath, 'https://example.com/off-topic');
+        const knownUrls = await loadRejectedUrls(rejectedPath);
+        const entry = { id: 'off-topic', title: 'Off topic', url: 'https://example.com/off-topic' };
+
+        assert.equal(mergeCandidates([], [entry], knownUrls).additions.length, 0);
+    } finally {
+        await rm(directory, { recursive: true, force: true });
+    }
 });

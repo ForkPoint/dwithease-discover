@@ -7,6 +7,7 @@ import {
     addItemToFeed,
     curateCandidate,
     loadCandidates,
+    loadRejectedUrls,
     normalizeCuratedItem,
     normalizeTag,
     normalizeTags,
@@ -222,4 +223,36 @@ test('normalizeCuratedItem rejects Spanish text and accepts English with Japanes
         summary: 'This release adds Japanese search support.',
         url: 'https://example.com/search',
     }).title, 'Support Japanese text (日本語) in storefront search');
+});
+
+test('runCurateCli records rejected URLs next to the candidates file', async () => {
+    const directory = await mkdtemp(join(tmpdir(), 'discover-curate-'));
+    try {
+        const candidatesPath = join(directory, 'candidates.json');
+        const feedPath = join(directory, 'feed.json');
+        const rejectedPath = join(directory, 'rejected-candidates.json');
+        const candidates = [
+            { id: 'first', title: 'First', url: 'https://example.com/first' },
+            { id: 'second', title: 'Second', url: 'https://example.com/second' },
+        ];
+        await writeFile(candidatesPath, JSON.stringify({ candidates }));
+        await writeFile(feedPath, JSON.stringify({ locale: 'en', updatedAt: '2026-09-01T00:00:00Z', items: [] }));
+        const run = (id) => runCurateCli(['--candidates', candidatesPath, '--feed', feedPath, '--reject', id], {
+            stdin: { isTTY: false }, stdout: { write() {} },
+        });
+
+        await run('first');
+        await run('second');
+
+        assert.deepEqual(await loadRejectedUrls(rejectedPath), new Set([
+            'https://example.com/first',
+            'https://example.com/second',
+        ]));
+    } finally {
+        await rm(directory, { recursive: true, force: true });
+    }
+});
+
+test('loadRejectedUrls returns an empty set when no file exists', async () => {
+    assert.deepEqual(await loadRejectedUrls(join(tmpdir(), 'missing-rejected-candidates.json')), new Set());
 });

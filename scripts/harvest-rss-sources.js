@@ -1,4 +1,5 @@
 import { readFile, writeFile } from 'node:fs/promises';
+import { dirname, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { franc } from 'franc-min';
 
@@ -150,6 +151,26 @@ export function normalizeCandidate(entry, source, defaultTags = ['sfcc', 'commer
     };
 }
 
+// Rejections live beside the candidates file so the harvester can skip them on later runs.
+export function rejectedPathFor(candidatesPath) {
+    return join(dirname(candidatesPath), 'rejected-candidates.json');
+}
+
+export async function loadRejectedUrls(filePath) {
+    try {
+        const parsed = JSON.parse(await readFile(filePath, 'utf8'));
+        return new Set(parsed.urls ?? []);
+    } catch {
+        return new Set();
+    }
+}
+
+export async function recordRejection(filePath, url) {
+    const urls = await loadRejectedUrls(filePath);
+    urls.add(url);
+    await writeFile(filePath, `${JSON.stringify({ urls: [...urls].sort() }, null, 2)}\n`);
+}
+
 export function mergeCandidates(existingCandidates = [], newEntries = [], knownUrls = new Set()) {
     const seenUrls = new Set([...knownUrls]);
     const seenIds = new Set(existingCandidates.map((c) => c.id));
@@ -243,6 +264,8 @@ async function main() {
             // Optional feed files
         }
     }
+
+    for (const url of await loadRejectedUrls(rejectedPathFor(candidatesPath))) knownUrls.add(url);
 
     const newCandidates = await harvestFromSources();
     const result = mergeCandidates(existingData.candidates, newCandidates, knownUrls);
