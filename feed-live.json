@@ -1,6 +1,6 @@
 {
   "locale": "en",
-  "updatedAt": "2026-11-02T17:46:17.507Z",
+  "updatedAt": "2026-11-03T15:48:21.431Z",
   "items": [
     {
       "id": "promotion-agentic-storefront-audit",
@@ -124,6 +124,48 @@
           "task-end",
           "popup"
         ]
+      }
+    },
+    {
+      "id": "salesforce-developers-blog-explore-the-headless-toolkit-with-the-pronto-sample-app",
+      "type": "article",
+      "title": "Explore the Headless Toolkit with the Pronto Sample App",
+      "summary": "Discover how the Pronto sample app demonstrates the power of the Headless Toolkit with Agentforce, Hosted MCP servers, and rich experiences across surfaces. The post Explore the Headless Toolkit with the Pronto Sample App appeared first on Salesforce Developer",
+      "url": "https://developer.salesforce.com/blogs/2026/10/explore-the-headless-toolkit-with-the-pronto-sample-app",
+      "source": {
+        "name": "Salesforce Developers Blog",
+        "url": "https://developer.salesforce.com/blogs/feed",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
+      },
+      "publishedAt": "2026-10-28T14:00:05.000Z",
+      "tags": [
+        "sfcc",
+        "developer-tools",
+        "salesforce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "salesforce-commerce-blog-peak-ready-precision-the-october-2026-b2c-commerce-release",
+      "type": "article",
+      "title": "Peak-Ready Precision: The October 2026 B2C Commerce Release",
+      "summary": "Time is money, especially during the holiday shopping season when every second matters for your brand’s bottom line. When merchandisers spend hours clicking through catalog hierarchies, or developers burn an entire afternoon building…",
+      "url": "https://www.salesforce.com/blog/b2c-commerce-october-26-release/",
+      "source": {
+        "name": "Salesforce Commerce Blog",
+        "url": "https://www.salesforce.com/blog/category/ecommerce/",
+        "icon": "https://discover.dwithease.com/assets/sources/salesforce.svg"
+      },
+      "publishedAt": "2026-10-26T21:21:58.000Z",
+      "tags": [
+        "sfcc",
+        "strategy",
+        "ecommerce"
+      ],
+      "cta": {
+        "label": "Read update"
       }
     },
     {

@@ -5,7 +5,7 @@
   <subtitle>Commerce news, technical articles, and useful tools for teams that build online stores.</subtitle>
   <link href="https://discover.dwithease.com/" rel="alternate" type="text/html"/>
   <link href="https://discover.dwithease.com/atom.xml" rel="self" type="application/atom+xml"/>
-  <updated>2026-11-02T17:46:17.507Z</updated>
+  <updated>2026-11-03T15:48:21.431Z</updated>
   <entry>
     <id>https://discover.dwithease.com/#promotion-agentic-storefront-audit</id>
     <title>See How AI Shopping Agents Read Your Store</title>
@@ -64,6 +64,36 @@
     </author>
     <category term="search"/>
     <category term="ai"/>
+    <category term="ecommerce"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#salesforce-developers-blog-explore-the-headless-toolkit-with-the-pronto-sample-app</id>
+    <title>Explore the Headless Toolkit with the Pronto Sample App</title>
+    <link href="https://developer.salesforce.com/blogs/2026/10/explore-the-headless-toolkit-with-the-pronto-sample-app" rel="alternate"/>
+    <published>2026-10-28T14:00:05.000Z</published>
+    <updated>2026-10-28T14:00:05.000Z</updated>
+    <summary>Discover how the Pronto sample app demonstrates the power of the Headless Toolkit with Agentforce, Hosted MCP servers, and rich experiences across surfaces. The post Explore the Headless Toolkit with the Pronto Sample App appeared first on Salesforce Developer</summary>
+    <author>
+      <name>Salesforce Developers Blog</name>
+      <uri>https://developer.salesforce.com/blogs/feed</uri>
+    </author>
+    <category term="sfcc"/>
+    <category term="developer-tools"/>
+    <category term="salesforce"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#salesforce-commerce-blog-peak-ready-precision-the-october-2026-b2c-commerce-release</id>
+    <title>Peak-Ready Precision: The October 2026 B2C Commerce Release</title>
+    <link href="https://www.salesforce.com/blog/b2c-commerce-october-26-release/" rel="alternate"/>
+    <published>2026-10-26T21:21:58.000Z</published>
+    <updated>2026-10-26T21:21:58.000Z</updated>
+    <summary>Time is money, especially during the holiday shopping season when every second matters for your brand’s bottom line. When merchandisers spend hours clicking through catalog hierarchies, or developers burn an entire afternoon building…</summary>
+    <author>
+      <name>Salesforce Commerce Blog</name>
+      <uri>https://www.salesforce.com/blog/category/ecommerce/</uri>
+    </author>
+    <category term="sfcc"/>
+    <category term="strategy"/>
     <category term="ecommerce"/>
   </entry>
   <entry>
