@@ -74,6 +74,11 @@ for (const name of ['harvest-rss-sources', 'harvest-salesforce-ideas']) {
         assert.match(run, /--previous "\$RUNNER_TEMP\/previous.json"/);
 
         const harvest = steps.find(({ id }) => id === 'harvest');
+        const check = steps.find(({ name: stepName }) => stepName === 'Check the harvested data');
+        assert.match(check.run, /npm run validate:candidates -- \S+\.json/);
+        assert.equal(check['continue-on-error'], undefined);
+        assert.ok(steps.indexOf(check) > steps.indexOf(harvest));
+        assert.ok(steps.indexOf(check) < steps.findIndex(({ name: stepName }) => stepName === 'Open an update pull request'));
         assert.equal(harvest['continue-on-error'], true);
         const gate = steps.find(({ if: condition }) => condition === "steps.harvest.outcome == 'failure'");
         assert.match(gate.run, /exit 1/);

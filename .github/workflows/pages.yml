@@ -50,6 +50,9 @@ jobs:
       - name: Validate public source registry
         run: npm run validate:sources
 
+      - name: Validate harvested candidates
+        run: npm run validate:candidates -- harvested-candidates.json salesforce-ideas.json
+
       - name: Prepare static site
         run: |
           mkdir _site
