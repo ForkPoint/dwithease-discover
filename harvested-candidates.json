@@ -1,4 +1,25 @@
 {
-  "harvestedAt": "2026-11-02T12:00:42.166Z",
-  "candidates": []
+  "harvestedAt": "2026-11-04T08:26:48.091Z",
+  "candidates": [
+    {
+      "id": "salesforce-developers-blog-protect-your-salesforce-commerce-api-scapi-from-bots-and-ai-agents-with-e",
+      "type": "article",
+      "title": "Protect Your Salesforce Commerce API (SCAPI) from Bots and AI Agents with eCDN",
+      "summary": "Learn how to secure your Salesforce Commerce API (SCAPI) with B2C Commerce eCDN. Explore how to restrict API access to trusted integrations, strengthen SLAS security, and manage AI crawler and shopping agent traffic at the edge. The post Protect Your Salesforc",
+      "url": "https://developer.salesforce.com/blogs/2026/11/protect-your-salesforce-commerce-api-scapi-from-bots-and-ai-agents-with-ecdn",
+      "source": {
+        "name": "Salesforce Developers Blog",
+        "url": "https://developer.salesforce.com/blogs/feed"
+      },
+      "publishedAt": "2026-11-03T16:00:54.000Z",
+      "tags": [
+        "sfcc",
+        "developer-tools",
+        "salesforce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    }
+  ]
 }
