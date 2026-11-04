@@ -5,7 +5,7 @@
     <link>https://discover.dwithease.com/</link>
     <description>Commerce news, technical articles, and useful tools for teams that build online stores.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 03 Nov 2026 15:48:21 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 04 Nov 2026 15:56:30 GMT</lastBuildDate>
     <atom:link href="https://discover.dwithease.com/rss.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>See How AI Shopping Agents Read Your Store</title>
@@ -50,6 +50,17 @@
       <category>search</category>
       <category>ai</category>
       <category>ecommerce</category>
+    </item>
+    <item>
+      <title>Protect Your Salesforce Commerce API (SCAPI) from Bots and AI Agents with eCDN</title>
+      <link>https://developer.salesforce.com/blogs/2026/11/protect-your-salesforce-commerce-api-scapi-from-bots-and-ai-agents-with-ecdn</link>
+      <guid isPermaLink="false">salesforce-developers-blog-protect-your-salesforce-commerce-api-scapi-from-bots-and-ai-agents-with-e</guid>
+      <pubDate>Tue, 03 Nov 2026 16:00:54 GMT</pubDate>
+      <description>Learn how to secure your Salesforce Commerce API (SCAPI) with B2C Commerce eCDN. Explore how to restrict API access to trusted integrations, strengthen SLAS security, and manage AI crawler and shopping agent traffic at the edge. The post Protect Your Salesforc</description>
+      <source url="https://developer.salesforce.com/blogs/feed">Salesforce Developers Blog</source>
+      <category>sfcc</category>
+      <category>developer-tools</category>
+      <category>salesforce</category>
     </item>
     <item>
       <title>Explore the Headless Toolkit with the Pronto Sample App</title>
