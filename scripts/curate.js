@@ -1,7 +1,15 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { createInterface } from 'node:readline/promises';
 import { pathToFileURL } from 'node:url';
-import { cleanText, isEnglish, loadRejectedUrls, recordRejection, rejectedPathFor, slugify } from './harvest-rss-sources.js';
+import {
+    EXTENSION_WINDOW_DAYS,
+    cleanText,
+    isEnglish,
+    loadRejectedUrls,
+    recordRejection,
+    rejectedPathFor,
+    slugify,
+} from './harvest-rss-sources.js';
 import { withSourceIcon } from './source-icons.js';
 
 export function normalizeTag(tag) {
@@ -129,6 +137,13 @@ export async function loadCandidates(filePath) {
 
 export { loadRejectedUrls };
 
+// The extension drops items by publishedAt, so an old article can expire before or soon after it publishes.
+export function ageWarning(item, nowMs = Date.now()) {
+    const ageDays = Math.floor((nowMs - Date.parse(item.publishedAt)) / 86_400_000);
+    if (ageDays <= EXTENSION_WINDOW_DAYS - 14) return null;
+    return `Warning: published ${ageDays} days ago. The extension hides items older than ${EXTENSION_WINDOW_DAYS} days.`;
+}
+
 export async function saveCandidates(filePath, candidates) {
     const output = {
         harvestedAt: new Date().toISOString(),
@@ -223,6 +238,8 @@ export async function runCurateCli(args = process.argv.slice(2), { stdin = proce
         await writeFile(feedPath, `${JSON.stringify(feed, null, 2)}\n`);
         await saveCandidates(candidatesPath, candidates);
         stdout.write(`✓ Accepted "${match.title}" into ${feedPath}\n`);
+        const warning = ageWarning(result.item);
+        if (warning) stdout.write(`${warning}\n`);
         return;
     }
 

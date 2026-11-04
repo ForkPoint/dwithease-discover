@@ -59,6 +59,7 @@ test('harvest, curate, and publish move only reviewed SFCC items to the live fee
         // 1. Harvest keeps the 3 SFCC posts and drops the general DevOps post.
         await harvest();
         const candidates = (await readJson(paths.candidates)).candidates;
+        assert.ok(candidates.every(({ harvestedAt }) => Date.parse(harvestedAt) > 0));
         assert.deepEqual(candidates.map(({ title }) => title).sort(), [
             'Caching Strategies for PWA Kit Storefronts',
             'Extending SFRA Checkout Without Forking Cartridges',

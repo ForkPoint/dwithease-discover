@@ -82,7 +82,7 @@ jobs:
       - name: Fail when a source failed
         if: steps.harvest.outcome == 'failure'
         run: |
-          echo "The harvest step failed. See its log above."
+          echo "A harvest step failed. See its log above."
           exit 1
 
       - name: Report failure

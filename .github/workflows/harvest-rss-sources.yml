@@ -26,15 +26,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Rebuild the candidate branch from main
-        run: |
-          # Rebasing an old bot commit conflicts after curation changes main,
-          # so start from main and carry the unmerged file over instead.
-          git switch -C "$BRANCH" origin/main
-          if git fetch origin "refs/heads/$BRANCH:refs/remotes/origin/$BRANCH"; then
-            git show "origin/$BRANCH:harvested-candidates.json" > "$RUNNER_TEMP/previous.json"
-          fi
-
       - name: Set up Node.js
         uses: actions/setup-node@v6
         with:
@@ -43,6 +34,43 @@ jobs:
 
       - name: Install packages
         run: npm ci
+
+      - name: Queue trusted releases on main
+        id: trusted
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          # Official PWA Kit releases skip review and go straight to the publish queue.
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git switch -C main origin/main
+            npm run harvest:rss-sources -- --trusted-only
+            if git diff --quiet -- feed-dev.json; then
+              exit 0
+            fi
+            npm run validate:feed -- feed-dev.json
+            git add feed-dev.json
+            git commit -m "data: queue PWA Kit releases"
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Push attempt $attempt failed. Retrying from the newest main."
+          done
+          exit 1
+
+      - name: Rebuild the candidate branch from main
+        run: |
+          # Rebasing an old bot commit conflicts after curation changes main,
+          # so start from main and carry the unmerged file over instead.
+          git fetch origin main
+          git switch -C "$BRANCH" origin/main
+          if git fetch origin "refs/heads/$BRANCH:refs/remotes/origin/$BRANCH"; then
+            git show "origin/$BRANCH:harvested-candidates.json" > "$RUNNER_TEMP/previous.json"
+          fi
+
 
       - name: Harvest
         id: harvest
@@ -77,9 +105,9 @@ jobs:
           fi
 
       - name: Fail when a source failed
-        if: steps.harvest.outcome == 'failure'
+        if: steps.trusted.outcome == 'failure' || steps.harvest.outcome == 'failure'
         run: |
-          echo "The harvest step failed. See its log above."
+          echo "A harvest step failed. See its log above."
           exit 1
 
       - name: Report failure

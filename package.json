@@ -12,6 +12,7 @@
     "harvest:salesforce-ideas": "node scripts/harvest-salesforce-ideas.js",
     "harvest:rss-sources": "node scripts/harvest-rss-sources.js",
     "curate": "node scripts/curate.js",
+    "curation:reminder": "node scripts/curation-reminder.js",
     "promote:feed": "node scripts/promote-feed.js",
     "check": "npm run typecheck && npm test && npm run validate:feed -- feed-live.json feed-dev.json && npm run validate:sources && npm run validate:candidates -- harvested-candidates.json salesforce-ideas.json",
     "write:schema": "node scripts/write-json-schema.ts",

@@ -13,6 +13,7 @@ import {
     mergeCandidates,
     normalizeCandidate,
     parseAtomEntries,
+    parseGithubReleases,
     parseRssItems,
     recordRejection,
     rejectedPathFor,
@@ -260,4 +261,52 @@ test('isEnglish keeps short English text that the detector scores as French', ()
         summary: 'Cómo mejorar el rendimiento de su tienda en línea con almacenamiento en caché y reglas de firewall para compradores.',
         url: 'https://example.com/tienda',
     }), false);
+});
+
+// Dates are relative to now so the extension-window filter stays stable over time.
+const daysAgo = (days) => new Date(Date.now() - days * 86_400_000).toISOString().replace('.000', '');
+const RECENT = daysAgo(10);
+const RELEASES = JSON.stringify([
+    { name: 'v3.22.0-nightly-20261104', tag_name: 'v3.22.0-nightly-20261104', prerelease: true, draft: false, html_url: 'https://github.com/o/r/releases/tag/nightly', published_at: daysAgo(1), body: '' },
+    { name: 'v3.21.0 (retail-react-app@10.3.0)', tag_name: 'v3.21.0', prerelease: false, draft: false, html_url: 'https://github.com/o/r/releases/tag/v3.21.0', published_at: RECENT, body: 'PWA Kit 3.21.0 adds **delivery estimates** :truck: and [Guest Order Lookup](https://example.com).\n\n## Highlights' },
+    { name: 'v3.10.0', tag_name: 'v3.10.0', prerelease: false, draft: false, html_url: 'https://github.com/o/r/releases/tag/v3.10.0', published_at: daysAgo(400), body: 'Old release notes for the PWA Kit storefront.' },
+]);
+
+test('parseGithubReleases keeps stable releases and turns markdown into plain text', () => {
+    const entries = parseGithubReleases(RELEASES);
+    assert.deepEqual(entries.map(({ url }) => url), [
+        'https://github.com/o/r/releases/tag/v3.21.0',
+        'https://github.com/o/r/releases/tag/v3.10.0',
+    ]);
+    assert.equal(entries[0].summary, 'PWA Kit 3.21.0 adds delivery estimates and Guest Order Lookup. Highlights');
+    assert.equal(entries[0].publishedAt, new Date(RECENT).toISOString());
+});
+
+test('runHarvestCli --trusted-only queues recent trusted releases straight into feed-dev.json', async () => {
+    const directory = await mkdtemp(join(tmpdir(), 'discover-trusted-'));
+    try {
+        const feed = { locale: 'en', updatedAt: '2026-10-01T00:00:00Z', items: [] };
+        await writeFile(join(directory, 'feed-dev.json'), JSON.stringify(feed));
+        const source = {
+            name: 'PWA Kit Releases',
+            url: 'https://github.com/SalesforceCommerceCloud/pwa-kit/releases.atom',
+            feedUrl: 'https://api.github.com/repos/o/r/releases',
+            type: 'github-releases',
+            tags: ['pwa-kit', 'release-notes', 'sfcc'],
+            titlePrefix: 'PWA Kit ',
+            autoAccept: true,
+        };
+        const run = () => runHarvestCli([join(directory, 'harvested-candidates.json'), '--trusted-only'], {
+            sources: [source], fetchImpl: async () => new Response(RELEASES), log() {},
+        });
+
+        const first = await run();
+        const queued = JSON.parse(await readFile(join(directory, 'feed-dev.json'), 'utf8')).items;
+        // v3.10.0 is older than the extension window, so only v3.21.0 is queued.
+        assert.equal(first.additions.length, 1);
+        assert.deepEqual(queued.map(({ title }) => title), ['PWA Kit v3.21.0 (retail-react-app@10.3.0)']);
+        assert.equal((await run()).additions.length, 0);
+    } finally {
+        await rm(directory, { recursive: true, force: true });
+    }
 });

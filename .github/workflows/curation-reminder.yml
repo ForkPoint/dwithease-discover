@@ -1,0 +1,69 @@
+name: Curation reminder
+
+# Opens one issue when candidates or bot PRs wait longer than 3 days, and closes it when the backlog clears.
+on:
+  schedule:
+    - cron: '0 7 * * 1-5'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: read
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install packages
+        run: npm ci
+
+      - name: Open or close the reminder issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TITLE: 'Curation needed'
+        run: |
+          candidates=$(npm run --silent curation:reminder -- harvested-candidates.json)
+          cutoff=$(date -u -d '3 days ago' +%Y-%m-%dT%H:%M:%SZ)
+          prs=$(gh pr list --repo "$GITHUB_REPOSITORY" --state open --author 'app/github-actions' \
+            --json number,title,createdAt --jq ".[] | select(.createdAt <= \"$cutoff\") | \"- #\(.number) \(.title)\"")
+          number=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "\"$TITLE\" in:title" --json number --jq '.[0].number // empty')
+
+          if [ -z "$candidates$prs" ]; then
+            echo "Nothing waits longer than 3 days."
+            if [ -n "$number" ]; then
+              gh issue close "$number" --repo "$GITHUB_REPOSITORY" --comment "The curation backlog is clear."
+            fi
+            exit 0
+          fi
+
+          body=$(printf 'These items have waited longer than 3 days. The publish queue empties without curation.\n\nCandidates (run `npm run curate`):\n%s\n\nBot PRs to review:\n%s\n' "${candidates:-- none}" "${prs:-- none}")
+          if [ -n "$number" ]; then
+            gh issue edit "$number" --repo "$GITHUB_REPOSITORY" --body "$body"
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$TITLE" --body "$body"
+          fi
+
+      - name: Report failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TITLE: 'Automation failed: ${{ github.workflow }}'
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          # Keep one open issue per workflow and comment on repeat failures.
+          number=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "\"$TITLE\" in:title" --json number --jq '.[0].number // empty')
+          if [ -n "$number" ]; then
+            gh issue comment "$number" --repo "$GITHUB_REPOSITORY" --body "Failed again: $RUN_URL"
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$TITLE" --body "Run: $RUN_URL"
+          fi

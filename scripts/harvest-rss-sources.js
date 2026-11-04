@@ -106,6 +106,34 @@ export function parseRssItems(xmlString) {
     return items;
 }
 
+export function stripMarkdown(text) {
+    return (text || '')
+        .replace(/```[\s\S]*?```/g, ' ')
+        .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ')
+        .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+        .replace(/:[a-z0-9_+-]+:/g, ' ')
+        .replace(/[#*_`>|]/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+}
+
+// Reads the GitHub Releases API, which lists stable releases that the Atom feed pushes out with nightly builds.
+export function parseGithubReleases(jsonText) {
+    const releases = JSON.parse(jsonText);
+    if (!Array.isArray(releases)) return [];
+    return releases
+        .filter((release) => !release.draft && !release.prerelease && release.html_url && release.published_at)
+        .map((release) => {
+            const title = cleanText(release.name || release.tag_name);
+            return {
+                title,
+                url: release.html_url,
+                publishedAt: new Date(release.published_at).toISOString(),
+                summary: stripMarkdown(release.body).slice(0, 260) || title,
+            };
+        });
+}
+
 export function matchesKeywords(text, keywords = SFCC_KEYWORDS) {
     const lower = text.toLowerCase();
     return keywords.some((kw) => lower.includes(kw));
@@ -206,14 +234,20 @@ export function mergeCandidates(existingCandidates = [], newEntries = [], knownU
     };
 }
 
+// The extension hides items whose publishedAt is older than this, so older items are never auto-queued.
+export const EXTENSION_WINDOW_DAYS = 60;
+
 const RSS_SOURCES = [
     {
         name: 'PWA Kit Releases',
         url: 'https://github.com/SalesforceCommerceCloud/pwa-kit/releases.atom',
-        feedUrl: 'https://github.com/SalesforceCommerceCloud/pwa-kit/releases.atom',
-        type: 'atom',
+        feedUrl: 'https://api.github.com/repos/SalesforceCommerceCloud/pwa-kit/releases?per_page=30',
+        type: 'github-releases',
         tags: ['pwa-kit', 'release-notes', 'sfcc'],
         filter: (entry) => !entry.url.includes('nightly') && !entry.title.toLowerCase().includes('nightly'),
+        titlePrefix: 'PWA Kit ',
+        // Official SFCC releases skip review and go straight to the publish queue.
+        autoAccept: true,
     },
     {
         name: 'Salesforce Developers Blog',
@@ -240,15 +274,18 @@ export async function harvestFromSources(sources = RSS_SOURCES, fetchImpl = fetc
 
     for (const source of sources) {
         try {
-            const res = await fetchImpl(source.feedUrl, {
-                headers: { 'User-Agent': 'DWithEase-Discover-Harvester/1.0' },
-            });
+            const headers = { 'User-Agent': 'DWithEase-Discover-Harvester/1.0' };
+            if (source.type === 'github-releases' && process.env.GITHUB_TOKEN) {
+                headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
+            }
+            const res = await fetchImpl(source.feedUrl, { headers });
             if (!res.ok) {
                 failures.push(`${source.name}: HTTP ${res.status}`);
                 continue;
             }
             const text = await res.text();
-            const entries = source.type === 'atom' ? parseAtomEntries(text) : parseRssItems(text);
+            const parse = { atom: parseAtomEntries, 'github-releases': parseGithubReleases }[source.type] ?? parseRssItems;
+            const entries = parse(text);
             if (entries.length === 0) {
                 failures.push(`${source.name}: no entries parsed`);
                 continue;
@@ -256,7 +293,10 @@ export async function harvestFromSources(sources = RSS_SOURCES, fetchImpl = fetc
             const englishEntries = entries.filter(isEnglish);
             const filtered = source.filter ? englishEntries.filter(source.filter) : englishEntries;
             for (const entry of filtered.slice(0, 5)) {
-                harvested.push(normalizeCandidate(entry, source, source.tags));
+                const title = source.titlePrefix && !entry.title.startsWith(source.titlePrefix)
+                    ? `${source.titlePrefix}${entry.title}`
+                    : entry.title;
+                harvested.push(normalizeCandidate({ ...entry, title }, source, source.tags));
             }
         } catch (err) {
             failures.push(`${source.name}: ${err.message}`);
@@ -274,14 +314,39 @@ async function readJson(filePath, fallback) {
     }
 }
 
+async function queueTrustedItems({ feedPath, sources, fetchImpl, knownUrls, log }) {
+    // Imported lazily because curate.js imports this module.
+    const { addItemToFeed, normalizeCuratedItem } = await import('./curate.js');
+    const failures = [];
+    const oldest = Date.now() - EXTENSION_WINDOW_DAYS * 86_400_000;
+    const items = (await harvestFromSources(sources, fetchImpl, failures))
+        .filter(({ url, publishedAt }) => !knownUrls.has(url) && Date.parse(publishedAt) >= oldest);
+
+    if (items.length === 0) {
+        log('RSS Harvester: No new trusted items to queue.');
+    } else {
+        let feed = await readJson(feedPath, null);
+        for (const item of items) feed = addItemToFeed(feed, normalizeCuratedItem(item));
+        await writeFile(feedPath, `${JSON.stringify(feed, null, 2)}\n`);
+        log(`RSS Harvester: Queued ${items.length} trusted item(s) in ${feedPath}`);
+    }
+
+    if (failures.length > 0) {
+        throw new Error(`RSS Harvester: ${failures.length} source(s) failed:\n${failures.join('\n')}`);
+    }
+    return { additions: items };
+}
+
 export async function runHarvestCli(
     args = process.argv.slice(2),
     { sources = RSS_SOURCES, fetchImpl = fetch, log = console.log } = {},
 ) {
     let candidatesPath = 'harvested-candidates.json';
     let previousPath = null;
+    let trustedOnly = false;
     for (let i = 0; i < args.length; i++) {
         if (args[i] === '--previous' && args[i + 1]) previousPath = args[++i];
+        else if (args[i] === '--trusted-only') trustedOnly = true;
         else if (!args[i].startsWith('--')) candidatesPath = args[i];
     }
 
@@ -295,18 +360,30 @@ export async function runHarvestCli(
     }
     for (const url of await loadRejectedUrls(rejectedPathFor(candidatesPath))) knownUrls.add(url);
 
+    if (trustedOnly) {
+        return queueTrustedItems({
+            feedPath: join(directory, 'feed-dev.json'),
+            sources: sources.filter(({ autoAccept }) => autoAccept),
+            fetchImpl,
+            knownUrls,
+            log,
+        });
+    }
+
     // Candidates from an unmerged bot branch are carried over so a rebuilt branch loses nothing.
     const previous = previousPath ? (await readJson(previousPath, { candidates: [] })).candidates ?? [] : [];
 
     const failures = [];
-    const newCandidates = await harvestFromSources(sources, fetchImpl, failures);
+    const harvestedAt = new Date().toISOString();
+    const newCandidates = (await harvestFromSources(sources.filter(({ autoAccept }) => !autoAccept), fetchImpl, failures))
+        .map((candidate) => ({ ...candidate, harvestedAt }));
     const result = mergeCandidates(existingData.candidates, [...previous, ...newCandidates], knownUrls);
 
     if (result.additions.length === 0) {
         log('RSS Harvester: No new candidate articles found.');
     } else {
         const output = {
-            harvestedAt: new Date().toISOString(),
+            harvestedAt,
             candidates: result.candidates,
         };
         await writeFile(candidatesPath, `${JSON.stringify(output, null, 2)}\n`);

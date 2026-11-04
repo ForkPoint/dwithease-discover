@@ -41,7 +41,7 @@ test('publishes a limited batch each weekday and starts the deploy', async () =>
     assert.match(run, /gh workflow run pages\.yml --ref main/);
 });
 
-const SCHEDULED = ['harvest-rss-sources', 'harvest-salesforce-ideas', 'publish-feed'];
+const SCHEDULED = ['harvest-rss-sources', 'harvest-salesforce-ideas', 'publish-feed', 'curation-reminder'];
 
 function runText(workflow) {
     return Object.values(workflow.jobs)
@@ -80,7 +80,7 @@ for (const name of ['harvest-rss-sources', 'harvest-salesforce-ideas']) {
         assert.ok(steps.indexOf(check) > steps.indexOf(harvest));
         assert.ok(steps.indexOf(check) < steps.findIndex(({ name: stepName }) => stepName === 'Open an update pull request'));
         assert.equal(harvest['continue-on-error'], true);
-        const gate = steps.find(({ if: condition }) => condition === "steps.harvest.outcome == 'failure'");
+        const gate = steps.find(({ if: condition }) => condition?.includes("steps.harvest.outcome == 'failure'"));
         assert.match(gate.run, /exit 1/);
         assert.ok(steps.indexOf(gate) > steps.findIndex(({ name: stepName }) => stepName === 'Open an update pull request'));
     });
@@ -92,4 +92,30 @@ test('publish-feed retries the push from the newest main', async () => {
 
     assert.match(run, /for attempt in 1 2 3/);
     assert.match(run, /git reset --hard origin\/main/);
+});
+
+test('harvest-rss-sources queues trusted releases on main before the review branch', async () => {
+    const workflow = parse(await readFile('.github/workflows/harvest-rss-sources.yml', 'utf8'));
+    const steps = workflow.jobs.harvest.steps;
+    const trusted = steps.find(({ id }) => id === 'trusted');
+    const rebuild = steps.findIndex(({ name: stepName }) => stepName === 'Rebuild the candidate branch from main');
+    const install = steps.findIndex(({ name: stepName }) => stepName === 'Install packages');
+
+    assert.match(trusted.run, /npm run harvest:rss-sources -- --trusted-only/);
+    assert.match(trusted.run, /npm run validate:feed -- feed-dev.json/);
+    assert.match(trusted.run, /git push origin HEAD:main/);
+    assert.equal(trusted['continue-on-error'], true);
+    assert.ok(install < steps.indexOf(trusted) && steps.indexOf(trusted) < rebuild);
+    const gate = steps.find(({ name: stepName }) => stepName === 'Fail when a source failed');
+    assert.match(gate.if, /steps\.trusted\.outcome == 'failure'/);
+});
+
+test('curation-reminder runs each weekday and manages one issue', async () => {
+    const workflow = parse(await readFile('.github/workflows/curation-reminder.yml', 'utf8'));
+    const run = runText(workflow);
+
+    assert.deepEqual(workflow.on.schedule, [{ cron: '0 7 * * 1-5' }]);
+    assert.match(run, /npm run --silent curation:reminder -- harvested-candidates.json/);
+    assert.match(run, /gh issue create/);
+    assert.match(run, /gh issue close/);
 });
