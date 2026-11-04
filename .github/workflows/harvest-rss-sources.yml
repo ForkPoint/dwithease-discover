@@ -8,10 +8,14 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  issues: write
 
 concurrency:
   group: harvest-rss-sources
   cancel-in-progress: false
+
+env:
+  BRANCH: automation/rss-sources
 
 jobs:
   harvest:
@@ -22,15 +26,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Continue the candidate branch
+      - name: Rebuild the candidate branch from main
         run: |
-          branch="automation/rss-sources"
-          git fetch origin main
-          if git fetch origin "refs/heads/$branch:refs/remotes/origin/$branch"; then
-            git switch -C "$branch" "origin/$branch"
-            git rebase origin/main
-          else
-            git switch -c "$branch" origin/main
+          # Rebasing an old bot commit conflicts after curation changes main,
+          # so start from main and carry the unmerged file over instead.
+          git switch -C "$BRANCH" origin/main
+          if git fetch origin "refs/heads/$BRANCH:refs/remotes/origin/$BRANCH"; then
+            git show "origin/$BRANCH:harvested-candidates.json" > "$RUNNER_TEMP/previous.json"
           fi
 
       - name: Set up Node.js
@@ -42,29 +44,51 @@ jobs:
       - name: Install packages
         run: npm ci
 
-      - name: Harvest RSS sources
-        run: npm run harvest:rss-sources
+      - name: Harvest
+        id: harvest
+        continue-on-error: true
+        run: npm run harvest:rss-sources -- --previous "$RUNNER_TEMP/previous.json"
 
       - name: Open an update pull request
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if git diff --quiet -- harvested-candidates.json; then
+          if git diff --quiet origin/main -- harvested-candidates.json; then
             echo "No new RSS candidate articles."
             exit 0
           fi
 
-          branch="automation/rss-sources"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add harvested-candidates.json
           git commit -m "data: harvest RSS sources"
-          git push --force-with-lease origin "$branch"
+          git push --force origin "$BRANCH"
 
-          if [ "$(gh pr list --state open --head "$branch" --json number --jq 'length')" -eq 0 ]; then
+          if [ "$(gh pr list --state open --head "$BRANCH" --json number --jq 'length')" -eq 0 ]; then
             gh pr create \
               --base main \
-              --head "$branch" \
+              --head "$BRANCH" \
               --title "data: harvest RSS sources" \
               --body "Adds newly harvested RSS/Atom articles to harvested-candidates.json for curation review. This does not change the Discover feed. Curate each candidate using npm run curate."
+          fi
+
+      - name: Fail when a source failed
+        if: steps.harvest.outcome == 'failure'
+        run: |
+          echo "The harvest step failed. See its log above."
+          exit 1
+
+      - name: Report failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TITLE: 'Automation failed: ${{ github.workflow }}'
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          # Keep one open issue per workflow and comment on repeat failures.
+          number=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "\"$TITLE\" in:title" --json number --jq '.[0].number // empty')
+          if [ -n "$number" ]; then
+            gh issue comment "$number" --repo "$GITHUB_REPOSITORY" --body "Failed again: $RUN_URL"
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$TITLE" --body "Run: $RUN_URL"
           fi

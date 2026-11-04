@@ -10,6 +10,7 @@ on:
 permissions:
   contents: write
   actions: write
+  issues: write
 
 concurrency:
   group: publish-feed
@@ -35,23 +36,47 @@ jobs:
       - name: Install packages
         run: npm ci
 
-      - name: Publish the next batch
-        run: npm run promote:feed -- --limit "$PUBLISH_LIMIT"
-
-      - name: Commit and deploy
+      - name: Publish the next batch and deploy
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if git diff --quiet -- feed-live.json; then
-            echo "Publish queue is empty."
-            exit 0
-          fi
-
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add feed-live.json rss.xml atom.xml
-          git commit -m "data: publish queued feed items"
-          git push origin HEAD:main
 
-          # Pushes made with GITHUB_TOKEN do not trigger other workflows, so start the deploy explicitly.
-          gh workflow run pages.yml --ref main
+          # Rebuild the batch from the newest main on each attempt, so a push that lands
+          # during the run cannot drop or duplicate items.
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            npm run promote:feed -- --limit "$PUBLISH_LIMIT"
+
+            if git diff --quiet -- feed-live.json; then
+              echo "Publish queue is empty."
+              exit 0
+            fi
+
+            git add feed-live.json rss.xml atom.xml
+            git commit -m "data: publish queued feed items"
+            if git push origin HEAD:main; then
+              # Pushes made with GITHUB_TOKEN do not trigger other workflows, so start the deploy explicitly.
+              gh workflow run pages.yml --ref main
+              exit 0
+            fi
+            echo "Push attempt $attempt failed. Retrying from the newest main."
+          done
+          exit 1
+
+      - name: Report failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TITLE: 'Automation failed: ${{ github.workflow }}'
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          # Keep one open issue per workflow and comment on repeat failures.
+          number=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "\"$TITLE\" in:title" --json number --jq '.[0].number // empty')
+          if [ -n "$number" ]; then
+            gh issue comment "$number" --repo "$GITHUB_REPOSITORY" --body "Failed again: $RUN_URL"
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$TITLE" --body "Run: $RUN_URL"
+          fi

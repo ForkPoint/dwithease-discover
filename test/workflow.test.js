@@ -56,6 +56,7 @@ test('validates pull requests and deploys only main pushes or dispatches', async
         contents: 'read',
         pages: 'write',
         'id-token': 'write',
+        issues: 'write',
     });
     assert.deepEqual(actions(deploy), [
         'actions/configure-pages@v5',

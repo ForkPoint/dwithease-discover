@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, rm } from 'node:fs/promises';
+import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
@@ -16,6 +16,7 @@ import {
     parseRssItems,
     recordRejection,
     rejectedPathFor,
+    runHarvestCli,
     slugify,
 } from '../scripts/harvest-rss-sources.js';
 
@@ -206,4 +207,57 @@ test('isSfccRelated keeps B2C Commerce posts and drops general Salesforce or sma
 
     for (const entry of keep) assert.equal(isSfccRelated(entry), true, entry.title);
     for (const entry of drop) assert.equal(isSfccRelated(entry), false, entry.title);
+});
+
+test('harvestFromSources reports failed and empty sources', async () => {
+    const sources = ['Down', 'Empty', 'Broken'].map((name) => ({
+        name, url: `https://example.com/${name}`, feedUrl: `https://example.com/${name}`, type: 'rss',
+    }));
+    const responses = {
+        Down: async () => new Response('', { status: 503 }),
+        Empty: async () => new Response('<rss><channel></channel></rss>'),
+        Broken: async () => { throw new Error('socket hang up'); },
+    };
+    const failures = [];
+    const fetchImpl = (url) => responses[url.split('/').pop()]();
+
+    assert.deepEqual(await harvestFromSources(sources, fetchImpl, failures), []);
+    assert.deepEqual(failures, ['Down: HTTP 503', 'Empty: no entries parsed', 'Broken: socket hang up']);
+});
+
+test('runHarvestCli saves results, then fails when a source failed', async () => {
+    const directory = await mkdtemp(join(tmpdir(), 'discover-harvest-'));
+    try {
+        const candidatesPath = join(directory, 'harvested-candidates.json');
+        const previousPath = join(directory, 'previous.json');
+        const carried = {
+            id: 'carried', title: 'Carried B2C Commerce post', url: 'https://example.com/carried',
+        };
+        await writeFile(previousPath, JSON.stringify({ candidates: [carried] }));
+        const source = { name: 'Down', url: 'https://example.com/', feedUrl: 'https://example.com/feed', type: 'rss' };
+
+        await assert.rejects(
+            runHarvestCli([candidatesPath, '--previous', previousPath], {
+                sources: [source], fetchImpl: async () => new Response('', { status: 500 }), log() {},
+            }),
+            /1 source\(s\) failed:\nDown: HTTP 500/,
+        );
+        const saved = JSON.parse(await readFile(candidatesPath, 'utf8'));
+        assert.deepEqual(saved.candidates, [carried]);
+    } finally {
+        await rm(directory, { recursive: true, force: true });
+    }
+});
+
+test('isEnglish keeps short English text that the detector scores as French', () => {
+    assert.equal(isEnglish({
+        title: 'Caching Strategies for PWA Kit Storefronts',
+        summary: 'Learn how to tune Managed Runtime caching so your composable storefront pages load faster for shoppers.',
+        url: 'https://developer.salesforce.com/blogs/2026/10/pwa-kit-caching',
+    }), true);
+    assert.equal(isEnglish({
+        title: 'Rendimiento de la tienda',
+        summary: 'Cómo mejorar el rendimiento de su tienda en línea con almacenamiento en caché y reglas de firewall para compradores.',
+        url: 'https://example.com/tienda',
+    }), false);
 });

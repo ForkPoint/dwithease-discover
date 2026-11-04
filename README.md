@@ -47,6 +47,10 @@ npm run validate:feed -- feed-live.json feed-dev.json
 
 `feed-dev.json` acts as the publish queue. Every weekday at 08:00 UTC, the `Publish queued feed items` workflow moves the oldest unpublished editorial items to `feed-live.json`, regenerates `rss.xml` and `atom.xml`, commits to `main`, and deploys the site. This keeps extension users from receiving a large batch at once.
 
+If the push fails because `main` moved, the job rebuilds the batch from the newest `main` and tries again, up to 3 times. When any scheduled job (harvest, publish, or deploy) fails, it opens an `Automation failed: <workflow>` issue, or comments on the open one.
+
+The harvest jobs rebuild their bot branch from `main` on every run and carry over candidates from an unmerged PR. A source that returns an error or no entries fails the run after the PR is updated.
+
 The workflow publishes 2 items per run. Set the `FEED_PUBLISH_LIMIT` repository variable to change this. To publish one batch locally:
 
 ```sh

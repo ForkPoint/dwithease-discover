@@ -1,7 +1,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { franc } from 'franc-min';
+import { francAll } from 'franc-min';
 
 // Terms that tie a post to Salesforce B2C Commerce (SFCC), not to Salesforce in general.
 const SFCC_KEYWORDS = [
@@ -117,6 +117,9 @@ export function isSfccRelated(entry) {
     return matchesKeywords(`${entry.title} ${entry.summary ?? ''} ${entry.url} ${(entry.categories || []).join(' ')}`);
 }
 
+// Real non-English text scores English near 0.65; misread English scores above 0.9.
+const ENGLISH_MIN_SCORE = 0.85;
+
 export function isEnglish(entry) {
     if (!entry) return false;
     try {
@@ -137,8 +140,11 @@ export function isEnglish(entry) {
         if (otherLetters > latinLetters) return false;
     }
     // Short release names do not provide enough text for reliable detection.
-    const language = franc([...new Set(fields)].join(' '), { minLength: 40 });
-    return language === 'eng' || language === 'und';
+    const scores = francAll([...new Set(fields)].join(' '), { minLength: 40 });
+    if (scores[0][0] === 'und') return true;
+    // Short English text can score slightly higher as French or Spanish, so accept close runners-up.
+    const english = scores.find(([language]) => language === 'eng');
+    return (english?.[1] ?? 0) >= ENGLISH_MIN_SCORE;
 }
 
 export function normalizeCandidate(entry, source, defaultTags = ['sfcc', 'commerce']) {
@@ -227,7 +233,9 @@ const RSS_SOURCES = [
     },
 ];
 
-export async function harvestFromSources(sources = RSS_SOURCES, fetchImpl = fetch) {
+// Failed fetches and feeds with no parsable entries are pushed to `failures`
+// so the caller can fail the run instead of silently harvesting nothing.
+export async function harvestFromSources(sources = RSS_SOURCES, fetchImpl = fetch, failures = []) {
     const harvested = [];
 
     for (const source of sources) {
@@ -236,63 +244,81 @@ export async function harvestFromSources(sources = RSS_SOURCES, fetchImpl = fetc
                 headers: { 'User-Agent': 'DWithEase-Discover-Harvester/1.0' },
             });
             if (!res.ok) {
-                console.warn(`Could not fetch ${source.name} (${res.status})`);
+                failures.push(`${source.name}: HTTP ${res.status}`);
                 continue;
             }
             const text = await res.text();
             const entries = source.type === 'atom' ? parseAtomEntries(text) : parseRssItems(text);
+            if (entries.length === 0) {
+                failures.push(`${source.name}: no entries parsed`);
+                continue;
+            }
             const englishEntries = entries.filter(isEnglish);
             const filtered = source.filter ? englishEntries.filter(source.filter) : englishEntries;
             for (const entry of filtered.slice(0, 5)) {
                 harvested.push(normalizeCandidate(entry, source, source.tags));
             }
         } catch (err) {
-            console.warn(`Error harvesting ${source.name}:`, err.message);
+            failures.push(`${source.name}: ${err.message}`);
         }
     }
 
     return harvested;
 }
 
-async function main() {
-    const candidatesPath = process.argv[2] ?? 'harvested-candidates.json';
-    let existingData = { harvestedAt: new Date().toISOString(), candidates: [] };
-
+async function readJson(filePath, fallback) {
     try {
-        existingData = JSON.parse(await readFile(candidatesPath, 'utf8'));
+        return JSON.parse(await readFile(filePath, 'utf8'));
     } catch {
-        // File may not exist yet
+        return fallback;
+    }
+}
+
+export async function runHarvestCli(
+    args = process.argv.slice(2),
+    { sources = RSS_SOURCES, fetchImpl = fetch, log = console.log } = {},
+) {
+    let candidatesPath = 'harvested-candidates.json';
+    let previousPath = null;
+    for (let i = 0; i < args.length; i++) {
+        if (args[i] === '--previous' && args[i + 1]) previousPath = args[++i];
+        else if (!args[i].startsWith('--')) candidatesPath = args[i];
     }
 
+    // Feeds and the rejection list sit beside the candidates file.
+    const directory = dirname(candidatesPath);
+    const existingData = await readJson(candidatesPath, { candidates: [] });
     const knownUrls = new Set();
     for (const feedFile of ['feed-dev.json', 'feed-live.json']) {
-        try {
-            const feed = JSON.parse(await readFile(feedFile, 'utf8'));
-            (feed.items || []).forEach((item) => knownUrls.add(item.url));
-        } catch {
-            // Optional feed files
-        }
+        const feed = await readJson(join(directory, feedFile), { items: [] });
+        (feed.items || []).forEach((item) => knownUrls.add(item.url));
     }
-
     for (const url of await loadRejectedUrls(rejectedPathFor(candidatesPath))) knownUrls.add(url);
 
-    const newCandidates = await harvestFromSources();
-    const result = mergeCandidates(existingData.candidates, newCandidates, knownUrls);
+    // Candidates from an unmerged bot branch are carried over so a rebuilt branch loses nothing.
+    const previous = previousPath ? (await readJson(previousPath, { candidates: [] })).candidates ?? [] : [];
+
+    const failures = [];
+    const newCandidates = await harvestFromSources(sources, fetchImpl, failures);
+    const result = mergeCandidates(existingData.candidates, [...previous, ...newCandidates], knownUrls);
 
     if (result.additions.length === 0) {
-        console.log('RSS Harvester: No new candidate articles found.');
-        return;
+        log('RSS Harvester: No new candidate articles found.');
+    } else {
+        const output = {
+            harvestedAt: new Date().toISOString(),
+            candidates: result.candidates,
+        };
+        await writeFile(candidatesPath, `${JSON.stringify(output, null, 2)}\n`);
+        log(`RSS Harvester: Added ${result.additions.length} new candidates to ${candidatesPath}`);
     }
 
-    const output = {
-        harvestedAt: new Date().toISOString(),
-        candidates: result.candidates,
-    };
-
-    await writeFile(candidatesPath, `${JSON.stringify(output, null, 2)}\n`);
-    console.log(`RSS Harvester: Added ${result.additions.length} new candidates to ${candidatesPath}`);
+    if (failures.length > 0) {
+        throw new Error(`RSS Harvester: ${failures.length} source(s) failed:\n${failures.join('\n')}`);
+    }
+    return result;
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-    await main();
+    await runHarvestCli();
 }

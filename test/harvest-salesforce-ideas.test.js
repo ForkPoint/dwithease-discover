@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-import { makeCandidate, mergeCandidates } from '../scripts/harvest-salesforce-ideas.js';
+import { carryOverIdeas, makeCandidate, mergeCandidates } from '../scripts/harvest-salesforce-ideas.js';
 
 const row = {
     availability: "Spring '26",
@@ -35,4 +35,15 @@ test('adds each candidate once without changing the Discover feed', () => {
     assert.deepEqual(first.catalog.ideas.map(({ id }) => id), ['a0BTest123']);
     assert.equal(second.additions.length, 0);
     assert.equal(second.catalog.harvestedAt, '2026-09-10T08:00:00.000Z');
+});
+
+
+test('carries over ideas from an unmerged bot branch once', () => {
+    const main = { source: 'x', harvestedAt: '2026-09-01T00:00:00Z', ideas: [{ id: 'a0BOld' }] };
+    const branch = { source: 'x', harvestedAt: '2026-09-05T00:00:00Z', ideas: [{ id: 'a0BNew' }, { id: 'A0BOLD' }] };
+
+    const merged = carryOverIdeas(main, branch);
+    assert.deepEqual(merged.ideas.map(({ id }) => id), ['a0BNew', 'a0BOld']);
+    assert.equal(merged.harvestedAt, '2026-09-05T00:00:00Z');
+    assert.equal(carryOverIdeas(main, undefined), main);
 });

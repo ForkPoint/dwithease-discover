@@ -32,6 +32,14 @@ export function mergeCandidates(catalog, rows, harvestedAt) {
     };
 }
 
+// Keeps ideas found on an unmerged bot branch when the branch is rebuilt from main.
+export function carryOverIdeas(catalog, previous) {
+    const knownIds = new Set(catalog.ideas.map(({ id }) => id.toLowerCase()));
+    const carried = (previous?.ideas ?? []).filter(({ id }) => !knownIds.has(id.toLowerCase()));
+    if (!carried.length) return catalog;
+    return { ...catalog, harvestedAt: previous.harvestedAt, ideas: [...carried, ...catalog.ideas] };
+}
+
 async function harvestCommerceIdeas() {
     const { chromium } = await import('playwright-core');
     const browser = await chromium.launch({ headless: true });
@@ -76,16 +84,24 @@ async function harvestCommerceIdeas() {
 }
 
 async function main() {
-    const catalogPath = process.argv[2] ?? 'salesforce-ideas.json';
-    const catalog = JSON.parse(await readFile(catalogPath, 'utf8'));
+    const args = process.argv.slice(2);
+    const previousIndex = args.indexOf('--previous');
+    const previousPath = previousIndex === -1 ? null : args.splice(previousIndex, 2)[1];
+    const catalogPath = args[0] ?? 'salesforce-ideas.json';
+    let catalog = JSON.parse(await readFile(catalogPath, 'utf8'));
+    if (previousPath) {
+        try {
+            catalog = carryOverIdeas(catalog, JSON.parse(await readFile(previousPath, 'utf8')));
+        } catch {
+            // No previous branch file to carry over.
+        }
+    }
     const rows = await harvestCommerceIdeas();
     const result = mergeCandidates(catalog, rows, new Date().toISOString());
-    if (!result.additions.length) {
-        console.log('Salesforce IdeaExchange: no new Commerce ideas');
-        return;
-    }
     await writeFile(catalogPath, `${JSON.stringify(result.catalog, null, 2)}\n`);
-    console.log(`Salesforce IdeaExchange: added ${result.additions.length} Commerce candidates`);
+    console.log(result.additions.length
+        ? `Salesforce IdeaExchange: added ${result.additions.length} Commerce candidates`
+        : 'Salesforce IdeaExchange: no new Commerce ideas');
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) await main();
