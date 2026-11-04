@@ -397,5 +397,10 @@ export async function runHarvestCli(
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-    await runHarvestCli();
+    // No top-level await: the trusted path imports curate.js, which imports this module,
+    // and that import cannot finish while this module is still evaluating.
+    runHarvestCli().catch((error) => {
+        console.error(error.message);
+        process.exitCode = 1;
+    });
 }

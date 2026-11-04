@@ -310,3 +310,30 @@ test('runHarvestCli --trusted-only queues recent trusted releases straight into 
         await rm(directory, { recursive: true, force: true });
     }
 });
+
+test('the harvester command runs --trusted-only end to end without deadlocking', async () => {
+    const { execFile } = await import('node:child_process');
+    const { promisify } = await import('node:util');
+    const directory = await mkdtemp(join(tmpdir(), 'discover-cli-'));
+    try {
+        await writeFile(join(directory, 'feed-dev.json'), JSON.stringify({ locale: 'en', updatedAt: '2026-10-01T00:00:00Z', items: [] }));
+        const release = {
+            name: 'v9.9.9', tag_name: 'v9.9.9', prerelease: false, draft: false,
+            html_url: 'https://github.com/SalesforceCommerceCloud/pwa-kit/releases/tag/v9.9.9',
+            published_at: daysAgo(2), body: 'PWA Kit 9.9.9 improves storefront performance for shoppers everywhere.',
+        };
+        // Replace fetch in the child process so the command runs without the network.
+        const stub = `globalThis.fetch = async () => new Response(${JSON.stringify(JSON.stringify([release]))});`;
+        const { stdout, stderr } = await promisify(execFile)(process.execPath, [
+            '--import', `data:text/javascript,${encodeURIComponent(stub)}`,
+            'scripts/harvest-rss-sources.js', join(directory, 'harvested-candidates.json'), '--trusted-only',
+        ]);
+
+        assert.doesNotMatch(stderr, /unsettled top-level await/);
+        assert.match(stdout, /Queued 1 trusted item/);
+        const feed = JSON.parse(await readFile(join(directory, 'feed-dev.json'), 'utf8'));
+        assert.equal(feed.items[0].title, 'PWA Kit v9.9.9');
+    } finally {
+        await rm(directory, { recursive: true, force: true });
+    }
+});
