@@ -39,6 +39,7 @@ test('reminderBody reports an empty queue even when nothing is stale', () => {
 
     const waiting = reminderBody({ candidates: [{ id: 'fresh', title: 'Fresh', harvestedAt: '2026-11-09T00:00:00Z' }] }, NOW);
     assert.match(waiting, /queue is empty\. Curate/);
+    assert.match(waiting, /- Fresh \(fresh\)/);
 });
 
 test('reminderBody lists stale candidates and bot PRs', () => {

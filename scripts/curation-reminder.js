@@ -29,7 +29,8 @@ export function reminderBody({ candidates = [], devItems = [], liveItems = [], s
     } else {
         sections.push(`These items have waited longer than ${STALE_DAYS} days. The publish queue empties without curation.`);
     }
-    const lines = stale.map(({ title, id }) => `- ${title} (${id})`).join('\n');
+    // With nothing queued, every candidate is urgent, not only the stale ones.
+    const lines = (queueEmpty ? candidates : stale).map(({ title, id }) => `- ${title} (${id})`).join('\n');
     sections.push(`Candidates (run \`npm run curate\`):\n${lines || '- none'}`);
     sections.push(`Bot PRs to review:\n${stalePrs || '- none'}`);
     return `${sections.join('\n\n')}\n`;
