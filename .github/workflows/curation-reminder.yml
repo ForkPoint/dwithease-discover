@@ -1,6 +1,7 @@
 name: Curation reminder
 
-# Opens one issue when candidates or bot PRs wait longer than 3 days, and closes it when the backlog clears.
+# Opens one issue when candidates or bot PRs wait longer than 3 days or the publish queue is empty,
+# and closes it when the backlog clears.
 on:
   schedule:
     - cron: '0 7 * * 1-5'
@@ -32,21 +33,22 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           TITLE: 'Curation needed'
         run: |
-          candidates=$(npm run --silent curation:reminder -- harvested-candidates.json)
           cutoff=$(date -u -d '3 days ago' +%Y-%m-%dT%H:%M:%SZ)
+          # Assigned before the export so a gh failure still fails the step.
           prs=$(gh pr list --repo "$GITHUB_REPOSITORY" --state open --author 'app/github-actions' \
             --json number,title,createdAt --jq ".[] | select(.createdAt <= \"$cutoff\") | \"- #\(.number) \(.title)\"")
+          export STALE_PRS="$prs"
+          body=$(npm run --silent curation:reminder -- harvested-candidates.json feed-dev.json feed-live.json)
           number=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "\"$TITLE\" in:title" --json number --jq '.[0].number // empty')
 
-          if [ -z "$candidates$prs" ]; then
-            echo "Nothing waits longer than 3 days."
+          if [ -z "$body" ]; then
+            echo "The queue has items and nothing waits longer than 3 days."
             if [ -n "$number" ]; then
               gh issue close "$number" --repo "$GITHUB_REPOSITORY" --comment "The curation backlog is clear."
             fi
             exit 0
           fi
 
-          body=$(printf 'These items have waited longer than 3 days. The publish queue empties without curation.\n\nCandidates (run `npm run curate`):\n%s\n\nBot PRs to review:\n%s\n' "${candidates:-- none}" "${prs:-- none}")
           if [ -n "$number" ]; then
             gh issue edit "$number" --repo "$GITHUB_REPOSITORY" --body "$body"
           else

@@ -18,16 +18,18 @@ const SOURCE = {
     filter: isSfccRelated,
 };
 
+const daysAgo = (days) => new Date(Date.now() - days * 86_400_000).toUTCString();
+
 function rssItem(slug, title, description, pubDate) {
     return `<item><title>${title}</title><link>https://developer.salesforce.com/blogs/2026/10/${slug}</link>`
         + `<pubDate>${pubDate}</pubDate><description>${description}</description></item>`;
 }
 
 const RSS = `<?xml version="1.0"?><rss version="2.0"><channel>
-${rssItem('ecdn-rate-limits', 'Rate Limiting Shoppers with B2C Commerce eCDN', 'Configure firewall rules that protect your storefront login from automated abuse and scripted attacks.', 'Mon, 05 Oct 2026 10:00:00 GMT')}
-${rssItem('pwa-kit-caching', 'Caching Strategies for PWA Kit Storefronts', 'Learn how to tune Managed Runtime caching so your composable storefront pages load faster for shoppers.', 'Tue, 06 Oct 2026 10:00:00 GMT')}
-${rssItem('sfra-checkout', 'Extending SFRA Checkout Without Forking Cartridges', 'Use hooks to customize the SFRA checkout flow while keeping your cartridge stack easy to upgrade later.', 'Wed, 07 Oct 2026 10:00:00 GMT')}
-${rssItem('devops-center', 'Testing and Quality Gates in DevOps Center', 'Automate tests and enforce quality gates in DevOps Center before changes reach your production org.', 'Thu, 08 Oct 2026 10:00:00 GMT')}
+${rssItem('ecdn-rate-limits', 'Rate Limiting Shoppers with B2C Commerce eCDN', 'Configure firewall rules that protect your storefront login from automated abuse and scripted attacks.', daysAgo(40))}
+${rssItem('pwa-kit-caching', 'Caching Strategies for PWA Kit Storefronts', 'Learn how to tune Managed Runtime caching so your composable storefront pages load faster for shoppers.', daysAgo(39))}
+${rssItem('sfra-checkout', 'Extending SFRA Checkout Without Forking Cartridges', 'Use hooks to customize the SFRA checkout flow while keeping your cartridge stack easy to upgrade later.', daysAgo(38))}
+${rssItem('devops-center', 'Testing and Quality Gates in DevOps Center', 'Automate tests and enforce quality gates in DevOps Center before changes reach your production org.', daysAgo(37))}
 </channel></rss>`;
 
 const quiet = { write() {} };

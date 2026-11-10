@@ -51,7 +51,7 @@ If the push fails because `main` moved, the job rebuilds the batch from the newe
 
 The harvest jobs rebuild their bot branch from `main` on every run and carry over candidates from an unmerged PR. A source that returns an error or no entries fails the run after the PR is updated.
 
-Stable PWA Kit releases skip review: the RSS harvest job queues them in `feed-dev.json` on `main`. Every weekday at 07:00 UTC, the `Curation reminder` workflow opens a `Curation needed` issue when candidates or bot PRs have waited longer than 3 days, and closes it when the backlog is clear.
+Stable PWA Kit releases skip review: the RSS harvest job queues them in `feed-dev.json` on `main`. Every weekday at 07:00 UTC, the `Curation reminder` workflow opens a `Curation needed` issue when candidates or bot PRs have waited longer than 3 days, or when the publish queue is empty. It closes the issue when the backlog is clear.
 
 The extension keeps at most 20 Discover items and hides items whose `publishedAt` is older than 60 days. A delayed article still shows as unread, but an article older than 60 days never appears. `npm run curate -- --accept` warns when an article is older than 46 days.
 

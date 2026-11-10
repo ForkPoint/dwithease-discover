@@ -142,7 +142,11 @@ export function matchesKeywords(text, keywords = SFCC_KEYWORDS) {
 export function isSfccRelated(entry) {
     // Small-business posts reuse commerce words but are not about the platform.
     if (entry.url.includes('/small-business/')) return false;
-    return matchesKeywords(`${entry.title} ${entry.summary ?? ''} ${entry.url} ${(entry.categories || []).join(' ')}`);
+    // Match the URL path only: a host such as agenticstorefront.com says nothing about the post.
+    const path = URL.canParse(entry.url) ? new URL(entry.url).pathname : entry.url;
+    const text = `${entry.title} ${entry.summary ?? ''} ${path} ${(entry.categories || []).join(' ')}`;
+    // "Agentic storefront" is a product and blog name, not a sign of SFCC content.
+    return matchesKeywords(text.replace(/agentic[\s-]storefronts?/gi, ''));
 }
 
 // Real non-English text scores English near 0.65; misread English scores above 0.9.
@@ -234,7 +238,7 @@ export function mergeCandidates(existingCandidates = [], newEntries = [], knownU
     };
 }
 
-// The extension hides items whose publishedAt is older than this, so older items are never auto-queued.
+// The extension hides items whose publishedAt is older than this, so older items are never harvested.
 export const EXTENSION_WINDOW_DAYS = 60;
 
 const RSS_SOURCES = [
@@ -265,12 +269,37 @@ const RSS_SOURCES = [
         tags: ['sfcc', 'strategy', 'ecommerce'],
         filter: isSfccRelated,
     },
+    {
+        // Every post covers SFCC, so no term filter.
+        name: 'Rhino Inquisitor',
+        url: 'https://rhino-inquisitor.com/archive/',
+        feedUrl: 'https://rhino-inquisitor.com/index.xml',
+        type: 'rss',
+        tags: ['sfcc', 'developer-tools'],
+    },
+    {
+        name: 'ForkPoint',
+        url: 'https://forkpoint.com/articles/',
+        feedUrl: 'https://forkpoint.com/rss.xml',
+        type: 'rss',
+        tags: ['sfcc', 'strategy'],
+        filter: isSfccRelated,
+    },
+    {
+        name: 'Agentic Storefront',
+        url: 'https://agenticstorefront.com/categories/agentic-commerce/',
+        feedUrl: 'https://agenticstorefront.com/rss.xml',
+        type: 'rss',
+        tags: ['sfcc', 'agentic-commerce'],
+        filter: isSfccRelated,
+    },
 ];
 
 // Failed fetches and feeds with no parsable entries are pushed to `failures`
 // so the caller can fail the run instead of silently harvesting nothing.
 export async function harvestFromSources(sources = RSS_SOURCES, fetchImpl = fetch, failures = []) {
     const harvested = [];
+    const oldest = Date.now() - EXTENSION_WINDOW_DAYS * 86_400_000;
 
     for (const source of sources) {
         try {
@@ -290,7 +319,7 @@ export async function harvestFromSources(sources = RSS_SOURCES, fetchImpl = fetc
                 failures.push(`${source.name}: no entries parsed`);
                 continue;
             }
-            const englishEntries = entries.filter(isEnglish);
+            const englishEntries = entries.filter((entry) => isEnglish(entry) && Date.parse(entry.publishedAt) >= oldest);
             const filtered = source.filter ? englishEntries.filter(source.filter) : englishEntries;
             for (const entry of filtered.slice(0, 5)) {
                 const title = source.titlePrefix && !entry.title.startsWith(source.titlePrefix)
@@ -318,9 +347,7 @@ async function queueTrustedItems({ feedPath, sources, fetchImpl, knownUrls, log 
     // Imported lazily because curate.js imports this module.
     const { addItemToFeed, normalizeCuratedItem } = await import('./curate.js');
     const failures = [];
-    const oldest = Date.now() - EXTENSION_WINDOW_DAYS * 86_400_000;
-    const items = (await harvestFromSources(sources, fetchImpl, failures))
-        .filter(({ url, publishedAt }) => !knownUrls.has(url) && Date.parse(publishedAt) >= oldest);
+    const items = (await harvestFromSources(sources, fetchImpl, failures)).filter(({ url }) => !knownUrls.has(url));
 
     if (items.length === 0) {
         log('RSS Harvester: No new trusted items to queue.');

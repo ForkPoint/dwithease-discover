@@ -115,7 +115,8 @@ test('curation-reminder runs each weekday and manages one issue', async () => {
     const run = runText(workflow);
 
     assert.deepEqual(workflow.on.schedule, [{ cron: '0 7 * * 1-5' }]);
-    assert.match(run, /npm run --silent curation:reminder -- harvested-candidates.json/);
+    assert.match(run, /npm run --silent curation:reminder -- harvested-candidates.json feed-dev.json feed-live.json/);
+    assert.match(run, /export STALE_PRS="\$prs"/);
     assert.match(run, /gh issue create/);
     assert.match(run, /gh issue close/);
 });

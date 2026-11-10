@@ -21,6 +21,8 @@ import {
     slugify,
 } from '../scripts/harvest-rss-sources.js';
 
+const daysAgo = (days) => new Date(Date.now() - days * 86_400_000).toISOString().replace('.000', '');
+
 test('slugify generates valid slugs', () => {
     assert.equal(slugify('PWA Kit v3.5.0 Release!'), 'pwa-kit-v3-5-0-release');
     assert.equal(slugify('Salesforce & AI: The Future'), 'salesforce-ai-the-future');
@@ -120,20 +122,26 @@ test('mergeCandidates deduplicates by URL and ID', () => {
     assert.equal(result.candidates.length, 2);
 });
 
-test('harvestFromSources fetches and filters mock feeds', async () => {
+test('harvestFromSources fetches mock feeds and drops filtered and expired entries', async () => {
     const mockAtom = `<?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <entry>
     <title>v3.6.0</title>
     <link href="https://example.com/v3.6.0"/>
-    <updated>2026-09-01T00:00:00Z</updated>
+    <updated>${daysAgo(30)}</updated>
     <content>Release notes for v3.6.0</content>
   </entry>
   <entry>
     <title>v3.6.1-nightly</title>
     <link href="https://example.com/nightly"/>
-    <updated>2026-09-02T00:00:00Z</updated>
+    <updated>${daysAgo(29)}</updated>
     <content>Nightly build</content>
+  </entry>
+  <entry>
+    <title>v3.5.0</title>
+    <link href="https://example.com/v3.5.0"/>
+    <updated>${daysAgo(61)}</updated>
+    <content>Too old for the extension window</content>
   </entry>
 </feed>`;
 
@@ -204,6 +212,8 @@ test('isSfccRelated keeps B2C Commerce posts and drops general Salesforce or sma
         { title: 'Agentforce Voice for Agent Script: Route Real Phone Calls to Your Agent', summary: 'Omni-Channel routing', url: 'https://developer.salesforce.com/blogs/2026/10/agentforce-voice' },
         { title: 'Pro-Code Chunking of Data 360 Search Indexes for Agentforce', summary: '', url: 'https://developer.salesforce.com/blogs/2026/09/pro-code-chunking' },
         { title: '25 Online Business Ideas For All Your Commerce Needs', summary: 'turn a spare evening into a real storefront', url: 'https://www.salesforce.com/blog/small-business/online-business-ideas-for-commerce/' },
+        // The host name and the "agentic storefront" brand do not count as SFCC terms.
+        { title: '5 AI SEO Rules: What to Keep', summary: 'How agentic storefronts change search.', url: 'https://agenticstorefront.com/blog/five-ai-seo-rules/' },
     ];
 
     for (const entry of keep) assert.equal(isSfccRelated(entry), true, entry.title);
@@ -264,7 +274,6 @@ test('isEnglish keeps short English text that the detector scores as French', ()
 });
 
 // Dates are relative to now so the extension-window filter stays stable over time.
-const daysAgo = (days) => new Date(Date.now() - days * 86_400_000).toISOString().replace('.000', '');
 const RECENT = daysAgo(10);
 const RELEASES = JSON.stringify([
     { name: 'v3.22.0-nightly-20261104', tag_name: 'v3.22.0-nightly-20261104', prerelease: true, draft: false, html_url: 'https://github.com/o/r/releases/tag/nightly', published_at: daysAgo(1), body: '' },
