@@ -29,10 +29,11 @@ test('grants the scheduled RSS sources harvest write access', async () => {
 });
 
 
-test('publishes a limited batch each weekday and starts the deploy', async () => {
+test('publishes one item on Monday, Wednesday, and Friday and starts the deploy', async () => {
     const workflow = parse(await readFile('.github/workflows/publish-feed.yml', 'utf8'));
 
-    assert.deepEqual(workflow.on.schedule, [{ cron: '0 8 * * 1-5' }]);
+    assert.deepEqual(workflow.on.schedule, [{ cron: '0 8 * * 1,3,5' }]);
+    assert.equal(workflow.env.PUBLISH_LIMIT, "${{ vars.FEED_PUBLISH_LIMIT || '1' }}");
     assert.ok(Object.hasOwn(workflow.on, 'workflow_dispatch'));
     assert.deepEqual(workflow.permissions, { contents: 'write', actions: 'write', issues: 'write' });
 

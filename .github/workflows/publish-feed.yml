@@ -1,10 +1,11 @@
 name: Publish queued feed items
 
-# Releases a small batch of curated items from feed-dev.json to feed-live.json
-# each weekday, so extension users get a steady trickle instead of a burst.
+# Releases one curated item from feed-dev.json to feed-live.json on Monday,
+# Wednesday, and Friday. That matches the roughly 3 SFCC articles the sources
+# produce each week, so extension users get a steady trickle and the queue lasts.
 on:
   schedule:
-    - cron: '0 8 * * 1-5'
+    - cron: '0 8 * * 1,3,5'
   workflow_dispatch:
 
 permissions:
@@ -18,7 +19,7 @@ concurrency:
 
 env:
   # Override with the FEED_PUBLISH_LIMIT repository variable.
-  PUBLISH_LIMIT: ${{ vars.FEED_PUBLISH_LIMIT || '2' }}
+  PUBLISH_LIMIT: ${{ vars.FEED_PUBLISH_LIMIT || '1' }}
 
 jobs:
   publish:

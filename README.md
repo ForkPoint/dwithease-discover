@@ -45,7 +45,7 @@ npm run validate:feed -- feed-live.json feed-dev.json
 
 ### Publishing schedule
 
-`feed-dev.json` acts as the publish queue. Every weekday at 08:00 UTC, the `Publish queued feed items` workflow moves the oldest unpublished editorial items to `feed-live.json`, regenerates `rss.xml` and `atom.xml`, commits to `main`, and deploys the site. This keeps extension users from receiving a large batch at once.
+`feed-dev.json` acts as the publish queue. Every Monday, Wednesday, and Friday at 08:00 UTC, the `Publish queued feed items` workflow moves the oldest unpublished editorial item to `feed-live.json`, regenerates `rss.xml` and `atom.xml`, commits to `main`, and deploys the site. This matches the roughly 3 SFCC articles the sources produce each week, so extension users get a steady trickle and the queue rarely runs dry.
 
 If the push fails because `main` moved, the job rebuilds the batch from the newest `main` and tries again, up to 3 times. When any scheduled job (harvest, publish, or deploy) fails, it opens an `Automation failed: <workflow>` issue, or comments on the open one.
 
@@ -55,10 +55,10 @@ Stable PWA Kit releases skip review: the RSS harvest job queues them in `feed-de
 
 The extension keeps at most 20 Discover items and hides items whose `publishedAt` is older than 60 days. A delayed article still shows as unread, but an article older than 60 days never appears. `npm run curate -- --accept` warns when an article is older than 46 days.
 
-The workflow publishes 2 items per run. Set the `FEED_PUBLISH_LIMIT` repository variable to change this. To publish one batch locally:
+The workflow publishes 1 item per run. Set the `FEED_PUBLISH_LIMIT` repository variable to change this. To publish one batch locally:
 
 ```sh
-npm run promote:feed -- --limit 2
+npm run promote:feed -- --limit 1
 ```
 
 ## UX authoring guidance
