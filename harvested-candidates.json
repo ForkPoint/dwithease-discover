@@ -1,4 +1,125 @@
 {
-  "harvestedAt": "2026-11-04T09:44:44.937Z",
-  "candidates": []
+  "harvestedAt": "2026-11-10T09:39:36.035Z",
+  "candidates": [
+    {
+      "id": "rhino-inquisitor-bulk-catalog-surgery-changing-slicing-and-variation-media-in-sfcc",
+      "type": "article",
+      "title": "Bulk Catalog Surgery: Changing Slicing and Variation Media in SFCC",
+      "summary": "Change variation slicing across hundreds of SFCC masters with a merge-mode catalog import, a reindex checklist and a pattern to avoid duplicate media.",
+      "url": "https://rhino-inquisitor.com/bulk-catalog-and-variation-updates-in-sfcc/",
+      "source": {
+        "name": "Rhino Inquisitor",
+        "url": "https://rhino-inquisitor.com/archive/"
+      },
+      "publishedAt": "2026-11-04T05:00:00.000Z",
+      "tags": [
+        "sfcc",
+        "developer-tools"
+      ],
+      "cta": {
+        "label": "Read update"
+      },
+      "harvestedAt": "2026-11-10T09:39:36.035Z"
+    },
+    {
+      "id": "rhino-inquisitor-when-the-attacker-reads-the-docs-ai-and-framework-exploits",
+      "type": "article",
+      "title": "When the Attacker Reads the Docs: AI and Framework Exploits",
+      "summary": "How AI lowers the cost of attacking frameworks like React, Node and PHP, why open source is easier to study, and why this is only the beginning.",
+      "url": "https://rhino-inquisitor.com/when-the-attacker-reads-the-docs-ai-and-framework-exploits/",
+      "source": {
+        "name": "Rhino Inquisitor",
+        "url": "https://rhino-inquisitor.com/archive/"
+      },
+      "publishedAt": "2026-10-22T04:00:00.000Z",
+      "tags": [
+        "sfcc",
+        "developer-tools"
+      ],
+      "cta": {
+        "label": "Read update"
+      },
+      "harvestedAt": "2026-11-10T09:39:36.035Z"
+    },
+    {
+      "id": "rhino-inquisitor-sfcc-import-file-quirks-xml-order-characters-file-names",
+      "type": "article",
+      "title": "SFCC Import File Quirks: XML Order, Characters, File Names",
+      "summary": "Diagnose SFCC import failures from XSD element order, invalid XML characters, UTF-8 trouble, and file names like import file (3).xml.",
+      "url": "https://rhino-inquisitor.com/sfcc-import-export-file-quirks/",
+      "source": {
+        "name": "Rhino Inquisitor",
+        "url": "https://rhino-inquisitor.com/archive/"
+      },
+      "publishedAt": "2026-10-20T04:00:00.000Z",
+      "tags": [
+        "sfcc",
+        "developer-tools"
+      ],
+      "cta": {
+        "label": "Read update"
+      },
+      "harvestedAt": "2026-11-10T09:39:36.035Z"
+    },
+    {
+      "id": "rhino-inquisitor-executedatareplication-why-global-all-fails",
+      "type": "article",
+      "title": "ExecuteDataReplication: Why \"global\": \"all\" Fails",
+      "summary": "Why \"global\": \"all\" fails in the ExecuteDataReplication job step, the object form to try instead, and how to verify it on a development target first.",
+      "url": "https://rhino-inquisitor.com/executedatareplication-global-all-error/",
+      "source": {
+        "name": "Rhino Inquisitor",
+        "url": "https://rhino-inquisitor.com/archive/"
+      },
+      "publishedAt": "2026-10-16T04:00:00.000Z",
+      "tags": [
+        "sfcc",
+        "developer-tools"
+      ],
+      "cta": {
+        "label": "Read update"
+      },
+      "harvestedAt": "2026-11-10T09:39:36.035Z"
+    },
+    {
+      "id": "rhino-inquisitor-sfcc-webdav-deploy-failures-locked-zips-unzip-errors-504s",
+      "type": "article",
+      "title": "SFCC WebDAV Deploy Failures: Locked ZIPs, Unzip Errors, 504s",
+      "summary": "Diagnose locked _upload ZIPs, \"Could not unzip\" errors, and FileAlreadyExistsException on B2C Commerce, then guard your CI pipeline against them.",
+      "url": "https://rhino-inquisitor.com/sfcc-webdav-deployment-failures-explained/",
+      "source": {
+        "name": "Rhino Inquisitor",
+        "url": "https://rhino-inquisitor.com/archive/"
+      },
+      "publishedAt": "2026-10-05T06:00:00.000Z",
+      "tags": [
+        "sfcc",
+        "developer-tools"
+      ],
+      "cta": {
+        "label": "Read update"
+      },
+      "harvestedAt": "2026-11-10T09:39:36.035Z"
+    },
+    {
+      "id": "forkpoint-peak-2026-on-sfcc-an-eight-week-readiness-plan",
+      "type": "article",
+      "title": "Peak 2026 on SFCC: An Eight-Week Readiness Plan",
+      "summary": "A week-by-week plan to get a Salesforce Commerce Cloud store ready for Black Friday 2026: last deploys and code freeze, a full regression run, alert thresholds tuned for peak traffic, a complete holiday catalog, and AI visibility before Q4.",
+      "url": "https://forkpoint.com/articles/peak-2026-sfcc-eight-week-readiness-plan/",
+      "source": {
+        "name": "ForkPoint",
+        "url": "https://forkpoint.com/articles/"
+      },
+      "publishedAt": "2026-10-01T00:00:00.000Z",
+      "tags": [
+        "sfcc",
+        "strategy"
+      ],
+      "cta": {
+        "label": "Read update"
+      },
+      "harvestedAt": "2026-11-10T09:39:36.035Z"
+    }
+  ]
 }
