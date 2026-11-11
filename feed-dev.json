@@ -1,6 +1,6 @@
 {
   "locale": "en",
-  "updatedAt": "2026-11-10T09:53:30.890Z",
+  "updatedAt": "2026-11-11T14:40:15.469Z",
   "items": [
     {
       "id": "promotion-agentic-storefront-audit",
@@ -124,6 +124,27 @@
           "task-end",
           "popup"
         ]
+      }
+    },
+    {
+      "id": "pwa-kit-releases-pwa-kit-v3-22-0",
+      "type": "article",
+      "title": "PWA Kit v3.22.0",
+      "summary": "PWA Kit 3.22 updates passwordless login, reset password and private-client auth for the new SLAS requirements, ships Retail React App 11 and Commerce SDK React 6 as major releases, and adds email delivery through a new cartridge, the Shopper Agent express-paym",
+      "url": "https://github.com/SalesforceCommerceCloud/pwa-kit/releases/tag/v3.22.0",
+      "source": {
+        "name": "PWA Kit Releases",
+        "url": "https://github.com/SalesforceCommerceCloud/pwa-kit/releases.atom",
+        "icon": "https://discover.dwithease.com/assets/sources/github.svg"
+      },
+      "publishedAt": "2026-11-10T23:29:19.000Z",
+      "tags": [
+        "pwa-kit",
+        "release-notes",
+        "sfcc"
+      ],
+      "cta": {
+        "label": "Read update"
       }
     },
     {
