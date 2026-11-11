@@ -1,6 +1,6 @@
 {
   "locale": "en",
-  "updatedAt": "2026-11-05T16:05:39.437Z",
+  "updatedAt": "2026-11-11T15:55:52.636Z",
   "items": [
     {
       "id": "promotion-agentic-storefront-audit",
@@ -310,6 +310,26 @@
         "sfcc",
         "developer-tools",
         "salesforce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "forkpoint-peak-2026-on-sfcc-an-eight-week-readiness-plan",
+      "type": "article",
+      "title": "Peak 2026 on SFCC: An Eight-Week Readiness Plan",
+      "summary": "A week-by-week plan to get a Salesforce Commerce Cloud store ready for Black Friday 2026: last deploys and code freeze, a full regression run, alert thresholds tuned for peak traffic, a complete holiday catalog, and AI visibility before Q4.",
+      "url": "https://forkpoint.com/articles/peak-2026-sfcc-eight-week-readiness-plan/",
+      "source": {
+        "name": "ForkPoint",
+        "url": "https://forkpoint.com/articles/",
+        "icon": "https://discover.dwithease.com/assets/sources/forkpoint.svg"
+      },
+      "publishedAt": "2026-10-01T00:00:00.000Z",
+      "tags": [
+        "sfcc",
+        "strategy"
       ],
       "cta": {
         "label": "Read update"

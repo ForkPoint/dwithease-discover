@@ -5,7 +5,7 @@
   <subtitle>Commerce news, technical articles, and useful tools for teams that build online stores.</subtitle>
   <link href="https://discover.dwithease.com/" rel="alternate" type="text/html"/>
   <link href="https://discover.dwithease.com/atom.xml" rel="self" type="application/atom+xml"/>
-  <updated>2026-11-05T16:05:39.437Z</updated>
+  <updated>2026-11-11T15:55:52.636Z</updated>
   <entry>
     <id>https://discover.dwithease.com/#promotion-agentic-storefront-audit</id>
     <title>See How AI Shopping Agents Read Your Store</title>
@@ -200,6 +200,20 @@
     <category term="sfcc"/>
     <category term="developer-tools"/>
     <category term="salesforce"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#forkpoint-peak-2026-on-sfcc-an-eight-week-readiness-plan</id>
+    <title>Peak 2026 on SFCC: An Eight-Week Readiness Plan</title>
+    <link href="https://forkpoint.com/articles/peak-2026-sfcc-eight-week-readiness-plan/" rel="alternate"/>
+    <published>2026-10-01T00:00:00.000Z</published>
+    <updated>2026-10-01T00:00:00.000Z</updated>
+    <summary>A week-by-week plan to get a Salesforce Commerce Cloud store ready for Black Friday 2026: last deploys and code freeze, a full regression run, alert thresholds tuned for peak traffic, a complete holiday catalog, and AI visibility before Q4.</summary>
+    <author>
+      <name>ForkPoint</name>
+      <uri>https://forkpoint.com/articles/</uri>
+    </author>
+    <category term="sfcc"/>
+    <category term="strategy"/>
   </entry>
   <entry>
     <id>https://discover.dwithease.com/#salesforce-commerce-blog-how-west-marine-drives-revenue-and-scalability-with-ai-native-search-and-ag</id>
