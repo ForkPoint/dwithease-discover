@@ -5,7 +5,7 @@
   <subtitle>Commerce news, technical articles, and useful tools for teams that build online stores.</subtitle>
   <link href="https://discover.dwithease.com/" rel="alternate" type="text/html"/>
   <link href="https://discover.dwithease.com/atom.xml" rel="self" type="application/atom+xml"/>
-  <updated>2026-11-11T15:55:52.636Z</updated>
+  <updated>2026-11-13T15:58:25.445Z</updated>
   <entry>
     <id>https://discover.dwithease.com/#promotion-agentic-storefront-audit</id>
     <title>See How AI Shopping Agents Read Your Store</title>
@@ -170,6 +170,20 @@
     <category term="sfcc"/>
     <category term="strategy"/>
     <category term="ecommerce"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#rhino-inquisitor-sfcc-webdav-deploy-failures-locked-zips-unzip-errors-504s</id>
+    <title>SFCC WebDAV Deploy Failures: Locked ZIPs, Unzip Errors, 504s</title>
+    <link href="https://rhino-inquisitor.com/sfcc-webdav-deployment-failures-explained/" rel="alternate"/>
+    <published>2026-10-05T06:00:00.000Z</published>
+    <updated>2026-10-05T06:00:00.000Z</updated>
+    <summary>Diagnose locked _upload ZIPs, &quot;Could not unzip&quot; errors, and FileAlreadyExistsException on B2C Commerce, then guard your CI pipeline against them.</summary>
+    <author>
+      <name>Rhino Inquisitor</name>
+      <uri>https://rhino-inquisitor.com/archive/</uri>
+    </author>
+    <category term="sfcc"/>
+    <category term="developer-tools"/>
   </entry>
   <entry>
     <id>https://discover.dwithease.com/#salesforce-commerce-blog-what-s-new-in-b2c-commerce-the-september-2026-release</id>
