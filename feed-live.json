@@ -1,6 +1,6 @@
 {
   "locale": "en",
-  "updatedAt": "2026-11-13T15:58:25.445Z",
+  "updatedAt": "2026-11-16T18:04:02.204Z",
   "items": [
     {
       "id": "promotion-agentic-storefront-audit",
@@ -184,6 +184,26 @@
         "sfcc",
         "strategy",
         "ecommerce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "rhino-inquisitor-executedatareplication-why-global-all-fails",
+      "type": "article",
+      "title": "ExecuteDataReplication: Why \"global\": \"all\" Fails",
+      "summary": "Why \"global\": \"all\" fails in the ExecuteDataReplication job step, the object form to try instead, and how to verify it on a development target first.",
+      "url": "https://rhino-inquisitor.com/executedatareplication-global-all-error/",
+      "source": {
+        "name": "Rhino Inquisitor",
+        "url": "https://rhino-inquisitor.com/archive/",
+        "icon": "https://discover.dwithease.com/assets/sources/rhino-inquisitor.svg"
+      },
+      "publishedAt": "2026-10-16T04:00:00.000Z",
+      "tags": [
+        "sfcc",
+        "developer-tools"
       ],
       "cta": {
         "label": "Read update"

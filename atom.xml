@@ -5,7 +5,7 @@
   <subtitle>Commerce news, technical articles, and useful tools for teams that build online stores.</subtitle>
   <link href="https://discover.dwithease.com/" rel="alternate" type="text/html"/>
   <link href="https://discover.dwithease.com/atom.xml" rel="self" type="application/atom+xml"/>
-  <updated>2026-11-13T15:58:25.445Z</updated>
+  <updated>2026-11-16T18:04:02.204Z</updated>
   <entry>
     <id>https://discover.dwithease.com/#promotion-agentic-storefront-audit</id>
     <title>See How AI Shopping Agents Read Your Store</title>
@@ -110,6 +110,20 @@
     <category term="sfcc"/>
     <category term="strategy"/>
     <category term="ecommerce"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#rhino-inquisitor-executedatareplication-why-global-all-fails</id>
+    <title>ExecuteDataReplication: Why &quot;global&quot;: &quot;all&quot; Fails</title>
+    <link href="https://rhino-inquisitor.com/executedatareplication-global-all-error/" rel="alternate"/>
+    <published>2026-10-16T04:00:00.000Z</published>
+    <updated>2026-10-16T04:00:00.000Z</updated>
+    <summary>Why &quot;global&quot;: &quot;all&quot; fails in the ExecuteDataReplication job step, the object form to try instead, and how to verify it on a development target first.</summary>
+    <author>
+      <name>Rhino Inquisitor</name>
+      <uri>https://rhino-inquisitor.com/archive/</uri>
+    </author>
+    <category term="sfcc"/>
+    <category term="developer-tools"/>
   </entry>
   <entry>
     <id>https://discover.dwithease.com/#salesforce-developers-blog-stop-credential-stuffing-with-b2c-commerce-ecdn</id>
