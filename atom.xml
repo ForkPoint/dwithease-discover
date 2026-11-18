@@ -5,7 +5,7 @@
   <subtitle>Commerce news, technical articles, and useful tools for teams that build online stores.</subtitle>
   <link href="https://discover.dwithease.com/" rel="alternate" type="text/html"/>
   <link href="https://discover.dwithease.com/atom.xml" rel="self" type="application/atom+xml"/>
-  <updated>2026-11-16T18:04:02.204Z</updated>
+  <updated>2026-11-18T17:00:13.017Z</updated>
   <entry>
     <id>https://discover.dwithease.com/#promotion-agentic-storefront-audit</id>
     <title>See How AI Shopping Agents Read Your Store</title>
@@ -110,6 +110,20 @@
     <category term="sfcc"/>
     <category term="strategy"/>
     <category term="ecommerce"/>
+  </entry>
+  <entry>
+    <id>https://discover.dwithease.com/#rhino-inquisitor-sfcc-import-file-quirks-xml-order-characters-file-names</id>
+    <title>SFCC Import File Quirks: XML Order, Characters, File Names</title>
+    <link href="https://rhino-inquisitor.com/sfcc-import-export-file-quirks/" rel="alternate"/>
+    <published>2026-10-20T04:00:00.000Z</published>
+    <updated>2026-10-20T04:00:00.000Z</updated>
+    <summary>Diagnose SFCC import failures from XSD element order, invalid XML characters, UTF-8 trouble, and file names like import file (3).xml.</summary>
+    <author>
+      <name>Rhino Inquisitor</name>
+      <uri>https://rhino-inquisitor.com/archive/</uri>
+    </author>
+    <category term="sfcc"/>
+    <category term="developer-tools"/>
   </entry>
   <entry>
     <id>https://discover.dwithease.com/#rhino-inquisitor-executedatareplication-why-global-all-fails</id>

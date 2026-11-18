@@ -1,6 +1,6 @@
 {
   "locale": "en",
-  "updatedAt": "2026-11-16T18:04:02.204Z",
+  "updatedAt": "2026-11-18T17:00:13.017Z",
   "items": [
     {
       "id": "promotion-agentic-storefront-audit",
@@ -184,6 +184,26 @@
         "sfcc",
         "strategy",
         "ecommerce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "rhino-inquisitor-sfcc-import-file-quirks-xml-order-characters-file-names",
+      "type": "article",
+      "title": "SFCC Import File Quirks: XML Order, Characters, File Names",
+      "summary": "Diagnose SFCC import failures from XSD element order, invalid XML characters, UTF-8 trouble, and file names like import file (3).xml.",
+      "url": "https://rhino-inquisitor.com/sfcc-import-export-file-quirks/",
+      "source": {
+        "name": "Rhino Inquisitor",
+        "url": "https://rhino-inquisitor.com/archive/",
+        "icon": "https://discover.dwithease.com/assets/sources/rhino-inquisitor.svg"
+      },
+      "publishedAt": "2026-10-20T04:00:00.000Z",
+      "tags": [
+        "sfcc",
+        "developer-tools"
       ],
       "cta": {
         "label": "Read update"
