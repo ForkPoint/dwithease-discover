@@ -5,7 +5,7 @@
     <link>https://discover.dwithease.com/</link>
     <description>Commerce news, technical articles, and useful tools for teams that build online stores.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 18 Nov 2026 17:00:13 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 20 Nov 2026 16:47:43 GMT</lastBuildDate>
     <atom:link href="https://discover.dwithease.com/rss.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>See How AI Shopping Agents Read Your Store</title>
@@ -83,6 +83,16 @@
       <category>sfcc</category>
       <category>strategy</category>
       <category>ecommerce</category>
+    </item>
+    <item>
+      <title>When the Attacker Reads the Docs: AI and Framework Exploits</title>
+      <link>https://rhino-inquisitor.com/when-the-attacker-reads-the-docs-ai-and-framework-exploits/</link>
+      <guid isPermaLink="false">rhino-inquisitor-when-the-attacker-reads-the-docs-ai-and-framework-exploits</guid>
+      <pubDate>Thu, 22 Oct 2026 04:00:00 GMT</pubDate>
+      <description>How AI lowers the cost of attacking frameworks like React, Node and PHP, why open source is easier to study, and why this is only the beginning.</description>
+      <source url="https://rhino-inquisitor.com/archive/">Rhino Inquisitor</source>
+      <category>sfcc</category>
+      <category>developer-tools</category>
     </item>
     <item>
       <title>SFCC Import File Quirks: XML Order, Characters, File Names</title>

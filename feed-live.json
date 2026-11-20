@@ -1,6 +1,6 @@
 {
   "locale": "en",
-  "updatedAt": "2026-11-18T17:00:13.017Z",
+  "updatedAt": "2026-11-20T16:47:43.906Z",
   "items": [
     {
       "id": "promotion-agentic-storefront-audit",
@@ -184,6 +184,26 @@
         "sfcc",
         "strategy",
         "ecommerce"
+      ],
+      "cta": {
+        "label": "Read update"
+      }
+    },
+    {
+      "id": "rhino-inquisitor-when-the-attacker-reads-the-docs-ai-and-framework-exploits",
+      "type": "article",
+      "title": "When the Attacker Reads the Docs: AI and Framework Exploits",
+      "summary": "How AI lowers the cost of attacking frameworks like React, Node and PHP, why open source is easier to study, and why this is only the beginning.",
+      "url": "https://rhino-inquisitor.com/when-the-attacker-reads-the-docs-ai-and-framework-exploits/",
+      "source": {
+        "name": "Rhino Inquisitor",
+        "url": "https://rhino-inquisitor.com/archive/",
+        "icon": "https://discover.dwithease.com/assets/sources/rhino-inquisitor.svg"
+      },
+      "publishedAt": "2026-10-22T04:00:00.000Z",
+      "tags": [
+        "sfcc",
+        "developer-tools"
       ],
       "cta": {
         "label": "Read update"
